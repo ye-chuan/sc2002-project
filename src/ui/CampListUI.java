@@ -3,7 +3,6 @@ import java.util.*;
 public class CampListUI extends MainUI {
 
 	private Collection<Camp> listOfCamps;
-	private Collection<Camp> ListOfSpecificCamp;
 
 	/**
 	 * 
@@ -22,16 +21,6 @@ public class CampListUI extends MainUI {
 	 */
 	public void getListOfCamp(User user, UserType accessLevel) {
 		// TODO - implement CampListUI.getListOfCamp
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param user
-	 * @param accessLevel
-	 */
-	public void getListOfSpecificCamp(User user, UserType accessLevel) {
-		// TODO - implement CampListUI.getListOfSpecificCamp
 		throw new UnsupportedOperationException();
 	}
 
