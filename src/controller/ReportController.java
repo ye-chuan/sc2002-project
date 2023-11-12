@@ -20,4 +20,9 @@ public class ReportController {
 		throw new UnsupportedOperationException();
 	}
 
+	public void generateEnquiryReport() {
+		// TODO - implement ReportController.generateEnquiryReport
+		throw new UnsupportedOperationException();
+	}
+
 }
