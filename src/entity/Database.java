@@ -3,7 +3,7 @@ import java.util.*;
 public class Database {
 
 	private String filePath;
-	private Collection<Identifiable> arr;
+	private Collection<Identifiable> data;
 
 	/**
 	 * 

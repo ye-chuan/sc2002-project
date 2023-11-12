@@ -4,10 +4,6 @@ public class User implements Identifiable {
 	private String password;
 	private Faculty faculty;
 
-	public String getUserID() {
-		return this.userID;
-	}
-
 	/**
 	 * 
 	 * @param newEmail

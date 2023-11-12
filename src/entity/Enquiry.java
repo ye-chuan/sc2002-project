@@ -1,6 +1,6 @@
 public class Enquiry implements Identifiable {
 
-	private int enquiryID;
+	private String enquiryID;
 	private String text;
 	private String reply = None;
 

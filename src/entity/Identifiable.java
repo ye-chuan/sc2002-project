@@ -1,5 +1,11 @@
 public interface Identifiable {
 
-	int getUniqueID();
+	String getID();
+
+	/**
+	 * 
+	 * @param id
+	 */
+	void setID(String id);
 
 }

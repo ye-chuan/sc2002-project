@@ -1,8 +1,8 @@
 public class Suggestion implements Identifiable {
 
-	private int suggestionID;
+	private String suggestionID;
 	private String text;
-	private SuggestionStatus status = SuggestionStatus.PENDING;
+	private SuggestionStatus status;
 
 	public void getStatus() {
 		// TODO - implement Suggestion.getStatus
