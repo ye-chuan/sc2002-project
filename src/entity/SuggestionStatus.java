@@ -1,5 +1,6 @@
+package entity;
 public enum SuggestionStatus {
 	PENDING,
-	ACCEPTED,
+	APPROVED,
 	REJECTED
 }

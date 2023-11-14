@@ -1,5 +1,8 @@
 import java.util.*;
 
+import entity.CampInformation;
+import entity.Student;
+
 public class CampUI extends MainUI {
 
 	private CampInformation campInfo;

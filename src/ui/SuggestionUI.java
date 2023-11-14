@@ -1,5 +1,7 @@
 import java.util.*;
 
+import entity.Suggestion;
+
 public class SuggestionUI extends MainUI {
 
 	private Collection<Suggestion> listOfSuggestion;

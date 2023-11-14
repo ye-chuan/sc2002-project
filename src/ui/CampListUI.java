@@ -1,5 +1,8 @@
 import java.util.*;
 
+import entity.Camp;
+import entity.User;
+
 public class CampListUI extends MainUI {
 
 	private Collection<Camp> listOfCamps;

@@ -1,38 +1,34 @@
+package entity;
 public class User implements Identifiable {
 
 	private String userID;
 	private String password;
 	private Faculty faculty;
+    private String email;
 
-	/**
-	 * 
-	 * @param newEmail
-	 */
-	public boolean changeEmail(String newEmail) {
-		// TODO - implement User.changeEmail
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param password
-	 */
 	public boolean changePassword(String password) {
-		// TODO - implement User.changePassword
-		throw new UnsupportedOperationException();
+        this.password = password;
+        return true;
 	}
 
-	/**
-	 * 
-	 * @param password
-	 */
 	public boolean checkPassword(String password) {
-		// TODO - implement User.checkPassword
-		throw new UnsupportedOperationException();
+        return this.password.equals(password);
 	}
 
 	public Faculty getFaculty() {
 		return this.faculty;
 	}
 
+    public String getEmail() {
+        return this.email;
+    }
+
+	public void setEmail(String newEmail) {
+        this.email = newEmail;
+	}
+
+    @Override
+    public String getID() {
+        return this.userID;
+    }
 }

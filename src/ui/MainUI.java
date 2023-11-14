@@ -1,3 +1,5 @@
+import entity.User;
+
 public class MainUI implements InterfaceUI {
 
 	protected User user;

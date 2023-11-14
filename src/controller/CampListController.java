@@ -1,3 +1,5 @@
+import entity.CampDBQuery;
+
 public class CampListController {
 
 	public void getAll() {

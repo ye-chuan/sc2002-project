@@ -1,3 +1,4 @@
+package entity;
 import java.util.*;
 
 public class CampInformation {
@@ -5,14 +6,44 @@ public class CampInformation {
 	private String campID;
 	private String name;
 	private String location;
-	private Collection<Date3> dates;
-	private Date3 closingDate;
-	private int attendeeSlots;
+	private Collection<Date> dates;
+	private Date closingDate;
+	private int participantSlots;
 	private int campCommSlots;
 	private String description;
 	private Staff staffInCharge;
 	private Collection<Faculty> openTo;
 
+    public CampInformation(Staff staffInCharge) {
+        this.staffInCharge = staffInCharge;
+        this.name = "Unspecified Name";
+        this.location = "Unspecified Location";
+        this.participantSlots = 0;
+        this.campCommSlots = 0;
+    }
+
+	/**
+	 * 
+	 * @param name
+	 * @param location
+	 * @param dates
+	 * @param closingDate
+	 * @param attendeeSlots
+	 * @param campCommSlots
+	 * @param staffInCharge
+	 * @param openTo
+	 */
+	public CampInformation(String name, String location, Collection<Date> dates, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
+        this.name = name;
+        this.location = location;
+        this.dates = dates;
+        this.closingDate = closingDate;
+        this.participantSlots = participantSlots;
+        this.campCommSlots = campCommSlots;
+        this.staffInCharge = staffInCharge;
+        this.openTo = openTo;
+	}
+    
 	String getName() {
 		return this.name;
 	}
@@ -37,7 +68,7 @@ public class CampInformation {
 		this.location = location;
 	}
 
-	Date3 getDates() {
+	Collection<Date> getDates() {
 		return this.dates;
 	}
 
@@ -45,11 +76,11 @@ public class CampInformation {
 	 * 
 	 * @param dates
 	 */
-	void setDates(Date3 dates) {
+	void setDates(Collection<Date> dates) {
 		this.dates = dates;
 	}
 
-	Date3 getClosingDate() {
+	Date getClosingDate() {
 		return this.closingDate;
 	}
 
@@ -57,20 +88,20 @@ public class CampInformation {
 	 * 
 	 * @param closingDate
 	 */
-	void setClosingDate(Date3 closingDate) {
+	void setClosingDate(Date closingDate) {
 		this.closingDate = closingDate;
 	}
 
-	int getAttendeeSlots() {
-		return this.attendeeSlots;
+	int getParticipantSlots() {
+		return this.participantSlots;
 	}
 
 	/**
 	 * 
-	 * @param attendeeSlots
+	 * @param participantSlots
 	 */
-	void setAttendeeSlots(int attendeeSlots) {
-		this.attendeeSlots = attendeeSlots;
+	void setParticipantSlots(int participantSlots) {
+		this.participantSlots = participantSlots;
 	}
 
 	int getCampCommSlots() {
@@ -109,7 +140,7 @@ public class CampInformation {
 		this.staffInCharge = staffInCharge;
 	}
 
-	Faculty getOpenTo() {
+	Collection<Faculty> getOpenTo() {
 		return this.openTo;
 	}
 
@@ -117,22 +148,17 @@ public class CampInformation {
 	 * 
 	 * @param openTo
 	 */
-	void setOpenTo(Faculty openTo) {
-		this.openTo = openTo;
+	void setOpenTo(Collection<Faculty> faculties) {
+		this.openTo = faculties;
 	}
 
-	public int getCampID() {
-		// TODO - implement CampInformation.getCampID
-		throw new UnsupportedOperationException();
+	String getCampID() {
+        return campID;
 	}
 
-	/**
-	 * 
-	 * @param campID
-	 */
-	public void setCampID(int campID) {
-		// TODO - implement CampInformation.setCampID
-		throw new UnsupportedOperationException();
+	void setCampID(String campID) {
+        this.campID = campID;
 	}
+
 
 }

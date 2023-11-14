@@ -1,31 +1,47 @@
+package entity;
+
 public class Suggestion implements Identifiable {
 
 	private String suggestionID;
-	private String text;
+	private String suggestion;
 	private SuggestionStatus status;
+    private String suggestedBy;
 
-	public void getStatus() {
-		// TODO - implement Suggestion.getStatus
-		throw new UnsupportedOperationException();
+    public Suggestion(String suggestion, String userID) {
+        this.suggestionID = UniqueIDGenerator.generate();
+        this.suggestion = suggestion;
+        this.status = SuggestionStatus.PENDING;
+        this.suggestedBy = userID;
+    }
+
+	public SuggestionStatus getStatus() {
+        return status;
 	}
 
-	public void setStatus() {
-		// TODO - implement Suggestion.setStatus
-		throw new UnsupportedOperationException();
+	public void setStatus(SuggestionStatus status) {
+        this.status = status;
 	}
 
 	public boolean approve() {
-		// TODO - implement Suggestion.approve
-		throw new UnsupportedOperationException();
+        status = SuggestionStatus.APPROVED;
+        return true;
 	}
 
-	/**
-	 * 
-	 * @param suggestion
-	 */
-	public boolean editSuggestion(String suggestion) {
-		// TODO - implement Suggestion.editSuggestion
-		throw new UnsupportedOperationException();
-	}
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+	public void setSuggestion(String suggestion) {
+	    this.suggestion = suggestion;
+    }
+
+    public String getSuggestedBy() {
+        return suggestedBy;
+    }
+    
+    @Override
+    public String getID() {
+        return suggestionID;
+    }
 
 }

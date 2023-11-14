@@ -1,13 +1,15 @@
+package entity;
 import java.util.*;
 
 public class Camp implements Identifiable {
 
-	private CampInfomation2 infomation;
-	private Collection<Student> registeredStudents;
-	private Collection<Student> campCommittee;
-	private boolean isVisible = false;
+	private CampInformation information;
+	private boolean visible = false;
 	private SuggestionDatabase suggestionDB;
 	private EnquiryDatabase enquiriesDB;
+
+    private boolean hasSomethingNothing;
+    public boolean getHasSomethingNothing() {return this.hasSomethingNothing;}
 
 	/**
 	 * 
@@ -21,162 +23,145 @@ public class Camp implements Identifiable {
 	 * @param openTo
 	 */
 	public Camp(String name, String location, Collection<Date> dates, Date closingDate, int attendeeSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
-		// TODO - implement Camp.Camp
-		throw new UnsupportedOperationException();
+        this.information = new CampInformation(name, location, dates, closingDate, attendeeSlots, campCommSlots, staffInCharge, openTo);
+        this.information.setCampID(UniqueIDGenerator.generate());
+
+        this.suggestionDB = new SuggestionDatabase();
+        this.enquiriesDB = new EnquiryDatabase();
 	}
 
-	public Collection<Student> getRegisteredStudents() {
-		// TODO - implement Camp.getRegisteredStudents
-		throw new UnsupportedOperationException();
-	}
+    public Camp(Staff staffInCharge) {
+        this.information = new CampInformation(staffInCharge);
+        this.information.setCampID(UniqueIDGenerator.generate());
+
+        this.suggestionDB = new SuggestionDatabase();
+        this.enquiriesDB = new EnquiryDatabase();
+    }
+
+    public boolean isVisible() {
+        return this.visible;
+    }
 
 	public void show() {
-		// TODO - implement Camp.show
-		throw new UnsupportedOperationException();
+        this.visible = true;
 	}
 
 	public void hide() {
-		// TODO - implement Camp.hide
-		throw new UnsupportedOperationException();
+        this.visible = false;
 	}
 
 	/**
 	 * Make camp available for all of NTU
 	 */
-	public boolean openToNTU() {
-		// TODO - implement Camp.openToNTU
-		throw new UnsupportedOperationException();
+	public void openToNTU() {
+        information.setOpenTo(Arrays.asList(Faculty.values()));
 	}
 
 	/**
 	 * Make camp available for just 1 faculty (not whole school)
-	 * @param faculty
 	 */
-	public boolean openToFaculty(Faculty faculty) {
-		// TODO - implement Camp.openToFaculty
-		throw new UnsupportedOperationException();
-	}
-
-	public Collection<Student> getCampCommMembers() {
-		// TODO - implement Camp.getCampCommMembers
-		throw new UnsupportedOperationException();
+	public void openToFaculty(Faculty faculty) {
+        Collection<Faculty> openToFaculties = new ArrayList<Faculty>();
+        openToFaculties.add(faculty);
+        information.setOpenTo(openToFaculties);
 	}
 
 	public String getName() {
-		// TODO - implement Camp.getName
-		throw new UnsupportedOperationException();
+        return this.information.getName();
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
 	public void setName(String name) {
-		// TODO - implement Camp.setName
-		throw new UnsupportedOperationException();
+        this.information.setName(name);
 	}
 
 	public String getLocation() {
-		// TODO - implement Camp.getLocation
-		throw new UnsupportedOperationException();
+        return this.information.getLocation();
 	}
 
-	/**
-	 * 
-	 * @param location
-	 */
 	public void setLocation(String location) {
-		// TODO - implement Camp.setLocation
-		throw new UnsupportedOperationException();
+        this.information.setLocation(location);
 	}
 
-	public Date3 getDates() {
-		// TODO - implement Camp.getDates
-		throw new UnsupportedOperationException();
+	public Collection<Date> getDates() {
+        return this.information.getDates();
 	}
 
-	/**
-	 * 
-	 * @param dates
-	 */
-	public void setDates(Date3 dates) {
-		// TODO - implement Camp.setDates
-		throw new UnsupportedOperationException();
+	public void setDates(Collection<Date> dates) {
+        this.information.setDates(dates);
 	}
 
-	public Date3 getClosingDate() {
-		// TODO - implement Camp.getClosingDate
-		throw new UnsupportedOperationException();
+	public Date getClosingDate() {
+        return this.information.getClosingDate();
 	}
 
-	/**
-	 * 
-	 * @param closingDate
-	 */
-	public void setClosingDate(Date3 closingDate) {
-		// TODO - implement Camp.setClosingDate
-		throw new UnsupportedOperationException();
+	public void setClosingDate(Date closingDate) {
+        this.information.setClosingDate(closingDate);
 	}
 
-	public int getAttendeeSlots() {
-		// TODO - implement Camp.getAttendeeSlots
-		throw new UnsupportedOperationException();
+	public int getParticipantSlots() {
+        return this.information.getParticipantSlots();
 	}
 
-	/**
-	 * 
-	 * @param attendeeSlots
-	 */
-	public void setAttendeeSlots(int attendeeSlots) {
-		// TODO - implement Camp.setAttendeeSlots
-		throw new UnsupportedOperationException();
+	public void setParticipantSlots(int participantSlots) {
+        this.information.setParticipantSlots(participantSlots);
 	}
 
 	public int getCampCommSlots() {
-		// TODO - implement Camp.getCampCommSlots
-		throw new UnsupportedOperationException();
+        return this.information.getCampCommSlots();
 	}
 
-	/**
-	 * 
-	 * @param campCommSlots
-	 */
 	public void setCampCommSlots(int campCommSlots) {
-		// TODO - implement Camp.setCampCommSlots
-		throw new UnsupportedOperationException();
+        this.information.setCampCommSlots(campCommSlots);
 	}
 
 	public String getDescription() {
-		// TODO - implement Camp.getDescription
-		throw new UnsupportedOperationException();
+        return this.information.getDescription();
 	}
 
-	/**
-	 * 
-	 * @param description
-	 */
 	public void setDescription(String description) {
-		// TODO - implement Camp.setDescription
-		throw new UnsupportedOperationException();
+        this.information.setDescription(description);
 	}
 
 	public Staff getStaffInCharge() {
-		// TODO - implement Camp.getStaffInCharge
-		throw new UnsupportedOperationException();
+        return this.information.getStaffInCharge();
 	}
 
-	public Faculty getOpenTo() {
-		// TODO - implement Camp.getOpenTo
-		throw new UnsupportedOperationException();
+	public Collection<Faculty> getOpenTo() {
+        return this.information.getOpenTo();
 	}
 
-	/**
-	 * 
-	 * @param openTo
-	 */
-	public void setOpenTo(Faculty openTo) {
-		// TODO - implement Camp.setOpenTo
-		throw new UnsupportedOperationException();
+	public void setOpenTo(Collection<Faculty> openTo) {
+        this.information.setOpenTo(openTo);
 	}
+
+    public boolean isOpenTo(Faculty faculty) {
+        return getOpenTo().contains(faculty);
+    }
+
+    public SuggestionDatabase getSuggestionDB() {
+        return this.suggestionDB;
+    }
+
+    public EnquiryDatabase getEnquiryDB() {
+        return this.enquiriesDB;
+    }
+
+    @Override
+    public String getID() {
+        return information.getCampID();
+    }
+
+    public static void main(String[] args) {
+        Collection<Date> dates = new ArrayList<Date>();
+        dates.add(new Date(2022,12,3));
+        Staff staffInCharge = new Staff();
+        Collection<Faculty> openTo = new ArrayList<Faculty>();
+        openTo.add(Faculty.EEE);
+        
+        Camp camp = new Camp("name", "location", dates, new Date(2022,11,3), 100, 10, staffInCharge, openTo);
+        camp.openToNTU();
+
+        System.out.println(camp.getOpenTo());
+    }
 
 }

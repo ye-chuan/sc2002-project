@@ -1,5 +1,7 @@
 import java.util.*;
 
+import entity.Enquiry;
+
 public class EnquryUI extends MainUI {
 
 	private Collection<Enquiry> listOfProcessEnqury;

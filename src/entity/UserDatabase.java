@@ -1,12 +1,14 @@
-public class UserDatabase extends Database {
+package entity;
+public class UserDatabase extends Database<User> {
 
 	/**
-	 * 
-	 * @param userID
-	 * @param password
+	 * Attempt to log the user in with the given credentials
+	 * @param userID The entered userID
+	 * @param password The entered password
+     * @return The {@code User} object if login was successfull, else {@code null}
 	 */
 	public User login(String userID, String password) {
-		// TODO - implement UserDatabase.login
+		// TODO - implement .login
 		throw new UnsupportedOperationException();
 	}
 

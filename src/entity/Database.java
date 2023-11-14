@@ -1,26 +1,36 @@
+package entity;
 import java.util.*;
 
-public class Database {
+public class Database<T extends Identifiable> {
 
-	private String filePath;
-	private Collection<Identifiable> data;
+	protected String filePath;
+	protected Map<String, T> items;
 
-	/**
-	 * 
-	 * @param item
-	 */
-	public boolean add(Identifiable item) {
-		// TODO - implement Database.add
-		throw new UnsupportedOperationException();
+    public Database() {
+        this.items = new HashMap<String, T>();
+    }
+
+	public void add(T item) {
+        if (item.getID() == null) {
+            throw new IllegalArgumentException("Item do not have ID");
+        }
+        if (items.containsKey(item.getID())) {
+            throw new IllegalArgumentException("ID not unique in Database");
+        }
+
+        items.put(item.getID(), item);
 	}
 
-	/**
-	 * 
-	 * @param id
-	 */
-	public boolean remove(int id) {
-		// TODO - implement Database.remove
-		throw new UnsupportedOperationException();
+    public T getItem(String id) {
+        return items.get(id);
+    }
+
+	public T remove(String id) {
+        return items.remove(id);
 	}
+
+    public T remove(T item) {
+        return remove(item.getID());
+    }
 
 }

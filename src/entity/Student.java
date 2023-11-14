@@ -1,57 +1,20 @@
+package entity;
+
 public class Student extends User {
 
 	private int points;
-	private CampCommInfo campCommInfo;
 
-	public void getPoints() {
-		// TODO - implement Student.getPoints
-		throw new UnsupportedOperationException();
-	}
-
-	public void getStatusCC() {
-		// TODO - implement Student.getStatusCC
-		throw new UnsupportedOperationException();
+	public int getPoints() {
+        return this.points;
 	}
 
 	/**
-	 * 
-	 * @param camp
-	 */
-	public boolean joinCampComm(Camp camp) {
-		// TODO - implement Student.joinCampComm
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param camp
-	 */
-	public boolean registerCamp(Camp camp) {
-		// TODO - implement Student.registerCamp
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param camp
-	 */
-	public boolean withdrawCamp(Camp camp) {
-		// TODO - implement Student.withdrawCamp
-		throw new UnsupportedOperationException();
-	}
-
-	public Collection<Camp> getCampsJoined() {
-		// TODO - implement Student.getCampsJoined
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
+	 * Get the points that this student has
 	 * @param points
-	 */
-	public boolean addPoints(int points) {
-		// TODO - implement Student.addPoints
-		throw new UnsupportedOperationException();
+     * @return points that the student has */
+    public boolean addPoints(int points) {
+        this.points += points;
+        return true;
 	}
 
 }
