@@ -77,7 +77,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public ArrayList<Enquiry> getPendingEnquiryByCamp(String campID) {
+	public Collection<Enquiry> getPendingEnquiryByCamp(String campID) {
 		// TODO - implement EnquiryController.getPendingEnquiryByCamp
 		throw new UnsupportedOperationException();
 	}
@@ -86,8 +86,35 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Enquiry> getEnquiryByStudent(String userID) {
+	public Collection<Enquiry> getEnquiryByStudent(String userID) {
 		// TODO - implement EnquiryController.getEnquiryByStudent
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public String getEnquiryCreator(int enquiryID) {
+		// TODO - implement EnquiryController.getEnquiryCreator
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public String getEnquiryText(int enquiryID) {
+		// TODO - implement EnquiryController.getEnquiryText
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public String getEnquiryReply(int enquiryID) {
+		// TODO - implement EnquiryController.getEnquiryReply
 		throw new UnsupportedOperationException();
 	}
 

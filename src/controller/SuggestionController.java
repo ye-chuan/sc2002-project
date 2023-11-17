@@ -86,7 +86,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public ArrayList<Suggestion> getPendingSuggestionByCamp(String campID) {
+	public Collection<Suggestion> getPendingSuggestionByCamp(String campID) {
 		// TODO - implement SuggestionController.getPendingSuggestionByCamp
 		throw new UnsupportedOperationException();
 	}
@@ -95,8 +95,26 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Suggestion> getEnquiryByCampComm(String userID) {
+	public Collection<Suggestion> getEnquiryByCampComm(String userID) {
 		// TODO - implement SuggestionController.getEnquiryByCampComm
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param suggestionID
+	 */
+	public String getSuggestionText(int suggestionID) {
+		// TODO - implement SuggestionController.getSuggestionText
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param suggestionID
+	 */
+	public String getSuggestionCreator(int suggestionID) {
+		// TODO - implement SuggestionController.getSuggestionCreator
 		throw new UnsupportedOperationException();
 	}
 

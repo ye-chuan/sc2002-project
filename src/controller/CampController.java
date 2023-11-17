@@ -1,5 +1,3 @@
-import entity.User;
-
 public class CampController {
 
 	private Camp camp;
@@ -42,18 +40,7 @@ public class CampController {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param name
-	 * @param location
-	 * @param dates
-	 * @param closingDate
-	 * @param attendeeSlots
-	 * @param campCommSlots
-	 * @param staffInCharge
-	 * @param openTo
-	 */
-	public campID create(String name, String location, Collection<String> dates, String closingDate, int attendeeSlots, int campCommSlots, staffID staffInCharge, Collection<Faculty> openTo) {
+	public campID create() {
 		// TODO - implement CampController.create
 		throw new UnsupportedOperationException();
 	}
@@ -113,7 +100,7 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public bool changeDates(int campID, Collection<String> dates) {
+	public bool changeDates(int campID, Collection<Date> dates) {
 		// TODO - implement CampController.changeDates
 		throw new UnsupportedOperationException();
 	}
@@ -163,8 +150,116 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public bool changeEndDate(int campID, string dates) {
+	public bool changeEndDate(int campID, Date dates) {
 		// TODO - implement CampController.changeEndDate
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public String getName(int campID) {
+		// TODO - implement CampController.getName
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public bool getVisibility(int campID) {
+		// TODO - implement CampController.getVisibility
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<Date> getDates(int campID) {
+		// TODO - implement CampController.getDates
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public String getLocation(int campID) {
+		// TODO - implement CampController.getLocation
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public String getDescription(int campID) {
+		// TODO - implement CampController.getDescription
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public int getTotalCampCommSlots(int campID) {
+		// TODO - implement CampController.getTotalCampCommSlots
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public int getRemainingCampCommSlots(int campID) {
+		// TODO - implement CampController.getRemainingCampCommSlots
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public int getTotalParticipantSlots(int campID) {
+		// TODO - implement CampController.getTotalParticipantSlots
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public int getRemainingParticipantSlots(int campID) {
+		// TODO - implement CampController.getRemainingParticipantSlots
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Date getEndDate(int campID) {
+		// TODO - implement CampController.getEndDate
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public String getCampInCharge(int campID) {
+		// TODO - implement CampController.getCampInCharge
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getCampParticipants(int campID) {
+		// TODO - implement CampController.getCampParticipants
 		throw new UnsupportedOperationException();
 	}
 

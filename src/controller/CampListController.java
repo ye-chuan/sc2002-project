@@ -1,13 +1,11 @@
-import entity.CampDBQuery;
-
 public class CampListController {
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Camp> viewCreatedCamps(String userID) {
-		// TODO - implement CampListController.viewCreatedCamps
+	public Collection<Camp> getCreatedCamps(String userID) {
+		// TODO - implement CampListController.getCreatedCamps
 		throw new UnsupportedOperationException();
 	}
 
@@ -15,8 +13,8 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Camp> viewJoinedCamps(String userID) {
-		// TODO - implement CampListController.viewJoinedCamps
+	public Collection<Camp> getJoinedCamps(String userID) {
+		// TODO - implement CampListController.getJoinedCamps
 		throw new UnsupportedOperationException();
 	}
 
@@ -24,8 +22,8 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Camp> viewAllCamps(String userID) {
-		// TODO - implement CampListController.viewAllCamps
+	public Collection<Camp> getAllCamps(String userID) {
+		// TODO - implement CampListController.getAllCamps
 		throw new UnsupportedOperationException();
 	}
 
@@ -33,8 +31,8 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public ArrayList<Camp> viewAvailableCamps(String userID) {
-		// TODO - implement CampListController.viewAvailableCamps
+	public Collection<Camp> getAvailableCamps(String userID) {
+		// TODO - implement CampListController.getAvailableCamps
 		throw new UnsupportedOperationException();
 	}
 
@@ -45,7 +43,7 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public ArrayList<Camp> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
+	public Collection<Camp> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
 		// TODO - implement CampListController.FilterBy
 		throw new UnsupportedOperationException();
 	}

@@ -68,4 +68,22 @@ public class UserController {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 * @param userID
+	 */
+	public String getUserName(int userID) {
+		// TODO - implement UserController.getUserName
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public String getFaculty(int userID) {
+		// TODO - implement UserController.getFaculty
+		throw new UnsupportedOperationException();
+	}
+
 }
