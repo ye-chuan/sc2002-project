@@ -1,8 +1,5 @@
 public class EnquiryController implements RequestController {
 
-	private String enquiryID;
-	private Enquiry enquiry;
-
 	/**
 	 * 
 	 * @param userID

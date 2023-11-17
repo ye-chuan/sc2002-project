@@ -1,8 +1,5 @@
 public class CampController {
 
-	private Camp camp;
-	private String campID;
-
 	/**
 	 * 
 	 * @param campID
@@ -16,7 +13,7 @@ public class CampController {
 	 * @param campID
 	 * @param userID
 	 */
-	public static bool registerAsParticipant(int campID, String userID) {
+	public static bool registerAsParticipant(String campID, String userID) {
 
 	}
 
@@ -25,7 +22,7 @@ public class CampController {
 	 * @param campID
 	 * @param userID
 	 */
-	public static bool registerAsCommittee(int campID, String userID) {
+	public static bool registerAsCommittee(String campID, String userID) {
 
 	}
 
@@ -34,20 +31,11 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static bool withdraw(String userID, int campID) {
+	public static bool withdraw(String userID, String campID) {
 
 	}
 
-	public static campID create() {
-
-	}
-
-	/**
-	 * 
-	 * @param userID
-	 * @param campID
-	 */
-	public static bool IsEditable(String userID, int campID) {
+	public static String create() {
 
 	}
 
@@ -56,7 +44,7 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static bool delete(String userID, int campID) {
+	public static bool IsEditable(String userID, String campID) {
 
 	}
 
@@ -65,7 +53,16 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static bool changeCampInCharge(String userID, int campID) {
+	public static bool delete(String userID, String campID) {
+
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @param campID
+	 */
+	public static bool changeCampInCharge(String userID, String campID) {
 
 	}
 
@@ -74,7 +71,7 @@ public class CampController {
 	 * @param campID
 	 * @param newName
 	 */
-	public static bool changeName(int campID, String newName) {
+	public static bool changeName(String campID, String newName) {
 
 	}
 
@@ -83,7 +80,7 @@ public class CampController {
 	 * @param campID
 	 * @param visibility
 	 */
-	public static bool toggleVisibility(int campID, bool visibility) {
+	public static bool toggleVisibility(String campID, bool visibility) {
 
 	}
 
@@ -92,7 +89,7 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public static bool changeDates(int campID, Collection<Date> dates) {
+	public static bool changeDates(String campID, Collection<Date> dates) {
 
 	}
 
@@ -101,7 +98,7 @@ public class CampController {
 	 * @param campID
 	 * @param String
 	 */
-	public static bool changeLocation(int campID, int String) {
+	public static bool changeLocation(String campID, int String) {
 
 	}
 
@@ -110,7 +107,7 @@ public class CampController {
 	 * @param campID
 	 * @param String
 	 */
-	public static bool changeDescription(int campID, int String) {
+	public static bool changeDescription(String campID, int String) {
 
 	}
 
@@ -119,7 +116,7 @@ public class CampController {
 	 * @param campID
 	 * @param slots
 	 */
-	public static bool changeCampCommSlots(int campID, int slots) {
+	public static bool changeCampCommSlots(String campID, int slots) {
 
 	}
 
@@ -128,7 +125,7 @@ public class CampController {
 	 * @param campID
 	 * @param slots
 	 */
-	public static void changeCampParticipantSlots(int campID, int slots) {
+	public static void changeCampParticipantSlots(String campID, int slots) {
 
 	}
 
@@ -137,7 +134,7 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public static bool changeEndDate(int campID, Date dates) {
+	public static bool changeEndDate(String campID, Date dates) {
 
 	}
 
@@ -145,7 +142,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getName(int campID) {
+	public static String getName(String campID) {
 
 	}
 
@@ -153,7 +150,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static bool getVisibility(int campID) {
+	public static bool getVisibility(String campID) {
 
 	}
 
@@ -161,7 +158,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<Date> getDates(int campID) {
+	public static Collection<Date> getDates(String campID) {
 
 	}
 
@@ -169,7 +166,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getLocation(int campID) {
+	public static String getLocation(String campID) {
 
 	}
 
@@ -177,7 +174,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getDescription(int campID) {
+	public static String getDescription(String campID) {
 
 	}
 
@@ -185,7 +182,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getTotalCampCommSlots(int campID) {
+	public static int getTotalCampCommSlots(String campID) {
 
 	}
 
@@ -193,7 +190,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getRemainingCampCommSlots(int campID) {
+	public static int getRemainingCampCommSlots(String campID) {
 
 	}
 
@@ -201,7 +198,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getTotalParticipantSlots(int campID) {
+	public static int getTotalParticipantSlots(String campID) {
 
 	}
 
@@ -209,7 +206,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getRemainingParticipantSlots(int campID) {
+	public static int getRemainingParticipantSlots(String campID) {
 
 	}
 
@@ -217,7 +214,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Date getEndDate(int campID) {
+	public static Date getEndDate(String campID) {
 
 	}
 
@@ -225,7 +222,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getCampInCharge(int campID) {
+	public static String getCampInCharge(String campID) {
 
 	}
 
@@ -233,7 +230,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<String> getCampParticipants(int campID) {
+	public static Collection<String> getCampParticipants(String campID) {
 
 	}
 

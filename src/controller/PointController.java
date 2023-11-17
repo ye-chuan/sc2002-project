@@ -1,7 +1,5 @@
 public class PointController {
 
-	private int points;
-
 	/**
 	 * 
 	 * @param studentID

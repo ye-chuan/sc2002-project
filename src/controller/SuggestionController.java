@@ -1,8 +1,5 @@
 public class SuggestionController implements RequestController {
 
-	private String suggestionID;
-	private Suggestion suggestion;
-
 	/**
 	 * 
 	 * @param userID
