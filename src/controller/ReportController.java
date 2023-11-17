@@ -4,9 +4,8 @@ public class ReportController {
 	 * 
 	 * @param campID
 	 */
-	public void generateCampReport(int campID) {
-		// TODO - implement ReportController.generateCampReport
-		throw new UnsupportedOperationException();
+	public static void generateCampReport(int campID) {
+
 	}
 
 	/**
@@ -14,27 +13,24 @@ public class ReportController {
 	 * @param campID
 	 * @param REPORTFILTER
 	 */
-	public void campReportFilterBy(String campID, int REPORTFILTER) {
-		// TODO - implement ReportController.campReportFilterBy
-		throw new UnsupportedOperationException();
+	public static void campReportFilterBy(String campID, int REPORTFILTER) {
+
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public void generatePerformanceReport(int campID) {
-		// TODO - implement ReportController.generatePerformanceReport
-		throw new UnsupportedOperationException();
+	public static void generatePerformanceReport(int campID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public void generateEnquiryReport(String userID) {
-		// TODO - implement ReportController.generateEnquiryReport
-		throw new UnsupportedOperationException();
+	public static void generateEnquiryReport(String userID) {
+
 	}
 
 }

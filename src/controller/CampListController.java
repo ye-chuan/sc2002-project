@@ -4,7 +4,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<campID> getCreatedCamps(String userID) {
+	public static Collection<campID> getCreatedCamps(String userID) {
 
 	}
 
@@ -12,7 +12,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<campID> getJoinedCamps(String userID) {
+	public static Collection<campID> getJoinedCamps(String userID) {
 
 	}
 
@@ -20,7 +20,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<campID> getAllCamps(String userID) {
+	public static Collection<campID> getAllCamps(String userID) {
 
 	}
 
@@ -28,7 +28,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<campID> getAvailableCamps(String userID) {
+	public static Collection<campID> getAvailableCamps(String userID) {
 
 	}
 
@@ -39,7 +39,7 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public Collection<campID> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
+	public static Collection<campID> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
 
 	}
 

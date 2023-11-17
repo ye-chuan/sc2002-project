@@ -8,9 +8,8 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public bool approve(String userID, int suggestionID) {
-		// TODO - implement SuggestionController.approve
-		throw new UnsupportedOperationException();
+	public static bool approve(String userID, int suggestionID) {
+
 	}
 
 	/**
@@ -18,9 +17,8 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public bool reject(String userID, int suggestionID) {
-		// TODO - implement SuggestionController.reject
-		throw new UnsupportedOperationException();
+	public static bool reject(String userID, int suggestionID) {
+
 	}
 
 	/**
@@ -28,7 +26,7 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public suggestionID view(String userID, int suggestionID) {
+	public static suggestionID view(String userID, int suggestionID) {
 
 	}
 
@@ -37,9 +35,8 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param text
 	 */
-	public suggestionID create(String userID, String text) {
-		// TODO - implement SuggestionController.create
-		throw new UnsupportedOperationException();
+	public static suggestionID create(String userID, String text) {
+
 	}
 
 	/**
@@ -48,9 +45,8 @@ public class SuggestionController implements RequestController {
 	 * @param suggestionID
 	 * @param newText
 	 */
-	public bool edit(String userID, int suggestionID, String newText) {
-		// TODO - implement SuggestionController.edit
-		throw new UnsupportedOperationException();
+	public static bool edit(String userID, int suggestionID, String newText) {
+
 	}
 
 	/**
@@ -58,34 +54,31 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public bool delete(String userID, int suggestionID) {
-		// TODO - implement SuggestionController.delete
-		throw new UnsupportedOperationException();
+	public static bool delete(String userID, int suggestionID) {
+
 	}
 
 	/**
 	 * 
 	 * @param suggestionID
 	 */
-	public SuggestionStatus getStatus(int suggestionID) {
-		// TODO - implement SuggestionController.getStatus
-		throw new UnsupportedOperationException();
+	public static SuggestionStatus getStatus(int suggestionID) {
+
 	}
 
 	/**
 	 * 
 	 * @param suggestionID
 	 */
-	public bool isValidSuggestion(int suggestionID) {
-		// TODO - implement SuggestionController.isValidSuggestion
-		throw new UnsupportedOperationException();
+	public static bool isValidSuggestion(int suggestionID) {
+
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public Collection<suggestionID> getPendingSuggestionByCamp(String campID) {
+	public static Collection<suggestionID> getPendingSuggestionByCamp(String campID) {
 
 	}
 
@@ -93,7 +86,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<suggestionID> getEnquiryByCampComm(String userID) {
+	public static Collection<suggestionID> getEnquiryByCampComm(String userID) {
 
 	}
 
@@ -101,18 +94,16 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param suggestionID
 	 */
-	public String getSuggestionText(int suggestionID) {
-		// TODO - implement SuggestionController.getSuggestionText
-		throw new UnsupportedOperationException();
+	public static String getSuggestionText(int suggestionID) {
+
 	}
 
 	/**
 	 * 
 	 * @param suggestionID
 	 */
-	public String getSuggestionCreator(int suggestionID) {
-		// TODO - implement SuggestionController.getSuggestionCreator
-		throw new UnsupportedOperationException();
+	public static String getSuggestionCreator(int suggestionID) {
+
 	}
 
 }

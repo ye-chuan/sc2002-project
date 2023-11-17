@@ -6,27 +6,24 @@ public class PointController {
 	 * 
 	 * @param studentID
 	 */
-	public void approveSuggestion(string studentID) {
-		// TODO - implement PointController.approveSuggestion
-		throw new UnsupportedOperationException();
+	public static void approveSuggestion(string studentID) {
+
 	}
 
 	/**
 	 * 
 	 * @param studentID
 	 */
-	public void rejectSuggestion(string studentID) {
-		// TODO - implement PointController.rejectSuggestion
-		throw new UnsupportedOperationException();
+	public static void rejectSuggestion(string studentID) {
+
 	}
 
 	/**
 	 * 
 	 * @param studentID
 	 */
-	public int replyEnquiry(string studentID) {
-		// TODO - implement PointController.replyEnquiry
-		throw new UnsupportedOperationException();
+	public static int replyEnquiry(string studentID) {
+
 	}
 
 	/**
@@ -34,9 +31,8 @@ public class PointController {
 	 * @param studentID
 	 * @param points
 	 */
-	private int addPoints(string studentID, int points) {
-		// TODO - implement PointController.addPoints
-		throw new UnsupportedOperationException();
+	private static int addPoints(string studentID, int points) {
+
 	}
 
 }

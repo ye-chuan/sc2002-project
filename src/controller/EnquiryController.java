@@ -9,9 +9,8 @@ public class EnquiryController implements RequestController {
 	 * @param enquiryID
 	 * @param reply
 	 */
-	public bool reply(String userID, int enquiryID, String reply) {
-		// TODO - implement EnquiryController.reply
-		throw new UnsupportedOperationException();
+	public static bool reply(String userID, int enquiryID, String reply) {
+
 	}
 
 	/**
@@ -19,9 +18,8 @@ public class EnquiryController implements RequestController {
 	 * @param userID
 	 * @param text
 	 */
-	public enquiryID create(String userID, String text) {
-		// TODO - implement EnquiryController.create
-		throw new UnsupportedOperationException();
+	public static enquiryID create(String userID, String text) {
+
 	}
 
 	/**
@@ -30,9 +28,8 @@ public class EnquiryController implements RequestController {
 	 * @param enquiryID
 	 * @param newText
 	 */
-	public bool edit(String userID, String enquiryID, String newText) {
-		// TODO - implement EnquiryController.edit
-		throw new UnsupportedOperationException();
+	public static bool edit(String userID, String enquiryID, String newText) {
+
 	}
 
 	/**
@@ -40,34 +37,31 @@ public class EnquiryController implements RequestController {
 	 * @param userID
 	 * @param enquiryID
 	 */
-	public bool delete(String userID, String enquiryID) {
-		// TODO - implement EnquiryController.delete
-		throw new UnsupportedOperationException();
+	public static bool delete(String userID, String enquiryID) {
+
 	}
 
 	/**
 	 * 
 	 * @param enquiryID
 	 */
-	public bool getStatus(int enquiryID) {
-		// TODO - implement EnquiryController.getStatus
-		throw new UnsupportedOperationException();
+	public static bool getStatus(int enquiryID) {
+
 	}
 
 	/**
 	 * 
 	 * @param enquiryID
 	 */
-	public bool isValidEnquiry(String enquiryID) {
-		// TODO - implement EnquiryController.isValidEnquiry
-		throw new UnsupportedOperationException();
+	public static bool isValidEnquiry(String enquiryID) {
+
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public Collection<enquiryID> getPendingEnquiryByCamp(String campID) {
+	public static Collection<enquiryID> getPendingEnquiryByCamp(String campID) {
 
 	}
 
@@ -75,7 +69,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<enquiryID> getEnquiryByStudent(String userID) {
+	public static Collection<enquiryID> getEnquiryByStudent(String userID) {
 
 	}
 
@@ -83,27 +77,24 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public String getEnquiryCreator(int enquiryID) {
-		// TODO - implement EnquiryController.getEnquiryCreator
-		throw new UnsupportedOperationException();
+	public static String getEnquiryCreator(int enquiryID) {
+
 	}
 
 	/**
 	 * 
 	 * @param enquiryID
 	 */
-	public String getEnquiryText(int enquiryID) {
-		// TODO - implement EnquiryController.getEnquiryText
-		throw new UnsupportedOperationException();
+	public static String getEnquiryText(int enquiryID) {
+
 	}
 
 	/**
 	 * 
 	 * @param enquiryID
 	 */
-	public String getEnquiryReply(int enquiryID) {
-		// TODO - implement EnquiryController.getEnquiryReply
-		throw new UnsupportedOperationException();
+	public static String getEnquiryReply(int enquiryID) {
+
 	}
 
 }

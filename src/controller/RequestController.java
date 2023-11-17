@@ -1,17 +1,17 @@
 public interface RequestController {
 
-	void create();
+	static void create();
 
-	void edit();
+	static void edit();
 
-	void delete();
+	static void delete();
 
-	void view();
+	static void view();
 
-	void filterBy();
+	static void filterBy();
 
-	void sortBy();
+	static void sortBy();
 
-	void getStatus();
+	static void getStatus();
 
 }

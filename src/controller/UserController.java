@@ -7,9 +7,8 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public bool isFirstLogin(String userID) {
-		// TODO - implement UserController.isFirstLogin
-		throw new UnsupportedOperationException();
+	public static bool isFirstLogin(String userID) {
+
 	}
 
 	/**
@@ -17,9 +16,8 @@ public class UserController {
 	 * @param userID
 	 * @param password
 	 */
-	public bool login(String userID, String password) {
-		// TODO - implement UserController.login
-		throw new UnsupportedOperationException();
+	public static bool login(String userID, String password) {
+
 	}
 
 	/**
@@ -27,63 +25,56 @@ public class UserController {
 	 * @param userID
 	 * @param newPassword
 	 */
-	public bool changePassword(String userID, String newPassword) {
-		// TODO - implement UserController.changePassword
-		throw new UnsupportedOperationException();
+	public static bool changePassword(String userID, String newPassword) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public UserType getDomain(String userID) {
-		// TODO - implement UserController.getDomain
-		throw new UnsupportedOperationException();
+	public static UserType getDomain(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public int getPoints(String userID) {
-		// TODO - implement UserController.getPoints
-		throw new UnsupportedOperationException();
+	public static int getPoints(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public bool isStudentACommittee(String userID) {
-		// TODO - implement UserController.isStudentACommittee
-		throw new UnsupportedOperationException();
+	public static bool isStudentACommittee(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param newPassword
 	 */
-	public bool isStrongPassword(String newPassword) {
-		// TODO - implement UserController.isStrongPassword
-		throw new UnsupportedOperationException();
+	public static bool isStrongPassword(String newPassword) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public String getUserName(int userID) {
-		// TODO - implement UserController.getUserName
-		throw new UnsupportedOperationException();
+	public static String getUserName(int userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public String getFaculty(int userID) {
-		// TODO - implement UserController.getFaculty
-		throw new UnsupportedOperationException();
+	public static String getFaculty(int userID) {
+
 	}
 
 }
