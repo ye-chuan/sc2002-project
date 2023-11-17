@@ -5,7 +5,7 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static bool approve(String userID, int suggestionID) {
+	public static void approve(String userID, String suggestionID) {
 
 	}
 
@@ -14,16 +14,7 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static bool reject(String userID, int suggestionID) {
-
-	}
-
-	/**
-	 * 
-	 * @param userID
-	 * @param suggestionID
-	 */
-	public static suggestionID view(String userID, int suggestionID) {
+	public static void reject(String userID, String suggestionID) {
 
 	}
 
@@ -32,7 +23,7 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param text
 	 */
-	public static suggestionID create(String userID, String text) {
+	public static String create(String userID, String text) {
 
 	}
 
@@ -42,7 +33,7 @@ public class SuggestionController implements RequestController {
 	 * @param suggestionID
 	 * @param newText
 	 */
-	public static bool edit(String userID, int suggestionID, String newText) {
+	public static void edit(String userID, String suggestionID, String newText) {
 
 	}
 
@@ -51,7 +42,7 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static bool delete(String userID, int suggestionID) {
+	public static void delete(String userID, String suggestionID) {
 
 	}
 
@@ -59,7 +50,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static SuggestionStatus getStatus(int suggestionID) {
+	public static SuggestionStatus getStatus(String suggestionID) {
 
 	}
 
@@ -67,7 +58,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static bool isValidSuggestion(int suggestionID) {
+	public static void isValidSuggestion(String suggestionID) {
 
 	}
 
@@ -75,7 +66,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<suggestionID> getPendingSuggestionByCamp(String campID) {
+	public static Collection<String> getPendingSuggestionByCamp(String campID) {
 
 	}
 
@@ -83,7 +74,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<suggestionID> getEnquiryByCampComm(String userID) {
+	public static Collection<String> getEnquiryByCampComm(String userID) {
 
 	}
 
@@ -91,7 +82,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static String getSuggestionText(int suggestionID) {
+	public static void getSuggestionText(String suggestionID) {
 
 	}
 
@@ -99,7 +90,7 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static String getSuggestionCreator(int suggestionID) {
+	public static void getSuggestionCreator(String suggestionID) {
 
 	}
 

@@ -6,7 +6,7 @@ public class EnquiryController implements RequestController {
 	 * @param enquiryID
 	 * @param reply
 	 */
-	public static bool reply(String userID, int enquiryID, String reply) {
+	public static void reply(String userID, String enquiryID, String reply) {
 
 	}
 
@@ -15,7 +15,7 @@ public class EnquiryController implements RequestController {
 	 * @param userID
 	 * @param text
 	 */
-	public static enquiryID create(String userID, String text) {
+	public static String create(String userID, String text) {
 
 	}
 
@@ -25,7 +25,7 @@ public class EnquiryController implements RequestController {
 	 * @param enquiryID
 	 * @param newText
 	 */
-	public static bool edit(String userID, String enquiryID, String newText) {
+	public static void edit(String userID, String enquiryID, String newText) {
 
 	}
 
@@ -34,7 +34,7 @@ public class EnquiryController implements RequestController {
 	 * @param userID
 	 * @param enquiryID
 	 */
-	public static bool delete(String userID, String enquiryID) {
+	public static void delete(String userID, String enquiryID) {
 
 	}
 
@@ -42,7 +42,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static bool getStatus(int enquiryID) {
+	public static boolean getStatus(String enquiryID) {
 
 	}
 
@@ -50,7 +50,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static bool isValidEnquiry(String enquiryID) {
+	public static boolean isValidEnquiry(String enquiryID) {
 
 	}
 
@@ -58,7 +58,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<enquiryID> getPendingEnquiryByCamp(String campID) {
+	public static Collection<String> getPendingEnquiryByCamp(String campID) {
 
 	}
 
@@ -66,7 +66,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<enquiryID> getEnquiryByStudent(String userID) {
+	public static Collection<String> getEnquiryByStudent(String userID) {
 
 	}
 
@@ -74,7 +74,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryCreator(int enquiryID) {
+	public static String getEnquiryCreator(String enquiryID) {
 
 	}
 
@@ -82,7 +82,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryText(int enquiryID) {
+	public static String getEnquiryText(String enquiryID) {
 
 	}
 
@@ -90,7 +90,7 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryReply(int enquiryID) {
+	public static String getEnquiryReply(String enquiryID) {
 
 	}
 

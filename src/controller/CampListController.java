@@ -28,7 +28,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<campID> getAvailableCamps(String userID) {
+	public static Collection<String> getAvailableCamps(String userID) {
 
 	}
 
@@ -39,7 +39,7 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public static Collection<campID> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
+	public static Collection<String> FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, Date date) {
 
 	}
 

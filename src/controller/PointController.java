@@ -4,7 +4,7 @@ public class PointController {
 	 * 
 	 * @param studentID
 	 */
-	public static void approveSuggestion(string studentID) {
+	public static void approveSuggestion(String studentID) {
 
 	}
 
@@ -12,7 +12,7 @@ public class PointController {
 	 * 
 	 * @param studentID
 	 */
-	public static void rejectSuggestion(string studentID) {
+	public static void rejectSuggestion(String studentID) {
 
 	}
 
@@ -20,7 +20,7 @@ public class PointController {
 	 * 
 	 * @param studentID
 	 */
-	public static int replyEnquiry(string studentID) {
+	public static void replyEnquiry(String studentID) {
 
 	}
 
@@ -29,7 +29,7 @@ public class PointController {
 	 * @param studentID
 	 * @param points
 	 */
-	private static int addPoints(string studentID, int points) {
+	private static int addPoints(String studentID, int points) {
 
 	}
 

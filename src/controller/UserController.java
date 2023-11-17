@@ -4,7 +4,7 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public static bool isFirstLogin(String userID) {
+	public static boolean isFirstLogin(String userID) {
 
 	}
 
@@ -13,7 +13,7 @@ public class UserController {
 	 * @param userID
 	 * @param password
 	 */
-	public static bool login(String userID, String password) {
+	public static void login(String userID, String password) {
 
 	}
 
@@ -22,7 +22,7 @@ public class UserController {
 	 * @param userID
 	 * @param newPassword
 	 */
-	public static bool changePassword(String userID, String newPassword) {
+	public static void changePassword(String userID, String newPassword) {
 
 	}
 
@@ -46,7 +46,7 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public static bool isStudentACommittee(String userID) {
+	public static boolean isStudentACommittee(String userID) {
 
 	}
 
@@ -54,7 +54,7 @@ public class UserController {
 	 * 
 	 * @param newPassword
 	 */
-	public static bool isStrongPassword(String newPassword) {
+	public static boolean isStrongPassword(String newPassword) {
 
 	}
 
@@ -62,7 +62,7 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public static String getUserName(int userID) {
+	public static String getUserName(String userID) {
 
 	}
 
@@ -70,7 +70,7 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public static String getFaculty(int userID) {
+	public static String getFaculty(String userID) {
 
 	}
 
