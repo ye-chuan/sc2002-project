@@ -1,12 +1,70 @@
 public class UserController {
 
-	public void getProfile() {
-		// TODO - implement UserController.getProfile
+	private User user;
+	private String userID;
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public bool isFirstLogin(String userID) {
+		// TODO - implement UserController.isFirstLogin
 		throw new UnsupportedOperationException();
 	}
 
-	public void isFirstLogin() {
-		// TODO - implement UserController.isFirstLogin
+	/**
+	 * 
+	 * @param userID
+	 * @param password
+	 */
+	public bool login(String userID, String password) {
+		// TODO - implement UserController.login
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @param newPassword
+	 */
+	public bool changePassword(String userID, String newPassword) {
+		// TODO - implement UserController.changePassword
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public UserType getDomain(String userID) {
+		// TODO - implement UserController.getDomain
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public int getPoints(String userID) {
+		// TODO - implement UserController.getPoints
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public bool isStudentACommittee(String userID) {
+		// TODO - implement UserController.isStudentACommittee
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param newPassword
+	 */
+	public bool isStrongPassword(String newPassword) {
+		// TODO - implement UserController.isStrongPassword
 		throw new UnsupportedOperationException();
 	}
 

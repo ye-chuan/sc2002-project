@@ -2,22 +2,51 @@ import entity.CampDBQuery;
 
 public class CampListController {
 
-	public void getAll() {
-		// TODO - implement CampListController.getAll
+	/**
+	 * 
+	 * @param userID
+	 */
+	public ArrayList<Camp> viewCreatedCamps(String userID) {
+		// TODO - implement CampListController.viewCreatedCamps
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 * @param query
+	 * @param userID
 	 */
-	public void getSpecific(CampDBQuery query) {
-		// TODO - implement CampListController.getSpecific
+	public ArrayList<Camp> viewJoinedCamps(String userID) {
+		// TODO - implement CampListController.viewJoinedCamps
 		throw new UnsupportedOperationException();
 	}
 
-	public void getRemainingSlots() {
-		// TODO - implement CampListController.getRemainingSlots
+	/**
+	 * 
+	 * @param userID
+	 */
+	public ArrayList<Camp> viewAllCamps(String userID) {
+		// TODO - implement CampListController.viewAllCamps
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public ArrayList<Camp> viewAvailableCamps(String userID) {
+		// TODO - implement CampListController.viewAvailableCamps
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param location
+	 * @param openParticipantSlots
+	 * @param openCommSlots
+	 * @param date
+	 */
+	public ArrayList<Camp> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
+		// TODO - implement CampListController.FilterBy
 		throw new UnsupportedOperationException();
 	}
 

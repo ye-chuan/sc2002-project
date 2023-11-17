@@ -1,26 +1,38 @@
 public class ReportController {
 
-	public void generateCampReport() {
+	/**
+	 * 
+	 * @param campID
+	 */
+	public void generateCampReport(int campID) {
 		// TODO - implement ReportController.generateCampReport
 		throw new UnsupportedOperationException();
 	}
 
-	public void campReportFilterBy() {
+	/**
+	 * 
+	 * @param campID
+	 * @param REPORTFILTER
+	 */
+	public void campReportFilterBy(String campID, int REPORTFILTER) {
 		// TODO - implement ReportController.campReportFilterBy
 		throw new UnsupportedOperationException();
 	}
 
-	public void generatePerformanceReport() {
+	/**
+	 * 
+	 * @param campID
+	 */
+	public void generatePerformanceReport(int campID) {
 		// TODO - implement ReportController.generatePerformanceReport
 		throw new UnsupportedOperationException();
 	}
 
-	public void performanceReportFilterBy() {
-		// TODO - implement ReportController.performanceReportFilterBy
-		throw new UnsupportedOperationException();
-	}
-
-	public void generateEnquiryReport() {
+	/**
+	 * 
+	 * @param userID
+	 */
+	public void generateEnquiryReport(String userID) {
 		// TODO - implement ReportController.generateEnquiryReport
 		throw new UnsupportedOperationException();
 	}

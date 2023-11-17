@@ -1,42 +1,93 @@
-public class EnquiryController {
+public class EnquiryController implements RequestController {
 
-	public void create() {
-		// TODO - implement EnquiryController.create
+	private String enquiryID;
+	private Enquiry enquiry;
+
+	/**
+	 * 
+	 * @param userID
+	 * @param enquiryID
+	 * @param reply
+	 */
+	public bool reply(String userID, int enquiryID, String reply) {
+		// TODO - implement EnquiryController.reply
 		throw new UnsupportedOperationException();
 	}
 
-	public void edit() {
-		// TODO - implement EnquiryController.edit
-		throw new UnsupportedOperationException();
-	}
-
-	public void delete() {
-		// TODO - implement EnquiryController.delete
-		throw new UnsupportedOperationException();
-	}
-
-	public void view() {
+	/**
+	 * 
+	 * @param userID
+	 * @param enquiryID
+	 */
+	public Enquiry view(String userID, int enquiryID) {
 		// TODO - implement EnquiryController.view
 		throw new UnsupportedOperationException();
 	}
 
-	public void filterBy() {
-		// TODO - implement EnquiryController.filterBy
+	/**
+	 * 
+	 * @param userID
+	 * @param text
+	 */
+	public enquiryID create(String userID, String text) {
+		// TODO - implement EnquiryController.create
 		throw new UnsupportedOperationException();
 	}
 
-	public void sortBy() {
-		// TODO - implement EnquiryController.sortBy
+	/**
+	 * 
+	 * @param userID
+	 * @param enquiryID
+	 * @param newText
+	 */
+	public bool edit(String userID, String enquiryID, String newText) {
+		// TODO - implement EnquiryController.edit
 		throw new UnsupportedOperationException();
 	}
 
-	public void getStatus() {
+	/**
+	 * 
+	 * @param userID
+	 * @param enquiryID
+	 */
+	public bool delete(String userID, String enquiryID) {
+		// TODO - implement EnquiryController.delete
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public bool getStatus(int enquiryID) {
 		// TODO - implement EnquiryController.getStatus
 		throw new UnsupportedOperationException();
 	}
 
-	public void reply() {
-		// TODO - implement EnquiryController.reply
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public bool isValidEnquiry(String enquiryID) {
+		// TODO - implement EnquiryController.isValidEnquiry
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public ArrayList<Enquiry> getPendingEnquiryByCamp(String campID) {
+		// TODO - implement EnquiryController.getPendingEnquiryByCamp
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public ArrayList<Enquiry> getEnquiryByStudent(String userID) {
+		// TODO - implement EnquiryController.getEnquiryByStudent
 		throw new UnsupportedOperationException();
 	}
 
