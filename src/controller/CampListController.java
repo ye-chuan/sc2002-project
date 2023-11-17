@@ -4,36 +4,32 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<Camp> getCreatedCamps(String userID) {
-		// TODO - implement CampListController.getCreatedCamps
-		throw new UnsupportedOperationException();
+	public Collection<campID> getCreatedCamps(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<Camp> getJoinedCamps(String userID) {
-		// TODO - implement CampListController.getJoinedCamps
-		throw new UnsupportedOperationException();
+	public Collection<campID> getJoinedCamps(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<Camp> getAllCamps(String userID) {
-		// TODO - implement CampListController.getAllCamps
-		throw new UnsupportedOperationException();
+	public Collection<campID> getAllCamps(String userID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<Camp> getAvailableCamps(String userID) {
-		// TODO - implement CampListController.getAvailableCamps
-		throw new UnsupportedOperationException();
+	public Collection<campID> getAvailableCamps(String userID) {
+
 	}
 
 	/**
@@ -43,9 +39,8 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public Collection<Camp> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
-		// TODO - implement CampListController.FilterBy
-		throw new UnsupportedOperationException();
+	public Collection<campID> FilterBy(String location, bool openParticipantSlots, bool openCommSlots, String date) {
+
 	}
 
 }

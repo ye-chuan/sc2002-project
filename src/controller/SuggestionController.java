@@ -28,9 +28,8 @@ public class SuggestionController implements RequestController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public Suggestion view(String userID, int suggestionID) {
-		// TODO - implement SuggestionController.view
-		throw new UnsupportedOperationException();
+	public suggestionID view(String userID, int suggestionID) {
+
 	}
 
 	/**
@@ -86,18 +85,16 @@ public class SuggestionController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<Suggestion> getPendingSuggestionByCamp(String campID) {
-		// TODO - implement SuggestionController.getPendingSuggestionByCamp
-		throw new UnsupportedOperationException();
+	public Collection<suggestionID> getPendingSuggestionByCamp(String campID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<Suggestion> getEnquiryByCampComm(String userID) {
-		// TODO - implement SuggestionController.getEnquiryByCampComm
-		throw new UnsupportedOperationException();
+	public Collection<suggestionID> getEnquiryByCampComm(String userID) {
+
 	}
 
 	/**

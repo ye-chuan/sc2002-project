@@ -17,16 +17,6 @@ public class EnquiryController implements RequestController {
 	/**
 	 * 
 	 * @param userID
-	 * @param enquiryID
-	 */
-	public Enquiry view(String userID, int enquiryID) {
-		// TODO - implement EnquiryController.view
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param userID
 	 * @param text
 	 */
 	public enquiryID create(String userID, String text) {
@@ -77,18 +67,16 @@ public class EnquiryController implements RequestController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<Enquiry> getPendingEnquiryByCamp(String campID) {
-		// TODO - implement EnquiryController.getPendingEnquiryByCamp
-		throw new UnsupportedOperationException();
+	public Collection<enquiryID> getPendingEnquiryByCamp(String campID) {
+
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<Enquiry> getEnquiryByStudent(String userID) {
-		// TODO - implement EnquiryController.getEnquiryByStudent
-		throw new UnsupportedOperationException();
+	public Collection<enquiryID> getEnquiryByStudent(String userID) {
+
 	}
 
 	/**

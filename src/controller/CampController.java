@@ -14,20 +14,20 @@ public class CampController {
 
 	/**
 	 * 
+	 * @param campID
 	 * @param userID
 	 */
-	public bool registerAsParticipant(String userID) {
-		// TODO - implement CampController.registerAsParticipant
-		throw new UnsupportedOperationException();
+	public bool registerAsParticipant(int campID, String userID) {
+
 	}
 
 	/**
 	 * 
+	 * @param campID
 	 * @param userID
 	 */
-	public bool registerAsCommittee(String userID) {
-		// TODO - implement CampController.registerAsCommittee
-		throw new UnsupportedOperationException();
+	public bool registerAsCommittee(int campID, String userID) {
+
 	}
 
 	/**
