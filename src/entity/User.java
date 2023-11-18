@@ -5,6 +5,15 @@ public class User implements Identifiable {
 	private String password;
 	private Faculty faculty;
     private String email;
+    private String name;
+
+    public User(String userID, String password, Faculty faculty, String email, String name) {
+        this.userID = userID;
+        this.password = password;
+        this.faculty = faculty;
+        this.email = email;
+        this.name = name;
+    }
 
 	public boolean changePassword(String password) {
         this.password = password;
@@ -21,6 +30,10 @@ public class User implements Identifiable {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 	public void setEmail(String newEmail) {
