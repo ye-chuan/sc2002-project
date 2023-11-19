@@ -34,7 +34,7 @@ public class CampDatabase extends Database<Camp> {
          * Include only Camps with registration closing on a specific {@code Date}
          * @param date The date that registration closes
          */
-        public void registrationOn(Date date) {
+        public Query registrationOn(Date date) {
             if (registrationDone)
                 throw new CampDBInvalidQueryException("Too many Registration Date filters, choose only 1");
             else
@@ -42,32 +42,35 @@ public class CampDatabase extends Database<Camp> {
 
             registrationRangeStart = date;
             registrationRangeEnd = date;
+            return this;
         }
 
         /**
          * Include only Camps with registration closing before (and including) a specific {@code Date}
          * @param date The date that registration has to close before (or on)
          */
-        public void registrationBeforeIncl(Date date) {
+        public Query registrationBeforeIncl(Date date) {
             if (registrationDone)
                 throw new CampDBInvalidQueryException("Too many Registration Date filters, choose only 1");
             else
                 registrationDone = true;
 
             registrationRangeEnd = date;
+            return this;
         }
 
         /**
          * Include only Camps with registration closing after (and including) a specific {@code Date}
          * @param date The date that registration has to close after (or on)
          */
-        public void registrationAfterIncl(Date date) {
+        public Query registrationAfterIncl(Date date) {
             if (registrationDone)
                 throw new CampDBInvalidQueryException("Too many Registration Date filters, choose only 1");
             else
                 registrationDone = true;
 
             registrationRangeStart = date;
+            return this;
         }
 
         // Camp dates
@@ -77,7 +80,7 @@ public class CampDatabase extends Database<Camp> {
          *  @param startDate The start of the date range (inclusive)
          *  @param endDate The end of the date range (inclusive)
          */
-        public void campDatesAllWithin(Date startDate, Date endDate) {
+        public Query campDatesAllWithin(Date startDate, Date endDate) {
             if (campDatesDone)
                 throw new CampDBInvalidQueryException("Too many Camp Dates filters, choose only 1");
             else
@@ -85,69 +88,79 @@ public class CampDatabase extends Database<Camp> {
 
             campDatesRangeStart = startDate;
             campDatesRangeEnd = endDate;
+            return this;
         }
 
         /**
          * Only include Camps with that occurs entirely before (and including) this {@code Date}
          *  @param date The camp dates must all lie before (and including) this date
          */
-        public void campDatesAllBeforeIncl(Date date) {
+        public Query campDatesAllBeforeIncl(Date date) {
             if (campDatesDone)
                 throw new CampDBInvalidQueryException("Too many Camp Dates filters, choose only 1");
             else
                 campDatesDone = true;
 
             campDatesRangeEnd = date;
+            return this;
         }
 
         /**
          * Only include Camps with that occurs entirely after (and including) this {@code Date}
          *  @param date The camp dates must all lie after (and including) this date
          */
-        public void campDatesAllAfterIncl(Date date) {
+        public Query campDatesAllAfterIncl(Date date) {
             if (campDatesDone)
                 throw new CampDBInvalidQueryException("Too many Camp Dates filters, choose only 1");
             else
                 campDatesDone = true;
 
             campDatesRangeStart = date;
+            return this;
         }
 
         /**
          * Only include Camps that is open to this {@code Faculty} (including those open to the whole school of course)
          *  @param faculty The only faculty to allow through this filter
          */
-        public void onlyOpenToFaculty(Faculty faculty) {
+        public Query onlyOpenToFaculty(Faculty faculty) {
             this.onlyOpenToFaculty = faculty;
+            return this;
         }
 
         /** Effectively include only Invisible (hidden) Camps */
-        public void excludeVisible() {
+        public Query excludeVisible() {
             this.includeVisible = false;
+            return this;
         }
 
         /** Effectively include only Visible (non-hidden) Camps */
-        public void excludeInvisible() {
+        public Query excludeInvisible() {
             this.includeInvisible = false;
+            return this;
         }
 
         /** Effectively include only Camps with free Participant Slots */
-        public void excludeFullParticipantSlot() {
+        public Query excludeFullParticipantSlot() {
             this.freeParticipantSlotsMin = 1;
+            return this;
         }
 
         /** Effectively include only Camps with free Camp Committee Slots */
-        public void excludeFullCampCommSlots() {
+        public Query excludeFullCampCommSlots() {
             this.freeCampCommSlotsMin = 1;
+            return this;
         }
 
         /** Include only Camp with a specific Staff-in-Charge */
-        public void onlyCampsBy(Staff staffInCharge) {
+        public Query onlyCampsBy(Staff staffInCharge) {
             onlyCampsBy(staffInCharge.getID());
+            return this;
         }
         /** Include only Camp with a specific Staff-in-Charge */
-        public void onlyCampsBy(String staffInChargeID) {
+        public Query onlyCampsBy(String staffInChargeID) {
             this.onlyStaffID = staffInChargeID;
+            return this;
         }
 
     }

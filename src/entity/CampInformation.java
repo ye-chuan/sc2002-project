@@ -36,12 +36,13 @@ public class CampInformation {
 	public CampInformation(String name, String location, Collection<Date> dates, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
         this.name = name;
         this.location = location;
-        this.dates = dates;
         this.closingDate = closingDate;
         this.participantSlots = participantSlots;
         this.campCommSlots = campCommSlots;
         this.staffInCharge = staffInCharge;
         this.openTo = openTo;
+
+        setDates(dates);
 	}
     
 	String getName() {

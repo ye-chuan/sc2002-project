@@ -12,18 +12,17 @@ public class Camp implements Identifiable {
     public boolean getHasSomethingNothing() {return this.hasSomethingNothing;}
 
 	/**
-	 * 
-	 * @param name
-	 * @param location
-	 * @param dates
-	 * @param closingDate
-	 * @param attendeeSlots
-	 * @param campCommSlots
-	 * @param staffInCharge
-	 * @param openTo
+	 * @param name Name of the camp
+	 * @param location Location where the camp is held
+	 * @param dates Camp dates (not registration date)
+	 * @param closingDate Registration's Last Date
+	 * @param participantSlots Total slots for participants (not camp committee)
+	 * @param campCommSlots Total slots for camp committee members (not participants)
+	 * @param staffInCharge The staff in charge of the camp (cannot be changed)
+	 * @param openTo The faculty that the camp is opened to
 	 */
-	public Camp(String name, String location, Collection<Date> dates, Date closingDate, int attendeeSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
-        this.information = new CampInformation(name, location, dates, closingDate, attendeeSlots, campCommSlots, staffInCharge, openTo);
+	public Camp(String name, String location, Collection<Date> dates, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
+        this.information = new CampInformation(name, location, dates, closingDate, participantSlots, campCommSlots, staffInCharge, openTo);
         this.information.setCampID(UniqueIDGenerator.generate());
 
         this.suggestionDB = new SuggestionDatabase();
@@ -167,17 +166,9 @@ public class Camp implements Identifiable {
         return information.getCampID();
     }
 
-    public static void main(String[] args) {
-        Collection<Date> dates = new ArrayList<Date>();
-        dates.add(new Date(2022,12,3));
-        Staff staffInCharge = new Staff();
-        Collection<Faculty> openTo = new ArrayList<Faculty>();
-        openTo.add(Faculty.EEE);
-        
-        Camp camp = new Camp("name", "location", dates, new Date(2022,11,3), 100, 10, staffInCharge, openTo);
-        camp.openToNTU();
-
-        System.out.println(camp.getOpenTo());
+    public String toString() {
+        return "Camp #" + getID() + ": " + getName();
     }
+
 
 }

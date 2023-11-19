@@ -136,7 +136,7 @@ public class CampMembershipDatabase {
      * @return Role of student in a camp. If camp doesn't exists or student not a member of the camp, then null
      */
     public CampRole getRoleInCamp(String campID, String studentID) {
-        Map<String, CampMembership> studentMemberships = campStudentMemberships.get(campID);
+        Map<String, CampMembership> studentMemberships = getStudentMembershipsInCamp(campID);
         if (studentMemberships == null)
             return null;
         CampMembership membership = studentMemberships.get(studentID);
@@ -153,19 +153,26 @@ public class CampMembershipDatabase {
         if (!campStudentMemberships.containsKey(campID)) {
             campStudentMemberships.put(campID, new HashMap<String, CampMembership>());
         }
-        campStudentMemberships.get(campID).put(studentID, membership);
+        getStudentMembershipsInCamp(campID).put(studentID, membership);
     }
 
     private void remove(CampMembership membership) {
         String campID = membership.camp.getID();
         String studentID = membership.student.getID();
-        if (campStudentMemberships.get(campID).get(studentID).role == membership.role)
-            campStudentMemberships.get(campID).remove(studentID);
+        if (getStudentMembershipsInCamp(campID).get(studentID).role == membership.role)
+            getStudentMembershipsInCamp(campID).remove(studentID);
+    }
+
+    private Map<String, CampMembership> getStudentMembershipsInCamp(String campID) {
+        if (campStudentMemberships.containsKey(campID)) {
+            return campStudentMemberships.get(campID);
+        }
+        return new HashMap<String, CampMembership>();
     }
 
 	private Collection<Student> getStudentInCampByRole(String campID, CampRole role) {
         Collection<Student> ret = new ArrayList<Student>();
-        Map<String, CampMembership> studentMemberships = campStudentMemberships.get(campID);
+        Map<String, CampMembership> studentMemberships = getStudentMembershipsInCamp(campID);
         for (CampMembership membership : studentMemberships.values()) {
             assert membership.camp.getID().equals(campID);
             if (membership.role == role) {
