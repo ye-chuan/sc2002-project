@@ -3,7 +3,7 @@ package entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Date {
+public class Date implements Comparable<Date> {
     public static final Date MAX = new Date(LocalDate.MAX.getYear(), LocalDate.MAX.getMonthValue(), LocalDate.MAX.getDayOfMonth());
     public static final Date MIN = new Date(LocalDate.MIN.getYear(), LocalDate.MIN.getMonthValue(), LocalDate.MIN.getDayOfMonth());
 
@@ -15,6 +15,8 @@ public class Date {
 	 * @param year
 	 * @param month
 	 * @param dayOfMonth
+     *
+     * @throws java.time.DateTimeException When given arguments cannot form a valid date
 	 */
 	public Date(int year, int month, int dayOfMonth) {
         this.localDate = LocalDate.of(year, month, dayOfMonth);
@@ -23,6 +25,16 @@ public class Date {
     public static Date today() {
         LocalDate tdyLocalDate = LocalDate.now();
         return new Date(tdyLocalDate.getYear(), tdyLocalDate.getMonthValue(), tdyLocalDate.getDayOfMonth());
+    }
+
+    public static boolean isValidDate(int year, int month, int dayOfMonth) {
+        try {
+            new Date(year, month, dayOfMonth);    
+        }   
+        catch(java.time.DateTimeException e) {
+            return false;
+        }
+        return true;
     }
 
 	public int getDayOfMonth() {
@@ -67,6 +79,11 @@ public class Date {
 	public boolean equals(Date other) {
         return localDate.equals(other.localDate);
 	}
+    
+    @Override
+    public int compareTo(Date other) {
+        return localDate.compareTo(other.localDate);
+    }
 
 
     public static void main(String[] args) {

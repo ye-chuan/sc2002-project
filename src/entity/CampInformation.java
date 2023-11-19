@@ -6,7 +6,7 @@ public class CampInformation {
 	private String campID;
 	private String name;
 	private String location;
-	private Collection<Date> dates;
+	private List<Date> dates;
 	private Date closingDate;
 	private int participantSlots;
 	private int campCommSlots;
@@ -28,7 +28,7 @@ public class CampInformation {
 	 * @param location
 	 * @param dates
 	 * @param closingDate
-	 * @param attendeeSlots
+	 * @param participantSlots
 	 * @param campCommSlots
 	 * @param staffInCharge
 	 * @param openTo
@@ -68,16 +68,23 @@ public class CampInformation {
 		this.location = location;
 	}
 
-	Collection<Date> getDates() {
+	/**
+	 * Get the Camp's event dates (not registration date).
+     *
+	 * @return Camp's event dates in sorted order
+	 */
+	List<Date> getDates() {
 		return this.dates;
 	}
 
 	/**
-	 * 
-	 * @param dates
+	 * Set the Camp's event dates (not registration date).
+     *
+	 * @param dates Can be given in a Collection (abitrary/no order)
 	 */
 	void setDates(Collection<Date> dates) {
-		this.dates = dates;
+        this.dates = new ArrayList<Date>(dates);
+		Collections.sort(this.dates);
 	}
 
 	Date getClosingDate() {

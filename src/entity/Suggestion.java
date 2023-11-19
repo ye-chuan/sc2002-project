@@ -27,6 +27,11 @@ public class Suggestion implements Identifiable {
         return true;
 	}
 
+	public boolean reject() {
+        status = SuggestionStatus.REJECTED;
+        return true;
+	}
+
     public String getSuggestion() {
         return suggestion;
     }

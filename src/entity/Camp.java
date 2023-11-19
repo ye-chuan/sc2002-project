@@ -82,13 +82,29 @@ public class Camp implements Identifiable {
         this.information.setLocation(location);
 	}
 
-	public Collection<Date> getDates() {
+
+	/**
+	 * Get the Camp's event dates (not registration date).
+     *
+	 * @return Camp's event dates in sorted order
+	 */
+	public List<Date> getDates() {
         return this.information.getDates();
 	}
 
+	/**
+	 * Set the Camp's event dates (not registration date).
+     *
+	 * @param dates Can be given in a Collection (abitrary/no order)
+	 */
 	public void setDates(Collection<Date> dates) {
         this.information.setDates(dates);
 	}
+
+    public Date getLastCampDate() {
+        List<Date> campDates = getDates();
+        return campDates.get(campDates.size() - 1);
+    }
 
 	public Date getClosingDate() {
         return this.information.getClosingDate();

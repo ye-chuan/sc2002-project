@@ -21,4 +21,9 @@ public class Student extends User {
         return true;
 	}
 
+	/** Reset the points that this student has to 0 */
+    public void resetPoints() {
+        this.points = 0;
+	}
+
 }

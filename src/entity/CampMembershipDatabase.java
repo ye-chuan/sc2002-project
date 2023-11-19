@@ -7,8 +7,18 @@ import java.util.*;
  * For querying Camp memberships details (i.e. role in camp, blacklists)
  */
 public class CampMembershipDatabase {
-    
+    /**
+     * {@code CampMembership} stored in a Map structure for faster access.
+     *
+     * Entries are <CampID: Map<StudentID: CampMembership>>
+     */
     private Map<String, Map<String, CampMembership>> campStudentMemberships = new HashMap<String, Map<String, CampMembership>>();
+
+    /**
+     * Mapping of Students blacklisted from certain camps.
+     *
+     * Entries Map<CampID: Set<StudentID>>
+     */
     private Map<String, Set<String>> blacklist = new HashMap<String, Set<String>>();
 
     public int getParticipantSize(Camp camp) {
@@ -52,6 +62,44 @@ public class CampMembershipDatabase {
         assert camp.getParticipantSlots() > getParticipantSize(camp);
         add(new CampMembership(student, camp, CampRole.CAMPCOMM));
 	}
+
+    /**
+     * Find the Camp that this Student is a CampCommittee of (there should only be 1 active camp).
+     *
+     * Defaults to being with respect to the system's "Today" date
+     * @param student The specified student
+     *
+     * @return The camp that the student is currently a Camp Committee of
+     *
+     * @see #getCampWithCampCommMember(Student, Date)
+     */
+    public Camp getCampWithCampCommMember(Student student) {
+        return getCampWithCampCommMember(student, Date.today());
+    }
+
+    /**
+     * Find the Camp that this Student is a CampCommittee of (there should only be 1 active camp).
+     *
+     * @param student The specified student
+     * @param today Camps that ended before this date will not be considered
+     *
+     * @return The camp that the student is currently a Camp Committee of
+     */
+    public Camp getCampWithCampCommMember(Student student, Date today) {
+        Camp ret = null;
+        Collection<Camp> campsWithStudent = getCampsJoinedBy(student);
+        for (Camp camp : campsWithStudent) {
+            if (camp.getLastCampDate().isBefore(today)) { // Do not consider camps that are over
+                continue;
+            }
+
+            if (getRoleInCamp(camp, student) == CampRole.CAMPCOMM) {
+                assert ret == null : "Student is Camp Comm in Multiple Camps!";
+                ret = camp;
+            }
+        }
+        return ret;
+    }
 
 	public void addParticipant(Student student, Camp camp) {
         assert camp.getCampCommSlots() > getCampCommSize(camp);
