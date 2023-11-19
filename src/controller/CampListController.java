@@ -20,7 +20,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getCreatedCamps(String userID) {
+	public Collection<String> getCreatedCamps(String userID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Query query = new Query();
@@ -44,7 +44,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getJoinedCamps(String userID) {
+	public Collection<String> getJoinedCamps(String userID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		UserDatabase uDB = new UserDatabase();
 		Student student1 = (Student) uDB.getItem(userID);
@@ -66,7 +66,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getAllCamps(String userID) {
+	public Collection<String> getAllCamps(String userID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Query query = new Query();
@@ -92,7 +92,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getAvailableCamps(String userID) {
+	public Collection<String> getAvailableCamps(String userID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -125,7 +125,7 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public static Collection<String> FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, Date date, Faculty faculty, boolean visibility) {
+	public Collection<String> FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, Date date, Faculty faculty, boolean visibility) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Query query = new Query();

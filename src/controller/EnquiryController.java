@@ -13,13 +13,14 @@ import entity.UserDatabase;
 
 public class EnquiryController {
 
+	private PointController pointCont; 
 	/**
 	 * 
 	 * @param userID
 	 * @param enquiryID
 	 * @param reply
 	 */
-	public static void reply(String userID, String enquiryID, String reply) {
+	public void reply(String userID, String enquiryID, String reply) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		UserDatabase uDB = new UserDatabase();
 		Enquiry enq1 = eDB.getItem(enquiryID);
@@ -27,7 +28,7 @@ public class EnquiryController {
 
 		enq1.reply(reply);
 		if (u1 instanceof Student) {
-			PointController.replyEnquiry(userID);
+			pointCont.replyEnquiry(userID);
 		}
 	}
 
@@ -36,7 +37,7 @@ public class EnquiryController {
 	 * @param userID
 	 * @param text
 	 */
-	public static String create(String userID, String text) {
+	public String create(String userID, String text) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		Enquiry enq1 = new Enquiry(text, userID);
 		eDB.add(enq1);
@@ -50,7 +51,7 @@ public class EnquiryController {
 	 * @param enquiryID
 	 * @param newText
 	 */
-	public static void edit(String userID, String enquiryID, String newText) throws Exception{
+	public void edit(String userID, String enquiryID, String newText) throws Exception{
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 
@@ -68,7 +69,7 @@ public class EnquiryController {
 	 * @param userID
 	 * @param enquiryID
 	 */
-	public static void delete(String userID, String enquiryID) throws Exception{
+	public void delete(String userID, String enquiryID) throws Exception{
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 	
@@ -87,7 +88,7 @@ public class EnquiryController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static boolean getStatus(String enquiryID) {
+	public boolean getStatus(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		
@@ -100,7 +101,7 @@ public class EnquiryController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static boolean isValidEnquiry(String enquiryID) {
+	public boolean isValidEnquiry(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		if (eDB.getItem(enquiryID)== null) {
 			return false;
@@ -114,7 +115,7 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<String> getPendingEnquiryByCamp(String campID) {
+	public Collection<String> getPendingEnquiryByCamp(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Iterator<Enquiry> enqIterator = cDB.getItem(campID).getEnquiryDB().getUnresolvedEnquiries().iterator();
@@ -133,7 +134,7 @@ public class EnquiryController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getEnquiryByStudent(String userID) {
+	public Collection<String> getEnquiryByStudent(String userID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		Iterator<Enquiry> enqIterator = eDB.getUnresolvedEnquiriesBy(userID).iterator();
 		Collection<String> enquiryIDList = new ArrayList<String>();;
@@ -150,7 +151,7 @@ public class EnquiryController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryCreator(String enquiryID) {
+	public String getEnquiryCreator(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		return eDB.getItem(enquiryID).getAskedBy();
 
@@ -160,7 +161,7 @@ public class EnquiryController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryText(String enquiryID) {
+	public String getEnquiryText(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		return eDB.getItem(enquiryID).getEnquiry();
 	}
@@ -169,7 +170,7 @@ public class EnquiryController {
 	 * 
 	 * @param enquiryID
 	 */
-	public static String getEnquiryReply(String enquiryID) {
+	public String getEnquiryReply(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		return eDB.getItem(enquiryID).getReply();
 	}

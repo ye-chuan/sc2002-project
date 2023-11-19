@@ -4,7 +4,7 @@ public class ReportController {
 	 * 
 	 * @param campID
 	 */
-	public static void generateCampReport(int campID) {
+	public void generateCampReport(int campID) {
 
 	}
 
@@ -13,7 +13,7 @@ public class ReportController {
 	 * @param campID
 	 * @param REPORTFILTER
 	 */
-	public static void campReportFilterBy(String campID, int REPORTFILTER) {
+	public void campReportFilterBy(String campID, int REPORTFILTER) {
 
 	}
 
@@ -21,7 +21,7 @@ public class ReportController {
 	 * 
 	 * @param campID
 	 */
-	public static void generatePerformanceReport(int campID) {
+	public void generatePerformanceReport(int campID) {
 
 	}
 
@@ -29,7 +29,7 @@ public class ReportController {
 	 * 
 	 * @param userID
 	 */
-	public static void generateEnquiryReport(String userID) {
+	public void generateEnquiryReport(String userID) {
 
 	}
 
