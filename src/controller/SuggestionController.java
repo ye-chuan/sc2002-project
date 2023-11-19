@@ -13,17 +13,20 @@ import entity.SuggestionStatus;
 
 public class SuggestionController {
 
+	private UserController userCont;
+	private PointController pointCont;
+
 	/**
 	 * 
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static void approve(String suggestionID) {
+	public void approve(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
 		sug1.approve();
-		PointController.approveSuggestion(sug1.getSuggestedBy());
+		pointCont.approveSuggestion(sug1.getSuggestedBy());
 	}
 
 	/**
@@ -31,12 +34,12 @@ public class SuggestionController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static void reject(String suggestionID) {
+	public void reject(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
 		sug1.reject();
-		PointController.rejectSuggestion(sug1.getSuggestedBy());
+		pointCont.rejectSuggestion(sug1.getSuggestedBy());
 	}
 
 	/**
@@ -44,7 +47,7 @@ public class SuggestionController {
 	 * @param userID
 	 * @param text
 	 */
-	public static String create(String userID, String text) {
+	public String create(String userID, String text) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = new Suggestion(text, userID);
 		sDB.add(sug1);
@@ -58,7 +61,7 @@ public class SuggestionController {
 	 * @param suggestionID
 	 * @param newText
 	 */
-	public static void edit(String userID, String suggestionID, String newText) throws Exception {
+	public void edit(String userID, String suggestionID, String newText) throws Exception {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
@@ -76,7 +79,7 @@ public class SuggestionController {
 	 * @param userID
 	 * @param suggestionID
 	 */
-	public static void delete(String userID, String suggestionID) throws Exception {
+	public void delete(String userID, String suggestionID) throws Exception {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
@@ -93,7 +96,7 @@ public class SuggestionController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static SuggestionStatus getStatus(String suggestionID) {
+	public SuggestionStatus getStatus(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
@@ -104,7 +107,7 @@ public class SuggestionController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static boolean isValidSuggestion(String suggestionID) {
+	public boolean isValidSuggestion(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		if (sDB.getItem(suggestionID)== null) {
 			return false;
@@ -118,7 +121,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<String> getPendingSuggestionByCamp(String campID) {
+	public Collection<String> getPendingSuggestionByCamp(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -137,10 +140,10 @@ public class SuggestionController {
 	 * 
 	 * @param userID
 	 */
-	public static Collection<String> getEnquiryByCampComm(String userID) throws Exception{
+	public Collection<String> getEnquiryByCampComm(String userID) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		String c1String = UserController.getStudentCommitteeCampID(userID);
+		String c1String = userCont.getStudentCommitteeCampID(userID);
 
 		if (c1String==null) {
 			throw new Exception("student is not a committee");
@@ -164,7 +167,7 @@ public class SuggestionController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static String getSuggestionText(String suggestionID) {
+	public String getSuggestionText(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		return sDB.getItem(suggestionID).getSuggestion();
 	}
@@ -173,7 +176,7 @@ public class SuggestionController {
 	 * 
 	 * @param suggestionID
 	 */
-	public static String getSuggestionCreator(String suggestionID) {
+	public String getSuggestionCreator(String suggestionID) {
 		SuggestionDatabase sDB = new SuggestionDatabase();
 		return sDB.getItem(suggestionID).getSuggestedBy();
 	}

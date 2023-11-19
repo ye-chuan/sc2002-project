@@ -19,7 +19,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static boolean isValidCampID(String campID) {
+	public boolean isValidCampID(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		if (cDB.getItem(campID)== null) {
@@ -35,7 +35,7 @@ public class CampController {
 	 * @param campID
 	 * @param userID
 	 */
-	public static void registerAsParticipant(String campID, String userID) throws Exception {
+	public void registerAsParticipant(String campID, String userID) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -60,7 +60,7 @@ public class CampController {
 		if (getRemainingParticipantSlots(campID) <= 0) {
 			throw new Exception("There are no remaining slots");
 		}
-		if (CampController.overlapDates(c1, s1))
+		if (overlapDates(c1, s1))
 		{
 			throw new Exception("Camp dates clashed with camps registered");
 		}
@@ -72,7 +72,7 @@ public class CampController {
 	 * @param campID
 	 * @param userID
 	 */
-	public static void registerAsCommittee(String campID, String userID) throws Exception {
+	public void registerAsCommittee(String campID, String userID) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -108,7 +108,7 @@ public class CampController {
 		if (existingCampComm == true) {
 			throw new Exception("Already registered as a camp comm for another camp");
 		}
-		if (CampController.overlapDates(c1, s1)) {
+		if (overlapDates(c1, s1)) {
 			throw new Exception("Camp dates clashed with camps registered");
 		}
 		cmemberDB.addParticipant(s1,c1);
@@ -119,7 +119,7 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static void withdraw(String userID, String campID) throws Exception{
+	public void withdraw(String userID, String campID) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -138,7 +138,7 @@ public class CampController {
 		}	
 	}
 
-	public static String create(String staffInChargeID) {
+	public String create(String staffInChargeID) {
 		UserDatabase uDB = new UserDatabase();
 		Staff s1 = (Staff) uDB.getItem(staffInChargeID);
 		Camp newCamp = new Camp(s1);
@@ -151,7 +151,7 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static boolean IsEditable(String userID, String campID) {
+	public boolean IsEditable(String userID, String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -169,10 +169,10 @@ public class CampController {
 	 * @param userID
 	 * @param campID
 	 */
-	public static void delete(String userID, String campID) throws Exception {
+	public void delete(String userID, String campID) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(userID, campID)) {
+		if (!IsEditable(userID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -187,11 +187,11 @@ public class CampController {
 	//  * @param userID
 	//  * @param campID
 	//  */
-	// public static void changeCampInCharge(String userID, String newStaffID, String campID) {
+	// public void changeCampInCharge(String userID, String newStaffID, String campID) {
 	// 	CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 	// 	CampDatabase cDB = new CampDatabase(cmemberDB);
 	// 	UserDatabase uDB = new UserDatabase();
-	// 	if (!CampController.IsEditable(userID, campID)) {
+	// 	if (!IsEditable(userID, campID)) {
 	// 		throw new Exception("No permission to edit");
 	// 	}
 	// 	else {
@@ -206,10 +206,10 @@ public class CampController {
 	 * @param campID
 	 * @param newName
 	 */
-	public static void changeName(String staffID, String campID, String newName) throws Exception{
+	public void changeName(String staffID, String campID, String newName) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -223,10 +223,10 @@ public class CampController {
 	 * @param campID
 	 * @param visibility
 	 */
-	public static void toggleVisibility(String staffID, String campID, boolean visibility) throws Exception{
+	public void toggleVisibility(String staffID, String campID, boolean visibility) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -241,10 +241,10 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public static void changeDates(String staffID, String campID, Collection<Date> dates) throws Exception{
+	public void changeDates(String staffID, String campID, Collection<Date> dates) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -258,10 +258,10 @@ public class CampController {
 	 * @param campID
 	 * @param String
 	 */
-	public static void changeLocation(String staffID, String campID, String location) throws Exception {
+	public void changeLocation(String staffID, String campID, String location) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -275,10 +275,10 @@ public class CampController {
 	 * @param campID
 	 * @param String
 	 */
-	public static void changeDescription(String staffID, String campID, String description) throws Exception{
+	public void changeDescription(String staffID, String campID, String description) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -292,10 +292,10 @@ public class CampController {
 	 * @param campID
 	 * @param slots
 	 */
-	public static void changeCampCommSlots(String staffID, String campID, int slots) throws Exception {
+	public void changeCampCommSlots(String staffID, String campID, int slots) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -309,10 +309,10 @@ public class CampController {
 	 * @param campID
 	 * @param slots
 	 */
-	public static void changeCampParticipantSlots(String staffID, String campID, int slots) throws Exception {
+	public void changeCampParticipantSlots(String staffID, String campID, int slots) throws Exception {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -326,10 +326,10 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public static void changeClosingDate(String staffID, String campID, Date dates) throws Exception{
+	public void changeClosingDate(String staffID, String campID, Date dates) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		if (!CampController.IsEditable(staffID, campID)) {
+		if (!IsEditable(staffID, campID)) {
 			throw new Exception("No permission to edit");
 		}
 		else {
@@ -342,7 +342,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getName(String campID) {
+	public String getName(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -353,7 +353,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static boolean getVisibility(String campID) {
+	public boolean getVisibility(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -364,7 +364,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<Date> getDates(String campID) {
+	public Collection<Date> getDates(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -375,7 +375,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getLocation(String campID) {
+	public String getLocation(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -386,7 +386,21 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getDescription(String campID) {
+	public String getFaculty(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		
+		if (c1.getOpenTo().size()==1)
+		return c1.getOpenTo().iterator().next().toString();
+		else return "ALL";
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public String getDescription(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -397,7 +411,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getTotalCampCommSlots(String campID) {
+	public int getTotalCampCommSlots(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -408,7 +422,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getRemainingCampCommSlots(String campID) {
+	public int getRemainingCampCommSlots(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -419,7 +433,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getTotalParticipantSlots(String campID) {
+	public int getTotalParticipantSlots(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -430,7 +444,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static int getRemainingParticipantSlots(String campID) {
+	public int getRemainingParticipantSlots(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -441,18 +455,18 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Date getClosingDate(String campID) {
+	public String getClosingDate(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
-		return c1.getClosingDate();
+		return c1.getClosingDate().toString();
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public static String getCampInCharge(String campID) {
+	public String getCampInCharge(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -463,7 +477,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static Collection<String> getCampParticipants(String campID) {
+	public Collection<String> getCampParticipants(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
@@ -479,12 +493,13 @@ public class CampController {
 		return studentIDList;
 	}
 
+	
 	/**
 	 * 
 	 * @param camp
 	 * @param student
 	 */
-	public static boolean overlapDates(Camp camp, Student student) {
+	public boolean overlapDates(Camp camp, Student student) {
 		// TODO - implement CampController.overlapDates
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		Iterator<Camp> cIterator = cmemberDB.getCampsJoinedBy(student).iterator();
@@ -509,7 +524,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public static String getCampRole(String campID, String studentID) {
+	public String getUserStatus(String campID, String studentID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -523,7 +538,7 @@ public class CampController {
 		else if (s1Role.equals(CampRole.PARTICIPANT)) {
 			return "Participant";
 		}
-		else return "Not a member of Camp";
+		else return "";
 
 	}
 
