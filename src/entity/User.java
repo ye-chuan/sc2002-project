@@ -1,5 +1,8 @@
 package entity;
-public class User implements Identifiable {
+
+import java.io.Serializable;
+
+public class User implements Identifiable, Serializable {
 
 	private String userID;
 	private String password;
@@ -43,5 +46,9 @@ public class User implements Identifiable {
     @Override
     public String getID() {
         return this.userID;
+    }
+
+    public String toString() {
+        return "User #" + getID() + ": " + getName() + " in " + getFaculty();
     }
 }

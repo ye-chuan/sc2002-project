@@ -1,4 +1,5 @@
 package entity;
+
 public class UserDatabase extends Database<User> {
 
 	/**

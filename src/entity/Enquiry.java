@@ -1,5 +1,8 @@
 package entity;
-public class Enquiry implements Identifiable {
+
+import java.io.Serializable;
+
+public class Enquiry implements Identifiable, Serializable {
 
 	private String enquiryID;
 	private String enquiry;

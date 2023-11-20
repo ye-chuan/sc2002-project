@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * Generates a globally unique string as ID
  * Current implementation is based on simple long incrementation
@@ -13,7 +15,7 @@ package entity;
  * which would require 20,040,000,000 IDs
  * 2^64 = 18,446,744,073,709,551,616
  */
-public class UniqueIDGenerator {
+public class UniqueIDGenerator implements Serializable {
 
 	private static long lastID = 0;
 

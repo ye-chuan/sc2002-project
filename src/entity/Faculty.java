@@ -2,5 +2,8 @@ package entity;
 public enum Faculty {
 	SCSE,
 	EEE,
-	CEE
+	CEE,
+	ADM,
+	NBS,
+	SSS
 }

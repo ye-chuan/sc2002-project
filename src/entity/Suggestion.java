@@ -1,6 +1,8 @@
 package entity;
 
-public class Suggestion implements Identifiable {
+import java.io.Serializable;
+
+public class Suggestion implements Identifiable, Serializable {
 
 	private String suggestionID;
 	private String suggestion;

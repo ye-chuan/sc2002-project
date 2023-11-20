@@ -5,10 +5,10 @@ import java.io.IOException;
 
 public class WriterController {
 
-	private UserDatabaseFileWriter UserDatabaseFileWriterObj;
-	private CampDatabaseFileWriter campDatabaseFileWriterObj;
-	private CampMembershipDatabaseFileWriter campMembershipDatabaseFileWriterObj;
-	private LastIDFileWriter LastIDFileWriterObj;
+	private UserDatabaseFileWriter UserDatabaseFileWriterObj = new UserDatabaseFileWriter();
+	private CampDatabaseFileWriter campDatabaseFileWriterObj = new CampDatabaseFileWriter();
+	private CampMembershipDatabaseFileWriter campMembershipDatabaseFileWriterObj = new CampMembershipDatabaseFileWriter();
+	private UniqueIDGeneratorFileWrite uniqueIDGeneratorFileWriteObj = new UniqueIDGeneratorFileWrite();
 
 	/**
 	 * This method stores userDatabase object into a file by
@@ -43,7 +43,7 @@ public class WriterController {
 	}
 
 	/**
-	 * This method stores userDatabase object into a file by
+	 * This method stores CampMembershipDatabase object into a file by
 	 * using the CampMembershipDatabaseFileWriter to call its writeToCampMembershipDatabase method.
 	 * @param filePath refers to the filepath where the file to be written is located.
 	 * @param campMambershipDatabaseObj is a campMambershipDatabase object that is going to be 
@@ -59,12 +59,19 @@ public class WriterController {
 	}
 
 	/**
-	 * This method stores the given LastId into a file by using the LastIDFileWriter to call the writeLastIDFile method.
+	 * This method stores UniqueIDGenerator object into a file by
+	 * using the UniqueIDGeneratorFileWrite to call its writeUniqueIDGeneratorFile method.
 	 * @param filePath refers to the filepath where the file to be written is located.
-	 * @param givenLastID is the value of LastID to be stored into the given file.
+	 * @param campMambershipDatabaseObj is a uniqueIDGenerator object that is going to be 
+	 * written into path corresonding to the file path given.
+	 * @return Does not return anything (void)
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
-	public void storeLastID(String filePath, int givenLastID) throws FileNotFoundException, IOException {
-		LastIDFileWriterObj.writeLastIDFile(filePath, givenLastID);
+	public void storeuniqueIDGeneratorObj(String filePath, UniqueIDGenerator uniqueIDGeneratorObj) throws FileNotFoundException, IOException {
+		uniqueIDGeneratorFileWriteObj.writeUniqueIDGeneratorFile(filePath, uniqueIDGeneratorObj);
 	}
 
 }
