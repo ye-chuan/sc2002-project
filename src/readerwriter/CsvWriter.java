@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class CsvWriter {
     private List<String> rows;
-    private int numCols = -1;
+    private int numCols;
     private Path path;
 
     /**
@@ -21,6 +21,8 @@ public class CsvWriter {
     public CsvWriter(String filepath, int numCols) {
         this.path = Paths.get(filepath);
         this.numCols = numCols;
+
+        this.rows = new ArrayList<String>();
     }
 
     /**
@@ -46,11 +48,7 @@ public class CsvWriter {
             numCols = strings.length;
         else if (numCols != strings.length)
             throw new IllegalArgumentException("Number of Columns mismatch in CsvWriter");
-        StringBuilder rowStrBuilder = new StringBuilder();
-        for (String string : strings) {
-            rowStrBuilder.append(string);
-        }
-        rows.add(rowStrBuilder.toString());
+        rows.add(String.join(",", strings));
     }
 
     /**
@@ -58,7 +56,19 @@ public class CsvWriter {
      *
      * @throws IOException If an I/O error occurs writing to or creating the file, or the text cannot be encoded using the specified charset
      */
-    public void write(String filepath) throws IOException {
+    public void write() throws IOException {
         Files.write(path, rows, StandardCharsets.UTF_8);
+    }
+
+    public static void main(String[] args) {
+        CsvWriter writer = new CsvWriter("test.csv");
+        writer.addRow("oneone", "onetwo", "onethree");
+        writer.addRow("twoone", "twotwo", "twothree");
+        try {
+            writer.write();
+        }
+        catch(IOException e) {
+            System.out.println("IO Error");
+        }
     }
 }
