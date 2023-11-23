@@ -1,12 +1,13 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Handles the relationships between Student and Camps.
  * For querying Camp memberships details (i.e. role in camp, blacklists)
  */
-public class CampMembershipDatabase {
+public class CampMembershipDatabase implements Serializable{
     /**
      * {@code CampMembership} stored in a Map structure for faster access.
      *

@@ -1,7 +1,8 @@
 package entity;
+import java.io.Serializable;
 import java.util.*;
 
-public class Camp implements Identifiable {
+public class Camp implements Identifiable, Serializable{
 
 	private CampInformation information;
 	private boolean visible = false;

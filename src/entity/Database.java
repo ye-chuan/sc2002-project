@@ -1,7 +1,8 @@
 package entity;
+import java.io.Serializable;
 import java.util.*;
 
-public class Database<T extends Identifiable> {
+public class Database<T extends Identifiable> implements Serializable {
 
 	protected String filePath;
 	protected Map<String, T> items;

@@ -1,8 +1,9 @@
-public enum REPORTFILTER {
-	;
 
-	private int PARTICIPANTS;
-	private int CAMPCOMM;
-	private int ALL;
+
+public enum REPORTFILTER {
+	PARTICIPANTS,
+	CAMPCOMM,
+	ALL
 
 }
+

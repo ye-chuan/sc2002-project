@@ -22,8 +22,9 @@ public class CampDatabaseFileWriter {
 		FileOutputStream fosWriteCamp = new FileOutputStream(filePath);
 		ObjectOutputStream oosWriteCamp = new ObjectOutputStream(fosWriteCamp);
 		oosWriteCamp.writeObject(campDatabaseObj);
-		fosWriteCamp.close();
 		oosWriteCamp.close();
+		fosWriteCamp.close();
+
 	}
 
 }

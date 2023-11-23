@@ -5,10 +5,10 @@ import java.io.IOException;
 
 public class ReaderController {
 
-	private UserDatabaseFileReader UserDatabaseFileReadObj;
-	private CampDatabaseFileReader CampDatabaseFileReaderObj;
-	private CampMembershipDatabaseFileReader CampMembershipDatabaseFileReaderObj;
-	private LastIDFileReader LastIDFileReaderObj;
+	private UserDatabaseFileReader UserDatabaseFileReadObj = new UserDatabaseFileReader();
+	private CampDatabaseFileReader CampDatabaseFileReaderObj = new CampDatabaseFileReader();
+	private CampMembershipDatabaseFileReader CampMembershipDatabaseFileReaderObj = new CampMembershipDatabaseFileReader();
+	private UniqueIDGeneratorFileReader uniqueIDGeneratorFileReaderObj = new UniqueIDGeneratorFileReader();
 
 	/**
 	 * This method reads the file located at the corresponding file Path given
@@ -43,7 +43,7 @@ public class ReaderController {
 
 	/**
 	 * This method reads the file located at the corresponding file Path given
-	 * and returns campDatabase object by using CampMembershipDatabaseFileReader object to call
+	 * and returns campMembershipDatabase object by using CampMembershipDatabaseFileReader object to call
 	 * its readCampMembershipDatabaseFile method.
 	 * This method might catch a FileNotFoundException from the readCampMembershipDatabaseFile method
 	 * but would throw it back to the method or class who calls it.
@@ -58,15 +58,19 @@ public class ReaderController {
 	}
 
 	/**
-	 * This method reads given file and returns the value of LastID stored in the file
-	 * @param filePath
-	 * @return getLastID
+	 * This method reads the file located at the corresponding file Path given
+	 * and returns UniqueIDGenerator object by using uniqueIDGeneratorFileReader object to call
+	 * its readUniqueIDGeneratorFile method.
+	 * This method might catch a FileNotFoundException from the readUniqueIDGeneratorFile method
+	 * but would throw it back to the method or class who calls it.
+	 * @param filePath refers to the filepath where the file to be read is located
+	 * @return UniqueIDGenerator object
 	 * @throws FileNotFoundException
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
-	public int getLastID(String filePath) throws FileNotFoundException, IOException {
-		return LastIDFileReaderObj.readLastID(filePath);
+	public UniqueIDGenerator getUniqueIDGenerator(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
+		return uniqueIDGeneratorFileReaderObj.readUniqueIDGeneratorFile(filePath);
 	}
 
 }

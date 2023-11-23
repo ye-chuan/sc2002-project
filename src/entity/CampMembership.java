@@ -1,6 +1,8 @@
 package entity;
 
-public class CampMembership {
+import java.io.Serializable;
+
+public class CampMembership implements Serializable {
 
 	Student student;
 	Camp camp;

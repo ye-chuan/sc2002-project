@@ -1,7 +1,8 @@
 package entity;
+import java.io.Serializable;
 import java.util.*;
 
-public class CampInformation {
+public class CampInformation implements Serializable {
 
 	private String campID;
 	private String name;
