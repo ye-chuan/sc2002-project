@@ -1,0 +1,4 @@
+# This directory contains compiled .class files which should be ignored by Git
+*
+!.gitignore
+
