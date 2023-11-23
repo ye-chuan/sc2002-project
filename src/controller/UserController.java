@@ -1,9 +1,12 @@
 
+
+import java.util.Collection;
 import java.util.Iterator;
 
 import entity.Camp;
 import entity.CampMembershipDatabase;
 import entity.CampRole;
+import entity.Date;
 import entity.Faculty;
 import entity.Staff;
 import entity.Student;
@@ -13,16 +16,17 @@ import entity.UserDatabase;
 public class UserController {
 
 	private PointController pointCont;
-	private String userID;
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public boolean isFirstLogin(String password) {
-		if (password == "password") return true;
-		else return false;
+	public String isFirstLogin(String password) {
+		if (password == "password") return null;
+		else return "Password needs to be more than 8 characters\n";
+		
 	}
+	
 
 	/**
 	 * 
@@ -90,13 +94,11 @@ public class UserController {
 		CampMembershipDatabase cMemberDB = new CampMembershipDatabase();
 		Student s1 = (Student) uDB.getItem(userID);
 
-		Iterator<Camp> cIterator = cMemberDB.getCampsJoinedBy(s1).iterator();
+		Collection<Camp> campList = cMemberDB.getCampsJoinedBy(s1);
 
-		while (cIterator.hasNext()) {
-			Camp c1 = cIterator.next();
-			CampRole studentRole = cMemberDB.getRoleInCamp(c1,s1);
-			if (studentRole == CampRole.CAMPCOMM) {
-				return c1.getID();
+		for(Camp c : campList) {
+			if (cMemberDB.getRoleInCamp(c,s1)  == CampRole.CAMPCOMM) {
+				return c.getID();
 			}
 		}
 		return null;
@@ -135,13 +137,5 @@ public class UserController {
 		Student s1 = (Student) uDB.getItem(userID);
 		
 		return s1.getFaculty();
-	}
-
-	/**
-	 * 
-	 * @param userID
-	 */
-	public void setUserID(String userID) {
-		this.userID = userID;
 	}
 }

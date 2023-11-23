@@ -1,6 +1,9 @@
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import entity.Camp;
 import entity.CampDatabase;
@@ -10,7 +13,7 @@ import entity.Date;
 import entity.Faculty;
 import entity.Staff;
 import entity.Student;
-
+import entity.User;
 import entity.UserDatabase;
 
 public class CampController {
@@ -40,31 +43,38 @@ public class CampController {
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
 		Camp c1 = cDB.getItem(campID);
-		Student s1 = (Student) uDB.getItem(userID);
-		Faculty s1Faculty = s1.getFaculty();
+		User u1 = uDB.getItem(userID);
+		if (u1 instanceof Staff){
+			throw new Exception("Not a student.");
+		} 
+		else {
+			Student s1 = (Student) u1;
 		
-		// 1 Check Sign Up Date
-		// 2 Check Faculty
-		// 3 Check Blacklist
-		// 4 Check Remaining Slots
-		// 5 Check Overlap Dates
-		if (Date.today().isAfter(c1.getClosingDate())) {
-			throw new Exception("Registration is closed");
+			Faculty s1Faculty = u1.getFaculty();
+			
+			// 1 Check Sign Up Date
+			// 2 Check Faculty
+			// 3 Check Blacklist
+			// 4 Check Remaining Slots
+			// 5 Check Overlap Dates
+			if (Date.today().isAfter(c1.getClosingDate())) {
+				throw new Exception("Registration is closed");
+			}
+			if (!c1.getOpenTo().contains(s1Faculty)) {
+				throw new Exception("Camp not open to {s1Faculty}");
+			}
+			if (cmemberDB.getBlacklistedID(campID).contains(userID)) {
+				throw new Exception("Blacklisted: unable to rejoin camp");
+			}
+			if (getRemainingParticipantSlots(campID) <= 0) {
+				throw new Exception("There are no remaining slots");
+			}
+			if (overlapDates(c1, s1))
+			{
+				throw new Exception("Camp dates clashed with camps registered");
+			}
+			cmemberDB.addParticipant(s1,c1);
 		}
-		if (!c1.getOpenTo().contains(s1Faculty)) {
-			throw new Exception("Camp not open to {s1Faculty}");
-		}
-		if (cmemberDB.getBlacklistedID(campID).contains(userID)) {
-			throw new Exception("Blacklisted: unable to rejoin camp");
-		}
-		if (getRemainingParticipantSlots(campID) <= 0) {
-			throw new Exception("There are no remaining slots");
-		}
-		if (overlapDates(c1, s1))
-		{
-			throw new Exception("Camp dates clashed with camps registered");
-		}
-		cmemberDB.addParticipant(s1,c1);
 	}
 
 	/**
@@ -77,41 +87,48 @@ public class CampController {
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
 		Camp c1 = cDB.getItem(campID);
-		Student s1 = (Student) uDB.getItem(userID);
-		Faculty s1Faculty = s1.getFaculty();
-		boolean existingCampComm = false;
+		User u1 = uDB.getItem(userID);
 
-		Iterator<Camp> cIterator = cmemberDB.getCampsJoinedBy(s1).iterator();
+		if (u1 instanceof Staff) {
+			throw new Exception("Not a student");
+		}
+		else {
+			Student s1 = (Student) u1;
+			Faculty s1Faculty = s1.getFaculty();
+			boolean existingCampComm = false;
 
-		while (cIterator.hasNext()) {
-			Camp c2Camp = cIterator.next();
-			if (cmemberDB.getCampCommMembers(c2Camp).contains(s1)) {
-				existingCampComm = true;
+			Iterator<Camp> cIterator = cmemberDB.getCampsJoinedBy(s1).iterator();
+
+			while (cIterator.hasNext()) {
+				Camp c2Camp = cIterator.next();
+				if (cmemberDB.getCampCommMembers(c2Camp).contains(s1)) {
+					existingCampComm = true;
+				}
 			}
-		}
-		
-		// 1 Check Sign Up Date
-		// 2 Check Faculty
-		// 3 Check Remaining Slots
-		// 4 Check Existing Camp Comm
-		// 4 Check Overlap Dates
+			
+			// 1 Check Sign Up Date
+			// 2 Check Faculty
+			// 3 Check Remaining Slots
+			// 4 Check Existing Camp Comm
+			// 4 Check Overlap Dates
 
-		if (Date.today().isAfter(c1.getClosingDate())) {
-			throw new Exception("Registration is closed");
+			if (Date.today().isAfter(c1.getClosingDate())) {
+				throw new Exception("Registration is closed");
+			}
+			if (!c1.getOpenTo().contains(s1Faculty)) {
+				throw new Exception("Camp not open to {s1Faculty}");
+			}
+			if (getRemainingCampCommSlots(campID) <= 0) {
+				throw new Exception("There are no remaining slots");
+			}
+			if (existingCampComm == true) {
+				throw new Exception("Already registered as a camp comm for another camp");
+			}
+			if (overlapDates(c1, s1)) {
+				throw new Exception("Camp dates clashed with camps registered");
+			}
+			cmemberDB.addParticipant(s1,c1);
 		}
-		if (!c1.getOpenTo().contains(s1Faculty)) {
-			throw new Exception("Camp not open to {s1Faculty}");
-		}
-		if (getRemainingCampCommSlots(campID) <= 0) {
-			throw new Exception("There are no remaining slots");
-		}
-		if (existingCampComm == true) {
-			throw new Exception("Already registered as a camp comm for another camp");
-		}
-		if (overlapDates(c1, s1)) {
-			throw new Exception("Camp dates clashed with camps registered");
-		}
-		cmemberDB.addParticipant(s1,c1);
 	}
 
 	/**
@@ -124,18 +141,26 @@ public class CampController {
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
 		Camp c1 = cDB.getItem(campID);
-		Student s1 = (Student) uDB.getItem(userID);
+		User u1 = uDB.getItem(userID);
 
-		if (cmemberDB.getCampCommMembers(c1).contains(s1)) {
-			throw new Exception("Unable to withdraw camp as a camp committee");
-		}
-
-		if (!cmemberDB.getParticipants(c1).contains(s1) && !cmemberDB.getCampCommMembers(c1).contains(s1)) {
-			throw new Exception("Unable to find participant");
+		if (u1 instanceof Staff) {
+			throw new Exception("Not a student");
 		}
 		else {
-			cmemberDB.removeParticipant(s1,c1);
-		}	
+
+			Student s1 = (Student) u1;
+
+			if (cmemberDB.getCampCommMembers(c1).contains(s1)) {
+				throw new Exception("Unable to withdraw camp as a camp committee");
+			}
+
+			if (!cmemberDB.getParticipants(c1).contains(s1) && !cmemberDB.getCampCommMembers(c1).contains(s1)) {
+				throw new Exception("Unable to find participant");
+			}
+			else {
+				cmemberDB.removeParticipant(s1,c1);
+			}	
+		}
 	}
 
 	public String create(String staffInChargeID) {
@@ -181,25 +206,7 @@ public class CampController {
 		}
 
 	}
-// Invalid Function
-	// /**
-	//  * 
-	//  * @param userID
-	//  * @param campID
-	//  */
-	// public void changeCampInCharge(String userID, String newStaffID, String campID) {
-	// 	CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-	// 	CampDatabase cDB = new CampDatabase(cmemberDB);
-	// 	UserDatabase uDB = new UserDatabase();
-	// 	if (!IsEditable(userID, campID)) {
-	// 		throw new Exception("No permission to edit");
-	// 	}
-	// 	else {
-	// 		Camp c1 = cDB.getItem(campID);
-	// 		Staff s1 = (Staff) uDB.getItem(newStaffID);
-	// 		c1.setStaffInCharge(s1);
-	// 	}
-	// }
+
 
 	/**
 	 * 
@@ -241,7 +248,7 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public void changeDates(String staffID, String campID, Collection<Date> dates) throws Exception{
+	public void changeStartDate(String staffID, String campID, int yy, int mm, int dd) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		if (!IsEditable(staffID, campID)) {
@@ -249,9 +256,41 @@ public class CampController {
 		}
 		else {
 			Camp c1 = cDB.getItem(campID);
-			c1.setDates(dates);
+			if (Date.isValidDate(yy, mm, dd)) {
+				Date date = new Date(yy, mm, dd);
+				List<Date> dates = c1.getDates();
+				dates.remove(0);
+				dates.add(0, date);
+				c1.setDates(dates);
+			}
+			else throw new Exception("Invalid Date");
 		}
 	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param dates
+	 */
+	public void changeEndDate(String staffID, String campID, int yy, int mm, int dd) throws Exception{
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		if (!IsEditable(staffID, campID)) {
+			throw new Exception("No permission to edit");
+		}
+		else {
+			Camp c1 = cDB.getItem(campID);
+			if (Date.isValidDate(yy, mm, dd)) {
+				Date date = new Date(yy, mm, dd);
+				List<Date> dates = c1.getDates();
+				dates.remove(1);
+				dates.add(1, date);
+				c1.setDates(dates);
+			}
+			else throw new Exception("Invalid Date");
+		}
+	}
+
 
 	/**
 	 * 
@@ -326,7 +365,7 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public void changeClosingDate(String staffID, String campID, Date dates) throws Exception{
+	public void changeClosingDate(String staffID, String campID, int yy, int mm, int dd) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		if (!IsEditable(staffID, campID)) {
@@ -334,7 +373,11 @@ public class CampController {
 		}
 		else {
 			Camp c1 = cDB.getItem(campID);
-			c1.setClosingDate(dates);
+			if (Date.isValidDate(yy, mm, dd)) {
+				Date date = new Date(yy, mm, dd);
+				c1.setClosingDate(date);
+			}
+			else throw new Exception("Invalid Date");
 		}
 	}
 
@@ -500,7 +543,6 @@ public class CampController {
 	 * @param student
 	 */
 	public boolean overlapDates(Camp camp, Student student) {
-		// TODO - implement CampController.overlapDates
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		Iterator<Camp> cIterator = cmemberDB.getCampsJoinedBy(student).iterator();
 		Collection<Date> studentNotFreeDates = new ArrayList<Date>();
@@ -524,7 +566,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public String getUserStatus(String campID, String studentID) {
+	public CampRole getUserStatus(String campID, String studentID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		UserDatabase uDB = new UserDatabase();
@@ -532,13 +574,10 @@ public class CampController {
 		Student s1 = (Student) uDB.getItem(studentID);
 		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);
 
-		if (s1Role.equals(CampRole.CAMPCOMM)) {
-			return "Camp Committee";
+		if (s1Role != null) {
+			return s1Role;
 		}
-		else if (s1Role.equals(CampRole.PARTICIPANT)) {
-			return "Participant";
-		}
-		else return "";
+		else return null;
 
 	}
 

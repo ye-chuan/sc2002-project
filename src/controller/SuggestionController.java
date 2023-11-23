@@ -1,14 +1,23 @@
+
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 
 import entity.Camp;
 import entity.CampDatabase;
 import entity.CampMembershipDatabase;
+import entity.CampRole;
+import entity.Date;
+import entity.Student;
 import entity.Suggestion;
 import entity.SuggestionDatabase;
 import entity.SuggestionStatus;
+import entity.User;
+import entity.UserDatabase;
 
 
 public class SuggestionController {
@@ -125,42 +134,172 @@ public class SuggestionController {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
 		Camp c1 = cDB.getItem(campID);
-		Iterator<Suggestion> sugIterator = c1.getSuggestionDB().getPendingSuggestions().iterator();
-		Collection<String> suggestionIDList = new ArrayList<String>();
-
-		while (sugIterator.hasNext()) {
-			Suggestion sug1 = sugIterator.next();
-			suggestionIDList.add(sug1.getID());
-		}
+		Collection<Suggestion> sugList = c1.getSuggestionDB().getPendingSuggestions();
 		
-		return suggestionIDList;
+
+		return sortByNameIDList(sugList);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getRejectedSuggestionByCamp(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Suggestion> sugList = c1.getSuggestionDB().getRejectedSuggestions();
+		
+
+		return sortByNameIDList(sugList);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getApprovedSuggestionByCamp(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Suggestion> sugList = c1.getSuggestionDB().getApprovedSuggestions();
+		
+
+		return sortByNameIDList(sugList);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getAllSuggestionByCamp(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
+		sugList.addAll(c1.getSuggestionDB().getApprovedSuggestions());
+		sugList.addAll(c1.getSuggestionDB().getRejectedSuggestions());
+		sugList.addAll(c1.getSuggestionDB().getPendingSuggestions());
+
+		return sortByNameIDList(sugList);
 	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<String> getEnquiryByCampComm(String userID) throws Exception{
+	public Collection<String> getMyPendingSuggestion(String campID, String userID) throws Exception{
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		String c1String = userCont.getStudentCommitteeCampID(userID);
-
-		if (c1String==null) {
-			throw new Exception("student is not a committee");
+		UserDatabase uDB = new UserDatabase();
+		User u1 = uDB.getItem(userID);
+		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
+		if (u1 instanceof Student) { 
+			Student s1 = (Student) u1; 
+		
+			Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
+			if (c1.getID() == campID) {
+				sugList = c1.getSuggestionDB().getPendingSuggestionsBy(userID);
+			}
+			else { 
+				throw new Exception("Not a camp committee");
+			}
 		}
 		else {
-			Camp c1 = cDB.getItem(c1String);
-			Iterator<Suggestion> sugIterator = c1.getSuggestionDB().getPendingSuggestions().iterator();
-			Collection<String> suggestionIDList = new ArrayList<String>();
-
-			while (sugIterator.hasNext()) {
-				Suggestion sug1 = sugIterator.next();
-				suggestionIDList.add(sug1.getID());
-			}
-		
-		return suggestionIDList;
+			throw new Exception("Not a camp committee");
 		}
 		
+		return sortByNameIDList(sugList);
+	
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public Collection<String> getMyRejectedSuggestion(String campID, String userID) throws Exception{
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		UserDatabase uDB = new UserDatabase();
+		User u1 = uDB.getItem(userID);
+		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
+		if (u1 instanceof Student) { 
+			Student s1 = (Student) u1; 
+		
+			Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
+			if (c1.getID() == campID) {
+				sugList = c1.getSuggestionDB().getRejectedSuggestionsBy(userID);
+			}
+			else { 
+				throw new Exception("Not a camp committee");
+			}
+		}
+		else {
+			throw new Exception("Not a camp committee");
+		}
+		
+		return sortByNameIDList(sugList);
+	
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public Collection<String> getMySuggestion(String campID, String userID) throws Exception{
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		UserDatabase uDB = new UserDatabase();
+		User u1 = uDB.getItem(userID);
+		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
+		if (u1 instanceof Student) { 
+			Student s1 = (Student) u1; 
+		
+			Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
+			if (c1.getID() == campID) {
+				sugList = c1.getSuggestionDB().getRejectedSuggestionsBy(userID);
+				sugList.addAll(c1.getSuggestionDB().getApprovedSuggestionsBy(userID));
+				sugList.addAll(c1.getSuggestionDB().getPendingSuggestionsBy(userID));
+			}
+			else { 
+				throw new Exception("Not a camp committee");
+			}
+		}
+		else {
+			throw new Exception("Not a camp committee");
+		}
+		
+		return sortByNameIDList(sugList);
+	
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public Collection<String> getMyApprovedSuggestion(String campID, String userID) throws Exception{
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		UserDatabase uDB = new UserDatabase();
+		User u1 = uDB.getItem(userID);
+		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
+		if (u1 instanceof Student) { 
+			Student s1 = (Student) u1; 
+		
+			Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
+			if (c1.getID() == campID) {
+				sugList = c1.getSuggestionDB().getApprovedSuggestionsBy(userID);
+			}
+			else { 
+				throw new Exception("Not a camp committee");
+			}
+		}
+		else {
+			throw new Exception("Not a camp committee");
+		}
+		
+		return sortByNameIDList(sugList);
+	
 	}
 
 	/**
@@ -181,4 +320,36 @@ public class SuggestionController {
 		return sDB.getItem(suggestionID).getSuggestedBy();
 	}
 
+	/**
+	 * 
+	 * @param campList
+	 */
+	private Collection<String> sortByNameIDList(Collection<Suggestion> sugList) {
+		Collections.sort((ArrayList<Suggestion>)sugList, Comparator.comparing(Suggestion::getSuggestedBy));
+		ArrayList<String> suggestionIDList = new ArrayList<String>();
+		for (Suggestion s: sugList)
+		{
+			suggestionIDList.add(s.getID());
+		}
+		return suggestionIDList;
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public CampRole getUserStatus(String campID, String studentID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		UserDatabase uDB = new UserDatabase();
+		Camp c1 = cDB.getItem(campID);
+		Student s1 = (Student) uDB.getItem(studentID);
+		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);
+
+		if (s1Role != null) {
+			return s1Role;
+		}
+		else return null;
+
+	}
 }

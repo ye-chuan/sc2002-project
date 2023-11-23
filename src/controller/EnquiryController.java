@@ -1,12 +1,20 @@
+
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
+import entity.Camp;
 import entity.CampDatabase;
 import entity.CampMembershipDatabase;
+import entity.CampRole;
+import entity.Date;
 import entity.Enquiry;
 import entity.EnquiryDatabase;
 import entity.Student;
+import entity.Suggestion;
 import entity.User;
 import entity.UserDatabase;
 
@@ -115,37 +123,89 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getPendingEnquiryByCamp(String campID) {
+	public Collection<String> getPendingEnquiriesByCamp(String campID) {
 		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
 		CampDatabase cDB = new CampDatabase(cmemberDB);
-		Iterator<Enquiry> enqIterator = cDB.getItem(campID).getEnquiryDB().getUnresolvedEnquiries().iterator();
-		Collection<String> enquiryIDList = new ArrayList<String>();
-
-		while (enqIterator.hasNext()) {
-			Enquiry enq1 = enqIterator.next();
-			enquiryIDList.add(enq1.getID());
-		}
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> sugList = c1.getEnquiryDB().getUnresolvedEnquiries();
 		
-		return enquiryIDList;
+
+		return sortByNameIDList(sugList);
 	}
-	
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getResolvedEnquiriesByCamp(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> sugList = c1.getEnquiryDB().getResolvedEnquiries();
+		
+
+		return sortByNameIDList(sugList);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public Collection<String> getAllEnquiriesByCamp(String campID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiries());
+		enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiries());
+
+		return sortByNameIDList(enqList);
+	}
 
 	/**
 	 * 
 	 * @param userID
 	 */
-	public Collection<String> getEnquiryByStudent(String userID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
-		Iterator<Enquiry> enqIterator = eDB.getUnresolvedEnquiriesBy(userID).iterator();
-		Collection<String> enquiryIDList = new ArrayList<String>();;
+	public Collection<String> getMyPendingEnquiries(String campID, String userID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
 
-		while (enqIterator.hasNext()) {
-			Enquiry enq1 = enqIterator.next();
-			enquiryIDList.add(enq1.getID());
-		}
-		
-		return enquiryIDList;
+		return sortByNameIDList(enqList);
+	
 	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public Collection<String> getMyResolvedEnquiries(String campID, String userID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
+
+		return sortByNameIDList(enqList);
+	
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public Collection<String> getMyEnquiries(String campID, String userID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		Camp c1 = cDB.getItem(campID);
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
+		enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
+
+		return sortByNameIDList(enqList);
+	
+	}
+
 
 	/**
 	 * 
@@ -174,5 +234,39 @@ public class EnquiryController {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		return eDB.getItem(enquiryID).getReply();
 	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public CampRole getUserStatus(String campID, String studentID) {
+		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
+		CampDatabase cDB = new CampDatabase(cmemberDB);
+		UserDatabase uDB = new UserDatabase();
+		Camp c1 = cDB.getItem(campID);
+		Student s1 = (Student) uDB.getItem(studentID);
+		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);
+
+		if (s1Role != null) {
+			return s1Role;
+		}
+		else return null;
+
+	}
+
+	/**
+	 * 
+	 * @param campList
+	 */
+	private Collection<String> sortByNameIDList(Collection<Enquiry> enquiryList) {
+		Collections.sort((ArrayList<Enquiry>)enquiryList, Comparator.comparing(Enquiry::getAskedBy));
+		ArrayList<String> enquiryIDList = new ArrayList<String>();
+		for (Enquiry e: enquiryList)
+		{
+			enquiryIDList.add(e.getID());
+		}
+		return enquiryIDList;
+	}
+
 
 }
