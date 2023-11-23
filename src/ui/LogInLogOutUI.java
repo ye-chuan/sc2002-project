@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.Scanner;
 
 /**
@@ -63,9 +65,9 @@ public class LogInLogOutUI {
         if (userCont.isFirstLogin()){
             System.out.println("Password is default password"); 
             System.out.println("Please change to a strong password"); 
-            uiInfo.setUIPage(UIPAGE.PASSWORD);; 
+            uiInfo.setUIPage(UiPage.PASSWORD);
         } 
-        else uiInfo.setUIPage(UIPAGE.HOMEPAGE);
+        else uiInfo.setUIPage(UiPage.HOMEPAGE);
     }
 
  

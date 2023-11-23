@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.Scanner;
 
 public class PrivilegedCampList extends NonPrivilegedCampList{
@@ -14,102 +16,88 @@ public class PrivilegedCampList extends NonPrivilegedCampList{
     @Override
     public void showUI() {
         int option = getUserChoiceUI();
-        String campID; 
+        String campID = ""; 
 
         if (option == 1){
-            listOfCamps = CampListCont.viewAllCamp(uiInfo.getUserID());
+            CampListCont.setDefaultFilter(uiInfo.getUserID());
+            includeFilterSetting = true; 
             campID = selectFromListUI();
         }
         else if (option == 2){
-            listOfCamps = CampListCont.viewCreatedCamp(uiInfo.getUserID()); 
+            includeFilterSetting = false; 
             campID = selectFromListUI();
         }
         else if (option == 3){
-            if (!filterSelection()) return; 
-            campID = selectFromListUI();
-        }
-        else if (option == 4){
             campID = createCampUI();
             uiInfo.setCampID(campID);  
-            uiInfo.setUIPage(UIPAGE.EDITCAMP);
+            uiInfo.setUIPage(UiPage.EDITCAMP);
             return;  
         }
-        else if (option == 5){
-            uiInfo.setUIPage(UIPAGE.HOMEPAGE);
+        else if (option == 4){
+            uiInfo.setUIPage(UiPage.HOMEPAGE);
             return; 
         }
         else{
-            uiInfo.setUIPage(UIPAGE.ENDPROGRAM); 
+            uiInfo.setUIPage(UiPage.ENDPROGRAM); 
             return; 
         } 
         if (campID.isEmpty()) return;
         uiInfo.setCampID(campID);  
-        uiInfo.setUIPage(UIPAGE.CAMP); 
+        uiInfo.setUIPage(UiPage.CAMP); 
     }
 
     @Override
     protected int printListOfOption() {
         int option = 1; 
-        System.out.println("----------------------------------------------"); 
+        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55   
         System.out.println("CAMP MENU"); 
-        System.out.printf("(%d) View All Camps\n", option++); 
-        System.out.printf("(%d) View My Camps\n", option++); 
-        System.out.printf("(%d) Filter Selection of Camp\n", option++); 
-        System.out.printf("(%d) Create a new Camp\n", option++);
-        System.out.printf("(%d) Go to HomePage\n", option++); 
-        System.out.printf("(%d) Exit Program\n", option); 
+        System.out.printf("\t(%d) View All Camps\n", option++); 
+        System.out.printf("\t(%d) View My Camps\n", option++); 
+        System.out.printf("\t(%d) Create a new Camp\n", option++);
+        System.out.printf("\t(%d) Go to Home Page\n", option); 
+        System.out.printf("\t(0) Exit Program\n"); 
         System.out.println("----------------------------------------------"); 
         return option; 
     }
 
     @Override
     public void printList(){
-        int option = 1; 
+        int option = 0; 
 
-        System.out.println("----------------------------------------------"); 
         System.out.println("List Of Camps"); 
-        System.out.println();
+        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String campID : listOfCamps){
-            System.out.printf("(%d)\n", option++); 
-            System.out.println("Camp Name: " + campCont.getName(campID)); 
-            System.out.println("Date of Camp: " + campCont.getDate(campID));
-            System.out.println("Registration closing date: " + campCont.getClosingDate(campID));
-            System.out.println("Camp Staff-In-Charge: " + campCont.getCampInCharge(campID)); 
-            System.out.println("Available Participants Slot: " + campCont.getRemainingParticipantSlot(campID)); 
-            System.out.println("Available Camp Committee Slot: " + campCont.getRemainingCommitteeSlot(campID)); 
-            System.out.println("Faculty: " + campCont.getFaculty(campID)); 
-            System.out.println("Visibility: " + campCont.getVisibility(campID)); 
-            System.out.println(); 
+            String date = campCont.getDate(uiInfo.getCampID()); 
+
+            int actualCount = campCont.getTotalParticipantSlot(uiInfo.getCampID()) - campCont.getRemainingParticipantSlot(uiInfo.getCampID()); 
+            String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlot(uiInfo.getCampID()));
+            actualCount = campCont.getTotalCampCommSlot(uiInfo.getCampID()) - campCont.getRemainingCampCommSlot(uiInfo.getCampID()); 
+            String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(uiInfo.getCampID()));
+            String visibility = "ON";
+
+            String name = campCont.getName(campID); 
+            if (campCont.isCampOver(campID)) date = "REGISTRATION CLOSED";
+
+            System.out.println("│ ("+ (++option) + ") │" + fillUpSpace(name, 85, 3, false) + "│"); 
+
+            if (date.equals("REGISTRATION CLOSED")) System.out.println("│     │" + fillUpSpace(" ", 60, 0, false) + StringConstants.ANSI_RED + fillUpSpace(date,25,0, false) + StringConstants.ANSI_RESET + "│"); 
+            else System.out.println("│     │" + fillUpSpace(" ", 60, 0, false) + fillUpSpace(date,25, 0, false) + "│"); 
+
+            System.out.println("│     │ PARTICIPANT SLOT:" + fillUpSpace(participant, 67, 1,false)  + "│");
+            
+            System.out.println("│     │ CAMP COMMITTEE SLOT:" + fillUpSpace(campComm, 64, 1,false) + "│");
+
+            if (visibility.equals("ON")) System.out.println("│     │ VISIBILITY:" + StringConstants.ANSI_GREEN +fillUpSpace(visibility, 73, 1,false) + StringConstants.ANSI_RESET + "│");
+            else System.out.println("│     │ VISIBILITY:" + StringConstants.ANSI_RED + fillUpSpace(visibility, 73, 1, false) + StringConstants.ANSI_RESET + "│");
+            
+            if (option != listOfCamps.size())
+                System.out.println("├─────┼─────────────────────────────────────────────────────────────────────────────────────┤");
+            else 
+                System.out.println("└─────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
+        System.out.println("(press any non-numeric key to go to Camp List Menu)");
         System.out.println("----------------------------------------------"); 
-    }
-
-    @Override
-    protected int printFilterSelection(){
-        int option = 1; 
-        System.out.println("----------------------------------------------"); 
-        System.out.println("Filter Selection");
-        System.out.printf("(%d) By available participants slot: %s\n", option++, availableParticipant); 
-        System.out.printf("(%d) By available camp committee slot: %s\n", option++, availableCommittee);
-        System.out.printf("(%d) By faculty: %s\n", option++, byFaculty);
-        System.out.printf("(%d) By location: %s\n", option++, byLocation); 
-        System.out.printf("(%d) By date: %s\n", option++, byDate);
-        System.out.printf("(%d) By visibility: %s\n", option, byVisibility);
-        System.out.println("(0) Confirm filter selection"); 
-        System.out.println("----------------------------------------------"); 
-
-        return option; 
-    }
-    
-    @Override
-    protected void setDefaultFilter(){
-        availableParticipant = false;
-        availableCommittee = false; 
-        byFaculty = false; 
-        byVisibility = false;
-        byDate = null;
-        byLocation = null; 
-    }
+        }
     
     /** 
      * This method provides the UI for user to create a camp

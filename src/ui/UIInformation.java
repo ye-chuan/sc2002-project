@@ -1,4 +1,4 @@
-
+package ui;
 /** 
  * Contains the details of the current UI  
  */
@@ -27,7 +27,7 @@ public class UIInformation{
     /** 
      * the next UIPAGE to run  
      */
-    UIPAGE ui; 
+    UiPage ui; 
 
     /**
      * Constructor for UIInformation class; 
@@ -109,14 +109,14 @@ public class UIInformation{
      * 
      * @return UI
      */
-    public UIPAGE getUIPage(){
+    public UiPage getUIPage(){
         return ui;
     }
 
     /** 
      * setter method for UI 
      */
-    public void setUIPage(UIPAGE ui){
+    public void setUIPage(UiPage ui){
         this.ui = ui;
     }
 

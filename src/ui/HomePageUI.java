@@ -1,5 +1,7 @@
+package ui;
+
 /**
- * Provide a UI for the view accoutn 
+ * Provide a UI for the view account
  */
 public class HomePageUI extends UserInterface{
 
@@ -16,9 +18,9 @@ public class HomePageUI extends UserInterface{
     @Override
     public void showUI() {
         int option = getUserChoiceUI(); 
-        if (option == 1) uiInfo.setUIPage(UIPAGE.VIEWACCOUNT);
-        else if (option == 2) uiInfo.setUIPage(UIPAGE.CAMPLIST);
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);; 
+        if (option == 1) uiInfo.setUIPage(UiPage.VIEWACCOUNT);
+        else if (option == 2) uiInfo.setUIPage(UiPage.CAMPLIST);
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);; 
 
         return; 
     }
@@ -26,12 +28,12 @@ public class HomePageUI extends UserInterface{
     @Override
     protected int printListOfOption() {
         int option = 1; 
-        System.out.println("----------------------------------------------"); 
-        System.out.println("HOMEPAGE MENU");
-        System.out.printf("(%d) View Account\n", option++); 
-        System.out.printf("(%d) View Camps\n", option); 
-        System.out.printf("(0) Exit Program\n"); 
-        System.out.println("----------------------------------------------"); 
+        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
+        System.out.printf("HOMEPAGE MENU\n"); 
+        System.out.printf("\t(%d) View Account\n", option++); 
+        System.out.printf("\t(%d) View Camps\n", option); 
+        System.out.printf("\t(0) Exit Program\n"); 
+        System.out.println("-------------------------------------------------------"); 
         return option; 
     }
     

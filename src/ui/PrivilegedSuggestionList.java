@@ -1,3 +1,5 @@
+package ui;
+
 public class PrivilegedSuggestionList extends NonPrivilegedSuggestionList {
 
     public PrivilegedSuggestionList(UIInformation uiInfo) {
@@ -26,13 +28,13 @@ public class PrivilegedSuggestionList extends NonPrivilegedSuggestionList {
             listOfSuggestions = suggestionCont.getAllSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
             suggestionID = selectFromListUI();
         } 
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.CAMP); 
-        else if (option == 6) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 5) uiInfo.setUIPage(UiPage.CAMP); 
+        else if (option == 6) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
 
         if (suggestionID.isEmpty()) return;
         uiInfo.setSuggestionID(suggestionID);  
-        uiInfo.setUIPage(UIPAGE.SUGGESTION); 
+        uiInfo.setUIPage(UiPage.SUGGESTION); 
     }
 
 }

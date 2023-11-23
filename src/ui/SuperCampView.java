@@ -1,3 +1,5 @@
+package ui;
+
 public class SuperCampView extends PrivilegedCampView{
 
     public SuperCampView(UIInformation uiInfo) {
@@ -8,14 +10,14 @@ public class SuperCampView extends PrivilegedCampView{
     public void showUI() {
 
         int option = getUserChoiceUI();
-        if (option == 1) uiInfo.setUIPage(UIPAGE.EDITCAMP); 
+        if (option == 1) uiInfo.setUIPage(UiPage.EDITCAMP); 
         else if (option == 2) generateStudentListUI();
         else if (option == 3) generatePerformanceReportUI(); 
-        else if (option == 4) uiInfo.setUIPage(UIPAGE.ENQURYLIST);
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.SUGGESTIONLIST);
-        else if (option == 6) uiInfo.setUIPage(UIPAGE.CAMPLIST); 
-        else if (option == 7) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 4) uiInfo.setUIPage(UiPage.ENQURYLIST);
+        else if (option == 5) uiInfo.setUIPage(UiPage.SUGGESTIONLIST);
+        else if (option == 6) uiInfo.setUIPage(UiPage.CAMPLIST); 
+        else if (option == 7) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
         
     }
 

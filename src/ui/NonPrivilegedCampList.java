@@ -1,8 +1,10 @@
+package ui;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class NonPrivilegedCampList extends UserInterface implements IListUI{
+public class NonPrivilegedCampList extends UserInterface implements IListUi{
 
     /**
      * to communicate with CampListController
@@ -20,40 +22,10 @@ public class NonPrivilegedCampList extends UserInterface implements IListUI{
     protected ArrayList<String> listOfCamps; 
 
     /**
-     * Filter setting for user to toggle
-     * This filter is to show the camps that is still available for students to join as participants 
+     * This attribute allow us to decide to include the filter option for user \
+     * during the selection of the list of camps 
      */
-    protected boolean availableParticipant;
-
-    /** 
-     * Filter setting for user to toggle 
-     * This filter is to show the camps that is still available for students to join as committee 
-     */
-    protected boolean availableCommittee; 
-
-    /** 
-     * Filter setting for user to toggle
-     * This filter is to show the camps that is available in their faculty 
-     */
-    protected boolean byFaculty; 
-
-    /** 
-     * Filter setting for user to toggle 
-     * This filter is to show the camps by their visibility status (for staff only)
-     */
-    protected boolean byVisibility; 
-
-     /** 
-     * Filter setting for user to toggle 
-     * This filter is to show the camps that is within the specified date 
-     */
-    protected String byDate;
-
-    /** 
-     * Filter setting for user to toggle 
-     * This filter is to show the camp with the specified location 
-     */
-    protected String byLocation; 
+    protected boolean includeFilterSetting;
 
     /** 
      * Constructor for StudentCampList class 
@@ -64,7 +36,6 @@ public class NonPrivilegedCampList extends UserInterface implements IListUI{
         super(uiInfo);
         campListCont = new CampListController(); 
         campCont = new CampController(); 
-        setDefaultFilter();
     }
 
     @Override
@@ -73,205 +44,120 @@ public class NonPrivilegedCampList extends UserInterface implements IListUI{
         String campID; 
 
         if (option == 1){
-            listOfCamps = CampListCont.viewAvailableCamp(uiInfo.getUserID());
+            CampListCont.setDefaultFilter(uiInfo.getUserID());
+            includeFilterSetting = true; 
             campID = selectFromListUI();
         }
         else if (option == 2){
-            listOfCamps = CampListCont.viewJoinedCamp(uiInfo.getUserID()); 
+            includeFilterSetting = false; 
             campID = selectFromListUI();
         }
-        else if (option == 3){
-            if (!filterSelection()) return; 
-            campID = selectFromListUI();
-        }
-        else if (option == 4) uiInfo.setUIPage(UIPAGE.HOMEPAGE);
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM); 
+        else if (option == 3) uiInfo.setUIPage(UiPage.HOMEPAGE);
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM); 
 
         if (campID.isEmpty()) return;
         uiInfo.setCampID(campID);  
-        uiInfo.setUIPage(UIPAGE.CAMP); 
+        uiInfo.setUIPage(UiPage.CAMP); 
     }
 
     @Override
     protected int printListOfOption() {
         int option = 1; 
-        System.out.println("----------------------------------------------"); 
+        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
         System.out.println("CAMP LIST MENU"); 
-        System.out.printf("(%d) View All Camps\n", option++); 
-        System.out.printf("(%d) View My Camps\n", option++); 
-        System.out.printf("(%d) Filter Selection of Camp\n", option++); 
-        System.out.printf("(%d) Go to HomePage\n", option++); 
-        System.out.printf("(0) Exit Program\n");
+        System.out.printf("\t(%d) View All Camps\n", option++); 
+        System.out.printf("\t(%d) View My Camps\n", option++); 
+        System.out.printf("\t(%d) Go to Home Page\n", option++); 
+        System.out.printf("\t(0) Exit Program\n");
         System.out.println("----------------------------------------------"); 
         return option; 
     }
     
-    
+
     @Override
     public void printList(){
-        int option = 1; 
+        int option = 0; 
 
-        System.out.println("----------------------------------------------"); 
         System.out.println("List Of Camps"); 
-        System.out.println();
+        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String campID : listOfCamps){
-            System.out.printf("\n(%d)\n", option++); 
-            System.out.println("Camp Name: " + campCont.getName(campID)); 
-            System.out.println("Date of Camp: " + campCont.getDate(campID));
-            System.out.println("Registration closing date: " + campCont.getClosingDate(campID));
-            System.out.println("Available Participants Slot: " + campCont.getRemainingParticipantSlot(campID)); 
-            System.out.println("Available Camp Committee Slot: " + campCont.getRemainingCommitteeSlot(campID)); 
-            System.out.println("Faculty: " + campCont.getFaculty(campID)); 
+            String date = campCont.getDate(uiInfo.getCampID()); 
+            String participant = "AVAILABLE";
+            String campComm = "AVAILABLE"; 
+
+            String name = campCont.getName(campID); 
+            if (campCont.getRemainingParticipantSlot(campID) == 0) participant = "FULL"; 
+            if (campCont.getRemainingCommitteeSlot(campID) == 0) campComm = "FULL"; 
+            if (campCont.isCampOver(campID)){
+                date = "REGISTRATION CLOSED";
+                participant = "N/A"; 
+                campComm = "N/A";
+            }
+
+            System.out.println("│ ("+ (++option) + ") │" + fillUpSpace(name, 85, 3,false) + "│"); 
+
+            if (date.equals("REGISTRATION CLOSED")) System.out.println("│     │" + fillUpSpace(" ", 60, 0, false) + StringConstants.ANSI_RED + fillUpSpace(date,25, 0, false) + StringConstants.ANSI_RESET + "│"); 
+            else System.out.println("│     │" + fillUpSpace(" ", 60, 0, false) + fillUpSpace(date, 25, 0, false) + "│"); 
+
+            if (participant.equals("AVAILABLE")) System.out.println("│     │ PARTICIPANT SLOT:" + StringConstants.ANSI_GREEN +fillUpSpace(participant, 67, 1, false) + StringConstants.ANSI_RESET + "│");
+            else System.out.println("│     │ PARTICIPANT SLOT:" + StringConstants.ANSI_RED + fillUpSpace(participant, 67, 1, false) + StringConstants.ANSI_RESET + "│");
+            
+            if (campComm.equals("AVAILABLE")) System.out.println("│     │ CAMP COMMITTEE SLOT:" + StringConstants.ANSI_GREEN +fillUpSpace(campComm, 64, 1, false) + StringConstants.ANSI_RESET + "│");
+            else System.out.println("│     │ CAMP COMMITTEE SLOT:" + StringConstants.ANSI_RED + fillUpSpace(campComm, 64, 1, false) + StringConstants.ANSI_RESET + "│");
+            if (option != listOfCamps.size())
+                System.out.println("├─────┼─────────────────────────────────────────────────────────────────────────────────────┤");
+            else 
+                System.out.println("└─────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
         System.out.println("(press any non-numeric key to go to Camp List Menu)");
         System.out.println("----------------------------------------------"); 
     }
     
+
     @Override
     public String selectFromListUI(){
         int option;
         int maxOption; 
+        boolean wrongInput = false;
     
         Scanner sc = new Scanner(System.in); 
     
         do{ 
+          ChangePage.changePage();
+
+          if(includeFilterSetting){
+            listOfCamps = campCont.viewCamps();
+            printList(); 
+            System.out.println("(press 0 to filter list)");
+          }
+          else{
+            listOfCamps = campCont.viewMyCamps(uiInfo.getUserID());
+            printList();
+          }
           maxOption = listOfCamps.size()-1;
-          printList();
-          System.out.print("Select Camp: "); 
+
+          if (wrongInput){
+            System.out.println("Invalid OPTION!");
+            System.out.println("Select a valid Camp: ");
+          }
+          else System.out.print("Select Camp: "); 
+
           try{
             option = sc.nextInt();
           }
           catch(InputMismatchException e){
             return null; 
           }
-          if (!this.validOption(--option, maxOption)) System.out.println("Invalid Option!");
+
+          if (--option == -1 && includeFilterSetting){
+            FilterUI filterUI = new FilterUI(campListCont.isStaff(uiInfo.getUserID()));
+            if (filterUI.filterSelection()) continue; 
+          }
+          wrongInput = true; 
         } while (!this.validOption(option, maxOption)); 
     
         sc.close(); 
 
         return listOfCamps.get(option);
     }
-
-    
-    /**
-     * This method prints the available filters for filtering the camp of list to show on the screen
-     * 
-     * @return the max number of options available 
-     */
-    protected int printFilterSelection(){
-        int option = 1; 
-        System.out.println("----------------------------------------------"); 
-        System.out.println("Filter Selection");
-        System.out.printf("(%d) By available participants slot: %s\n", option++, availableParticipant); 
-        System.out.printf("(%d) By available camp committee slot: %s\n", option++, availableCommittee);
-        System.out.printf("(%d) By faculty: %s\n", option++, byFaculty);
-        System.out.printf("(%d) By Location: %s\n", option++, byLocation); 
-        System.out.printf("(%d) By date: %s\n", option, byDate);
-        System.out.println("(0) Confirm filter selection"); 
-        System.out.println("(press any non-numeric key to go back)");
-        System.out.println("----------------------------------------------"); 
-
-        return option; 
-    }
-
-
-    /**
-     * This method provides the UI for user to Set/Unset their filter during filter selection 
-     */
-    protected boolean filterSelection(){
-        Scanner sc = new Scanner(System.in); 
-        int option; 
-        do{
-            int maxOption = printFilterSelection(); 
-            System.out.print("Set/Unset Filter: ");
-            try{
-                option = sc.nextInt();
-            }
-            catch(InputMismatchException e){
-                return false;
-            }
-            
-            if (option >= 0 && option <= maxOption){
-                switch(option){
-                    case 0: 
-                        filterCampToPrint(); 
-                        break; 
-                    case 1: 
-                        availableParticipant = toggleChoice(availableParticipant); 
-                        break; 
-                    case 2: 
-                        availableCommittee = toggleChoice(availableCommittee);
-                        break; 
-                    case 3: 
-                        byFaculty = toggleChoice(byFaculty); 
-                        break;
-                    case 4: 
-                        byDate = setDateUI();
-                        break; 
-                    case 5: 
-                        byLocation = setLocationUI(); 
-                    case 6:
-                        byVisibility = toggleChoice(byVisibility); 
-                        break; 
-                }
-            }
-            else{
-                System.out.println("Invalid Option!");
-            }
-        }while (option != 0); 
-
-        sc.close();
-        return true; 
-    }
-
-
-    /**
-     * This method tells the CampList Controller the filters the user Set and Update the listOfCamps to be printed
-     */
-    protected void filterCampToPrint(){
-        listOfCamps = CampListCont.filterBy(uiInfo.getUserID(), byLocation, availableParticipant, availableCommittee, byDate, byFaculty, byVisibility); 
-    }
-
-    /**
-     * This method provides the UI for user to select a specific date 
-     * 
-     * @return the specified date 
-     */
-    protected String setDateUI(){
-
-    }
-
-
-    /**
-     * This method provides the UI for user to select a specific location 
-     * 
-     * @return the specified date 
-     */
-    protected String setLocationUI(){
-
-    }
-
-
-    /**
-     * This method set the filter to their default state for this user 
-     */
-    protected void setDefaultFilter(){
-        availableParticipant = false;
-        availableCommittee = false; 
-        byFaculty = false; 
-        byVisibility = true;
-        byDate = null;
-        byLocation = null; 
-    }
-
-    /** 
-     * This method toggles the setting of the filters
-     * 
-     * @return the new setting of the filters 
-     */
-    protected boolean toggleChoice(boolean choice){
-        if (choice) return false; 
-        else return true;
-    }
-    
 }

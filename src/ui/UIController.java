@@ -1,12 +1,14 @@
+package ui;
+
 public class UIController {
 
     private USERTYPE userType; 
 
-    private UIPAGE nextUIToRun; 
+    private UiPage nextUIToRun; 
 
     private UIInformation uiInfo; 
 
-    private UserInterface ui;
+    private IUserInterface ui;
 
     private UserController userCont; 
 
@@ -26,7 +28,7 @@ public class UIController {
         userType = userCont.getDomain(uiInfo.getUserID()); 
         nextUIToRun = uiInfo.getUIPage();
 
-        if (userType == USERTYPE.STUDENT) runStudentUI(); 
+        if (userType == UuserType.STUDENT) runStudentUI(); 
         else runStaffUI(); 
 
         logInLogOut.logOutUI();
@@ -44,8 +46,8 @@ public class UIController {
                     ui.showUI();
                     break; 
                 case PASSWORD:
-                    ChangePasswordUI passwordUI = new ChangePasswordUI(uiInfo); 
-                    passwordUI.changePasswordUI();
+                    ui = new ChangePasswordUI(uiInfo); 
+                    ui.showUI();
                     break; 
                 case CAMPLIST:
                     ui = new PrivilegedCampList(uiInfo); 
@@ -81,7 +83,7 @@ public class UIController {
                 default: 
             }
             nextUIToRun = uiInfo.getUIPage();
-        }while (nextUIToRun != UIPAGE.ENDPROGRAM);
+        }while (nextUIToRun != UiPage.ENDPROGRAM);
     }
 
     
@@ -130,6 +132,6 @@ public class UIController {
                 default: 
             }
             nextUIToRun = uiInfo.getUIPage();
-        }while (nextUIToRun != UIPAGE.ENDPROGRAM);
+        }while (nextUIToRun != UiPage.ENDPROGRAM);
     }
 }

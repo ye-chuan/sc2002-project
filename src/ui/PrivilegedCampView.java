@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,11 +25,11 @@ public class PrivilegedCampView extends NonPrivilegedCampView{
         
         int option = getUserChoiceUI();
         if (option == 1) generateStudentListUI();
-        else if (option == 2) uiInfo.setUIPage(UIPAGE.ENQURYLIST);
-        else if (option == 3) uiInfo.setUIPage(UIPAGE.SUGGESTIONLIST);
-        else if (option == 4) uiInfo.setUIPage(UIPAGE.CAMPLIST); 
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 2) uiInfo.setUIPage(UiPage.ENQURYLIST);
+        else if (option == 3) uiInfo.setUIPage(UiPage.SUGGESTIONLIST);
+        else if (option == 4) uiInfo.setUIPage(UiPage.CAMPLIST); 
+        else if (option == 5) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
     }
 
     

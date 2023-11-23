@@ -1,8 +1,10 @@
+package ui;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class NonPrivilegedEnquryList extends UserInterface implements IListUI{
+public class NonPrivilegedEnquryList extends UserInterface implements IListUi{
 
     /**
      * to communicate with EnquiryController
@@ -36,16 +38,15 @@ public class NonPrivilegedEnquryList extends UserInterface implements IListUI{
             listOfEnquiries = enquiryCont.getAllEnquiryByCamp(uiInfo.getCampID());
             enquiryID = selectEnquiryUI();
         } 
-        else if (option == 4) uiInfo.setUIPage(UIPAGE.CAMP); 
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 4) uiInfo.setUIPage(UiPage.CAMP); 
+        else if (option == 5) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
 
         if (enquiryID.isEmpty()) return;
         uiInfo.setEnquiryID(enquiryID);  
         uiInfo.setUIPage(UIPAGE.ENQURY); 
     }
 
-    @Override
     protected int printListOfOption() {
         int option = 1; 
         System.out.println("----------------------------------------------"); 

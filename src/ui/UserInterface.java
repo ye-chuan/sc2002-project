@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -6,7 +8,7 @@ import java.util.InputMismatchException;
  * It is to be inherited by other concrete UI class
  */
 
-public abstract class UserInterface{
+public abstract class UserInterface implements IUserInterface{
     
   // ATTRIBUTE 
 
@@ -27,11 +29,7 @@ public abstract class UserInterface{
   public UserInterface(UIInformation uiInfo){
       this.uiInfo = uiInfo; 
   }
-  /** 
-   * This method is called to show the main UI of the class
-   */
-  public abstract void showUI();
-
+ 
   /** 
    * This method is to print the list of option 
    * 
@@ -50,20 +48,25 @@ public abstract class UserInterface{
     
     int option;
     int maxOption; 
+    boolean wrongInput = false; 
     
     Scanner sc = new Scanner(System.in); 
 
     do{
+      ChangePage.changePage();
       maxOption = printListOfOption();
-      System.out.print("Option choice: "); 
+      if (wrongInput){
+        System.out.println("Invalid Option!");
+        System.out.println("Select a valid option: ");
+      }
+      else System.out.print("Select option: "); 
       try{
         option = sc.nextInt();
       }
       catch(InputMismatchException e){
         option = -1;
       }
-
-      if (!this.validOption(option, maxOption)) System.out.println("Invalid Option!");
+      wrongInput = true; 
     } while (!this.validOption(option, maxOption)); 
 
     sc.close(); 
@@ -81,5 +84,44 @@ public abstract class UserInterface{
     if (option >= 0 && option <= max) return true; 
     return false; 
   }
+
+  protected String fillUpSpace(String string, int numberOfSpace, int minNumberOfSpaceOnBothEnd, boolean centralise){
+
+    String stringWithSpaces = "";
+    int stringLength = string.length(); 
+    int whiteSpaceToAdd = numberOfSpace - stringLength - 2*minNumberOfSpaceOnBothEnd;
+    
+    // Add the minimum number of space at the front
+    for (int i=0; i<minNumberOfSpaceOnBothEnd; i++){
+      stringWithSpaces += " "; 
+    }
+    if (whiteSpaceToAdd < 0){
+      stringWithSpaces += string.substring(0, numberOfSpace - 2*minNumberOfSpaceOnBothEnd - 3); 
+      stringWithSpaces += "..."; 
+    }
+    else{
+      int whiteSpaceFront = 0;
+      int whiteSpaceBack; 
+    
+
+      if (centralise){
+        whiteSpaceFront = whiteSpaceToAdd / 2; 
+        for (int i=0; i<whiteSpaceFront;i++) stringWithSpaces += " ";
+      }
+
+      stringWithSpaces += string; 
+      whiteSpaceBack = whiteSpaceToAdd - whiteSpaceFront;
+
+      for (int i=0;i<whiteSpaceBack;i++) stringWithSpaces += " ";
+    }
+
+    // add the minimum number of space at the back
+    for (int i=0; i<minNumberOfSpaceOnBothEnd; i++){
+      stringWithSpaces += " "; 
+    }
+
+    return stringWithSpaces; 
+
+}
 
 }

@@ -1,8 +1,10 @@
+package ui;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class NonPrivilegedSuggestionList extends UserInterface implements IListUI{
+public class NonPrivilegedSuggestionList extends UserInterface implements IListUi{
 
     protected SuggestionController suggestionCont; 
 
@@ -38,13 +40,13 @@ public class NonPrivilegedSuggestionList extends UserInterface implements IListU
             listOfSuggestions = suggestionCont.getAllSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
             suggestionID = selectFromListUI();
         } 
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.CAMP); 
-        else if (option == 6) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 5) uiInfo.setUIPage(UiPage.CAMP); 
+        else if (option == 6) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
 
         if (suggestionID.isEmpty()) return;
         uiInfo.setSuggestionID(suggestionID);  
-        uiInfo.setUIPage(UIPAGE.SUGGESTION); 
+        uiInfo.setUIPage(UiPage.SUGGESTION); 
     }
 
     @Override
@@ -63,7 +65,7 @@ public class NonPrivilegedSuggestionList extends UserInterface implements IListU
         return option; 
     }
     
-    @Override
+    @Override 
     public void printList(){
         int option = 1; 
         System.out.println("----------------------------------------------"); 

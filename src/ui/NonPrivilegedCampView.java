@@ -1,3 +1,5 @@
+package ui;
+
 public class NonPrivilegedCampView extends UserInterface{
 
     /**
@@ -27,10 +29,10 @@ public class NonPrivilegedCampView extends UserInterface{
             if (status.equals("PARTICIPANT")) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
             else campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID()); 
         }
-        else if (option == 1) uiInfo.setUIPage(UIPAGE.ENQURYLIST);
-        else if (option == 2) uiInfo.setUIPage(UIPAGE.CAMPLIST); 
-        else if (option == 3) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 1) uiInfo.setUIPage(UiPage.ENQURYLIST);
+        else if (option == 2) uiInfo.setUIPage(UiPage.CAMPLIST); 
+        else if (option == 3) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
 
         return; 
     }

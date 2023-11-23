@@ -1,16 +1,19 @@
+package ui;
 
 /**
- * This interface gives the class the ability to provide a UI thats print and select from a ArrayList
+ * This interface gives the ability to be able to print a list of items and select from it 
  */
-public interface IListUI {
-
-    /** 
-     * This method prints the list
+public interface IListUi {
+    
+    /**
+     * This methods prints the list of items 
      */
     public void printList(); 
-
-    /** 
-     * This method provides the UI for user to select from the list printed 
+    
+    /**
+     * This methods provides the UI for user to choose from the printed list 
+     * 
+     * @return the index of the item from the list 
      */
     public String selectFromListUI();
 }

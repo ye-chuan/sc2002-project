@@ -1,6 +1,8 @@
+package ui;
+
 import java.util.Scanner;
 
-public class ChangePasswordUI {
+public class ChangePasswordUI implements IUserInterface {
     
     private UIInformation uiInfo;
 
@@ -14,7 +16,7 @@ public class ChangePasswordUI {
     /**
      * UI for User to change password 
      */
-    protected void changePasswordUI(){
+    public void showUI(){
 
         System.out.println("Change of Password Menu"); 
 
@@ -46,7 +48,7 @@ public class ChangePasswordUI {
             
         }while (true); 
 
-        uiInfo.setUIPage(UIPAGE.VIEWACCOUNT);
+        uiInfo.setUIPage(UiPage.VIEWACCOUNT);
     }
 
     protected boolean isPasswordSame(String password, String reTypePassword){

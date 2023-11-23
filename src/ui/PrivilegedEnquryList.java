@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,12 +28,12 @@ public class PrivilegedEnquryList extends NonPrivilegedEnquryList {
             listOfEnquiries = enquiryCont.getPendingEnquiryByCamp(uiInfo.getCampID());
             enquiryID = selectEnquiryUI();
         } 
-        else if (option == 4) uiInfo.setUIPage(UIPAGE.CAMP); 
-        else if (option == 5) uiInfo.setUIPage(UIPAGE.HOMEPAGE); 
-        else uiInfo.setUIPage(UIPAGE.ENDPROGRAM);
+        else if (option == 4) uiInfo.setUIPage(UiPage.CAMP); 
+        else if (option == 5) uiInfo.setUIPage(UiPage.HOMEPAGE); 
+        else uiInfo.setUIPage(UiPage.ENDPROGRAM);
 
         if (enquiryID.isEmpty()) return;
         uiInfo.setEnquiryID(enquiryID);  
-        uiInfo.setUIPage(UIPAGE.ENQURY); 
+        uiInfo.setUIPage(UiPage.ENQURY); 
     }  
 }
