@@ -202,7 +202,12 @@ public class CampController {
 		}
 		else {
 			Camp c1 = cDB.getItem(campID);
-			cDB.remove(c1);
+			if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
+				throw new Exception("Unable to delete: There are students registered to the camp.");
+			}
+			else {
+				cDB.remove(c1);
+			}
 		}
 
 	}
@@ -238,10 +243,16 @@ public class CampController {
 		}
 		else {
 			Camp c1 = cDB.getItem(campID);
-			if(visibility) c1.show();
-			else c1.hide();
+			if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
+				throw new Exception("Unable to toggle: There are students registered to the camp.");
+			}
+			else {
+				if(visibility) c1.show();
+				else c1.hide();
+			}
 		}
 	}
+
 
 	/**
 	 * 
