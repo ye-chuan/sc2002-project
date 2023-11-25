@@ -28,6 +28,8 @@ public class UserDatabase extends Database<User> {
 	 */
 	public User login(String userID, String password) {
         User user = getItem(userID);
+        if (user == null)
+            return null;
         return user.checkPassword(password) ? user : null;
 	}
 }
