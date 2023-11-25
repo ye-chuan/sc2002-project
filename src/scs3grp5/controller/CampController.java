@@ -625,7 +625,11 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		return c1.getParticipantSlots();
+		if(c1!=null)
+			return c1.getParticipantSlots();
+		else
+			return 0;
+		
 	}
 
 	/**
@@ -637,7 +641,12 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
+		
+		if(c1!=null)
+			return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
+		else
+			return 0;
+		
 	}
 
 	/**
