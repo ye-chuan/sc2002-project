@@ -7,10 +7,11 @@ import java.util.Comparator;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
+import scs3grp5.entity.filtering.*;
 
 public class CampListController {
 
-	private CampDatabase.Query query;
+	private Collection<Camp> campList;
 
 	/**
 	 * 
@@ -20,24 +21,24 @@ public class CampListController {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
-		
+
 		User u1 = uDB.getItem(userID);
 		Collection<Camp> campList = new ArrayList<Camp>();
 
 		if(u1 instanceof Staff) {
-			CampDatabase.Query query = new CampDatabase.Query();
 
-			query.onlyCampsBy(userID);
+			CampFilterer filterer = new CampFilterer(cDB.getAll());
+			filterer.addFilter(CampStaffFilter.onlyBy(userID));
+			campList = filterer.filter();
 
-			campList = cDB.getCamps(query);
 		}
 		else if (u1 instanceof Student) {
 			Student student1 = (Student) u1;
-			//filter?
 			
 			campList = cmemberDB.getCampsJoinedBy(student1);
+				
+			
 		}
-		
 		
 		return sortByNameIDList(campList);
 
@@ -49,19 +50,24 @@ public class CampListController {
 	 * @param userID
 	 */
 	public void setDefaultFilter(String userID, boolean isStaff) {
+		CampDatabase cDB = Main.getCampDB();
+		CampFilterer filterer = new CampFilterer(cDB.getAll());
 		UserDatabase uDB = Main.getUserDB();
-
-		query.registrationAfterIncl(Date.today());
-		query.campDatesAllAfterIncl(Date.today());
+		
+		filterer.addFilter(CampRegistrationFilter.afterIncl(Date.today()));
+		filterer.addFilter(CampDatesFilter.allAfterIncl(Date.today()));
+		
 
 		if (!isStaff) {
-			query.excludeInvisible();
+			filterer.addFilter(CampVisiblityFilter.onlyVisible());
 			Student s1 = (Student) uDB.getItem(userID);
 			Faculty s1Faculty = s1.getFaculty();
-			query.onlyOpenToFaculty(s1Faculty);
-			query.excludeFullCampCommSlots();
-			query.excludeFullParticipantSlot();
+			filterer.addFilter(CampFacultyFilter.onlyOpenedTo(s1Faculty));	
+			filterer.addFilter(CampParticipantSlotsFilter.excludeFull());
+			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
 		}
+
+		campList = filterer.filter();
 		
 	}
 
@@ -70,10 +76,6 @@ public class CampListController {
 	 * 
 	 */
 	public ArrayList<String> viewCamps() {
-		CampDatabase cDB = Main.getCampDB();
-		Collection<Camp> campList = new ArrayList<Camp>();
-		
-		campList = cDB.getCamps(query);
 		
 		return sortByNameIDList(campList);
 	}
@@ -85,25 +87,28 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public void FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, int fromDate, int toDate, Faculty faculty, boolean visibility) {
-		CampDatabase.Query query = new CampDatabase.Query();
-		DateController dateCont = new DateController();
+	public void FilterBy(String userID, String location, boolean openParticipantSlots, boolean openCommSlots, String fromDate, String toDate, boolean onlyFaculty, boolean visibility) {
+		CampDatabase cDB = Main.getCampDB();
+		CampFilterer filterer = new CampFilterer(cDB.getAll());
+		UserDatabase uDB = Main.getUserDB();
 		
-		if (openCommSlots) query.excludeFullCampCommSlots();
-		if (openParticipantSlots) query.excludeFullParticipantSlot();
-		query.registrationAfterIncl(Date.today());
-		query.onlyOpenToFaculty(faculty);
-		if(!visibility) query.excludeVisible();
+		filterer.addFilter(CampLocationFilter.onlyAt(location));
+		filterer.addFilter(CampDatesFilter.allWithin(Date.fromString(fromDate), Date.fromString(toDate)));
+		if (openCommSlots) 
+			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
+		if (openParticipantSlots) 
+			filterer.addFilter(CampParticipantSlotsFilter.excludeFull());
+		if (visibility) 
+			filterer.addFilter(CampVisiblityFilter.onlyVisible());
+		else {
+			filterer.addFilter(CampVisiblityFilter.onlyInvisible());
+			filterer.addFilter(CampVisiblityFilter.onlyVisible());
+		}
+		if(onlyFaculty) {
+			filterer.addFilter(CampFacultyFilter.onlyOpenedTo(uDB.getItem(userID).getFaculty()));
+		} 
 
-		query.campDatesAllWithin(dateCont.toDate(fromDate), dateCont.toDate(toDate));
-
-		// Collection<Camp> campList = new ArrayList<Camp>();
-		// for (Camp c : cDB.getCamps(query)) {
-		// 	if (c.getLocation() == location) {
-		// 		campList.add(c);
-		// 	}
-		// }
-		
+		campList = filterer.filter();
 	}
 
 	/**

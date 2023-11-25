@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.List;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
@@ -138,7 +138,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getPendingSuggestions(String userID) {
+	public List<String> getPendingSuggestions(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -158,7 +158,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getRejectedSuggestions(String userID) {
+	public List<String> getRejectedSuggestions(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -178,7 +178,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getApprovedSuggestion(String userID) {
+	public List<String> getApprovedSuggestion(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -198,7 +198,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getAllSuggestion(String userID) {
+	public List<String> getAllSuggestion(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -359,9 +359,9 @@ public class SuggestionController {
 	 * 
 	 * @param campList
 	 */
-	private Collection<String> sortByNameIDList(Collection<Suggestion> sugList) {
+	private List<String> sortByNameIDList(Collection<Suggestion> sugList) {
 		Collections.sort((ArrayList<Suggestion>)sugList, Comparator.comparing(Suggestion::getSuggestedBy));
-		ArrayList<String> suggestionIDList = new ArrayList<String>();
+		List<String> suggestionIDList = new ArrayList<String>();
 		for (Suggestion s: sugList)
 		{
 			suggestionIDList.add(s.getID());
