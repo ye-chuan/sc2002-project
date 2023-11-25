@@ -1,3 +1,11 @@
+/**
+ * Reader controller class that is able to read CampDatabase, CampMembershipDatabase,
+ * UniqueIDGenerator and UserDatabase from a serialise file
+ * @author Ong Yi Ren, Elaine
+ * @version 1.0
+ * @since 2023-11-26
+ */
+
 package scs3grp5.io;
 
 import scs3grp5.entity.*;
