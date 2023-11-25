@@ -31,7 +31,8 @@ public class UIHomepage extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
-                option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
+                int maxOption = menu.printMenu();
+                option = optionSelector.getUserChoiceUI(maxOption, wrongInput);
                 wrongInput = false;
             }
             catch(OptionException e){
