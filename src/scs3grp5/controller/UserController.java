@@ -44,7 +44,7 @@ public class UserController {
 		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 	
-		if (u1.checkPassword(newPassword)) {
+		if (!u1.checkPassword(newPassword)) {
 			u1.changePassword(newPassword);
 		}
 		else {
