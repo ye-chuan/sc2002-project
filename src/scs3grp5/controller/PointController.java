@@ -53,13 +53,17 @@ public class PointController {
 		String campID = userCont.getStudentCommitteeCampID(studentID);
 		Camp c1 = cDB.getItem(campID);
 		Student s1 = (Student) uDB.getItem(studentID);
-
-		Date cDate = c1.getLastCampDate();
-		
-		if (!cDate.isBefore(Date.today())) {
-			s1.resetPoints();
+	
+		if(c1!=null) {
+			Date cDate = c1.getLastCampDate();
+			
+			if (!cDate.isBefore(Date.today())) {
+				s1.resetPoints();
+			}
 		}
-		
+		else s1.resetPoints();
 	}
+		
+	
 	
 }
