@@ -7,6 +7,12 @@ import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 
+/**
+ * A CSV Writer which aid in the writing of simple CSV files.
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class CsvWriter {
     private List<String> rows;
     private int numCols;
