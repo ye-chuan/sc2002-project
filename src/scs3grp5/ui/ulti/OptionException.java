@@ -1,4 +1,4 @@
-package scs3grp5.ui;
+package scs3grp5.ui.ulti;
 
 /** 
  * A class that throws an exception when user input is wrong

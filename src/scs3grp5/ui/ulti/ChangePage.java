@@ -1,4 +1,4 @@
-package scs3grp5.ui;
+package scs3grp5.ui.ulti;
 
 import java.io.IOException;
 
