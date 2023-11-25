@@ -22,7 +22,8 @@ public class ListEnquiry implements IPrintMenu{
     public int printMenu() {
         int option = 0; 
         System.out.println("LIST OF ENQUIRIES"); 
-        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
+        if(listOfEnquiries.size() == 0) System.out.println("(no enquiry for the moment)");
+        else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String enquiryID : listOfEnquiries){
             String text = enquiryCont.getEnquiryText(enquiryID);
             boolean replied = enquiryCont.getStatus(enquiryID);

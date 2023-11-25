@@ -24,7 +24,8 @@ public class ListStudentCamp implements IPrintMenu {
         int option = 0; 
 
         System.out.println("List Of Camps"); 
-        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
+        if(listOfCamps.size() == 0) System.out.println("(no enquiry for the moment)");
+        else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String campID : listOfCamps){
             String date = campCont.getDate(campID); 
             String participant = "AVAILABLE";
