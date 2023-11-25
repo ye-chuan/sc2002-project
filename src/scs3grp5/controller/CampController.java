@@ -441,7 +441,7 @@ public class CampController {
 		// else {
 		
 			Camp c1 = cDB.getItem(campID);
-			if	(cMemberDB.getCampCommSize(c1)< slots) {
+			if	(cMemberDB.getCampCommSize(c1) > slots) {
 				throw new EditCampException("slots must be greater than camp comm size.");
 			}
 			if	(slots<1) {
@@ -471,8 +471,8 @@ public class CampController {
 		// }
 		// else {
 			Camp c1 = cDB.getItem(campID);
-			if	(cMemberDB.getCampCommSize(c1)< slots) {
-				throw new EditCampException("slots must be greater than camp comm size.");
+			if	(cMemberDB.getCampCommSize(c1) > slots) {
+				throw new EditCampException("slots must be greater than participant size.");
 			}
 			if	(slots<1) {
 				throw new EditCampException("slots must be at least 1.");
