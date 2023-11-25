@@ -1,8 +1,6 @@
 package scs3grp5.ui.controller;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import scs3grp5.controller.CampListController;
 import scs3grp5.ui.input.SelectionFromList;
 import scs3grp5.ui.input.SelectionMenu;
@@ -46,7 +44,7 @@ public class UICampList extends UserInterface{
     @Override
     public IUserInterface showUI() {
 
-        IUserInterface filterUI = new UIFilter(uiInfo.getIsStaff());
+        IUserInterface filterUI = new UIFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
 
         int option = -1;
         menu = new MenuStudentCampList(); 
@@ -65,8 +63,7 @@ public class UICampList extends UserInterface{
             }
         }while (wrongInput);
 
-        if (option == 1) campListCont.setDefaultFilter(uiInfo.getIsStaff());
-        else if (option == 3){
+        if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
                 return new UIEditCamp(uiInfo);
@@ -77,9 +74,9 @@ public class UICampList extends UserInterface{
             if (uiInfo.getIsStaff()) return new UIHomepage(uiInfo);
             else return null; 
         }
-        else return null;
+        else if (option ==5) return null;
 
-
+        campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
         wrongInput = false;
         int listOption = -1; 
         do{
@@ -118,6 +115,7 @@ public class UICampList extends UserInterface{
                 return new UINonPrivilegedCamp(uiInfo);
             }
         }while (wrongInput);
+        return null; 
     }
 
     // use the same filter object each time till we end this function 

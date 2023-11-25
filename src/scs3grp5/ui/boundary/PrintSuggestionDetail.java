@@ -14,9 +14,9 @@ public class PrintSuggestionDetail implements IPrintDetail {
 
     private String suggestionID; 
 
-    public PrintSuggestionDetail(String suggestionID){
+    public PrintSuggestionDetail(String campID, String suggestionID){
         this.suggestionID = suggestionID; 
-        suggestionCont = new SuggestionController(); 
+        suggestionCont = new SuggestionController(campID); 
     }
 
     @Override

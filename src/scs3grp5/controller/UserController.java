@@ -6,7 +6,7 @@ import scs3grp5.entity.*;
 
 public class UserController {
 
-	private PointController pointCont;
+	private PointController pointCont = new PointController();
 
 	/**
 	 * 
@@ -121,12 +121,9 @@ public class UserController {
 	 * 
 	 * @param newPassword
 	 */
-	public String isPasswordStrong(String newPassword) {
+	public void isPasswordStrong(String newPassword) throws PasswordException {
 		if (newPassword.length() < 8) {
-			return "Password needs be more than 8 characters";
-		}
-		else { 
-			return null;
+			throw new PasswordException("Password needs be more than 8 characters");
 		}
 	}
 

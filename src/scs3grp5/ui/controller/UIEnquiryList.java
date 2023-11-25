@@ -1,7 +1,6 @@
 package scs3grp5.ui.controller;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import scs3grp5.controller.EnquiryController;
 import scs3grp5.ui.input.SelectionFromList;
@@ -22,7 +21,7 @@ public class UIEnquiryList extends UserInterface{
     /**
      * contains the listOfEnquiries to be shown on the UI
      */
-    private ArrayList<String> listOfEnquiries; 
+    private List<String> listOfEnquiries; 
 
 
     public UIEnquiryList(UIInformation uiInfo) {
@@ -50,13 +49,13 @@ public class UIEnquiryList extends UserInterface{
         }while (wrongInput);
 
         if (option == 1) {
-            listOfEnquiries = enquiryCont.getPendingEnquiryByCamp(uiInfo.getUserID(), uiInfo.getCampID());
+            listOfEnquiries = enquiryCont.getPendingEnquiries(uiInfo.getUserID());
         }
         else if (option == 2) {
-            listOfEnquiries = enquiryCont.getRepliedEnquiryByCamp(uiInfo.getUserID(), uiInfo.getCampID());
+            listOfEnquiries = enquiryCont.getResolvedEnquiries(uiInfo.getUserID());
         }
         else if (option == 3) {
-            listOfEnquiries = enquiryCont.getAllEnquiryByCamp(uiInfo.getUserID(), uiInfo.getCampID());
+            listOfEnquiries = enquiryCont.getAllEnquiries(uiInfo.getUserID());
         } 
         else if (option == 4) {
             if (uiInfo.getIsCommittee()){
@@ -83,7 +82,7 @@ public class UIEnquiryList extends UserInterface{
         wrongInput = false;
         int listOption = -1; 
         do{
-            menu = new ListEnquiry(listOfEnquiries);
+            menu = new ListEnquiry(listOfEnquiries, uiInfo.getCampID());
             optionSelector = new SelectionFromList(); 
 
             try{
@@ -100,11 +99,14 @@ public class UIEnquiryList extends UserInterface{
                 return new UIEnquiry(uiInfo);
             }
         }while (wrongInput);
+        return null; 
     }
 
     private String createEnquiryUI(){
-        // get enquiry text
-        return enquiryCont.create(uiInfo.getUserID());
+        System.out.print("Enter Enquiry: "); 
+        Scanner sc = new Scanner(System.in); 
+        String enquiry = sc.nextLine();
+        return enquiryCont.create(uiInfo.getUserID(), enquiry);
     }
     
 }

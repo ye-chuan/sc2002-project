@@ -1,7 +1,6 @@
 package scs3grp5.ui.controller;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import scs3grp5.controller.SuggestionController;
 import scs3grp5.ui.input.SelectionFromList;
@@ -17,14 +16,14 @@ public class UISuggestionList extends UserInterface{
     private SuggestionController suggestionCont; 
 
     /**
-     * contains the listOfEnquiries to be shown on the UI
+     * contains the listOfSuggestions to be shown on the UI
      */
-    private ArrayList<String> listOfSuggestions; 
+    private List<String> listOfSuggestions; 
 
 
     public UISuggestionList(UIInformation uiInfo) {
         super(uiInfo);
-        suggestionCont = new SuggestionController(); 
+        suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
 
     @Override
@@ -48,16 +47,16 @@ public class UISuggestionList extends UserInterface{
         }while (wrongInput); 
 
         if (option == 1) {
-            listOfSuggestions = suggestionCont.getPendingSuggestionByCamp(uiInfo.getUserID(), uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getPendingSuggestions(uiInfo.getUserID());
         }
         else if (option == 2) {
-            listOfSuggestions = suggestionCont.getApprovedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getApprovedSuggestion(uiInfo.getUserID());
         }
         else if (option == 3) {
-            listOfSuggestions = suggestionCont.getRejectedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getRejectedSuggestions(uiInfo.getUserID());
         }
         else if (option == 4) {
-            listOfSuggestions = suggestionCont.getAllSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getAllSuggestion(uiInfo.getUserID());
         } 
         else if (option == 5){
             if (uiInfo.getIsStaff()) return new UISuperCamp(uiInfo);
@@ -76,7 +75,7 @@ public class UISuggestionList extends UserInterface{
         wrongInput = false;
         int listOption = -1; 
         do{
-            menu = new ListSuggestion(listOfSuggestions);
+            menu = new ListSuggestion(listOfSuggestions, uiInfo.getCampID());
             optionSelector = new SelectionFromList(); 
 
             try{
@@ -93,9 +92,14 @@ public class UISuggestionList extends UserInterface{
                 return new UISuggestion(uiInfo);
             }
         }while (wrongInput);
+
+        return null; 
     }
 
     private String createSuggestionUI(){
-        return null;
+        System.out.print("Enter Suggestion:"); 
+        Scanner sc = new Scanner(System.in); 
+        String suggestion = sc.nextLine();
+        return suggestion;
     }
 }

@@ -1,6 +1,5 @@
 package scs3grp5.ui.controller;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import scs3grp5.controller.CampListController;
 import scs3grp5.ui.input.ISelectOption;
@@ -11,7 +10,6 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
 
-import javax.swing.text.html.Option;
 
 public class UIFilter implements IPrintMenu, IUserInterface {
 
@@ -56,12 +54,14 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      */
     private String byLocation; 
 
-    private String byRegistrationDate;
 
     private boolean isStaff; 
 
-    public UIFilter(boolean isStaff){
+    private String userID; 
+
+    public UIFilter(String userID, boolean isStaff){
         this.isStaff = isStaff; 
+        this.userID = userID; 
         setDefaultFilter();
         campListCont = new CampListController(); 
     }
@@ -102,15 +102,12 @@ public class UIFilter implements IPrintMenu, IUserInterface {
                 case 5: 
                     byDate = setDateUI();
                     break;
-                case 6: 
-                    byRegistrationDate = setDateUI();
-                    break; 
-                case 7:
+                case 6:
                     if (isStaff) byVisibility = toggleChoice(byVisibility); 
-                    else wrongInput = true; 
+                    else campListCont.setDefaultFilter(userID, isStaff); 
                     break; 
-                case 8: 
-                    campListCont.setDefaultFilter(isStaff);
+                case 7: 
+                    campListCont.setDefaultFilter(userID, isStaff);
                     return null;
                 default: 
                     wrongInput = true;
@@ -140,7 +137,6 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
         System.out.println("\t("+ ++option + ") By Location: " + PrintHelper.ANSI_YELLOW + byLocation + PrintHelper.ANSI_RESET); 
         System.out.println("\t("+ ++option + ") By Date: " + PrintHelper.ANSI_YELLOW + byDate + PrintHelper.ANSI_RESET);
-        System.out.println("\t("+ ++option + ") By Registration Date: " + PrintHelper.ANSI_YELLOW + byRegistrationDate + PrintHelper.ANSI_RESET);
    
         if (isStaff){
             System.out.printf("\t(%d) By visibility: ", ++option);
@@ -160,12 +156,12 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * This method tells the CampList Controller the filters the user Set and Update the listOfCamps to be printed
      */
     private void filterCampToPrint(){
-        // byDate is DD/MM/YYYY-DD/MM/YYYY
+        // byDate is DD/MM/YYYY-DD/MM/YYYSY
         String startDate, endDate; 
         startDate = byDate.substring(0,10); 
         endDate = byDate.substring(11, 21);
 
-        campListCont.filterBy(isStaff, byLocation, availableParticipant, availableCommittee, startDate, endDate, byRegistrationDate, byFaculty, byVisibility); 
+        campListCont.FilterBy(userID, byLocation, availableParticipant, availableCommittee, startDate, endDate, byFaculty, byVisibility); 
     }
 
     /**

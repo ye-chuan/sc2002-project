@@ -1,6 +1,7 @@
 package scs3grp5.ui.menu;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import scs3grp5.controller.SuggestionController;
 import scs3grp5.ui.ulti.PrintHelper;
 
@@ -14,12 +15,12 @@ public class ListSuggestion implements IPrintMenu{
     /**
      * contains the listOfSuggestion to be shown on the UI
      */
-    private ArrayList<String> listOfSuggestion; 
+    private List<String> listOfSuggestion; 
 
-    public ListSuggestion(ArrayList<String> listOfSuggestion){{
+    public ListSuggestion(List<String> listOfSuggestion, String campID){
         this.listOfSuggestion = listOfSuggestion;
-        suggestionCont = new SuggestionController(); 
-    }}
+        suggestionCont = new SuggestionController(campID); 
+    }
 
     @Override
     public int printMenu() {
@@ -38,7 +39,7 @@ public class ListSuggestion implements IPrintMenu{
             else if (status.equals("REJECTED")) System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
             else System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_YELLOW + status  + PrintHelper.ANSI_RESET + "│");
 
-            if (option != listOfEnquiries.size())
+            if (option != listOfSuggestion.size())
                 System.out.println("├─────┼─────────────────────────────────────────────────────────────────────────────────────┤");
             else 
                 System.out.println("└─────┴─────────────────────────────────────────────────────────────────────────────────────┘");

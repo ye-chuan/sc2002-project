@@ -24,11 +24,11 @@ public class UIEnquiry extends UserInterface {
     @Override
     public IUserInterface showUI() {
 
-        IPrintDetail printDetail = new PrintEnquiryDetail(uiInfo.getEnquiryID());
+        IPrintDetail printDetail = new PrintEnquiryDetail(uiInfo.getCampID(), uiInfo.getEnquiryID());
 
         printDetail.printDetail();
 
-        if (!enquiryCont.getStatus(uiInfo.getEnquiryID()) || !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.enquiryID) || uiInfo.getIsCommittee())){
+        if (!enquiryCont.getStatus(uiInfo.getEnquiryID()) || !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.getEnquiryID()) || uiInfo.getIsCommittee())){
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
@@ -67,11 +67,17 @@ public class UIEnquiry extends UserInterface {
     }
 
     private String replyEnquiryUI() {
-        return null;
+        System.out.print("Enter Reply: "); 
+        Scanner sc = new Scanner(System.in); 
+        String enquiry = sc.nextLine();
+        return enquiry;
     }
 
     private String editEnquiryUI() {
-        return null;
+        System.out.print("Enter Enquiry: "); 
+        Scanner sc = new Scanner(System.in); 
+        String enquiry = sc.nextLine();
+        return enquiry;
     }
     
 }

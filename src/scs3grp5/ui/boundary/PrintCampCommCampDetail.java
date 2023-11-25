@@ -5,11 +5,31 @@ import java.util.ArrayList;
 import scs3grp5.controller.CampController;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class prints the camp detail for a camp committee  
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintCampCommCampDetail implements IPrintDetail {
 
+    /**
+     * To communicate with the camp controller
+     */
     private CampController campCont; 
+
+    /**
+     * CampID is the identify for the respective camp to print
+     */
     private String campID; 
 
+    /**
+     * Constructor for PrintCampCommCampDetail class
+     * 
+     * @param campID the campID of the camp to print
+     */
     public PrintCampCommCampDetail(String campID){
         this.campID = campID; 
         campCont = new CampController();
