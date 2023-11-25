@@ -31,15 +31,14 @@ public class UIHomepage extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
-                int maxOption = menu.printMenu();
-                option = optionSelector.getUserChoiceUI(maxOption, wrongInput);
+                option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
+                System.out.println(option);
             }
             catch(OptionException e){
                 wrongInput = true; 
             }
         }while (wrongInput); 
-        
         if (option == 1) return new UIViewAccount(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
         return null; 

@@ -37,7 +37,8 @@ public class UIChangePassword implements IUserInterface {
                 userCont.isPasswordStrong(newPassword);
             }catch( PasswordException e){
                 System.out.println(e.getMessage());
-                System.out.println("Password is not strong"); 
+                System.out.println("Password is not strong");
+                continue; 
             }
             
             System.out.print("Re-type new password: "); 
