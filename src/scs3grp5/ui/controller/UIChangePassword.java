@@ -44,7 +44,6 @@ public class UIChangePassword implements IUserInterface {
             reTypePassword = sc.nextLine(); 
         
             if (isPasswordSame(newPassword, reTypePassword)){
-                sc.close(); 
                 try{
                     userCont.changePassword(uiInfo.getUserID(), newPassword);
                     System.out.println("Password change successfully!!");
