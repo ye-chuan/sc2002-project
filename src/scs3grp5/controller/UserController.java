@@ -1,17 +1,10 @@
-
+package scs3grp5.controller;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import entity.Camp;
-import entity.CampMembershipDatabase;
-import entity.CampRole;
-import entity.Date;
-import entity.Faculty;
-import entity.Staff;
-import entity.Student;
-import entity.User;
-import entity.UserDatabase;
+import scs3grp5.Main;
+import scs3grp5.entity.*;
 
 public class UserController {
 
@@ -34,7 +27,7 @@ public class UserController {
 	 * @param password
 	 */
 	public boolean login (String userID, String password) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		try {
 			User u1 = uDB.login(userID,password);
 		} catch (NullPointerException e) {
@@ -50,7 +43,7 @@ public class UserController {
 	 * @param newPassword
 	 */
 	public void changePassword(String userID, String newPassword) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 	
 		if (u1.checkPassword(newPassword)) {
@@ -66,7 +59,7 @@ public class UserController {
 	 * @param userID
 	 */
 	public UserType getDomain(String userID) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 		if (u1 instanceof Student) return UserType.STUDENT;
 		if (u1 instanceof Staff) return UserType.STAFF;
@@ -78,7 +71,7 @@ public class UserController {
 	 * @param userID
 	 */
 	public int getPoints(String userID) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		Student s1 = (Student) uDB.getItem(userID);
 		pointCont.updatePoints(userID);
 		
@@ -90,8 +83,8 @@ public class UserController {
 	 * @param userID
 	 */
 	public String getStudentCommitteeCampID(String userID) {
-		UserDatabase uDB = new UserDatabase();
-		CampMembershipDatabase cMemberDB = new CampMembershipDatabase();
+		UserDatabase uDB = Main.getUserDB();
+		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Student s1 = (Student) uDB.getItem(userID);
 
 		Collection<Camp> campList = cMemberDB.getCampsJoinedBy(s1);
@@ -122,7 +115,7 @@ public class UserController {
 	 * @param userID
 	 */
 	public String getUserName(String userID) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		Student s1 = (Student) uDB.getItem(userID);
 		
 		return s1.getEmail();
@@ -133,7 +126,7 @@ public class UserController {
 	 * @param userID
 	 */
 	public Faculty getFaculty(String userID) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		Student s1 = (Student) uDB.getItem(userID);
 		
 		return s1.getFaculty();

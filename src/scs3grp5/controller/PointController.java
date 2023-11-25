@@ -1,13 +1,9 @@
-
+package scs3grp5.controller;
 
 import java.util.Iterator;
 
-import entity.Camp;
-import entity.CampDatabase;
-import entity.CampMembershipDatabase;
-import entity.Date;
-import entity.Student;
-import entity.UserDatabase;
+import scs3grp5.Main;
+import scs3grp5.entity.*;
 
 public class PointController {
 
@@ -42,7 +38,7 @@ public class PointController {
 	 * @param points
 	 */
 	private int addPoints(String studentID, int points) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		Student s1 = (Student) uDB.getItem(studentID);
 		
 		s1.addPoints(points);
@@ -54,20 +50,19 @@ public class PointController {
 	 * @param studentID
 	 */
 	public void updatePoints(String studentID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		String campID = userCont.getStudentCommitteeCampID(studentID);
 		Camp c1 = cDB.getItem(campID);
 		Student s1 = (Student) uDB.getItem(studentID);
 
-		Iterator<Date> cIterator = c1.getDates().iterator();
-		while (cIterator.hasNext()) {
-			Date cDate = cIterator.next();
-			if (!cDate.isBefore(Date.today())) {
-				s1.resetPoints();
-			}
+		Date cDate = c1.getLastCampDate();
+		
+		if (!cDate.isBefore(Date.today())) {
+			s1.resetPoints();
 		}
+		
 	}
 	
 }
