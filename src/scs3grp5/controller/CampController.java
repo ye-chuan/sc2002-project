@@ -477,6 +477,7 @@ public class CampController {
 			if	(slots<1) {
 				throw new EditCampException("slots must be at least 1.");
 			}
+			c1.setParticipantSlots(slots);
 		// }
 		
 		//check number of slots >= number of registered
