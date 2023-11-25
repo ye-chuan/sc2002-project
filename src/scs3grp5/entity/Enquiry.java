@@ -9,7 +9,10 @@ public class Enquiry implements Identifiable, Serializable {
 	private String enquiryID;
 	private String enquiry;
 	private String reply;
+    /** UserID of the asker */
     private String askedBy;
+    /** UserID of the respondent */
+    private String repliedBy;
 
     public Enquiry(String enquiry, String userID) {
         this.enquiryID = Main.getIdGenerator().generate();
@@ -29,13 +32,18 @@ public class Enquiry implements Identifiable, Serializable {
 		return this.reply;
 	}
 
-	public boolean reply(String reply) {
+	public boolean reply(String reply, String respondentID) {
         this.reply = reply;
+        this.repliedBy = respondentID;
         return true;
 	}
 
     public String getAskedBy() {
         return this.askedBy;
+    }
+
+    public String getRepliedBy() {
+        return this.repliedBy;
     }
 
     public boolean isResolved() {

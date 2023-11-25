@@ -38,7 +38,7 @@ public class DateRange implements Serializable {
      * @param other The other date to check against
      * @return Whether the 2 dates overlap
      */
-    boolean overlaps(DateRange other) {
+    public boolean overlaps(DateRange other) {
         // start1 --------------------- end1
         //          start2 ----------------- end2
         // The only time overlap won't happen is if the one of the ranges starts after the other ends
