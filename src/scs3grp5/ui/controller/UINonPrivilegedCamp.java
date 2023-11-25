@@ -40,10 +40,13 @@ public class UINonPrivilegedCamp extends UserInterface{
         optionSelector = new SelectionMenu();
         IPrintDetail printDetail = new PrintStudentCampDetail(uiInfo.getCampID(), isParticipant);
 
+        String errorMessage; 
+        boolean errorRegistration = false; 
         do{
             try{
                 ChangePage.changePage();
                 printDetail.printDetail();
+                if (errorRegistration) System.out.println(errorMessage.toUpperCase());
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }
@@ -55,15 +58,31 @@ public class UINonPrivilegedCamp extends UserInterface{
         if (isParticipant) option -= 1; 
         else option -= 2; 
 
-        if (option == -1) campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID()); 
+        if (option == -1) {
+            try{
+                campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID()); 
+            }catch(RegistrationException e){
+                errorRegistration = true; 
+                errorMessage = e.getMessage(); 
+            }
+        }
         else if (option == 0){
             if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
-            else campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID()); 
+            else {
+                try{
+                    campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID());
+                }catch(RegistrationException e){
+                    errorRegistration = true; 
+                    errorMessage = e.getMessage(); 
+                }
+            }
         }
         else if (option == 1) return new UIEnquiryList(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
         else if (option == 3) return new UIHomepage(uiInfo); 
-        return null;
+        else return null;
+
+        return new UINonPrivilegedCamp(uiInfo);
     }
     
 }

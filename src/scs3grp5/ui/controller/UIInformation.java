@@ -7,26 +7,26 @@ public class UIInformation{
     /**
      * userID of the user 
      */
-    String userID; 
+    private String userID; 
 
     /**
      * Camp ID of the camp the user choose 
      */
-    String campID; 
+    private String campID; 
 
     /**
      * Enqury ID of the enqury the user choose
      */
-    String enquiryID; 
+    private String enquiryID; 
 
     /** 
      * Suggestion ID of the suggestion the user choose 
      */
-    String suggestionID; 
+    private String suggestionID; 
 
-    boolean isStaff; 
+    private boolean isStaff; 
 
-    boolean isCommittee; 
+    private boolean isCommittee; 
 
     /**
      * Constructor for UIInformation class; 

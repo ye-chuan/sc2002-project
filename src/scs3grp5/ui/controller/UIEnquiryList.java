@@ -27,7 +27,7 @@ public class UIEnquiryList extends UserInterface{
 
     public UIEnquiryList(UIInformation uiInfo) {
         super(uiInfo);
-        enquiryCont = new EnquiryController();
+        enquiryCont = new EnquiryController(uiInfo.getCampID());
     }
 
     @Override
