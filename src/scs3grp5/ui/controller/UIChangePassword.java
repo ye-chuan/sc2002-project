@@ -2,6 +2,7 @@ package scs3grp5.ui.controller;
 
 import java.util.Scanner;
 import scs3grp5.controller.UserController;
+import scs3grp5.ui.ulti.ChangePage;
 
 public class UIChangePassword implements IUserInterface {
     

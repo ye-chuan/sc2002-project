@@ -1,4 +1,4 @@
-package scs3grp5.ui.Interface;
+package scs3grp5.ui.menu;
 
 /**
  * This interface gives the ability for the class to print a Menu list 

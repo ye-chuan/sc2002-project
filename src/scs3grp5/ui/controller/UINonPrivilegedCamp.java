@@ -2,6 +2,12 @@ package scs3grp5.ui.controller;
 
 import scs3grp5.controller.CampController;
 import scs3grp5.entity.CampRole;
+import scs3grp5.ui.boundary.IPrintDetail;
+import scs3grp5.ui.boundary.PrintStudentCampDetail;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.MenuCampStudent;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 
 public class UINonPrivilegedCamp extends UserInterface{
 

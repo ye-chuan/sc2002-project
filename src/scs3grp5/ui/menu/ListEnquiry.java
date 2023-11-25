@@ -1,9 +1,9 @@
-package scs3grp5.ui.boundary;
+package scs3grp5.ui.menu;
 
 import java.util.ArrayList;
 import scs3grp5.controller.EnquiryController;
 
-public class PrintEnquryList implements IPrintMenu{
+public class ListEnquiry implements IPrintMenu{
 
     private ArrayList<String> listOfEnquiries; 
 
@@ -12,7 +12,7 @@ public class PrintEnquryList implements IPrintMenu{
      */
     private EnquiryController enquiryCont;  
 
-    public PrintEnquryList(ArrayList<String> listOfEnquiries){
+    public ListEnquiry(ArrayList<String> listOfEnquiries){
         this.listOfEnquiries = listOfEnquiries;
         enquiryCont = new EnquiryController();
     }

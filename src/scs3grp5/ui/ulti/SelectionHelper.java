@@ -15,11 +15,11 @@ public class SelectionHelper {
         return false;   
     }
 
-    public static boolean comfirmChanges(){
-        System.out.println("\t(Press 0 to "); 
-        System.out.println("\t(2) No"); 
+    // public static boolean comfirmChanges(){
+    //     System.out.println("\t(Press 0 to "); 
+    //     System.out.println("\t(2) No"); 
 
-        Scanner sc = new Scanner(System.in); 
+    //     // Scanner sc = new Scanner(System.in); 
         
-    }
+    // }
 }

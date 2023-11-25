@@ -1,9 +1,9 @@
-package scs3grp5.ui.boundary;
+package scs3grp5.ui.menu;
 
 import java.util.ArrayList;
 import scs3grp5.controller.SuggestionController;
 
-public class PrintSuggestionList implements IPrintMenu{
+public class ListSuggestion implements IPrintMenu{
 
     /**
      * to communicate with Suggestion Controller
@@ -15,7 +15,7 @@ public class PrintSuggestionList implements IPrintMenu{
      */
     private ArrayList<String> listOfSuggestion; 
 
-    public PrintSuggestionList(ArrayList<String> listOfSuggestion){{
+    public ListSuggestion(ArrayList<String> listOfSuggestion){{
         this.listOfSuggestion = listOfSuggestion;
         suggestionCont = new SuggestionController(); 
     }}

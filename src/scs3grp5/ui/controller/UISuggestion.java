@@ -2,6 +2,15 @@ package scs3grp5.ui.controller;
 
 import scs3grp5.controller.SuggestionController;
 import scs3grp5.entity.SuggestionStatus;
+import scs3grp5.ui.boundary.IPrintDetail;
+import scs3grp5.ui.boundary.PrintSuggestionDetail;
+import scs3grp5.ui.input.SelectionFromList;
+import scs3grp5.ui.input.SelectionNull;
+import scs3grp5.ui.menu.MenuNoOption;
+import scs3grp5.ui.menu.MenuSuggestionEdit;
+import scs3grp5.ui.menu.MenuSuggestionStaff;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 
 public class UISuggestion extends UserInterface {
 

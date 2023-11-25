@@ -1,6 +1,6 @@
 package scs3grp5.ui.boundary;
 
-import scs3grp5.controller.CampController; 
+import scs3grp5.controller.CampController;
 
 public class PrintCampCommCampDetail implements IPrintDetail {
 

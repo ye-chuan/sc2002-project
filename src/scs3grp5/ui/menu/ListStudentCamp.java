@@ -1,9 +1,9 @@
-package scs3grp5.ui.boundary;
+package scs3grp5.ui.menu;
 
 import java.util.ArrayList;
 import scs3grp5.controller.CampController;
 
-public class PrintStudentCampList implements IPrintMenu {
+public class ListStudentCamp implements IPrintMenu {
 
     protected ArrayList<String> listOfCamps; 
 
@@ -12,7 +12,7 @@ public class PrintStudentCampList implements IPrintMenu {
      */
     protected CampController campCont;  
 
-    public PrintStudentCampList(ArrayList<String> listOfCamps){
+    public ListStudentCamp(ArrayList<String> listOfCamps){
         this.listOfCamps = listOfCamps;
         campCont = new CampController();
     }

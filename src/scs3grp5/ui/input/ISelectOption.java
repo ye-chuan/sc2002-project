@@ -1,4 +1,6 @@
-package scs3grp5.ui.Interface;
+package scs3grp5.ui.input;
+
+import scs3grp5.ui.ulti.OptionException;
 
 /**
  * this interface gives classes the ability to select option

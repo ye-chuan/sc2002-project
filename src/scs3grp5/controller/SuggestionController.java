@@ -342,4 +342,8 @@ public class SuggestionController {
 		else return null;
 
 	}
+
+    public ArrayList<String> getCCPendingSuggestionByCamp(String userID, String campID) {
+        return null;
+    }
 }

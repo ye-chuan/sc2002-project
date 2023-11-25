@@ -2,6 +2,8 @@ package scs3grp5.ui.input;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.SelectionHelper;
 
 public class SelectionMenu implements ISelectOption {
 

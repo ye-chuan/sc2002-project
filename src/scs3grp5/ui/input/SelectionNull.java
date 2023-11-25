@@ -1,6 +1,7 @@
 package scs3grp5.ui.input;
 
 import java.util.Scanner;
+import scs3grp5.ui.ulti.OptionException;
 
 public class SelectionNull implements ISelectOption{
 

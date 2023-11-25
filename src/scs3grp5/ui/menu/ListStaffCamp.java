@@ -1,11 +1,11 @@
-package scs3grp5.ui.boundary;
+package scs3grp5.ui.menu;
 
 import java.util.ArrayList;
 import scs3grp5.controller.CampController;
 
-public class PrintStaffCampList extends PrintStudentCampList {
+public class ListStaffCamp extends ListStudentCamp {
 
-    public PrintStaffCampList(ArrayList<String> listOfCamps) {
+    public ListStaffCamp(ArrayList<String> listOfCamps) {
         super(listOfCamps);
     }
 

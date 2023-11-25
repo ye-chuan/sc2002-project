@@ -1,5 +1,8 @@
 package scs3grp5.ui.controller;
 
+import scs3grp5.ui.menu.IPrintMenu;
+import scs3grp5.ui.input.ISelectOption;
+
 /** 
  * Represent the general features of the UI class
  * It is to be inherited by other concrete UI class

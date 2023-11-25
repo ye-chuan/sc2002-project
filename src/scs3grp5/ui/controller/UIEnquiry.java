@@ -2,6 +2,15 @@ package scs3grp5.ui.controller;
 
 import java.util.Scanner;
 import scs3grp5.controller.EnquiryController;
+import scs3grp5.ui.boundary.IPrintDetail;
+import scs3grp5.ui.boundary.PrintEnquiryDetail;
+import scs3grp5.ui.input.SelectionFromList;
+import scs3grp5.ui.input.SelectionNull;
+import scs3grp5.ui.menu.MenuEquiryEdit;
+import scs3grp5.ui.menu.MenuEquiryReply;
+import scs3grp5.ui.menu.MenuNoOption;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 
 public class UIEnquiry extends UserInterface {
 

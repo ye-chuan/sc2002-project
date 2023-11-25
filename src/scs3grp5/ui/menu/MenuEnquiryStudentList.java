@@ -1,5 +1,6 @@
 package scs3grp5.ui.menu;
 
+
 public class MenuEnquiryStudentList implements IPrintMenu {
 
     @Override

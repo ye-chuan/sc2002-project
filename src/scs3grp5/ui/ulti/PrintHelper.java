@@ -1,4 +1,4 @@
-package scs3grp5.ui;
+package scs3grp5.ui.ulti;
 
 public class PrintHelper {
     // ANSI escape codes for text colors

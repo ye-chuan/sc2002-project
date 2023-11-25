@@ -1,5 +1,10 @@
 package scs3grp5.ui.controller;
 
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.MenuHomepage;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
+
 /**
  * Provide a UI for the view account
  */

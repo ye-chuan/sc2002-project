@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 import scs3grp5.controller.REPORTFILTER;
 import scs3grp5.controller.ReportController;
+import scs3grp5.ui.boundary.IPrintDetail;
+import scs3grp5.ui.boundary.PrintCampCommCampDetail;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.MenuCampCampComm;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.SelectionHelper;
 
 public class UIPrivilegedCamp extends UserInterface{
 

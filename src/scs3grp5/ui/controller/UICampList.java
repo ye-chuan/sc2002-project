@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import scs3grp5.controller.CampListController;
+import scs3grp5.ui.input.SelectionFromList;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.ListStaffCamp;
+import scs3grp5.ui.menu.ListStudentCamp;
+import scs3grp5.ui.menu.MenuStaffCampList;
+import scs3grp5.ui.menu.MenuStudentCampList;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.controller.CampController;
 
 public class UICampList extends UserInterface{
@@ -82,8 +90,8 @@ public class UICampList extends UserInterface{
                 listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
             }
 
-            menu = new PrintStudentCampList(listOfCamps);
-            if (uiInfo.getIsStaff()) menu = new PrintStaffCampList(listOfCamps);
+            menu = new ListStudentCamp(listOfCamps);
+            if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             optionSelector = new SelectionFromList(); 
 
             try{

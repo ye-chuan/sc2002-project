@@ -1,5 +1,12 @@
 package scs3grp5.ui.controller;
 
+import scs3grp5.ui.boundary.IPrintDetail;
+import scs3grp5.ui.boundary.PrintStaffCampDetail;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.MenuCampStaff;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
+
 public class UISuperCamp extends UIPrivilegedCamp{
 
     public UISuperCamp(UIInformation uiInfo) {

@@ -1,4 +1,4 @@
-package scs3grp5.ui.Interface;
+package scs3grp5.ui.boundary;
 
 /**
  * This interface gives the ability to be able to print the detail of a class  

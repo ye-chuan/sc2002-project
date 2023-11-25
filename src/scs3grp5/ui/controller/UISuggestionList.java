@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import scs3grp5.controller.SuggestionController;
+import scs3grp5.ui.input.SelectionFromList;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.ListSuggestion;
+import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
+import scs3grp5.ui.menu.MenuSuggestionCommitteeList;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 
 public class UISuggestionList extends UserInterface{
 
@@ -41,13 +48,13 @@ public class UISuggestionList extends UserInterface{
         }while (wrongInput); 
 
         if (option == 1) {
-            listOfSuggestions = suggestionCont.getCCPendingSuggestionByCamp(uiInfo.getUserID(), uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getPendingSuggestionByCamp(uiInfo.getUserID(), uiInfo.getCampID());
         }
         else if (option == 2) {
-            listOfSuggestions = suggestionCont.getCCApprovedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getApprovedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
         }
         else if (option == 3) {
-            listOfSuggestions = suggestionCont.getCCRejectedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
+            listOfSuggestions = suggestionCont.getRejectedSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
         }
         else if (option == 4) {
             listOfSuggestions = suggestionCont.getAllSuggestionByCamp(uiInfo.getUserID(),uiInfo.getCampID());
@@ -69,7 +76,7 @@ public class UISuggestionList extends UserInterface{
         wrongInput = false;
         int listOption = -1; 
         do{
-            menu = new PrintSuggestionList(listOfSuggestions);
+            menu = new ListSuggestion(listOfSuggestions);
             optionSelector = new SelectionFromList(); 
 
             try{

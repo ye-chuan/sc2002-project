@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import scs3grp5.controller.EnquiryController;
+import scs3grp5.ui.input.SelectionFromList;
+import scs3grp5.ui.input.SelectionMenu;
+import scs3grp5.ui.menu.ListEnquiry;
+import scs3grp5.ui.menu.ListEnquryList;
+import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
+import scs3grp5.ui.menu.MenuEnquiryStudentList;
+import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.OptionException;
 
 public class UIEnquiryList extends UserInterface{
 
@@ -76,7 +84,7 @@ public class UIEnquiryList extends UserInterface{
         wrongInput = false;
         int listOption = -1; 
         do{
-            menu = new PrintEnquryList(listOfEnquiries);
+            menu = new ListEnquiry(listOfEnquiries);
             optionSelector = new SelectionFromList(); 
 
             try{

@@ -1,5 +1,8 @@
 package scs3grp5.ui;
 
+import scs3grp5.ui.controller.UIInformation;
+import scs3grp5.ui.controller.UILogInLogOut;
+
 public class UIMain {
 
     private UIInformation uiInfo; 
