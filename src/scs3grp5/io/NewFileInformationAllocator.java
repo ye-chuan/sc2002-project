@@ -8,10 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 public class NewFileInformationAllocator {
 
@@ -23,7 +26,7 @@ public class NewFileInformationAllocator {
 	 * 
 	 * @param filePath
 	 */
-	public ArrayList<Student> initialiseStudentFile(String filePath) throws Exception {
+	public ArrayList<Student> initialiseStudentFile(String filePath) throws FileNotFoundException, IOException, InvalidFormatException {
 			FileInputStream fStudent = new FileInputStream(filePath);
 			XSSFWorkbook studentWorkbook = new XSSFWorkbook(fStudent);
 			XSSFSheet studentSheet = studentWorkbook.getSheetAt(0);
@@ -68,7 +71,7 @@ public class NewFileInformationAllocator {
 	 * 
 	 * @param filePath
 	 */
-	public ArrayList<Staff> initialiseStaffFile(String filePath) throws Exception {
+	public ArrayList<Staff> initialiseStaffFile(String filePath) throws FileNotFoundException, IOException, InvalidFormatException {
 			FileInputStream fStaff = new FileInputStream(filePath);
 			XSSFWorkbook staffWorkbook = new XSSFWorkbook(fStaff);
 			XSSFSheet staffSheet = staffWorkbook.getSheetAt(0);
