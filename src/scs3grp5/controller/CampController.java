@@ -12,21 +12,6 @@ public class CampController {
 	/**
 	 * 
 	 * @param campID
-	 * returns true or false whether campID is valid
-	 */
-	public boolean isValidCampID(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		if (cDB.getItem(campID)== null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-
-	/**
-	 * 
-	 * @param campID
 	 * @param userID
 	 * registers student as Participant
 	 */

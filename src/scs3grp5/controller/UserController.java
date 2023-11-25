@@ -6,7 +6,7 @@ import scs3grp5.entity.*;
 
 public class UserController {
 
-	private PointController pointCont;
+	private PointController pointCont = new PointController();
 
 	/**
 	 * 
