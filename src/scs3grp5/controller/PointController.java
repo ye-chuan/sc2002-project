@@ -1,8 +1,7 @@
-
+package scs3grp5.controller;
 
 import java.util.Iterator;
 
-import entity.Camp;
 import entity.CampDatabase;
 import entity.CampMembershipDatabase;
 import entity.Date;

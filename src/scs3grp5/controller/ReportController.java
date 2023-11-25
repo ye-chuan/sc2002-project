@@ -1,3 +1,5 @@
+package scs3grp5.controller;
+
 import entity.Camp;
 import entity.CampDatabase;
 import entity.CampMembershipDatabase;
