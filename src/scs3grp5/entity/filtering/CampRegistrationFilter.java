@@ -38,6 +38,7 @@ public class CampRegistrationFilter extends CampFilter {
         return filter;
     }
     
+    /** {@inheritDoc} */
     @Override
     public boolean pass(Camp camp) {
         // Registration Date Filtering

@@ -3,7 +3,7 @@ package scs3grp5.entity.filtering;
 import java.util.Collection;
 
 /**
- * Used to Filter a Collection of given a Collection of Filters.
+ * Used to Filter a Collection of objects given filters
  */
 public abstract class Filterer<T> {
 

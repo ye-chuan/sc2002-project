@@ -14,6 +14,8 @@ public class CampParticipantSlotsFilter extends CampFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
+    @Override
     public boolean pass(Camp camp) {
         int freeParticipantSlots = camp.getParticipantSlots() - camp.getNumParticipants();
         assert freeParticipantSlots >= 0;

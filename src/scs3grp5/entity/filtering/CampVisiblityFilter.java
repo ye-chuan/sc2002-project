@@ -20,6 +20,7 @@ public class CampVisiblityFilter extends CampFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean pass(Camp camp) {
         // Visibility Filtering

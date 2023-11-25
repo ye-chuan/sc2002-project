@@ -2,7 +2,7 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
-public class CampStaffFilter {
+public class CampStaffFilter extends CampFilter {
 
     private String onlyStaffID;
 
@@ -18,6 +18,8 @@ public class CampStaffFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
+    @Override
     public boolean pass(Camp camp) {
         // Staff-in-Charge Filtering
         if (!camp.getStaffInCharge().getID().equals(onlyStaffID))

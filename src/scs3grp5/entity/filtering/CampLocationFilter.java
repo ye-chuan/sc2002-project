@@ -2,7 +2,7 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
-public class CampLocationFilter {
+public class CampLocationFilter extends CampFilter {
     
     private String onlyLocation;
 
@@ -13,6 +13,8 @@ public class CampLocationFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
+    @Override
     public boolean pass(Camp camp) {
         // Staff-in-Charge Filtering
         if (!camp.getLocation().toLowerCase().equals(onlyLocation.toLowerCase()))

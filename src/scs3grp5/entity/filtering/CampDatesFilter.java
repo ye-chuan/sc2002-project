@@ -2,6 +2,9 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
+/**
+ * Camp filter for Camp Dates
+ */
 public class CampDatesFilter extends CampFilter {
 
     private Date rangeStart = Date.MIN;
@@ -39,6 +42,7 @@ public class CampDatesFilter extends CampFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean pass(Camp camp) {
         // Camp Dates Filtering

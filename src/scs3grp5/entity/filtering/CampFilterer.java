@@ -5,9 +5,14 @@ import scs3grp5.entity.*;
 import java.util.Collection;
 import java.util.ArrayList;
 
+/**
+ * Used to Filter a Collection of Camps given CampFilters
+ */
 public class CampFilterer extends Filterer<Camp> {
 
+    /** List of items to start with, this list will not change after filtering */
 	private Collection<Camp> initialItems;
+    /** Collection of filter to filter by, this collection can be cleared */
     private Collection<Filter<Camp>> filters = new ArrayList<Filter<Camp>>();
 
 	/**

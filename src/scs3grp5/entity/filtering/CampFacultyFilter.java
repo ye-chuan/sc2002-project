@@ -2,6 +2,9 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
+/**
+ * Camp filter for the Faculty that Camp is opened to
+ */
 public class CampFacultyFilter extends CampFilter {
 
 	private Faculty onlyFaculty;
@@ -16,6 +19,8 @@ public class CampFacultyFilter extends CampFilter {
         return filter;
     }
 
+    /** {@inheritDoc} */
+    @Override
     public boolean pass(Camp camp) {
         // Faculty Filtering
         if (!camp.getOpenTo().contains(onlyFaculty))
