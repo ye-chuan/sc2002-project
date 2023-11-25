@@ -1,6 +1,7 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.ArrayList;
+import scs3grp5.controller.EnquiryController;
 
 public class PrintEnquryList implements IPrintMenu{
 
