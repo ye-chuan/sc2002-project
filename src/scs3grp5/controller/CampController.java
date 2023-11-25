@@ -6,6 +6,7 @@ import scs3grp5.Main;
 import scs3grp5.entity.*;
 import scs3grp5.entity.Date;
 
+
 public class CampController {
 
 	/**
@@ -166,7 +167,7 @@ public class CampController {
 		Camp newCamp;
 		if (u1 instanceof Staff) {
 			s1 = (Staff) u1;
-			newCamp = new Camp(s1);	
+			newCamp = new Camp(Main.getMemberDB(), s1);
 			return newCamp.getID();
 		}
 		else return null;
@@ -251,10 +252,8 @@ public class CampController {
 			}
 
 			Camp c1 = cDB.getItem(campID);
-			// check duplicate camp names
-			CampDatabase.Query query = new CampDatabase.Query();
 			
-			Collection<Camp> campList = cDB.getCamps(query);
+			Collection<Camp> campList = cDB.getAll();
 			for (Camp c: campList) {
 				if(c.getName()==newName)
 				throw new EditCampException("Camp Name already existed");
@@ -295,9 +294,7 @@ public class CampController {
 	 * @param dates
 	 */
 	public void changeStartDate(String campID, String date) throws InvalidDateException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
-		DateController dateCont = new DateController();
 		
 		// if (!IsEditable(staffID, campID)) {
 		// 	throw new Exception("No permission to edit");
@@ -328,9 +325,8 @@ public class CampController {
 	 * @param dates
 	 */
 	public void changeEndDate(String campID, String date) throws InvalidDateException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+
 		CampDatabase cDB = Main.getCampDB();
-		DateController dateCont = new DateController();
 
 		// if (!IsEditable(staffID, campID)) {
 		// 	throw new Exception("No permission to edit");
@@ -494,34 +490,23 @@ public class CampController {
 	 * @param campID
 	 * @param dates
 	 */
-	public void changeClosingDate(String campID, int YYMMDD) throws InvalidDateException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
 		CampDatabase cDB = Main.getCampDB();
-		DateController dateCont = new DateController();
 		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new EditCampException("No permission to edit");
-		// }
-		// else {
 			Camp c1 = cDB.getItem(campID);
-			if (Date.isValidDate(dateCont.getYY(YYMMDD), dateCont.getMM(YYMMDD), dateCont.getDD(YYMMDD))) {
-				Date close = dateCont.toDate(YYMMDD);
-				if (close.isBefore(Date.today())) {
-					throw new InvalidDateException("Closing Date must be after today");
-				}
-				DateRange dates = c1.getDates();
-				Date start = dates.getStart();
-				Date end = dates.getEnd();
-				if (!(close.isBefore(start) && close.isBefore(end))) {
-					throw new InvalidDateException("Closing date must be before start date and end date");
-				}
-				c1.setClosingDate(close);
+
+			Date close = Date.fromString(date);
+			if (close.isBefore(Date.today())) {
+				throw new InvalidDateException("Closing date must be after today");
 			}
-			else {
-				throw new InvalidDateException("Invalid Date");
+			DateRange dates = c1.getDates();
+			Date end = dates.getEnd();
+			Date start = dates.getStart();
+			if (!(close.isAfter(end) && close.isAfter(start))) {
+				throw new InvalidDateException("Closing date must be before start date and end date");
 			}
-		// }
-		// check dates in order, after today, valid date
+			c1.setClosingDate(close);
+	
 	}
 
 	/**
@@ -551,7 +536,6 @@ public class CampController {
 	 * @param campID
 	 */
 	public String getDate(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
@@ -578,8 +562,7 @@ public class CampController {
 	 * @param campID
 	 */
 	public String getLocation(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		return c1.getLocation();
 	}
@@ -693,7 +676,7 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public ArrayList<String> getCampParticipants(String campID) {
+	public List<String> getCampParticipants(String campID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		
@@ -713,7 +696,6 @@ public class CampController {
 	 */
 	public boolean overlapDates(Camp camp, Student student) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
 		
 		Collection<Camp> campList = cmemberDB.getCampsJoinedBy(student);
 		DateRange registerDateRange = camp.getDates();
@@ -724,6 +706,21 @@ public class CampController {
 			}
 		}
 		return true;
+		
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * Checks whether Registration Closing Date is past today
+	 */
+	public boolean isCampOver(String campID) {
+		Date close = Main.getCampDB().getItem(campID).getClosingDate();
+		
+		if (close.isBefore(Date.today())) 
+			return true;
+		else
+			return false;
 		
 	}
 
@@ -752,7 +749,7 @@ public class CampController {
 	 * 
 	 * @param campList
 	 */
-	private ArrayList<String> sortByNameIDList(Collection<Student> studentList) {
+	private List<String> sortByNameIDList(Collection<Student> studentList) {
 		Collections.sort((ArrayList<Student>)studentList, Comparator.comparing(Student::getName));
 		ArrayList<String> userIDList = new ArrayList<String>();
 		for (User u: studentList)

@@ -104,11 +104,11 @@ public class SuggestionController {
 	 * 
 	 * @param suggestionID
 	 */
-	public SuggestionStatus getStatus(String suggestionID) {
+	public String getStatus(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
 		Suggestion sug1 = sDB.getItem(suggestionID);
 
-		return sug1.getStatus();
+		return sug1.getStatus().name();
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getPendingSuggestions(String campID, String userID) {
+	public Collection<String> getPendingSuggestions(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -158,7 +158,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getRejectedSuggestions(String campID, String userID) {
+	public Collection<String> getRejectedSuggestions(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -178,7 +178,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getApprovedSuggestion(String campID, String userID) {
+	public Collection<String> getApprovedSuggestion(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -198,7 +198,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getAllSuggestionByCamp(String campID, String userID) {
+	public Collection<String> getAllSuggestion(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
@@ -373,7 +373,7 @@ public class SuggestionController {
 	 * 
 	 * @param campID
 	 */
-	public CampRole getUserStatus(String campID, String studentID) {
+	public CampRole getUserStatus(String studentID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();

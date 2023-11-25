@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
@@ -35,7 +36,7 @@ public class EnquiryController {
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		User u1 = uDB.getItem(userID);
 
-		enq1.reply(reply);
+		enq1.reply(reply, userID);
 		if (u1 instanceof Student) {
 			pointCont.replyEnquiry(userID);
 		}
@@ -124,7 +125,7 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getPendingEnquiries(String userID) {
+	public List<String> getPendingEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
@@ -145,7 +146,7 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getResolvedEnquiries(String userID) {
+	public List<String> getResolvedEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
@@ -166,7 +167,7 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getAllEnquiries(String userID) {
+	public List<String> getAllEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
 		CampController campCont = new CampController();
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
@@ -235,7 +236,22 @@ public class EnquiryController {
 	 */
 	public String getEnquiryCreator(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
-		return eDB.getItem(enquiryID).getAskedBy();
+		UserDatabase uDB = Main.getUserDB();
+
+		String userID = eDB.getItem(enquiryID).getAskedBy();
+		return uDB.getItem(userID).getName();
+
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public String getEnquiryRepliesCreator(String enquiryID) {
+		EnquiryDatabase eDB = new EnquiryDatabase();
+		UserDatabase uDB = Main.getUserDB();
+		String userID = eDB.getItem(enquiryID).getRepliedBy();
+		return uDB.getItem(userID).getName();
 
 	}
 
@@ -267,6 +283,8 @@ public class EnquiryController {
 		return eDB.getItem(enquiryID).getReply();
 	}
 
+
+
 	/**
 	 * 
 	 * @param campID
@@ -290,7 +308,7 @@ public class EnquiryController {
 	 * 
 	 * @param campList
 	 */
-	private Collection<String> sortByNameIDList(Collection<Enquiry> enquiryList) {
+	private List<String> sortByNameIDList(Collection<Enquiry> enquiryList) {
 		Collections.sort((ArrayList<Enquiry>)enquiryList, Comparator.comparing(Enquiry::getAskedBy));
 		ArrayList<String> enquiryIDList = new ArrayList<String>();
 		for (Enquiry e: enquiryList)
