@@ -14,9 +14,9 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public String isFirstLogin(String password) {
-		if (password == "password") return null;
-		else return "Password needs to be more than 8 characters\n";
+	public boolean isFirstLogin(String password) {
+		if (password == "password") return true;
+		else return false;
 		
 	}
 	
