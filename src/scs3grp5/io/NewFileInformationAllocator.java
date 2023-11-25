@@ -1,3 +1,11 @@
+/**
+ * Reads data from .xlsx file. Depending on the file that was read,
+ * it creates a corresonding array of Student or Staff Objects.
+ * @author Ong Yi Ren, Elaine
+ * @version 1.0
+ * @since 2023-11-26
+ */
+
 package scs3grp5.io;
 
 import scs3grp5.entity.*;
