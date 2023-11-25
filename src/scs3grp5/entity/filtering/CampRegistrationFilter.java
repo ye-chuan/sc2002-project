@@ -2,9 +2,17 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
+/**
+ * Camp filter based on registration date
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class CampRegistrationFilter extends CampFilter {
 
+    /** Start of the range of closing registration dates to include */
     private Date rangeStart = Date.MIN;
+    /** End of the range of closing registration dates to include */
     private Date rangeEnd = Date.MAX;
 
     /**

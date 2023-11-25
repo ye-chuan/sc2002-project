@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Used to Filter a Collection of Camps given CampFilters
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class CampFilterer extends Filterer<Camp> {
 

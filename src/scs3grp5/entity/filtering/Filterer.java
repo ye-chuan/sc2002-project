@@ -4,6 +4,9 @@ import java.util.Collection;
 
 /**
  * Used to Filter a Collection of objects given filters
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public abstract class Filterer<T> {
 
