@@ -28,6 +28,13 @@ public class Database<T extends Identifiable> implements Serializable {
         }
     }
 
+    /** 
+     * @return A Collection view of the items in the database
+     */
+    public Collection<T> getAll() {
+        return items.values();
+    }
+
     public T getItem(String id) {
         return items.get(id);
     }

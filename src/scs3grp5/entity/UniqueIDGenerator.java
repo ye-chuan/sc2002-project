@@ -17,8 +17,14 @@ import java.io.Serializable;
  */
 public class UniqueIDGenerator implements Serializable {
 
+    /** Current internal implementation of unqiue id is a simple long incrementation */
 	private long lastID = 0;
 
+    /**
+     * Generates a globally unique ID as long as the same instance of UniqueIDGenerator is used
+     *
+     * @return A globally unique ID
+     */
 	public String generate() {
         return String.valueOf(lastID++);
 	}

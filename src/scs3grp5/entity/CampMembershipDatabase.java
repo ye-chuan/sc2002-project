@@ -107,7 +107,14 @@ public class CampMembershipDatabase implements Serializable{
         add(new CampMembership(student, camp, CampRole.PARTICIPANT));
 	}
 
-	public void removeParticipant(Student student, Camp camp) {
+    /**
+     * Removes Participant from Camp and add them into the Blacklist
+     * 
+     * @param student The participant to remove
+     * @param camp The camp to remove the participant from 
+     * @return Whether the removal was successful (unsuccessful if Student is a Camp Committee member)
+     */
+	public boolean removeParticipant(Student student, Camp camp) {
         String campID = camp.getID();
         String studentID = student.getID();
         
@@ -115,7 +122,11 @@ public class CampMembershipDatabase implements Serializable{
             blacklist.put(campID, new HashSet<String>());
         blacklist.get(campID).add(studentID);
 
+        if (getRoleInCamp(camp, student) != CampRole.PARTICIPANT) {
+            return false;
+        }
         remove(new CampMembership(student, camp, CampRole.PARTICIPANT));
+        return true;
 	}
 
     public Collection<String> getBlacklistedID(String campID) {

@@ -8,7 +8,7 @@ public class Date implements Comparable<Date>, Serializable {
     public static final Date MAX = new Date(LocalDate.MAX.getYear(), LocalDate.MAX.getMonthValue(), LocalDate.MAX.getDayOfMonth());
     public static final Date MIN = new Date(LocalDate.MIN.getYear(), LocalDate.MIN.getMonthValue(), LocalDate.MIN.getDayOfMonth());
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate localDate;
 
 	/**
@@ -38,6 +38,15 @@ public class Date implements Comparable<Date>, Serializable {
         return true;
     }
 
+    /** 
+     * Parse Date from format DD/MM/YYYY
+     * @return Parsed date
+     */
+    public static Date fromString(String datestring) {
+        LocalDate parsedLocalDate = LocalDate.parse(datestring, formatter);
+        return new Date(parsedLocalDate.getYear(), parsedLocalDate.getMonthValue(), parsedLocalDate.getDayOfMonth());
+    }
+
 	public int getDayOfMonth() {
         return localDate.getDayOfMonth();
 	}
@@ -51,7 +60,7 @@ public class Date implements Comparable<Date>, Serializable {
 	}
 
 	/**
-	 * Gives in the Local dd-mm-yyyy format
+	 * Gives in the Local DD/MM/YYYY format
 	 */
 	public String toString() {
         return localDate.format(formatter);
@@ -90,6 +99,9 @@ public class Date implements Comparable<Date>, Serializable {
     public static void main(String[] args) {
         Date a = new Date(2023,11,20);
         Date b = new Date(2023,11,21);
+
+        Date test = Date.fromString("26/11/2023");
+        System.out.println(test);
 
         System.out.println(a.isAfter(b));
         System.out.println(a.isBefore(b));

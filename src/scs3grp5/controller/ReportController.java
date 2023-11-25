@@ -24,9 +24,9 @@ public class ReportController {
 		writer.addRow("Faculty:",c.getOpenTo().iterator().next().toString());
 		writer.addRow("Location:",c.getLocation());
 		writer.addRow("Staff-In-Charge:",c.getStaffInCharge().getName());
-		// writer.addRow("Start Date:",String.format("%d-%d-%d",c.getDates().get(1).getDayOfMonth(),c.getDates().get(1).getMonth(),c.getDates().get(1).getYear()));
-		// writer.addRow("End Date:",String.format("%d-%d-%d",c.getDates().get(1).getDayOfMonth(),c.getDates().get(1).getMonth(),c.getDates().get(1).getYear()));
-		writer.addRow("Closing Date:",String.format("&d",c.getClosingDate().getDayOfMonth(),c.getClosingDate().getMonth(),c.getClosingDate().getYear()));
+		writer.addRow("Start Date:",c.getDates().getStart().toString());
+		writer.addRow("End Date:",c.getDates().getEnd().toString());
+		writer.addRow("Closing Date:",c.getClosingDate().toString());
 		writer.addRow("Total Participant Slots:",String.format("&d",c.getParticipantSlots()));
 		writer.addRow("Total Committee Slots:",String.format("&d",c.getCampCommSlots()));
 
@@ -69,7 +69,6 @@ public class ReportController {
 	public void generateEnquiryReport(String campID) {
 		CsvWriter writer = new CsvWriter(filepath);
 		CampDatabase cDB = Main.getCampDB();
-		CampMembershipDatabase cMemberDB;
 		Camp c = cDB.getItem(campID);
 
 		writer.addRow("Camp Name:",c.getName(),"ID:",c.getID());

@@ -1,7 +1,5 @@
 package scs3grp5.controller;
-
 import java.util.Collection;
-import java.util.Iterator;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
@@ -42,15 +40,17 @@ public class UserController {
 	 * @param userID
 	 * @param newPassword
 	 */
-	public void changePassword(String userID, String newPassword) {
+	public boolean changePassword(String userID, String newPassword) {
 		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 	
 		if (u1.checkPassword(newPassword)) {
 			u1.changePassword(newPassword);
+			return true;
 		}
-
-		else throw new IllegalArgumentException("Same password as old password");
+		else {
+			return false;
+		}
 		
 	}
 
@@ -61,9 +61,23 @@ public class UserController {
 	public UserType getDomain(String userID) {
 		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
-		if (u1 instanceof Student) return UserType.STUDENT;
-		if (u1 instanceof Staff) return UserType.STAFF;
-		else return null;
+		if (u1 instanceof Student) 
+			return UserType.STUDENT;
+		if (u1 instanceof Staff) 
+			return UserType.STAFF;
+		else 
+			return null;
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public boolean isStaffUserType(String userID) {
+		if (getDomain(userID)==UserType.STAFF) 
+			return true;
+		else 
+			return false;
 	}
 
 	/**
@@ -72,10 +86,15 @@ public class UserController {
 	 */
 	public int getPoints(String userID) {
 		UserDatabase uDB = Main.getUserDB();
-		Student s1 = (Student) uDB.getItem(userID);
-		pointCont.updatePoints(userID);
+		User u1 =  uDB.getItem(userID);
+		if (getDomain(userID)==UserType.STUDENT) {
+			Student s1 = (Student) u1;
+			pointCont.updatePoints(userID);
+			return s1.getPoints();
+		}
+		else
+			return 0;
 		
-		return s1.getPoints();
 	}
 
 	/**
@@ -85,28 +104,30 @@ public class UserController {
 	public String getStudentCommitteeCampID(String userID) {
 		UserDatabase uDB = Main.getUserDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
-		Student s1 = (Student) uDB.getItem(userID);
+		if (getDomain(userID)==UserType.STUDENT) {
+			Student s1 = (Student) uDB.getItem(userID);
 
-		Collection<Camp> campList = cMemberDB.getCampsJoinedBy(s1);
+			Collection<Camp> campList = cMemberDB.getCampsJoinedBy(s1);
 
-		for(Camp c : campList) {
-			if (cMemberDB.getRoleInCamp(c,s1)  == CampRole.CAMPCOMM) {
-				return c.getID();
+			for(Camp c : campList) {
+				if (cMemberDB.getRoleInCamp(c,s1)  == CampRole.CAMPCOMM) {
+					return c.getID();
+				}
 			}
 		}
-		return null;
+		return "N.A";
 	}
 
 	/**
 	 * 
 	 * @param newPassword
 	 */
-	public boolean isPasswordStrong(String newPassword) {
+	public String isPasswordStrong(String newPassword) {
 		if (newPassword.length() < 8) {
-			return false;
+			return "Password needs be more than 8 characters";
 		}
 		else { 
-			return true;
+			return null;
 		}
 	}
 
@@ -116,7 +137,8 @@ public class UserController {
 	 */
 	public String getUserName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
-		Student s1 = (Student) uDB.getItem(userID);
+		
+		User s1 = uDB.getItem(userID);
 		
 		return s1.getEmail();
 	}
@@ -125,10 +147,21 @@ public class UserController {
 	 * 
 	 * @param userID
 	 */
-	public Faculty getFaculty(String userID) {
+	public String getName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
-		Student s1 = (Student) uDB.getItem(userID);
+		User s1 = uDB.getItem(userID);
 		
-		return s1.getFaculty();
+		return s1.getName();
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 */
+	public String getFaculty(String userID) {
+		UserDatabase uDB = Main.getUserDB();
+		User s1 = uDB.getItem(userID);
+		
+		return s1.getFaculty().name();
 	}
 }

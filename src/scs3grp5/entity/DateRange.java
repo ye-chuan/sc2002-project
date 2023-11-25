@@ -1,6 +1,8 @@
 package scs3grp5.entity;
 
-public class DateRange {
+import java.io.Serializable;
+
+public class DateRange implements Serializable {
     private Date start;
     private Date end;
 
@@ -18,14 +20,14 @@ public class DateRange {
     /**
      * @return The starting date of this range (inclusive)
      */
-    Date getStart() {
+    public Date getStart() {
 		return this.start;
 	}
 
     /**
      * @return The ending date of this range (inclusive)
      */
-    Date getEnd() {
+    public Date getEnd() {
 		return this.end;
 	}
 
@@ -43,6 +45,11 @@ public class DateRange {
         // So !(start1 > end2 || start2 > end1)
         
         return !(this.start.isAfter(other.end) || other.start.isAfter(this.end));
+    }
+
+    @Override
+    public String toString() {
+        return "DateRange(" + this.start + ", " + this.end + ")";
     }
 
 }
