@@ -8,5 +8,5 @@ public interface IUserInterface {
     /** 
      * This method is called to show the main UI of the class
      */
-    public abstract void showUI();
+    public abstract IUserInterface showUI();
 }

@@ -24,10 +24,9 @@ public class UIInformation{
      */
     String suggestionID; 
 
-    /** 
-     * the next UIPAGE to run  
-     */
-    UiPage ui; 
+    boolean isStaff; 
+
+    boolean isCommittee; 
 
     /**
      * Constructor for UIInformation class; 
@@ -37,7 +36,8 @@ public class UIInformation{
         campID = null; 
         enquiryID = null; 
         suggestionID = null;
-        ui = null; 
+        isCommittee = false; 
+        isStaff = false; 
     }
 
     /**
@@ -105,19 +105,34 @@ public class UIInformation{
     }
 
     /**
-     * getter method for UI
+     * getter method for isStaff
      * 
-     * @return UI
+     * @return isStaff
      */
-    public UiPage getUIPage(){
-        return ui;
+    public boolean getIsStaff(){
+        return isStaff;
     }
 
     /** 
-     * setter method for UI 
+     * setter method for isStaff 
      */
-    public void setUIPage(UiPage ui){
-        this.ui = ui;
+    public void setIsStaff(boolean isStaff){
+        this.isStaff = isStaff;
     }
 
+    /**
+     * getter method for isCommittee
+     * 
+     * @return isStaff
+     */
+    public boolean getIsCommittee(){
+        return isCommittee;
+    }
+
+    /** 
+     * setter method for isStaff 
+     */
+    public void setIsCommittee(boolean isCommittee){
+        this.isCommittee = isCommittee;
+    }
 }

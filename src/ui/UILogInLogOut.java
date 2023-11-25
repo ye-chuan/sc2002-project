@@ -5,19 +5,19 @@ import java.util.Scanner;
 /**
  * Handles the LogIn and LogOut UI
  */
-public class LogInLogOutUI {
+public class UILogInLogOut {
 
     private UserController userCont;
     
     /**
      * userID of the user using the UI
      */
-    protected UIInformation uiInfo; 
+    private UIInformation uiInfo; 
 
     /** 
      * Constructor for LogInLogOut class 
      */
-    public LogInLogOutUI(UIInformation uiInfo){
+    public UILogInLogOut(UIInformation uiInfo){
         this.uiInfo = uiInfo;
         userCont = new UserController(); 
     }
@@ -32,11 +32,14 @@ public class LogInLogOutUI {
     /** 
      * Log In UI 
      */
-    public void loginUI(){
+    public IUserInterface loginUI(){
 
         String userID; 
         String password; 
         Scanner sc = new Scanner(System.in); 
+
+        ChangePage.changePage();
+        
         System.out.println("----------------------------------------------"); 
         System.out.println("Welcome to Camp Application and Management System (CAMs)"); 
             
@@ -60,14 +63,15 @@ public class LogInLogOutUI {
         sc.close();
 
         uiInfo.setUserID(userID); 
+        uiInfo.setIsStaff(userCont.getDomain(uiInfo.getUserID()));
 
         //suite for first login
         if (userCont.isFirstLogin()){
             System.out.println("Password is default password"); 
             System.out.println("Please change to a strong password"); 
-            uiInfo.setUIPage(UiPage.PASSWORD);
+            return new UIChangePassword(uiInfo);
         } 
-        else uiInfo.setUIPage(UiPage.HOMEPAGE);
+        return new UIHomepage(uiInfo);
     }
 
  

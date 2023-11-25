@@ -2,13 +2,13 @@ package ui;
 
 import java.util.Scanner;
 
-public class ChangePasswordUI implements IUserInterface {
+public class UIChangePassword implements IUserInterface {
     
     private UIInformation uiInfo;
 
     private UserController userCont; 
 
-    public ChangePasswordUI(UIInformation uiInfo){
+    public UIChangePassword(UIInformation uiInfo){
         this.uiInfo = uiInfo; 
         userCont = new UserController(); 
     }
@@ -16,8 +16,9 @@ public class ChangePasswordUI implements IUserInterface {
     /**
      * UI for User to change password 
      */
-    public void showUI(){
+    public IUserInterface showUI(){
 
+        ChangePage.changePage();
         System.out.println("Change of Password Menu"); 
 
         String newPassword; 
@@ -36,7 +37,7 @@ public class ChangePasswordUI implements IUserInterface {
                     sc.close(); 
                     System.out.println("Password change successfully!!"); 
                     userCont.changePassword(uiInfo.getUserID(), newPassword); 
-                    break; 
+                    return new UIViewAccount(uiInfo, uiInfo.getIsStaff());
                 }
                 else{
                     System.out.println("Password is not the same"); 
@@ -47,8 +48,6 @@ public class ChangePasswordUI implements IUserInterface {
             } 
             
         }while (true); 
-
-        uiInfo.setUIPage(UiPage.VIEWACCOUNT);
     }
 
     protected boolean isPasswordSame(String password, String reTypePassword){
