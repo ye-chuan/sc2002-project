@@ -13,7 +13,7 @@ public class UserController {
 	 * @param userID
 	 */
 	public boolean isFirstLogin(String password) {
-		if (password == "password") return true;
+		if (password.equals("password")) return true;
 		else return false;
 		
 	}
@@ -26,12 +26,13 @@ public class UserController {
 	 */
 	public boolean login (String userID, String password) {
 		UserDatabase uDB = Main.getUserDB();
-		try {
-			User u1 = uDB.login(userID,password);
-		} catch (NullPointerException e) {
+		
+		User u1 = uDB.login(userID,password);
+		if (u1==null) {
 			return false;
-		}
-		return true;
+		} 
+		else
+			return true;
 		
 	}
 
