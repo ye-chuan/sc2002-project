@@ -1,6 +1,5 @@
 package scs3grp5.controller;
 
-import java.util.Iterator;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
@@ -50,7 +49,6 @@ public class PointController {
 	 * @param studentID
 	 */
 	public void updatePoints(String studentID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
 		String campID = userCont.getStudentCommitteeCampID(studentID);
