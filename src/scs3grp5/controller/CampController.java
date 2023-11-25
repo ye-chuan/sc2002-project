@@ -293,17 +293,24 @@ public class CampController {
 			if (start.isBefore(Date.today())) {
 				throw new InvalidDateException("Start date must be after today");
 			}
+			
 			DateRange dates = c1.getDates();
+			if(dates==null) {
+				c1.setDates(start,start);
+			}
+			else {
 			Date end = dates.getEnd();
 			Date close = c1.getClosingDate();
-			if (!(start.isBefore(end) && start.isAfter(close))) {
-				throw new InvalidDateException("Start date must be after closing date, before end date");
-			}
+				if (close==null) {
+					c1.setClosingDate(start);
+				}
+				if (!(start.isBefore(end) && start.isAfter(close))) {
+					throw new InvalidDateException("Start date must be after closing date, before end date");
+				}
+				
 			c1.setDates(start,end);
-			
+			}
 
-			// check dates in order, valid date, closing-start-end
-		// }
 	}
 
 	/**
@@ -326,15 +333,21 @@ public class CampController {
 				throw new InvalidDateException("End date must be after today");
 			}
 			DateRange dates = c1.getDates();
-			Date start = dates.getStart();
-			Date close = c1.getClosingDate();
-			if (!(end.isBefore(start) && end.isBefore(close))) {
-				throw new InvalidDateException("End date must be after closing date and start date");
+			if(dates==null) {
+				c1.setDates(end,end);
 			}
-			c1.setDates(start,end);
-			
-			// check dates in order, valid date, closing-start-end
-		// }
+			else {
+				Date start = dates.getStart();
+				Date close = c1.getClosingDate();
+				if(close==null) {
+					c1.setClosingDate(start);
+				}
+				if (!(end.isBefore(start) && end.isBefore(close))) {
+					throw new InvalidDateException("End date must be after closing date and start date");
+				}
+				c1.setDates(start,end);
+			}
+
 	}
 
 
@@ -487,13 +500,18 @@ public class CampController {
 				throw new InvalidDateException("Closing date must be after today");
 			}
 			DateRange dates = c1.getDates();
-			Date end = dates.getEnd();
-			Date start = dates.getStart();
-			if (!(close.isAfter(end) && close.isAfter(start))) {
-				throw new InvalidDateException("Closing date must be before start date and end date");
+			if(dates==null) {
+				c1.setClosingDate(close);
 			}
-			c1.setClosingDate(close);
-	
+			else {
+				Date end = dates.getEnd();
+				Date start = dates.getStart();
+				if (!(close.isAfter(end) && close.isAfter(start))) {
+					throw new InvalidDateException("Closing date must be before start date and end date");
+				}
+				c1.setClosingDate(close);
+			}
+				
 	}
 
 	/**
@@ -528,7 +546,11 @@ public class CampController {
 		Camp c1 = cDB.getItem(campID);
 		Date start = c1.getDates().getStart();
 		Date end = c1.getDates().getEnd();
-		return String.format("%s-%s", start.toString(), end.toString());
+		if(start==null|end==null) {
+			return null;
+		}
+		else 
+			return String.format("%s-%s", start.toString(), end.toString());
 	}
 
 	// /**
@@ -658,7 +680,11 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		return c1.getClosingDate().toString();
+		if (c1.getClosingDate()==null) {
+			return null;
+		}
+		else 
+			return c1.getClosingDate().toString();
 	}
 
 	/**
