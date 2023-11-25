@@ -5,8 +5,6 @@ import scs3grp5.Main;
 import scs3grp5.entity.*;
 
 public class PointController {
-
-	private UserController userCont;
 	/**
 	 * 
 	 * @param studentID
@@ -51,6 +49,7 @@ public class PointController {
 	public void updatePoints(String studentID) {
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
+		UserController userCont = new UserController();
 		String campID = userCont.getStudentCommitteeCampID(studentID);
 		Camp c1 = cDB.getItem(campID);
 		Student s1 = (Student) uDB.getItem(studentID);
