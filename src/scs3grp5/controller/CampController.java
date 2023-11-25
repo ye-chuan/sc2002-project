@@ -586,7 +586,10 @@ public class CampController {
 
 		
 		Camp c1 = cDB.getItem(campID);
-		
+		if(c1.getOpenTo().size()==0) {
+			return null;
+		}
+
 		if (c1.getOpenTo().size() == Faculty.values().length) {
 			return "NTU";
 		}
@@ -608,6 +611,7 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
+
 		return c1.getDescription();
 	}
 
@@ -620,10 +624,9 @@ public class CampController {
 		
 
 		Camp c1 = cDB.getItem(campID);
-		if(c1!=null)
-			return c1.getCampCommSlots();
-		else
-			return 0;
+
+		return c1.getCampCommSlots();
+
 	}
 
 	/**
@@ -635,10 +638,9 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		if(c1!=null)
-			return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
-		else
-			return 0;
+
+		return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
+
 	}
 
 	/**
@@ -649,10 +651,9 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		if(c1!=null)
-			return c1.getParticipantSlots();
-		else
-			return 0;
+
+		return c1.getParticipantSlots();
+
 		
 	}
 
@@ -667,7 +668,7 @@ public class CampController {
 		Camp c1 = cDB.getItem(campID);
 		
 	
-			return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
+		return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
 		
 	}
 
