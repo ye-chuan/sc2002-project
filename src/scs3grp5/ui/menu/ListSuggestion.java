@@ -2,6 +2,7 @@ package scs3grp5.ui.menu;
 
 import java.util.ArrayList;
 import scs3grp5.controller.SuggestionController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListSuggestion implements IPrintMenu{
 
@@ -24,17 +25,25 @@ public class ListSuggestion implements IPrintMenu{
     public int printMenu() {
 
         int option = 1; 
-        System.out.println("----------------------------------------------"); 
-        System.out.println("List Of Suggestion"); 
-        System.out.println();
+    
+        System.out.println("LIST OF SUGGESTION"); 
+        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String suggestionID : listOfSuggestion){
-            System.out.printf("\n(%d)\n", option++); 
-            System.out.println("Suggestion: "+ suggestionCont.getSuggestionText(suggestionID));
-            System.out.println("Asked by: " + suggestionContquiry.getSuggestionCreator(suggestionID)); 
-            System.out.println("Status: " + suggestionCont.getStatus(suggestionID));
+            String text = suggestionCont.getSuggestionText(suggestionID);
+            String status = suggestionCont.getStatus(suggestionID);
+            
+
+            System.out.println("│ ("+ (++option) + ") │" + PrintHelper.fillUpSpace(text, 85, 1, false) + "│"); 
+            if (status.equals("APPROVED")) System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_GREEN + status  + PrintHelper.ANSI_RESET + "│");
+            else if (status.equals("REJECTED")) System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
+            else System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_YELLOW + status  + PrintHelper.ANSI_RESET + "│");
+
+            if (option != listOfEnquiries.size())
+                System.out.println("├─────┼─────────────────────────────────────────────────────────────────────────────────────┤");
+            else 
+                System.out.println("└─────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
-        System.out.println("----------------------------------------------"); 
-        System.out.println("(press any non-numeric key to go to Suggestion List Menu)");
+        System.out.println("(press any non-numeric key to go to Enquiry List Menu)");
         return listOfSuggestion.size();
         
     }

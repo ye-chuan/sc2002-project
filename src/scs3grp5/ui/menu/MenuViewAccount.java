@@ -11,7 +11,7 @@ public class MenuViewAccount implements IPrintMenu{
         System.out.printf("\t(%d) Change Password\n", ++option); 
         System.out.printf("\t(%d) Go to HomePage\n", ++option); 
         System.out.printf("\t(0) Exit Program\n"); 
-        System.out.println("-------------------------------------------------------");
+        System.out.println("-------------------------------------------------------"); 
         return option; 
     }
     

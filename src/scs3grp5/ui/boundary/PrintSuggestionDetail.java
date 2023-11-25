@@ -1,6 +1,9 @@
 package scs3grp5.ui.boundary;
 
+import java.util.ArrayList;
+
 import scs3grp5.controller.SuggestionController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class PrintSuggestionDetail implements IPrintDetail {
 
@@ -18,9 +21,25 @@ public class PrintSuggestionDetail implements IPrintDetail {
 
     @Override
     public void printDetail() {
-        System.out.println("Suggestion: "+ suggestionCont.getSuggestionText(suggestionID));
-        System.out.println("Asked by: " + suggestionContquiry.getSuggestionCreator(suggestionID)); 
-        System.out.println("Status: " + suggestionCont.getStatus(suggestionID));
+
+        String text = suggestionContquiry.getSuggestionCreator(suggestionID); 
+        String status = suggestionCont.getStatus(suggestionID);
+
+        ArrayList<String> string;
+
+        System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90
+        System.out.println(PrintHelper.fillUpSpace("SUGGESTION INFORMATION", 90, 1, true));
+        System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90
+        System.out.println("     Asked by: " + (suggestionContquiry.getSuggestionCreator(suggestionID)).toUpperCase());
+        System.out.println("     ┌──────────────────────────────────────────────────────────────────────────────┐");// 78 WHITE SPACE
+
+        string = PrintHelper.breakDownString(text, 70);
+        for (int i=0; i<string.size(); i++){
+            System.out.println("     │" + PrintHelper.fillUpSpace(string.get(i),78 , 4, false) + "│");
+        }
+        System.out.println("     └──────────────────────────────────────────────────────────────────────────────┘");
+        System.out.println("     STATUS: " + status);
+        
     }
     
 }

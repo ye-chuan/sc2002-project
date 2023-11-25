@@ -1,6 +1,9 @@
 package scs3grp5.ui.boundary;
 
+import java.util.ArrayList;
+
 import scs3grp5.controller.CampController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class PrintStaffCampDetail implements IPrintDetail {
     
@@ -11,6 +14,7 @@ public class PrintStaffCampDetail implements IPrintDetail {
         this.campID = campID; 
         campCont = new CampController();
     }
+
     @Override
     public void printDetail() {
 
@@ -19,18 +23,43 @@ public class PrintStaffCampDetail implements IPrintDetail {
         actualCount = campCont.getTotalCampCommSlot(campID) - campCont.getRemainingCampCommSlot(campID); 
         String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
 
-        System.out.println("----------------------------------------------"); 
-        System.out.println("CAMP INFORMATION"); 
-        System.out.println("Camp Name: " + campCont.getName(campID)); 
-        System.out.println("Date of Camp: " + campCont.getDate(campID));
-        System.out.println("Registration closing date: " + campCont.getClosingDate(campID));
-        System.out.println("Camp Staff-In-Charge: " + campCont.getCampInCharge(campID)); 
-        System.out.println("Participants Slot: " + participant); 
-        System.out.println("Camp Committee Slot: " + campComm); 
-        System.out.println("Faculty: " + campCont.getFaculty(campID)); 
-        System.out.println("Camp Description: " + campCont.getDescription(campID)); 
-        System.out.println("Visibility: " + campCont.getVisibility(campID));
-        System.out.println("----------------------------------------------"); 
+        String campName =  campCont.getName(campID);
+        String date = campCont.getDate(campID); 
+        String closingDate = campCont.getClosingDate(campID);
+        String location = campCont.getLocation(campID);
+        String staffIC = campCont.getCampInCharge(campID);
+        String faculty = campCont.getFaculty(campID);
+        String visibility = campCont.getVisibility(campID);
+        String description = campCont.getDescription(campID);
+
+        System.out.println("CAMP INFORMATION");
+        System.out.println("┌──────────────────────────────────────────────────────────────────────────────────────────┐");// 90 WHITE SPACE
+
+        ArrayList<String> string2 = PrintHelper.breakDownString(campName, 60);
+        for (int i=0; i<string2.size(); i++){
+            System.out.println("│" + PrintHelper.fillUpSpace(string2.get(i),90 , 5, true) + "│"); 
+        }
+        System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
+        System.out.println("│  CAMP DATES               :" + PrintHelper.fillUpSpace(date,62 , 1, false) + "│");
+        System.out.println("│  REGISTRATION CLOSING DATE:" + PrintHelper.fillUpSpace(closingDate,62 , 1, false) + "│");
+        System.out.println("│  LOCATION                 :" + PrintHelper.fillUpSpace(location,62 , 1, false) + "│");
+        System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
+        System.out.println("│  PARTICIPATION SLOT:" + PrintHelper.fillUpSpace(participant,69 , 1, false) + "│");
+        System.out.println("│  COMMITTEE SLOT    :" + PrintHelper.fillUpSpace(campComm,69 , 1, false) + "│");
+        System.out.println("│  STAFF-IN CHARGE   :" + PrintHelper.fillUpSpace(staffIC,69 , 1, false) + "│");
+        System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
+        System.out.println("│  FACULTY   :" + PrintHelper.fillUpSpace( faculty,80 , 1, false) + "│");
+        System.out.println("│  VISBILITY :" + PrintHelper.fillUpSpace(visibility,80 , 1, false) + "│");
+        System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
+        System.out.println("│" + "   ────────────────────────────────────────────────────────────────────────────────────   " + "│");
+        System.out.println("│  CAMP DESCRIPTION:" + PrintHelper.fillUpSpace(" ",71 , 1, false) + "│");
+        
+        string2 = PrintHelper.breakDownString(description, 70);
+        for (int i=0; i<string2.size(); i++){
+            System.out.println("│" + PrintHelper.fillUpSpace(string2.get(i),90 , 10, false) + "│"); 
+        }
+
+        System.out.println("└──────────────────────────────────────────────────────────────────────────────────────────┘");
     }
     
 }

@@ -13,7 +13,7 @@ public class ListStaffCamp extends ListStudentCamp {
     public int printMenu(){
         int option = 0; 
 
-        System.out.println("List Of Camps"); 
+        System.out.println("LIST OF CAMPS"); 
         System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String campID : listOfCamps){
             String date = campCont.getDate(campID); 
@@ -22,7 +22,7 @@ public class ListStaffCamp extends ListStudentCamp {
             String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlot(campID));
             actualCount = campCont.getTotalCampCommSlot(campID) - campCont.getRemainingCampCommSlot(campID); 
             String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
-            String visibility = "ON";
+            String visibility = campCont.getVisibility(campID);
 
             String name = campCont.getName(campID); 
             if (campCont.isCampOver(campID)) date = "REGISTRATION CLOSED";

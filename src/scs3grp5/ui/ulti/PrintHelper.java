@@ -56,4 +56,32 @@ public class PrintHelper {
         return stringWithSpaces; 
     
       }
+
+      public static ArrayList<String> breakDownString(String string, int maxlength){
+        ArrayList<String> returnString = new ArrayList<String>(); 
+        
+        int i=0;
+        int lastWhiteSpace = 0; 
+        int startOfSubString = 0; 
+        int currentStringLength =1;
+  
+        while (i<string.length()){
+          if (string.charAt(i) == ' ') lastWhiteSpace = i; 
+  
+          if (currentStringLength==maxlength){
+            returnString.add(string.substring(startOfSubString, lastWhiteSpace));
+            currentStringLength = 1; 
+            startOfSubString = lastWhiteSpace + 1;
+            i = startOfSubString;
+          }
+          else{
+            currentStringLength++;
+            i++;
+          }
+        }
+  
+        returnString.add(string.substring(startOfSubString, string.length()));
+  
+        return returnString;
+      }
 }

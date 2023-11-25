@@ -9,7 +9,7 @@ public class MenuEquiryEdit implements IPrintMenu{
         System.out.println("ENQUIRY MENU");
         System.out.printf("\t(%d) Edit enquiry\n", ++option); 
         System.out.printf("\t(%d) Delete enquiry\n", ++option);
-        System.out.println("----------------------------------------------"); 
+        System.out.println("-------------------------------------------------------"); 
         System.out.println("(press any non-numeric key to go to Enquiry List Menu)");
         return option; 
     }

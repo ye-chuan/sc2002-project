@@ -12,7 +12,7 @@ public class MenuStaffCampList implements IPrintMenu {
         System.out.printf("\t(%d) Create a new Camp\n", ++option);
         System.out.printf("\t(%d) Go to Home Page\n", ++option); 
         System.out.printf("\t(0) Exit Program\n");
-        System.out.println("----------------------------------------------"); 
+        System.out.println("-------------------------------------------------------");  
         return option; 
     }
 }
