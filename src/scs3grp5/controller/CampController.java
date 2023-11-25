@@ -544,13 +544,13 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		Date start = c1.getDates().getStart();
-		Date end = c1.getDates().getEnd();
-		if(start==null|end==null) {
+		if(c1.getDates()==null){
 			return null;
 		}
-		else 
-			return String.format("%s-%s", start.toString(), end.toString());
+		Date start = c1.getDates().getStart();
+		Date end = c1.getDates().getEnd();
+	
+		return String.format("%s-%s", start.toString(), end.toString());
 	}
 
 	// /**
