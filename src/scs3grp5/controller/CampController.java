@@ -340,7 +340,7 @@ public class CampController {
 			}
 			else {
 				Date start = dates.getStart();
-				if (!end.isBefore(start)) {
+				if (end.isBefore(start)) {
 					throw new InvalidDateException("End date must after start date");
 				}
 				c1.setDates(start,end);
