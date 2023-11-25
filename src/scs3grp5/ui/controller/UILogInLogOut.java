@@ -61,8 +61,7 @@ public class UILogInLogOut {
         }while (true); 
 
         System.out.println("Login successful..."); 
-        System.out.println("----------------------------------------------"); 
-        sc.close();
+        System.out.println("----------------------------------------------");
 
         uiInfo.setUserID(userID); 
         uiInfo.setIsStaff(userCont.isStaffUserType(uiInfo.getUserID()));
