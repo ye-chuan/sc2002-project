@@ -2,8 +2,15 @@ package scs3grp5.entity.filtering;
 
 import scs3grp5.entity.*;
 
+/**
+ * Camp filter based the visibility of the camp
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class CampVisiblityFilter extends CampFilter {
 
+    /** The visibility needed to pass this filter */
     private boolean includeOnlyVisibility;
 
     /** Effectively include only Invisible (hidden) Camps */

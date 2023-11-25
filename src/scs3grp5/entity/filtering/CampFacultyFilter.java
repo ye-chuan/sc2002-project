@@ -4,9 +4,13 @@ import scs3grp5.entity.*;
 
 /**
  * Camp filter for the Faculty that Camp is opened to
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class CampFacultyFilter extends CampFilter {
 
+    /** The only faculty to include */
 	private Faculty onlyFaculty;
 
     /**

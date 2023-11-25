@@ -4,10 +4,15 @@ import scs3grp5.entity.*;
 
 /**
  * Camp filter for Camp Dates
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class CampDatesFilter extends CampFilter {
 
+    /** Start of the range of dates to include (inclusive) */
     private Date rangeStart = Date.MIN;
+    /** End of the range of dates to include (inclusive) */
     private Date rangeEnd = Date.MAX;
 
     /**
