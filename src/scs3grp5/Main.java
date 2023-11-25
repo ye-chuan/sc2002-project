@@ -3,6 +3,7 @@ package scs3grp5;
 import scs3grp5.entity.*;
 import scs3grp5.entity.filtering.*;
 import scs3grp5.io.*;
+import scs3grp5.ui.UIMain;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class Main {
             idGenerator = new UniqueIDGenerator();
         }
 
-        //new UIMain().runUI();
+        new UIMain().runUI();
 
         //test_main(args);
         
