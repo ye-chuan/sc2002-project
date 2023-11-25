@@ -147,12 +147,14 @@ public class CampController {
 
 	public String create(String staffInChargeID) {
 		UserDatabase uDB = Main.getUserDB();
+		CampDatabase cDB = Main.getCampDB();
 		User u1 = uDB.getItem(staffInChargeID);
 		Staff s1;
 		Camp newCamp;
 		if (u1 instanceof Staff) {
 			s1 = (Staff) u1;
 			newCamp = new Camp(Main.getMemberDB(), s1);
+			cDB.add(newCamp);
 			return newCamp.getID();
 		}
 		else return null;
@@ -642,10 +644,8 @@ public class CampController {
 		
 		Camp c1 = cDB.getItem(campID);
 		
-		if(c1!=null)
+	
 			return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
-		else
-			return 0;
 		
 	}
 
