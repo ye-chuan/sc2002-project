@@ -1,6 +1,5 @@
 package scs3grp5.ui.ulti;
 
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class SelectionHelper {
      * @param  max the maximum option can take
      * @return True if its a valid option else False
     */
-    public static boolean validOption(int option, int min,  int max){
+    public static boolean validOption(int option, int min, int max){
         if (option >= min && option <= max) return true; 
         return false;   
     }
