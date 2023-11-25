@@ -28,7 +28,8 @@ public class ListSuggestion implements IPrintMenu{
         int option = 1; 
     
         System.out.println("LIST OF SUGGESTION"); 
-        System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
+        if(listOfSuggestion.size() == 0) System.out.println("(no enquiry for the moment)");
+        else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String suggestionID : listOfSuggestion){
             String text = suggestionCont.getSuggestionText(suggestionID);
             String status = suggestionCont.getStatus(suggestionID);

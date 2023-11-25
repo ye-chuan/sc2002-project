@@ -18,7 +18,7 @@ public class UIMain{
 
         ui =  logInLogOut.loginUI(); 
 
-        while (ui != null) ui.showUI();
+        while (ui != null) ui = ui.showUI();
 
         logInLogOut.logOutUI();
     }
