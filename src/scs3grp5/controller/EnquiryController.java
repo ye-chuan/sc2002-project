@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
@@ -12,7 +11,18 @@ import scs3grp5.entity.*;
 
 public class EnquiryController {
 
-	private PointController pointCont; 
+	private PointController pointCont = new PointController(); 
+	private String campID;
+
+	/**
+	 * 
+	 * @param campID
+	 * 
+	 */
+	public EnquiryController(String campID) {
+		this.campID = campID;
+	}
+
 	/**
 	 * 
 	 * @param userID
@@ -20,7 +30,7 @@ public class EnquiryController {
 	 * @param reply
 	 */
 	public void reply(String userID, String enquiryID, String reply) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		UserDatabase uDB = Main.getUserDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		User u1 = uDB.getItem(userID);
@@ -37,7 +47,7 @@ public class EnquiryController {
 	 * @param text
 	 */
 	public String create(String userID, String text) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = new Enquiry(text, userID);
 		eDB.add(enq1);
 
@@ -50,16 +60,16 @@ public class EnquiryController {
 	 * @param enquiryID
 	 * @param newText
 	 */
-	public void edit(String userID, String enquiryID, String newText) throws Exception{
-		EnquiryDatabase eDB = new EnquiryDatabase();
+	public void edit(String enquiryID, String newText) {
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 
-		if (enq1.isResolved()) {
-			throw new Exception("Enquiry is already resolved");
-		}
-		if (enq1.getAskedBy() == userID) {
-			throw new Exception("Enquiry is not created by user");
-		}
+		// if (enq1.isResolved()) {
+		// 	throw new Exception("Enquiry is already resolved");
+		// }
+		// if (enq1.getAskedBy() == userID) {
+		// 	throw new Exception("Enquiry is not created by user");
+		// }
 		enq1.setEnquiry(newText);
 	}
 
@@ -68,17 +78,17 @@ public class EnquiryController {
 	 * @param userID
 	 * @param enquiryID
 	 */
-	public void delete(String userID, String enquiryID) throws Exception{
-		EnquiryDatabase eDB = new EnquiryDatabase();
+	public void delete(String enquiryID) {
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 	
 
-		if (enq1.isResolved()) {
-			throw new Exception("Enquiry is already resolved");
-		}
-		if (enq1.getAskedBy() == userID) {
-			throw new Exception("Enquiry is not created by user");
-		}
+		// if (enq1.isResolved()) {
+		// 	throw new Exception("Enquiry is already resolved");
+		// }
+		// if (enq1.getAskedBy() == userID) {
+		// 	throw new Exception("Enquiry is not created by user");
+		// }
 		eDB.remove(enq1);
 	
 	}
@@ -88,7 +98,7 @@ public class EnquiryController {
 	 * @param enquiryID
 	 */
 	public boolean getStatus(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		
 		return enq1.isResolved();
@@ -101,7 +111,7 @@ public class EnquiryController {
 	 * @param enquiryID
 	 */
 	public boolean isValidEnquiry(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		if (eDB.getItem(enquiryID)== null) {
 			return false;
 		}
@@ -114,88 +124,109 @@ public class EnquiryController {
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getPendingEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	public Collection<String> getPendingEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		Collection<Enquiry> sugList = c1.getEnquiryDB().getUnresolvedEnquiries();
-		
+		CampController campCont = new CampController();
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
 
-		return sortByNameIDList(sugList);
+		
+		Camp c1 = cDB.getItem(campID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList = c1.getEnquiryDB().getUnresolvedEnquiries();
+		}
+		else {
+			enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
+		}
+
+		return sortByNameIDList(enqList);
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getResolvedEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	public Collection<String> getResolvedEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		Collection<Enquiry> sugList = c1.getEnquiryDB().getResolvedEnquiries();
-		
+		CampController campCont = new CampController();
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
 
-		return sortByNameIDList(sugList);
+		
+		Camp c1 = cDB.getItem(campID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList = c1.getEnquiryDB().getResolvedEnquiries();
+		}
+		else {
+			enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
+		}
+
+		return sortByNameIDList(enqList);
 	}
 
 	/**
 	 * 
 	 * @param campID
 	 */
-	public Collection<String> getAllEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	public Collection<String> getAllEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
+		CampController campCont = new CampController();
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
-		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiries());
-		enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiries());
-
-		return sortByNameIDList(enqList);
-	}
-
-	/**
-	 * 
-	 * @param userID
-	 */
-	public Collection<String> getMyPendingEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		Collection<Enquiry> enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
-
-		return sortByNameIDList(enqList);
 	
-	}
-
-	/**
-	 * 
-	 * @param userID
-	 */
-	public Collection<String> getMyResolvedEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
-		Collection<Enquiry> enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList.addAll(c1.getEnquiryDB().getResolvedEnquiries());
+			enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiries());
+		}
+		else {
+			enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
+			enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
+		}
 
 		return sortByNameIDList(enqList);
-	
 	}
 
-	/**
-	 * 
-	 * @param userID
-	 */
-	public Collection<String> getMyEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
-		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
-		enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
+	// /**
+	//  * 
+	//  * @param userID
+	//  */
+	// public Collection<String> getMyPendingEnquiries(String campID, String userID) {
+	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	// 	CampDatabase cDB = Main.getCampDB();
+	// 	Camp c1 = cDB.getItem(campID);
+	// 	Collection<Enquiry> enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
 
-		return sortByNameIDList(enqList);
+	// 	return sortByNameIDList(enqList);
 	
-	}
+	// }
+
+	// /**
+	//  * 
+	//  * @param userID
+	//  */
+	// public Collection<String> getMyResolvedEnquiries(String campID, String userID) {
+	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	// 	CampDatabase cDB = Main.getCampDB();
+	// 	Camp c1 = cDB.getItem(campID);
+	// 	Collection<Enquiry> enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
+
+	// 	return sortByNameIDList(enqList);
+	
+	// }
+
+	// /**
+	//  * 
+	//  * @param userID
+	//  */
+	// public Collection<String> getMyEnquiries(String campID, String userID) {
+	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	// 	CampDatabase cDB = Main.getCampDB();
+	// 	Camp c1 = cDB.getItem(campID);
+	// 	Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+	// 	enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
+	// 	enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
+
+	// 	return sortByNameIDList(enqList);
+	
+	// }
 
 
 	/**
@@ -205,6 +236,16 @@ public class EnquiryController {
 	public String getEnquiryCreator(String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
 		return eDB.getItem(enquiryID).getAskedBy();
+
+	}
+
+	/**
+	 * 
+	 * @param enquiryID
+	 */
+	public boolean isOwner(String userID, String enquiryID) {
+		EnquiryDatabase eDB = new EnquiryDatabase();
+		return eDB.getItem(enquiryID).getAskedBy()==userID;
 
 	}
 

@@ -16,7 +16,7 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public Collection<String> viewMyCamp(String userID) {
+	public ArrayList<String> viewMyCamp(String userID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
@@ -33,6 +33,7 @@ public class CampListController {
 		}
 		else if (u1 instanceof Student) {
 			Student student1 = (Student) u1;
+			//filter?
 			
 			campList = cmemberDB.getCampsJoinedBy(student1);
 		}
@@ -47,22 +48,19 @@ public class CampListController {
 	 * 
 	 * @param userID
 	 */
-	public void setDefaultFilter(String userID) {
+	public void setDefaultFilter(String userID, boolean isStaff) {
 		UserDatabase uDB = Main.getUserDB();
 
-		User u1 = uDB.getItem(userID);
-		
-
-		query.excludeInvisible();
 		query.registrationAfterIncl(Date.today());
 		query.campDatesAllAfterIncl(Date.today());
-		query.excludeFullCampCommSlots();
-		query.excludeFullParticipantSlot();
 
-		if (u1 instanceof Student) {
+		if (!isStaff) {
+			query.excludeInvisible();
 			Student s1 = (Student) uDB.getItem(userID);
 			Faculty s1Faculty = s1.getFaculty();
 			query.onlyOpenToFaculty(s1Faculty);
+			query.excludeFullCampCommSlots();
+			query.excludeFullParticipantSlot();
 		}
 		
 	}
@@ -71,8 +69,7 @@ public class CampListController {
 	 * 
 	 * 
 	 */
-	public Collection<String> viewCamps() {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+	public ArrayList<String> viewCamps() {
 		CampDatabase cDB = Main.getCampDB();
 		Collection<Camp> campList = new ArrayList<Camp>();
 		
@@ -88,10 +85,9 @@ public class CampListController {
 	 * @param openCommSlots
 	 * @param date
 	 */
-	public Collection<String> FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, Date date, Faculty faculty, boolean visibility) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
+	public void FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, int fromDate, int toDate, Faculty faculty, boolean visibility) {
 		CampDatabase.Query query = new CampDatabase.Query();
+		DateController dateCont = new DateController();
 		
 		if (openCommSlots) query.excludeFullCampCommSlots();
 		if (openParticipantSlots) query.excludeFullParticipantSlot();
@@ -99,22 +95,22 @@ public class CampListController {
 		query.onlyOpenToFaculty(faculty);
 		if(!visibility) query.excludeVisible();
 
+		query.campDatesAllWithin(dateCont.toDate(fromDate), dateCont.toDate(toDate));
 
-		Collection<Camp> campList = new ArrayList<Camp>();
-		for (Camp c : cDB.getCamps(query)) {
-			if (c.getLocation() == location) {
-				campList.add(c);
-			}
-		}
+		// Collection<Camp> campList = new ArrayList<Camp>();
+		// for (Camp c : cDB.getCamps(query)) {
+		// 	if (c.getLocation() == location) {
+		// 		campList.add(c);
+		// 	}
+		// }
 		
-		return sortByNameIDList(campList);
 	}
 
 	/**
 	 * 
 	 * @param campList
 	 */
-	private Collection<String> sortByNameIDList(Collection<Camp> campList) {
+	private ArrayList<String> sortByNameIDList(Collection<Camp> campList) {
 		Collections.sort((ArrayList<Camp>)campList, Comparator.comparing(Camp::getName));
 		ArrayList<String> campIDList = new ArrayList<String>();
 		for (Camp c: campList)
@@ -123,4 +119,9 @@ public class CampListController {
 		}
 		return campIDList;
 	}
+
+	
 }
+
+
+
