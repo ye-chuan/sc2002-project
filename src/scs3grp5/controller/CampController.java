@@ -594,8 +594,12 @@ public class CampController {
 	public int getTotalCampCommSlots(String campID) {
 		CampDatabase cDB = Main.getCampDB();
 		
+
 		Camp c1 = cDB.getItem(campID);
-		return c1.getCampCommSlots();
+		if(c1!=null)
+			return c1.getCampCommSlots();
+		else
+			return 0;
 	}
 
 	/**
@@ -607,7 +611,10 @@ public class CampController {
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
-		return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
+		if(c1!=null)
+			return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
+		else
+			return 0;
 	}
 
 	/**
