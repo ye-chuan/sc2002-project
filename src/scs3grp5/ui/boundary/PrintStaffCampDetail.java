@@ -18,18 +18,20 @@ public class PrintStaffCampDetail implements IPrintDetail {
     @Override
     public void printDetail() {
 
-        int actualCount = campCont.getTotalParticipantSlot(campID) - campCont.getRemainingParticipantSlot(campID); 
-        String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlot(campID));
-        actualCount = campCont.getTotalCampCommSlot(campID) - campCont.getRemainingCampCommSlot(campID); 
+        int actualCount = campCont.getTotalParticipantSlots(campID) - campCont.getRemainingParticipantSlots(campID); 
+        String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlots(campID));
+        actualCount = campCont.getTotalCampCommSlots(campID) - campCont.getRemainingCampCommSlots(campID); 
         String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
 
         String campName =  campCont.getName(campID);
         String date = campCont.getDate(campID); 
         String closingDate = campCont.getClosingDate(campID);
         String location = campCont.getLocation(campID);
-        String staffIC = campCont.getCampInCharge(campID);
+        String staffIC = campCont.getCampInCharge(campID); 
         String faculty = campCont.getFaculty(campID);
-        String visibility = campCont.getVisibility(campID);
+        String visibility;
+        if (campCont.getVisibility(campID)) visibility = "ON";
+        else visibility = "OFF";
         String description = campCont.getDescription(campID);
 
         System.out.println("CAMP INFORMATION");
@@ -40,9 +42,9 @@ public class PrintStaffCampDetail implements IPrintDetail {
             System.out.println("│" + PrintHelper.fillUpSpace(string2.get(i),90 , 5, true) + "│"); 
         }
         System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
-        System.out.println("│  CAMP DATES               :" + PrintHelper.fillUpSpace(date,62 , 1, false) + "│");
-        System.out.println("│  REGISTRATION CLOSING DATE:" + PrintHelper.fillUpSpace(closingDate,62 , 1, false) + "│");
-        System.out.println("│  LOCATION                 :" + PrintHelper.fillUpSpace(location,62 , 1, false) + "│");
+        System.out.println("│  CAMP DATES          :" + PrintHelper.fillUpSpace(date,67 , 1, false) + "│");
+        System.out.println("│  REGISTRATION CLOSING:" + PrintHelper.fillUpSpace(closingDate,67 , 1, false) + "│");
+        System.out.println("│  LOCATION            :" + PrintHelper.fillUpSpace(location,67 , 1, false) + "│");
         System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
         System.out.println("│  PARTICIPATION SLOT:" + PrintHelper.fillUpSpace(participant,69 , 1, false) + "│");
         System.out.println("│  COMMITTEE SLOT    :" + PrintHelper.fillUpSpace(campComm,69 , 1, false) + "│");

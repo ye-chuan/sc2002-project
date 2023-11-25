@@ -18,9 +18,9 @@ public class PrintCampCommCampDetail implements IPrintDetail {
     @Override
     public void printDetail() {
 
-        int actualCount = campCont.getTotalParticipantSlot(campID) - campCont.getRemainingParticipantSlot(campID); 
-        String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlot(campID));
-        actualCount = campCont.getTotalCampCommSlot(campID) - campCont.getRemainingCampCommSlot(campID); 
+        int actualCount = campCont.getTotalParticipantSlots(campID) - campCont.getRemainingParticipantSlots(campID); 
+        String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlots(campID));
+        actualCount = campCont.getTotalCampCommSlots(campID) - campCont.getRemainingCampCommSlots(campID); 
         String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
 
         String campName =  campCont.getName(campID);

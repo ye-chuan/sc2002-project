@@ -17,7 +17,6 @@ public class SelectionMenu implements ISelectOption {
         System.out.print("Select option: "); 
         try{
             option = sc.nextInt();
-            sc.close();
         }
         catch(InputMismatchException e){
             throw new OptionException();

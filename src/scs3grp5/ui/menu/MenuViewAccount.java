@@ -4,7 +4,7 @@ public class MenuViewAccount implements IPrintMenu{
 
     @Override
     public int printMenu() {
-        int option = 1; 
+        int option = 0; 
         System.out.println("───────────────────────────────────────────────────────");// # ─ = 55   
         System.out.println("ACCOUNT MENU"); 
         System.out.printf("\t(%d) View Account Detail\n", ++option); 

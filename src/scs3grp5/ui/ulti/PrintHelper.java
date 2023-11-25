@@ -1,5 +1,7 @@
 package scs3grp5.ui.ulti;
 
+import java.util.ArrayList;
+
 public class PrintHelper {
     // ANSI escape codes for text colors
     public static final String ANSI_RESET = "\u001B[0m";

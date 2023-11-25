@@ -69,7 +69,7 @@ public class UICampList extends UserInterface{
         else if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
-                return new UISuperCamp(uiInfo);
+                return new UIEditCamp(uiInfo);
             }
             else return new UIHomepage(uiInfo);
         }

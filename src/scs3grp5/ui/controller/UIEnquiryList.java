@@ -7,7 +7,6 @@ import scs3grp5.controller.EnquiryController;
 import scs3grp5.ui.input.SelectionFromList;
 import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.ListEnquiry;
-import scs3grp5.ui.menu.ListEnquryList;
 import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
 import scs3grp5.ui.menu.MenuEnquiryStudentList;
 import scs3grp5.ui.ulti.ChangePage;

@@ -9,6 +9,7 @@ import scs3grp5.ui.menu.IPrintMenu;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
+import scs3grp5.ui.ulti.SelectionHelper;
 
 import javax.swing.text.html.Option;
 
@@ -159,16 +160,30 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * This method tells the CampList Controller the filters the user Set and Update the listOfCamps to be printed
      */
     private void filterCampToPrint(){
-        campListCont.filterBy(isStaff, byLocation, availableParticipant, availableCommittee, byDate, byRegistrationDate, byFaculty, byVisibility); 
+        // byDate is DD/MM/YYYY-DD/MM/YYYY
+        String startDate, endDate; 
+        startDate = byDate.substring(0,10); 
+        endDate = byDate.substring(11, 21);
+
+        campListCont.filterBy(isStaff, byLocation, availableParticipant, availableCommittee, startDate, endDate, byRegistrationDate, byFaculty, byVisibility); 
     }
 
     /**
-     * This method provides the UI for user to select a specific date 
+     * This method provides the UI for user to select a specific date range
      * 
      * @return the specified date 
      */
     private String setDateUI(){
-        // start and end range 6 int
+        System.out.println("----------------------------------------------");
+        System.out.println("Filter date by start date - end date"); 
+        System.out.println("Start Date"); 
+        String start = SelectionHelper.dateSelectUI(); 
+        System.out.println("End Date"); 
+        String end = SelectionHelper.dateSelectUI(); 
+
+        String returnString = start + "-" + end;
+    
+        return returnString; 
     }
 
     /**
@@ -177,6 +192,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * @return the specified date 
      */
     private String setLocationUI(){
+        System.out.println("----------------------------------------------");
         System.out.print("Enter location to filter: "); 
         Scanner sc = new Scanner(System.in); 
         String location = sc.next(); 

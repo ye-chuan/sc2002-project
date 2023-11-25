@@ -68,7 +68,7 @@ public class UILogInLogOut {
         uiInfo.setIsStaff(userCont.getDomain(uiInfo.getUserID()));
 
         //suite for first login
-        if (userCont.isFirstLogin()){
+        if (userCont.isFirstLogin(password)){
             System.out.println("Password is default password"); 
             System.out.println("Please change to a strong password"); 
             return new UIChangePassword(uiInfo);

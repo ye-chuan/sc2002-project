@@ -1,6 +1,7 @@
 package scs3grp5.ui.boundary;
 
 import scs3grp5.controller.UserController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class PrintStaffDetail implements IPrintDetail{
 
@@ -27,8 +28,8 @@ public class PrintStaffDetail implements IPrintDetail{
     @Override
     public void printDetail(){
 
-        String name = userCont.getName(userID).toUpperCase(); 
-        String faculty = userCont.getFaculty(userID).toUpperCase(); 
+        String name = (userCont.getName(userID)).toUpperCase(); 
+        String faculty = (userCont.getFaculty(userID)).toUpperCase(); 
         String email = userCont.getUserName(userID)+ "@ntu.edu.sg";
 
         System.out.println("ACCOUNT DETAIL"); 

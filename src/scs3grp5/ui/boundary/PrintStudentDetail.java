@@ -1,5 +1,7 @@
 package scs3grp5.ui.boundary;
 
+import scs3grp5.ui.ulti.PrintHelper;
+
 public class PrintStudentDetail extends PrintStaffDetail {
 
     /** 

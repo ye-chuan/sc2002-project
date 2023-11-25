@@ -88,8 +88,6 @@ public class UIPrivilegedCamp extends UserInterface{
           if (!SelectionHelper.validOption(--option,1, maxOption)) System.out.println("Invalid Option!");
     
         } while (!SelectionHelper.validOption(--option,1, maxOption)); 
-    
-        sc.close(); 
 
         REPORTFILTER filter; 
 
