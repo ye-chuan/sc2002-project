@@ -1,8 +1,6 @@
 package scs3grp5.ui.controller;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import scs3grp5.controller.CampListController;
 import scs3grp5.ui.input.SelectionFromList;
 import scs3grp5.ui.input.SelectionMenu;

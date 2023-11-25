@@ -1,6 +1,5 @@
 package scs3grp5.ui.controller;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import scs3grp5.controller.SuggestionController;

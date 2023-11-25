@@ -3,7 +3,6 @@ package scs3grp5.ui.controller;
 import java.util.Scanner;
 
 import scs3grp5.controller.SuggestionController;
-import scs3grp5.entity.SuggestionStatus;
 import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintSuggestionDetail;
 import scs3grp5.ui.input.SelectionFromList;

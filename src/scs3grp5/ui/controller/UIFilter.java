@@ -1,6 +1,5 @@
 package scs3grp5.ui.controller;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import scs3grp5.controller.CampListController;
 import scs3grp5.ui.input.ISelectOption;
@@ -11,7 +10,6 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
 
-import javax.swing.text.html.Option;
 
 public class UIFilter implements IPrintMenu, IUserInterface {
 

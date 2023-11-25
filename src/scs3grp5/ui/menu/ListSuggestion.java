@@ -1,6 +1,5 @@
 package scs3grp5.ui.menu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import scs3grp5.controller.SuggestionController;

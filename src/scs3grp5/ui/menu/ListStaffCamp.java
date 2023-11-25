@@ -1,7 +1,6 @@
 package scs3grp5.ui.menu;
 
 import java.util.List;
-import scs3grp5.controller.CampController;
 import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListStaffCamp extends ListStudentCamp {
