@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 /**
  * This interface gives the ability to be able to print the detail of a class  

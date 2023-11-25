@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 public class MenuStaffCampList implements IPrintMenu {
     

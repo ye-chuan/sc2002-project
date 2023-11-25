@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

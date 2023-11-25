@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 /**
  * Provide a UI for the view account

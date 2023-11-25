@@ -1,6 +1,7 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.Scanner;
+import scs3grp5.controller.UserController;
 
 public class UIChangePassword implements IUserInterface {
     

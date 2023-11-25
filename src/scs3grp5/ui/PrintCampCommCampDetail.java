@@ -24,7 +24,7 @@ public class PrintCampCommCampDetail implements IPrintDetail {
         System.out.println("----------------------------------------------"); 
         System.out.println("CAMP INFORMATION"); 
         System.out.println("Camp Name: " + campCont.getName(campID)); 
-        System.out.println("Date of Camp: " + campCont.getDate(uiInfo.getCampID()));
+        System.out.println("Date of Camp: " + campCont.getDate(campID));
         System.out.println("Registration closing date: " + campCont.getClosingDate(campID));
         System.out.println("Camp Staff-In-Charge: " + campCont.getCampInCharge(campID)); 
         System.out.println("Participants Slot: " + participant); 

@@ -1,7 +1,8 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import scs3grp5.controller.CampListController;
 
 import javax.swing.text.html.Option;
 
@@ -57,7 +58,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
     }
 
     @Override
-    public void showUI() {
+    public IUserInterface showUI() {
 
         ISelectOption optionSelector = new SelectionMenu();
         
@@ -70,13 +71,13 @@ public class UIFilter implements IPrintMenu, IUserInterface {
                 option = optionSelector.getUserChoiceUI(printMenu(), wrongInput);
             }
             catch (OptionException e){
-                return; 
+                return null; 
             }
         
             switch(option){
                 case 0: 
                     filterCampToPrint(); 
-                    return; 
+                    return null; 
                 case 1: 
                     availableParticipant = toggleChoice(availableParticipant); 
                     break; 
@@ -98,7 +99,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
                     break; 
                 case 9: 
                     campListCont.setDefaultFilter(isStaff);
-                    return;
+                    return null;
                 default: 
                     wrongInput = true;
             }
@@ -146,7 +147,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * This method tells the CampList Controller the filters the user Set and Update the listOfCamps to be printed
      */
     private void filterCampToPrint(){
-        CampListCont.filterBy(isStaff, byLocation, availableParticipant, availableCommittee, byDate, byFaculty, byVisibility); 
+        campListCont.filterBy(isStaff, byLocation, availableParticipant, availableCommittee, byDate, byFaculty, byVisibility); 
     }
 
     /**

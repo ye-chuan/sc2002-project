@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 /** 
  * Represent the general features of the UI class

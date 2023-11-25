@@ -1,6 +1,7 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.Scanner;
+import scs3grp5.controller.EnquiryController;
 
 public class UIEnquiry extends UserInterface {
 
@@ -16,11 +17,17 @@ public class UIEnquiry extends UserInterface {
 
         IPrintDetail printDetail = new PrintEnquiryDetail(uiInfo.getEnquiryID());
 
+        printDetail.printDetail();
+
         if (!enquiryCont.getStatus(uiInfo.getEnquiryID()) || !enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.enquiryID) || !uiInfo.getIsCommittee()){
-            System.out.println("Press any key to go back to Enquiry List Menu");
-            Scanner sc = new Scanner(System.in); 
-            sc.next(); 
-            return new UIEnquiryList(uiInfo);
+            menu = new MenuNoOption(); 
+            optionSelector = new SelectionNull();
+            try{
+                optionSelector.getUserChoiceUI(menu.printMenu(), true);
+            }
+            catch (OptionException e){
+                return new UIEnquiryList(uiInfo);
+            }
         }
         
         int option = -1;

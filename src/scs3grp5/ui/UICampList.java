@@ -1,8 +1,9 @@
-package ui;
+package scs3grp5.ui;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import scs3grp5.controller.CampListController;
 
 public class UICampList extends UserInterface{
 

@@ -1,4 +1,6 @@
-package ui;
+package scs3grp5.ui;
+
+import scs3grp5.controller.EnquiryController;
 
 public class PrintEnquiryDetail implements IPrintDetail{
 

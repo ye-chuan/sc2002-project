@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 /**
  * This interface gives the ability for the class to become a UserInterface

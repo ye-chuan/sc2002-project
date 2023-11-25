@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 public class SelectionHelper {
     
@@ -16,8 +16,7 @@ public class SelectionHelper {
     }
 
     public static boolean comfirmChanges(){
-        System.out.println("To comfirm changes:"); 
-        System.out.println("\t(1) Yes"); 
+        System.out.println("\t(Press 0 to "); 
         System.out.println("\t(2) No"); 
 
         Scanner sc = new Scanner(System.in); 

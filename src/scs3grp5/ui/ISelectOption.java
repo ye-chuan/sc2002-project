@@ -1,4 +1,4 @@
-package ui;
+package scs3grp5.ui;
 
 /**
  * this interface gives classes the ability to select option
