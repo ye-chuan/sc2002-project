@@ -1,21 +1,21 @@
 package scs3grp5.ui.menu;
 
-import java.util.ArrayList;
+import java.util.List;
 import scs3grp5.controller.EnquiryController;
 import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListEnquiry implements IPrintMenu{
 
-    private ArrayList<String> listOfEnquiries; 
+    private List<String> listOfEnquiries; 
 
     /**
      * to communicate with CampController
      */
     private EnquiryController enquiryCont;  
 
-    public ListEnquiry(ArrayList<String> listOfEnquiries){
+    public ListEnquiry(List<String> listOfEnquiries, String campID){
         this.listOfEnquiries = listOfEnquiries;
-        enquiryCont = new EnquiryController();
+        enquiryCont = new EnquiryController(campID);
     }
 
     @Override

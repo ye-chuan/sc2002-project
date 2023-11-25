@@ -1,18 +1,20 @@
 package scs3grp5.ui.menu;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import scs3grp5.controller.CampController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListStudentCamp implements IPrintMenu {
 
-    protected ArrayList<String> listOfCamps; 
+    protected List<String> listOfCamps; 
 
     /**
      * to communicate with CampController
      */
     protected CampController campCont;  
 
-    public ListStudentCamp(ArrayList<String> listOfCamps){
+    public ListStudentCamp(List<String> listOfCamps){
         this.listOfCamps = listOfCamps;
         campCont = new CampController();
     }
@@ -29,8 +31,8 @@ public class ListStudentCamp implements IPrintMenu {
             String campComm = "AVAILABLE"; 
 
             String name = campCont.getName(campID); 
-            if (campCont.getRemainingParticipantSlot(campID) == 0) participant = "FULL"; 
-            if (campCont.getRemainingCommitteeSlot(campID) == 0) campComm = "FULL"; 
+            if (campCont.getRemainingParticipantSlots(campID) == 0) participant = "FULL"; 
+            if (campCont.getRemainingCampCommSlots(campID) == 0) campComm = "FULL"; 
             if (campCont.isCampOver(campID)){
                 date = "REGISTRATION CLOSED";
                 participant = "N/A"; 

@@ -65,7 +65,7 @@ public class UILogInLogOut {
         sc.close();
 
         uiInfo.setUserID(userID); 
-        uiInfo.setIsStaff(userCont.getDomain(uiInfo.getUserID()));
+        uiInfo.setIsStaff(userCont.isStaffUserType(uiInfo.getUserID()));
 
         //suite for first login
         if (userCont.isFirstLogin(password)){

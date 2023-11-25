@@ -1,6 +1,7 @@
 package scs3grp5.ui.controller;
 
 import scs3grp5.controller.CampController;
+import scs3grp5.controller.RegistrationException;
 import scs3grp5.entity.CampRole;
 import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintStudentCampDetail;
@@ -30,7 +31,7 @@ public class UINonPrivilegedCamp extends UserInterface{
     public IUserInterface showUI() {
 
         boolean isParticipant; 
-        boolean wrongInput; 
+        boolean wrongInput = false; 
         int option = -1; 
         
         if (campCont.getUserStatus(uiInfo.getUserID(), uiInfo.getCampID()) == null) isParticipant = false;
@@ -40,7 +41,7 @@ public class UINonPrivilegedCamp extends UserInterface{
         optionSelector = new SelectionMenu();
         IPrintDetail printDetail = new PrintStudentCampDetail(uiInfo.getCampID(), isParticipant);
 
-        String errorMessage; 
+        String errorMessage = ""; 
         boolean errorRegistration = false; 
         do{
             try{

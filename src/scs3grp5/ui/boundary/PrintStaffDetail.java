@@ -16,7 +16,7 @@ public class PrintStaffDetail implements IPrintDetail{
     protected String userID;
 
     /** 
-     * Constructor for PrintStaffUI
+     * Constructor for PrintStaffDetail class 
      * 
      * @param userID contains the userID for the user 
      */

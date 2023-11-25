@@ -1,11 +1,12 @@
 package scs3grp5.ui.menu;
 
-import java.util.ArrayList;
+import java.util.List;
 import scs3grp5.controller.CampController;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListStaffCamp extends ListStudentCamp {
 
-    public ListStaffCamp(ArrayList<String> listOfCamps) {
+    public ListStaffCamp(List<String> listOfCamps) {
         super(listOfCamps);
     }
 
@@ -18,11 +19,13 @@ public class ListStaffCamp extends ListStudentCamp {
         for (String campID : listOfCamps){
             String date = campCont.getDate(campID); 
 
-            int actualCount = campCont.getTotalParticipantSlot(campID) - campCont.getRemainingParticipantSlot(campID); 
-            String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlot(campID));
-            actualCount = campCont.getTotalCampCommSlot(campID) - campCont.getRemainingCampCommSlot(campID); 
+            int actualCount = campCont.getTotalParticipantSlots(campID) - campCont.getRemainingParticipantSlots(campID); 
+            String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlots(campID));
+            actualCount = campCont.getTotalCampCommSlots(campID) - campCont.getRemainingCampCommSlots(campID); 
             String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
-            String visibility = campCont.getVisibility(campID);
+            String visibility; 
+            if (campCont.getVisibility(campID)) visibility = "ON";
+            else visibility = "OFF";
 
             String name = campCont.getName(campID); 
             if (campCont.isCampOver(campID)) date = "REGISTRATION CLOSED";

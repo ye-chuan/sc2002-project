@@ -1,6 +1,8 @@
 package scs3grp5.ui.controller;
 
 import java.util.Scanner;
+
+import scs3grp5.controller.PasswordException;
 import scs3grp5.controller.UserController;
 import scs3grp5.ui.ulti.ChangePage;
 
@@ -31,23 +33,30 @@ public class UIChangePassword implements IUserInterface {
             System.out.print("Enter new password: "); 
             newPassword = sc.nextLine(); 
 
-            if (userCont.isPasswordStrong(newPassword)){
-                System.out.print("Re-type new password: "); 
-                reTypePassword = sc.nextLine(); 
+            try{
+                userCont.isPasswordStrong(newPassword);
+            }catch( PasswordException e){
+                System.out.println(e.getMessage());
+                System.out.println("Password is not strong"); 
+            }
             
-                if (isPasswordSame(newPassword, reTypePassword)){
-                    sc.close(); 
-                    System.out.println("Password change successfully!!"); 
-                    userCont.changePassword(uiInfo.getUserID(), newPassword); 
+            System.out.print("Re-type new password: "); 
+            reTypePassword = sc.nextLine(); 
+        
+            if (isPasswordSame(newPassword, reTypePassword)){
+                sc.close(); 
+                try{
+                    userCont.changePassword(uiInfo.getUserID(), newPassword);
+                    System.out.println("Password change successfully!!");
                     return new UIViewAccount(uiInfo);
-                }
-                else{
-                    System.out.println("Password is not the same"); 
+                }catch ( PasswordException e){
+                    System.out.println(e.getMessage());
+                    continue; 
                 }
             }
             else{
-                System.out.println("Password is not strong"); 
-            } 
+                System.out.println("Password is not the same"); 
+            }
             
         }while (true); 
     }

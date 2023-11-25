@@ -19,7 +19,7 @@ public class PrintStudentDetail extends PrintStaffDetail {
         String name = userCont.getName(userID).toUpperCase(); 
         String faculty = userCont.getFaculty(userID).toUpperCase(); 
         String email = userCont.getUserName(userID) + "@ntu.edu.sg";
-        String campComName =  userCont.getCampComName(userID);
+        String campComName =  userCont.getStudentCommitteeCampID(userID);
         String points = Integer.toString(userCont.getPoints(userID));
 
         System.out.println("ACCOUNT DETAIL"); 

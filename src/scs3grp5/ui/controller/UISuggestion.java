@@ -1,5 +1,7 @@
 package scs3grp5.ui.controller;
 
+import java.util.Scanner;
+
 import scs3grp5.controller.SuggestionController;
 import scs3grp5.entity.SuggestionStatus;
 import scs3grp5.ui.boundary.IPrintDetail;
@@ -18,17 +20,17 @@ public class UISuggestion extends UserInterface {
 
     public UISuggestion(UIInformation uiInfo) {
         super(uiInfo);
-        suggestionCont = new SuggestionController(); 
+        suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
 
     @Override
     public IUserInterface showUI() {
 
-        IPrintDetail printDetail = new PrintSuggestionDetail(uiInfo.getSuggestionID());
+        IPrintDetail printDetail = new PrintSuggestionDetail(uiInfo.getCampID(), uiInfo.getSuggestionID());
 
         printDetail.printDetail();
 
-        if (suggestionCont.getStatus(uiInfo.getSuggestionID()) != SuggestionStatus.PENDING || !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
+        if (suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING") || !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
@@ -58,17 +60,20 @@ public class UISuggestion extends UserInterface {
         
         if (option == 1){
             if (uiInfo.getIsStaff()) suggestionCont.approve(uiInfo.getSuggestionID());
-            else suggestionCont.edit(uiInfo.getSuggestionID(), editSuggestionUI()); 
+            else suggestionCont.edit(uiInfo.getUserID(), uiInfo.getSuggestionID(), editSuggestionUI()); 
         } 
         else if (option == 2){
             if (uiInfo.getIsStaff()) suggestionCont.reject(uiInfo.getSuggestionID());
-            else suggestionCont.delete(uiInfo.getSuggestionID());
+            else suggestionCont.delete(uiInfo.getUserID(), uiInfo.getSuggestionID());
         }
         return new UISuggestionList(uiInfo);
     }
 
     private String editSuggestionUI() {
-        return null;
+        System.out.print("Enter Suggestion:"); 
+        Scanner sc = new Scanner(System.in); 
+        String suggestion = sc.nextLine();
+        return suggestion;
     }
     
 }
