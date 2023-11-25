@@ -5,35 +5,27 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-import entity.Camp;
-import entity.CampDatabase;
-import entity.CampMembershipDatabase;
-import entity.Date;
-import entity.Faculty;
-import entity.Staff;
-import entity.Student;
-import entity.User;
-import entity.UserDatabase;
-import entity.CampDatabase.Query;
+import scs3grp5.Main;
+import scs3grp5.entity.*;
 
 public class CampListController {
 
-	private Query query;
+	private CampDatabase.Query query;
 
 	/**
 	 * 
 	 * @param userID
 	 */
 	public Collection<String> viewMyCamp(String userID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		
 		User u1 = uDB.getItem(userID);
 		Collection<Camp> campList = new ArrayList<Camp>();
 
 		if(u1 instanceof Staff) {
-			Query query = new Query();
+			CampDatabase.Query query = new CampDatabase.Query();
 
 			query.onlyCampsBy(userID);
 
@@ -56,7 +48,7 @@ public class CampListController {
 	 * @param userID
 	 */
 	public void setDefaultFilter(String userID) {
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 
 		User u1 = uDB.getItem(userID);
 		
@@ -80,8 +72,8 @@ public class CampListController {
 	 * 
 	 */
 	public Collection<String> viewCamps() {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Collection<Camp> campList = new ArrayList<Camp>();
 		
 		campList = cDB.getCamps(query);
@@ -97,9 +89,9 @@ public class CampListController {
 	 * @param date
 	 */
 	public Collection<String> FilterBy(String location, boolean openParticipantSlots, boolean openCommSlots, Date date, Faculty faculty, boolean visibility) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		Query query = new Query();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		CampDatabase.Query query = new CampDatabase.Query();
 		
 		if (openCommSlots) query.excludeFullCampCommSlots();
 		if (openParticipantSlots) query.excludeFullParticipantSlot();

@@ -6,17 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import entity.Camp;
-import entity.CampDatabase;
-import entity.CampMembershipDatabase;
-import entity.CampRole;
-import entity.Date;
-import entity.Enquiry;
-import entity.EnquiryDatabase;
-import entity.Student;
-import entity.Suggestion;
-import entity.User;
-import entity.UserDatabase;
+import scs3grp5.Main;
+import scs3grp5.entity.*;
 
 
 public class EnquiryController {
@@ -30,7 +21,7 @@ public class EnquiryController {
 	 */
 	public void reply(String userID, String enquiryID, String reply) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
-		UserDatabase uDB = new UserDatabase();
+		UserDatabase uDB = Main.getUserDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		User u1 = uDB.getItem(userID);
 
@@ -124,8 +115,8 @@ public class EnquiryController {
 	 * @param campID
 	 */
 	public Collection<String> getPendingEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> sugList = c1.getEnquiryDB().getUnresolvedEnquiries();
 		
@@ -138,8 +129,8 @@ public class EnquiryController {
 	 * @param campID
 	 */
 	public Collection<String> getResolvedEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> sugList = c1.getEnquiryDB().getResolvedEnquiries();
 		
@@ -152,8 +143,8 @@ public class EnquiryController {
 	 * @param campID
 	 */
 	public Collection<String> getAllEnquiriesByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
 		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiries());
@@ -167,8 +158,8 @@ public class EnquiryController {
 	 * @param userID
 	 */
 	public Collection<String> getMyPendingEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
 
@@ -181,8 +172,8 @@ public class EnquiryController {
 	 * @param userID
 	 */
 	public Collection<String> getMyResolvedEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
 
@@ -195,8 +186,8 @@ public class EnquiryController {
 	 * @param userID
 	 */
 	public Collection<String> getMyEnquiries(String campID, String userID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
 		enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
@@ -240,9 +231,9 @@ public class EnquiryController {
 	 * @param campID
 	 */
 	public CampRole getUserStatus(String campID, String studentID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		Student s1 = (Student) uDB.getItem(studentID);
 		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);

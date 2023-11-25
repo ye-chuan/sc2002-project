@@ -6,17 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import entity.Camp;
-import entity.CampDatabase;
-import entity.CampMembershipDatabase;
-import entity.CampRole;
-import entity.Date;
-import entity.Student;
-import entity.Suggestion;
-import entity.SuggestionDatabase;
-import entity.SuggestionStatus;
-import entity.User;
-import entity.UserDatabase;
+import scs3grp5.Main;
+import scs3grp5.entity.*;
 
 
 public class SuggestionController {
@@ -130,8 +121,8 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public Collection<String> getPendingSuggestionByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Suggestion> sugList = c1.getSuggestionDB().getPendingSuggestions();
 		
@@ -144,8 +135,8 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public Collection<String> getRejectedSuggestionByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Suggestion> sugList = c1.getSuggestionDB().getRejectedSuggestions();
 		
@@ -172,8 +163,8 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public Collection<String> getAllSuggestionByCamp(String campID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
 		Camp c1 = cDB.getItem(campID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
 		sugList.addAll(c1.getSuggestionDB().getApprovedSuggestions());
@@ -188,9 +179,9 @@ public class SuggestionController {
 	 * @param userID
 	 */
 	public Collection<String> getMyPendingSuggestion(String campID, String userID) throws Exception{
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
 		if (u1 instanceof Student) { 
@@ -217,9 +208,9 @@ public class SuggestionController {
 	 * @param userID
 	 */
 	public Collection<String> getMyRejectedSuggestion(String campID, String userID) throws Exception{
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
 		if (u1 instanceof Student) { 
@@ -246,9 +237,9 @@ public class SuggestionController {
 	 * @param userID
 	 */
 	public Collection<String> getMySuggestion(String campID, String userID) throws Exception{
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
 		if (u1 instanceof Student) { 
@@ -277,9 +268,9 @@ public class SuggestionController {
 	 * @param userID
 	 */
 	public Collection<String> getMyApprovedSuggestion(String campID, String userID) throws Exception{
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
 		if (u1 instanceof Student) { 
@@ -338,9 +329,9 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public CampRole getUserStatus(String campID, String studentID) {
-		CampMembershipDatabase cmemberDB = new CampMembershipDatabase();
-		CampDatabase cDB = new CampDatabase(cmemberDB);
-		UserDatabase uDB = new UserDatabase();
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		Student s1 = (Student) uDB.getItem(studentID);
 		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);
