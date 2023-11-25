@@ -1,6 +1,5 @@
 package ui;
 
-import java.util.Scanner;
 
 public class UISuggestion extends UserInterface {
 
@@ -16,11 +15,17 @@ public class UISuggestion extends UserInterface {
 
         IPrintDetail printDetail = new PrintSuggestionDetail(uiInfo.getSuggestionID());
 
+        printDetail.printDetail();
+
         if (suggestionCont.getStatus(uiInfo.getSuggestionID()) != "PENDING" || !suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || !uiInfo.getIsStaff()){
-            System.out.println("Press any key to go back to Suggestion List Menu");
-            Scanner sc = new Scanner(System.in); 
-            sc.next(); 
-            return new UISuggestionList(uiInfo);
+            menu = new MenuNoOption(); 
+            optionSelector = new SelectionNull();
+            try{
+                optionSelector.getUserChoiceUI(menu.printMenu(), true);
+            }
+            catch (OptionException e){
+                return new UISuggestionList(uiInfo);
+            }
         }
 
         int option = -1;

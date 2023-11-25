@@ -1,7 +1,5 @@
 package ui;
 
-import java.util.Scanner;
-
 public class PrintStudentDetail extends PrintStaffDetail {
 
     /** 
@@ -34,11 +32,6 @@ public class PrintStudentDetail extends PrintStaffDetail {
         System.out.println("├───────────────────┼───────────────────────────────────────────┤");
           System.out.println("│ Number of Points  │"+ PrintHelper.fillUpSpace(points, 43, 1,false) + "│");
         System.out.println("└───────────────────┴───────────────────────────────────────────┘");
-        System.out.println("(press any key to go back to Account Menu)"); 
-
-        Scanner sc = new Scanner(System.in); 
-        sc.next(); 
-        sc.close();
     }
     
 }

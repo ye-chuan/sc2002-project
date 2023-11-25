@@ -1,7 +1,5 @@
 package ui;
 
-import java.util.Scanner;
-
 public class PrintStaffDetail implements IPrintDetail{
 
     /**
@@ -38,12 +36,7 @@ public class PrintStaffDetail implements IPrintDetail{
         System.out.println("│ Faculty           │"+ PrintHelper.fillUpSpace(faculty, 43, 1,false) + "│");
         System.out.println("├───────────────────┼───────────────────────────────────────────┤");
           System.out.println("│ Email             │"+ PrintHelper.fillUpSpace(email, 43, 1, false) + "│");
-        System.out.println("└───────────────────┴───────────────────────────────────────────┘");
-        System.out.println("(press any key to go back to Account Menu)"); 
-
-        Scanner sc = new Scanner(System.in); 
-        sc.next(); 
-        sc.close(); 
+        System.out.println("└───────────────────┴───────────────────────────────────────────┘"); 
     }
     
 }

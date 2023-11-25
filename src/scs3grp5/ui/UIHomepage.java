@@ -34,7 +34,7 @@ public class UIHomepage extends UserInterface{
             }
         }while (wrongInput); 
         
-        if (option == 1) return new UIViewAccount(uiInfo, uiInfo.isStaff);
+        if (option == 1) return new UIViewAccount(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
         return null; 
     }

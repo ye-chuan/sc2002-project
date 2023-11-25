@@ -21,20 +21,8 @@ public class SelectionMenu implements ISelectOption {
             throw new OptionException();
         }
 
-        if (!validOption(option, maxOption)) throw new OptionException(); 
+        if (!SelectionHelper.validOption(option, 0, maxOption)) throw new OptionException(); 
         return option;
-    }
-
-    /**
-   * This method check if the option is a valid option 
-   * 
-   * @param option Option chosen by the user 
-   * @param max the maximum option can take
-   * @return True if its a valid option else False
-   */
-    private boolean validOption(int option, int max){
-        if (option >= 0 && option <= max) return true; 
-        return false;   
     }
 
 }

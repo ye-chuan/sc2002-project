@@ -21,19 +21,8 @@ public class SelectionFromList implements ISelectOption{
             throw new OptionException();
         }
 
-        if (!validOption(option, maxOption)) return -1; 
+        if (!SelectionHelper.validOption(option, 1, maxOption)) return -1; 
         return option;
     }
 
-    /**
-     * This method check if the option is a valid option 
-     * 
-     * @param option Option chosen by the user 
-     * @param max the maximum option can take
-     * @return True if its a valid option else False
-    */
-    private boolean validOption(int option, int max){
-        if (option >= 0 && option <= max) return true; 
-        return false;   
-    }
 }

@@ -5,15 +5,14 @@ package ui;
  */
 public class UIViewAccount extends UserInterface{
 
-    private boolean isStaff; 
+
     /** 
      * Constructor for ViewStaffAccountUI
      * 
      * @param uiInfo contains the information of the user 
      */
-    public UIViewAccount(UIInformation uiInfo, boolean isStaff){
+    public UIViewAccount(UIInformation uiInfo){
         super(uiInfo);
-        this.isStaff = isStaff; 
     }
 
     @Override
@@ -37,9 +36,17 @@ public class UIViewAccount extends UserInterface{
 
         if (option == 1){
             IPrintDetail printDetail; 
-            if (isStaff) printDetail = new PrintStaffDetail(uiInfo.getUserID());
+            if (uiInfo.getIsStaff()) printDetail = new PrintStaffDetail(uiInfo.getUserID());
             else printDetail = new PrintStudentDetail(uiInfo.getUserID());
             printDetail.printDetail();
+            menu = new MenuNoOption(); 
+            optionSelector = new SelectionNull();
+            try{
+                optionSelector.getUserChoiceUI(menu.printMenu(), true);
+            }
+            catch (OptionException e){
+                return new UIViewAccount(uiInfo);
+            }   
         }
         else if (option == 2) return new UIChangePassword(uiInfo); 
         else if (option == 3) return new UIHomepage(uiInfo);  

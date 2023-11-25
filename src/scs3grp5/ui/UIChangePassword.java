@@ -37,7 +37,7 @@ public class UIChangePassword implements IUserInterface {
                     sc.close(); 
                     System.out.println("Password change successfully!!"); 
                     userCont.changePassword(uiInfo.getUserID(), newPassword); 
-                    return new UIViewAccount(uiInfo, uiInfo.getIsStaff());
+                    return new UIViewAccount(uiInfo);
                 }
                 else{
                     System.out.println("Password is not the same"); 
