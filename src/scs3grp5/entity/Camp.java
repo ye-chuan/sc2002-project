@@ -10,13 +10,12 @@ public class Camp implements Identifiable, Serializable{
 	private boolean visible = false;
 	private SuggestionDatabase suggestionDB;
 	private EnquiryDatabase enquiriesDB;
-
-    private boolean hasSomethingNothing;
-    public boolean getHasSomethingNothing() {return this.hasSomethingNothing;}
+    private CampMembershipDatabase membershipDB;
 
 	/**
      * Construct Camp object exhausively
      *
+     * @param membershipDB The {@CampMembershipDatabase} that is going to store the Membership information for this Camp
 	 * @param name Name of the camp
 	 * @param location Location where the camp is held
 	 * @param startDate The camp's first day
@@ -27,25 +26,28 @@ public class Camp implements Identifiable, Serializable{
 	 * @param staffInCharge The staff in charge of the camp (cannot be changed)
 	 * @param openTo The faculty that the camp is opened to
 	 */
-	public Camp(String name, String location, Date startDate, Date endDate, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
+	public Camp(CampMembershipDatabase membershipDB, String name, String location, Date startDate, Date endDate, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
         this.information = new CampInformation(name, location, startDate, endDate, closingDate, participantSlots, campCommSlots, staffInCharge, openTo);
         this.information.setCampID(Main.getIdGenerator().generate());
 
         this.suggestionDB = new SuggestionDatabase();
         this.enquiriesDB = new EnquiryDatabase();
+        this.membershipDB = membershipDB;
 	}
 
     /**
      * Constructs Camp object minimally.
      *
+     * @param membershipDB The {@CampMembershipDatabase} that is going to store the Membership information for this Camp
      * @param staffInCharge The staff-in-charge is the only required attribute of a Camp (and unmodifiable after creation)
      */
-    public Camp(Staff staffInCharge) {
+    public Camp(CampMembershipDatabase membershipDB, Staff staffInCharge) {
         this.information = new CampInformation(staffInCharge);
         this.information.setCampID(Main.getIdGenerator().generate());
 
         this.suggestionDB = new SuggestionDatabase();
         this.enquiriesDB = new EnquiryDatabase();
+        this.membershipDB = membershipDB;
     }
 
     public boolean isVisible() {
@@ -91,7 +93,6 @@ public class Camp implements Identifiable, Serializable{
 	public void setLocation(String location) {
         this.information.setLocation(location);
 	}
-
 
 	/**
 	 * Get the Camp's event dates (not registration date).
@@ -169,6 +170,14 @@ public class Camp implements Identifiable, Serializable{
 
     public EnquiryDatabase getEnquiryDB() {
         return this.enquiriesDB;
+    }
+
+    public int getNumParticipants() {
+        return membershipDB.getParticipantSize(this);
+    }
+
+    public int getNumCampComm() {
+        return membershipDB.getCampCommSize(this);
     }
 
     @Override

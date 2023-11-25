@@ -49,6 +49,6 @@ public class User implements Identifiable, Serializable {
     }
 
     public String toString() {
-        return "User #" + getID() + ": " + getName() + " in " + getFaculty();
+        return "User #" + getID() + ": " + getName() + " from " + getFaculty();
     }
 }
