@@ -40,16 +40,15 @@ public class UserController {
 	 * @param userID
 	 * @param newPassword
 	 */
-	public boolean changePassword(String userID, String newPassword) {
+	public void changePassword(String userID, String newPassword) throws PasswordException {
 		UserDatabase uDB = Main.getUserDB();
 		User u1 = uDB.getItem(userID);
 	
 		if (u1.checkPassword(newPassword)) {
 			u1.changePassword(newPassword);
-			return true;
 		}
 		else {
-			return false;
+			throw new PasswordException("new password cannot be same as old password");
 		}
 		
 	}
