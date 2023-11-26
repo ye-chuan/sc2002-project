@@ -1,7 +1,5 @@
 package scs3grp5.controller;
 
-import java.util.Scanner;
-
 import scs3grp5.Main;
 import scs3grp5.entity.*;
 
