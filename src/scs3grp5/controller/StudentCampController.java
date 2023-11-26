@@ -117,10 +117,10 @@ public class StudentCampController {
 
 		for (Camp c: campList) {
 			if (c.getDates().overlaps(registerDateRange)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 		
 	}
 

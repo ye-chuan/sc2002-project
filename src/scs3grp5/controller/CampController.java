@@ -447,18 +447,22 @@ public class CampController {
 	public CampRole getUserStatus(String campID, String studentID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
+		CampRole s1Role;
 		
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
-		Student s1 = (Student) uDB.getItem(studentID);
-		CampRole s1Role = cmemberDB.getRoleInCamp(c1,s1);
-
-		if (s1Role != null) {
+		User u1 = uDB.getItem(studentID);
+		if(u1 instanceof Student) {
+			Student s1 = (Student) u1;
+			s1Role = cmemberDB.getRoleInCamp(c1,s1);
 			return s1Role;
 		}
-		return null;
-		
+		else if (u1 instanceof Staff) {
+			s1Role = null;
+		}
+		else s1Role = null;
 
+		return s1Role;
 	}
 
 	

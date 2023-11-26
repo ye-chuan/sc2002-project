@@ -108,7 +108,6 @@ public class EnquiryController {
 	 * @see EnquiryListController#getPendingEnquiries(String)
 	 */
 	public List<String> getPendingEnquiries(String userID) {
-		System.out.println("campID in enq contAAAAA"+campID);
 		return enqListCont.getPendingEnquiries(userID);
 	}
 
@@ -142,7 +141,7 @@ public class EnquiryController {
 	 * @return name of enquiry creator
 	 */
 	public String getEnquiryCreator(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		UserDatabase uDB = Main.getUserDB();
 
 		String userID = eDB.getItem(enquiryID).getAskedBy();
@@ -156,7 +155,7 @@ public class EnquiryController {
 	 * @return name of enquiry replier
 	 */
 	public String getEnquiryRepliesCreator(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		UserDatabase uDB = Main.getUserDB();
 		String userID = eDB.getItem(enquiryID).getRepliedBy();
 		return uDB.getItem(userID).getName();
@@ -169,7 +168,7 @@ public class EnquiryController {
 	 * @return true is enquired is created by user
 	 */
 	public boolean isOwner(String userID, String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		return eDB.getItem(enquiryID).getAskedBy().equals(userID);
 
 	}
@@ -180,7 +179,7 @@ public class EnquiryController {
 	 * @return enquiry text
 	 */
 	public String getEnquiryText(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		return eDB.getItem(enquiryID).getEnquiry();
 	}
 
@@ -190,7 +189,7 @@ public class EnquiryController {
 	 * @return enquiry text
 	 */
 	public String getEnquiryReply(String enquiryID) {
-		EnquiryDatabase eDB = new EnquiryDatabase();
+		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		return eDB.getItem(enquiryID).getReply();
 	}
 
