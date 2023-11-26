@@ -12,7 +12,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
+/**
+ * Reads UserDatabase objects from a file
+ */
 public class UserDatabaseFileReader {
 
 	private UserDatabase UserDatabaseObj;

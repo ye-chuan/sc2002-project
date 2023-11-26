@@ -11,7 +11,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
+/**
+ * Reads UniqueIDGenerator objects from a file
+ */
 public class UniqueIDGeneratorFileReader {
 
 	private LongIncrementalIDGenerator UniqueIDGeneratorObj;

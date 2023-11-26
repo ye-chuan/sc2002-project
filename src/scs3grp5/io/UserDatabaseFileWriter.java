@@ -11,7 +11,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
-
+/**
+ * Writes UserDatabase object into a file
+ */
 public class UserDatabaseFileWriter {
 
 	/**

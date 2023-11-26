@@ -12,7 +12,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
+/**
+ * Reads CampMembebrshipDatabase object from a file
+ */
 public class CampMembershipDatabaseFileReader {
 
 	private CampMembershipDatabase campMembershipDatabaseobj;

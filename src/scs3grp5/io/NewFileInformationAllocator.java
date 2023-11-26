@@ -1,6 +1,4 @@
 /**
- * Reads data from .xlsx file. Depending on the file that was read,
- * it creates a corresonding array of Student or Staff Objects.
  * @author Ong Yi Ren, Elaine
  * @version 1.0
  * @since 2023-11-26
@@ -23,7 +21,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
+/**
+ *Reads data from .xlsx file. Depending on the file that was read,
+ *it creates a corresonding array of Student or Staff Objects.
+ */
 public class NewFileInformationAllocator {
 
 	private String defaultpw = "password";
@@ -33,6 +34,13 @@ public class NewFileInformationAllocator {
 	/**
 	 * 
 	 * @param filePath
+	 * @return ArrayList<Student>
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
+	 * @throws InvalidFormatException Specialized sub-class of JsonMappingException that is used when 
+	 * the underlying problem appears to be that of bad formatting of a value to deserialize
 	 */
 	public ArrayList<Student> initialiseStudentFile(String filePath) throws FileNotFoundException, IOException, InvalidFormatException {
 			FileInputStream fStudent = new FileInputStream(filePath);
@@ -78,6 +86,13 @@ public class NewFileInformationAllocator {
 	/**
 	 * 
 	 * @param filePath
+	 * @return ArrayList<Staff>
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
+	 * @throws InvalidFormatException Specialized sub-class of JsonMappingException that is used when 
+	 * the underlying problem appears to be that of bad formatting of a value to deserialize
 	 */
 	public ArrayList<Staff> initialiseStaffFile(String filePath) throws FileNotFoundException, IOException, InvalidFormatException {
 			FileInputStream fStaff = new FileInputStream(filePath);

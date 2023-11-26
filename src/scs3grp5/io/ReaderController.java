@@ -27,9 +27,11 @@ public class ReaderController {
 	 * but would throw it back to the method or class who calls it.
 	 * @param filePath refers to the filepath where the file to be read is located
 	 * @return UserDatabase object
-	 * @throws FileNotFoundException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws ClassNotFoundException When class of a serialized object cannot be found.
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
 	public UserDatabase getUserDatabase(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		return UserDatabaseFileReadObj.readUserDatabaseFile(filePath);

@@ -11,7 +11,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
-
+/**
+ * Writes UniqueIDGenerator object into a file
+ */
 public class UniqueIDGeneratorFileWrite {
 
 	/**
@@ -19,7 +21,6 @@ public class UniqueIDGeneratorFileWrite {
 	 * @param filePath refers to the filepath where the file to be read is located
 	 * @param uniqueIDGeneratorObj is a uniqueIDGenerator object that is going to be 
 	 * written into path corresonding to the file path given.
-	 * @return does not return anything (void)
 	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
 	 * In other words, the file path given is invalid
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
