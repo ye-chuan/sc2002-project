@@ -11,6 +11,8 @@ public interface IUserInterface {
 
     /** 
      * This method is called to show the main UI of the class
+     * 
+     * @return the new UI page to run
      */
     public abstract IUserInterface showUI();
 }

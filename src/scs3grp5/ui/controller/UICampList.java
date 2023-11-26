@@ -82,7 +82,7 @@ public class UICampList extends UserInterface{
         if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
-                return new UIEditCamp(uiInfo);
+                return new UIEditCamp(uiInfo, false);
             }
             else return new UIHomepage(uiInfo);
         }
@@ -90,7 +90,7 @@ public class UICampList extends UserInterface{
             if (uiInfo.getIsStaff()) return new UIHomepage(uiInfo);
             else return null; 
         }
-        else if (option ==5) return null;
+        else if (option == 0)return null;
 
         campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
         wrongInput = false;
