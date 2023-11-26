@@ -29,7 +29,7 @@ public class UISuggestion extends UserInterface {
 
         printDetail.printDetail();
 
-        if (suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING") || !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
+        if (!(suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING")) || !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{

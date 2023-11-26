@@ -44,7 +44,7 @@ public class ListStudentCamp implements IPrintMenu {
         System.out.println();
         
         System.out.println("List Of Camps"); 
-        if(listOfCamps.size() == 0) System.out.println("(no enquiry for the moment)");
+        if(listOfCamps.size() == 0) System.out.println("(no camps for the moment)");
         else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String campID : listOfCamps){
             String date = campCont.getDate(campID); 
