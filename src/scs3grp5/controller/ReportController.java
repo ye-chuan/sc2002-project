@@ -10,7 +10,7 @@ import scs3grp5.io.CsvWriter;
  */
 public class ReportController {
 
-	private static String filepath;
+	private static String filepath = "report/report.csv" ;
 	/**
 	 * generates a report with all the camp information and list of members in camp and their roles
 	 * @param campID

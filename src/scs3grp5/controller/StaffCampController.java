@@ -71,7 +71,7 @@ public class StaffCampController {
 		
 		Collection<Camp> campList = cDB.getAll();
 		for (Camp c: campList) {
-			if(c.getName()==newName)
+			if(c.getName().equals(newName))
 			throw new EditCampException("Camp Name already existed");
 		}
 			
