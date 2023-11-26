@@ -24,7 +24,7 @@ public class EnquiryListController {
 	 */
 	public EnquiryListController(String campID) {
 		this.campID = campID;
-		System.out.println("campID in camp cont init"+campID);
+		System.out.println("campID in camp cont init "+ campID);
 	}
 
 
@@ -38,7 +38,7 @@ public class EnquiryListController {
 		CampController campCont = new CampController();
 		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
 
-		System.out.println("campID in enq list cont"+campID);
+		System.out.println("campID in enq list cont"+ campID);
 		Camp c1 = cDB.getItem(campID);
 		if (campCont.isCommittee(userID, campID)) {
 			enqList = c1.getEnquiryDB().getUnresolvedEnquiries();
@@ -68,7 +68,7 @@ public class EnquiryListController {
 		else {
 			enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
 		}
-
+		System.out.println("campID in enq list cont"+ campID);
 		return sortByNameIDList(enqList);
 	}
 
@@ -91,7 +91,7 @@ public class EnquiryListController {
 			enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
 			enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
 		}
-
+		System.out.println("campID in enq list cont"+ campID);
 		return sortByNameIDList(enqList);
 	}
 

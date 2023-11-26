@@ -158,6 +158,7 @@ public class EnquiryController {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		UserDatabase uDB = Main.getUserDB();
 		String userID = eDB.getItem(enquiryID).getRepliedBy();
+		if (userID==null) return "N.A";
 		return uDB.getItem(userID).getName();
 
 	}
