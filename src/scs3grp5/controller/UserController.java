@@ -11,7 +11,6 @@ import scs3grp5.entity.*;
  */
 public class UserController {
 
-	private PointController pointCont = new PointController();
 	private LoginController loginCont = new LoginController();
 	private PasswordController passwordCont = new PasswordController();
 
