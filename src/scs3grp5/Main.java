@@ -7,6 +7,8 @@ import scs3grp5.ui.UIMain;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -15,7 +17,7 @@ import java.util.Collection;
 
 public class Main {
     /** Base path for all data files */
-    private static Path dataPath = Paths.get("database");
+    private static Path dataPath = Paths.get("data");
 
     /** Path for initial staff_list.xlsx data file */
     private static Path initialStaffXlsx = dataPath.resolve("initial/staff_list.xlsx");
@@ -48,23 +50,35 @@ public class Main {
      */
     private static UniqueIDGenerator idGenerator;
     
+    /**
+     * @return The Camp Database for this application
+     */
     public static CampDatabase getCampDB() {
         return campDB;
     }
 
+    /**
+     * @return The User Database for this application
+     */
     public static UserDatabase getUserDB() {
         return userDB;
     }
     
+    /**
+     * @return The Camp Membership Database for this application
+     */
     public static CampMembershipDatabase getMemberDB() {
         return membershipDB;
     }
     
+    /**
+     * @return The Unique ID Generator for this application
+     */
     public static UniqueIDGenerator getIdGenerator() {
         return idGenerator;
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, Exception {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, InvalidFormatException {
         if (savedUserDBPath.toFile().exists()) {    // Retrieve from saved Database
             ReaderController reader = new ReaderController();
             userDB = reader.getUserDatabase(savedUserDBPath.toString());
@@ -86,61 +100,14 @@ public class Main {
 
         new UIMain().runUI();
 
-        //test_main(args);
-        
-        //WriterController writer = new WriterController();
-        //writer.storeCampDatabase(savedCampDBPath.toString(), campDB);
-        //writer.storeCampMembershipDatabase(savedMemberDBPath.toString(), membershipDB);
-        //writer.storeUserDatabase(savedUserDBPath.toString(), userDB);
-        //writer.storeuniqueIDGeneratorObj(savedIdGeneratorPath.toString(), uniqueIDg);
-    }
-    
-    // For testing purposes only
-    public static void main2(String[] args) throws FileNotFoundException, IOException, Exception {
-        // First Time Running / Reset
-        NewFileInformationAllocator fileAllocator = new NewFileInformationAllocator();
-        ArrayList<Staff> staffList =  fileAllocator.initialiseStaffFile(initialStaffXlsx.toString());
-        ArrayList<Student> studentList = fileAllocator.initialiseStudentFile(initialStudentXlsx.toString());
-        userDB = new UserDatabase(staffList, studentList);
-
-        membershipDB = new CampMembershipDatabase();
-        campDB = new CampDatabase();
-        idGenerator = new UniqueIDGenerator();
-
-        Staff staff = new Staff("SOME12", "coolpassword", Faculty.SCSE, "SOME12@ntu.edu.sg", "Prof Someone");
-        Student student = new Student("STUD1", "coolerpassword", Faculty.SCSE, "STUD1@e.ntu.edu.sg", "Someone");
-        userDB.add(student);
-        userDB.add(staff);
-
-        // Camp creation
-        Collection<Faculty> openTo = new ArrayList<Faculty>();
-        openTo.add(Faculty.EEE);
-
-        Camp camp = new Camp(membershipDB, "camp1", "location", new Date(2022,12,3), new Date(2022,12,4), new Date(2022,11,3), 100, 10, staff, openTo);
-        camp.openToNTU();
-
-        Camp camp2 = new Camp(membershipDB, "camp2", "location2", new Date(2022,12,3), new Date(2022,12,4), new Date(2022,10,3), 10, 10, staff, openTo);
-
-        campDB.add(camp);
-        campDB.add(camp2);
-
-        System.out.println(camp.getOpenTo());
-        System.out.println(camp.getDates());
-
-        CampFilterer filterer = new CampFilterer(campDB.getAll());
-        filterer.addFilter(CampFacultyFilter.onlyOpenedTo(Faculty.SCSE));
-        filterer.addFilter(CampRegistrationFilter.beforeIncl(new Date(2022, 11, 3)));
-        System.out.println(filterer.filter());
-
         WriterController writer = new WriterController();
         writer.storeCampDatabase(savedCampDBPath.toString(), campDB);
         writer.storeCampMembershipDatabase(savedMembershipDBPath.toString(), membershipDB);
         writer.storeUserDatabase(savedUserDBPath.toString(), userDB);
         writer.storeuniqueIDGeneratorObj(savedIdGeneratorPath.toString(), idGenerator);
     }
-
-
-    public static void main3(String[] args) throws FileNotFoundException, IOException, Exception {
+    
+    public static void test(String[] args) throws FileNotFoundException, IOException, Exception {
         if (savedUserDBPath.toFile().exists()) {    // Retrieve from saved Database
             ReaderController reader = new ReaderController();
             userDB = reader.getUserDatabase(savedUserDBPath.toString());

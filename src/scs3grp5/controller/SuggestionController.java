@@ -1,22 +1,23 @@
 package scs3grp5.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import scs3grp5.Main;
 import scs3grp5.entity.*;
 
-
+/**
+ * Manages suggestions in the system
+ * 
+ */
 public class SuggestionController {
-
-	private PointController pointCont = new PointController();
+	
 	private String campID;
+	private ApproverController approverCont = new ApproverController(campID);
+	private SuggesterController suggesterCont = new SuggesterController(campID);
+	private SuggestionListController suggestionListCont = new SuggestionListController(campID);
 
 	/**
-	 * 
+	 * Constructor for {@link SuggestionController} object
 	 * @param campID
 	 * 
 	 */
@@ -26,83 +27,61 @@ public class SuggestionController {
 
 	/**
 	 * 
-	 * @param userID
+	 * approves suggestion 
 	 * @param suggestionID
+	 * @see ApproverController#approve(String)
+	 * 
 	 */
 	public void approve(String suggestionID) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		Suggestion sug1 = sDB.getItem(suggestionID);
-
-		sug1.approve();
-		pointCont.approveSuggestion(sug1.getSuggestedBy());
+		approverCont.approve(suggestionID);
 	}
 
 	/**
 	 * 
-	 * @param userID
+	 * rejects suggestion
 	 * @param suggestionID
+	 * @see ApproverController#reject(String)
 	 */
 	public void reject(String suggestionID) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		Suggestion sug1 = sDB.getItem(suggestionID);
-
-		sug1.reject();
-		pointCont.rejectSuggestion(sug1.getSuggestedBy());
+		approverCont.reject(suggestionID);
 	}
 
 	/**
-	 * 
+	 * creates suggestion
 	 * @param userID
 	 * @param text
+	 * @return created suggestion ID
+	 * @see SuggesterController#create(String, String)
 	 */
 	public String create(String userID, String text) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		Suggestion sug1 = new Suggestion(text, userID);
-		sDB.add(sug1);
-
-		return sug1.getID();
+		return suggesterCont.create(userID,text);
 	}
 
 	/**
-	 * 
+	 * edit suggestion
 	 * @param userID
 	 * @param suggestionID
 	 * @param newText
+	 * @see SuggesterController#edit(String, String, String)
 	 */
 	public void edit(String userID, String suggestionID, String newText) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		Suggestion sug1 = sDB.getItem(suggestionID);
-
-		// if (sug1.getSuggestedBy() != userID) {
-		// 	throw new Exception("Suggestion is not created by user");
-		// }
-		// if (sug1.getStatus() != SuggestionStatus.PENDING) {
-		// 	throw new Exception(String.format("Suggestion has been {}",sug1.getStatus()));
-		// }
-		sug1.setSuggestion(newText);
+		suggesterCont.edit(userID, suggestionID, newText);
 	}
 
 	/**
-	 * 
+	 * delete suggestion from database
 	 * @param userID
 	 * @param suggestionID
+	 * @see SuggesterController#delete(String, String)
 	 */
 	public void delete(String userID, String suggestionID) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		Suggestion sug1 = sDB.getItem(suggestionID);
-
-		// if (sug1.getSuggestedBy() != userID) {
-		// 	throw new Exception("Suggestion is not created by user");
-		// }
-		// if (sug1.getStatus() != SuggestionStatus.PENDING) {
-		// 	throw new Exception(String.format("Suggestion has been {}",sug1.getStatus()));
-		// }
-		sDB.remove(sug1);
+		suggesterCont.delete(userID, suggestionID);
 	}
 
 	/**
-	 * 
+	 * get suggestion status whether it is REJECTED, PENDING or APPROVED
 	 * @param suggestionID
+	 * @return suggestion status
 	 */
 	public String getStatus(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
@@ -112,66 +91,49 @@ public class SuggestionController {
 	}
 
 	/**
-	 * 
+	 * checks if user is owner of suggestion ID
 	 * @param enquiryID
+	 * @return true if user created the suggestion
 	 */
 	public boolean isOwner(String userID, String suggestionID) {
 		return getSuggestionCreator(suggestionID)==userID;
 
 	}
 
-	/**
-	 * 
-	 * @param suggestionID
-	 */
-	public boolean isValidSuggestion(String suggestionID) {
-		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
-		if (sDB.getItem(suggestionID)== null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
+	// /**
+	//  * 
+	//  * @param suggestionID
+	//  */
+	// public boolean isValidSuggestion(String suggestionID) {
+	// 	SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
+	// 	if (sDB.getItem(suggestionID)== null) {
+	// 		return false;
+	// 	}
+	// 	else {
+	// 		return true;
+	// 	}
+	// }
 
 	/**
-	 * 
-	 * @param campID
+	 * get pending suggestions based on user Camp Role in camp. <p>
+	 * Staff gets a list of pending enquiries in camp <p>
+	 * Camp committee gets their pending enquiries in camp
+	 * @param userID
+	 * @return List of sorted pending suggestions ID by name of suggester
 	 */
 	public List<String> getPendingSuggestions(String userID) {
-		CampDatabase cDB = Main.getCampDB();
-		CampController campCont = new CampController();
-		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-
-		Camp c1 = cDB.getItem(campID);
-		if (campCont.isCommittee(userID, campID)) {
-			sugList = c1.getSuggestionDB().getPendingSuggestions();
-		}
-		else {
-			sugList = c1.getSuggestionDB().getPendingSuggestionsBy(userID);
-		}
-
-		return sortByNameIDList(sugList);
+		return suggestionListCont.getPendingSuggestions(userID);
 	}
 
 	/**
-	 * 
-	 * @param campID
+	 * get rejected suggestions based on user Camp Role in camp. <p>
+	 * Staff gets a list of rejected enquiries in camp <p>
+	 * Camp committee gets their rejected enquiries in camp
+	 * @param userID
+	 * @return List of sorted rejected suggestions ID by name of suggester
 	 */
 	public List<String> getRejectedSuggestions(String userID) {
-		CampDatabase cDB = Main.getCampDB();
-		CampController campCont = new CampController();
-		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-
-		Camp c1 = cDB.getItem(campID);
-		if (campCont.isCommittee(userID, campID)) {
-			sugList = c1.getSuggestionDB().getRejectedSuggestions();
-		}
-		else {
-			sugList = c1.getSuggestionDB().getRejectedSuggestionsBy(userID);
-		}
-		
-		return sortByNameIDList(sugList);
+		return suggestionListCont.getRejectedSuggestions(userID);
 	}
 
 	/**
@@ -179,19 +141,7 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public List<String> getApprovedSuggestion(String userID) {
-		CampDatabase cDB = Main.getCampDB();
-		CampController campCont = new CampController();
-		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-
-		Camp c1 = cDB.getItem(campID);
-		if (campCont.isCommittee(userID, campID)) {
-			sugList = c1.getSuggestionDB().getApprovedSuggestions();
-		}
-		else {
-			sugList = c1.getSuggestionDB().getApprovedSuggestionsBy(userID);
-		}
-		
-		return sortByNameIDList(sugList);
+		return suggestionListCont.getApprovedSuggestion(userID);
 	}
 
 	/**
@@ -199,144 +149,9 @@ public class SuggestionController {
 	 * @param campID
 	 */
 	public List<String> getAllSuggestion(String userID) {
-		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-		CampController campCont = new CampController();
-
-		if (campCont.isCommittee(userID, campID)) {
-			sugList.addAll(c1.getSuggestionDB().getApprovedSuggestions());
-			sugList.addAll(c1.getSuggestionDB().getRejectedSuggestions());
-			sugList.addAll(c1.getSuggestionDB().getPendingSuggestions());
-		}
-		else {
-			sugList.addAll(c1.getSuggestionDB().getApprovedSuggestionsBy(userID));
-			sugList.addAll(c1.getSuggestionDB().getRejectedSuggestionsBy(userID));
-			sugList.addAll(c1.getSuggestionDB().getPendingSuggestionsBy(userID));
-		}
-		
-
-		return sortByNameIDList(sugList);
+		return suggestionListCont.getAllSuggestion(userID);
 	}
-
-	// /**
-	//  * 
-	//  * @param userID
-	//  */
-	// public Collection<String> getMyPendingSuggestion(String campID, String userID) throws Exception{
-	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
-	// 	CampDatabase cDB = Main.getCampDB();
-	// 	UserDatabase uDB = Main.getUserDB();
-	// 	User u1 = uDB.getItem(userID);
-	// 	Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-	// 	if (u1 instanceof Student) { 
-	// 		Student s1 = (Student) u1; 
-		
-	// 		Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
-	// 		if (c1.getID() == campID) {
-	// 			sugList = c1.getSuggestionDB().getPendingSuggestionsBy(userID);
-	// 		}
-	// 		else { 
-	// 			throw new Exception("Not a camp committee");
-	// 		}
-	// 	}
-	// 	else {
-	// 		throw new Exception("Not a camp committee");
-	// 	}
-		
-	// 	return sortByNameIDList(sugList);
 	
-	// }
-
-	// /**
-	//  * 
-	//  * @param userID
-	//  */
-	// public Collection<String> getMyRejectedSuggestion(String campID, String userID) throws Exception{
-	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
-	// 	CampDatabase cDB = Main.getCampDB();
-	// 	UserDatabase uDB = Main.getUserDB();
-	// 	User u1 = uDB.getItem(userID);
-	// 	Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-	// 	if (u1 instanceof Student) { 
-	// 		Student s1 = (Student) u1; 
-		
-	// 		Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
-	// 		if (c1.getID() == campID) {
-	// 			sugList = c1.getSuggestionDB().getRejectedSuggestionsBy(userID);
-	// 		}
-	// 		else { 
-	// 			throw new Exception("Not a camp committee");
-	// 		}
-	// 	}
-	// 	else {
-	// 		throw new Exception("Not a camp committee");
-	// 	}
-		
-	// 	return sortByNameIDList(sugList);
-	
-	// }
-
-	// /**
-	//  * 
-	//  * @param userID
-	//  */
-	// public Collection<String> getMySuggestion(String campID, String userID) throws Exception{
-	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
-	// 	CampDatabase cDB = Main.getCampDB();
-	// 	UserDatabase uDB = Main.getUserDB();
-	// 	User u1 = uDB.getItem(userID);
-	// 	Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-	// 	if (u1 instanceof Student) { 
-	// 		Student s1 = (Student) u1; 
-		
-	// 		Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
-	// 		if (c1.getID() == campID) {
-	// 			sugList = c1.getSuggestionDB().getRejectedSuggestionsBy(userID);
-	// 			sugList.addAll(c1.getSuggestionDB().getApprovedSuggestionsBy(userID));
-	// 			sugList.addAll(c1.getSuggestionDB().getPendingSuggestionsBy(userID));
-	// 		}
-	// 		else { 
-	// 			throw new Exception("Not a camp committee");
-	// 		}
-	// 	}
-	// 	else {
-	// 		throw new Exception("Not a camp committee");
-	// 	}
-		
-	// 	return sortByNameIDList(sugList);
-	
-	// }
-
-	// /**
-	//  * 
-	//  * @param userID
-	//  */
-	// public Collection<String> getMyApprovedSuggestion(String campID, String userID) throws Exception{
-	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
-	// 	CampDatabase cDB = Main.getCampDB();
-	// 	UserDatabase uDB = Main.getUserDB();
-	// 	User u1 = uDB.getItem(userID);
-	// 	Collection<Suggestion> sugList = new ArrayList<Suggestion>();
-	// 	if (u1 instanceof Student) { 
-	// 		Student s1 = (Student) u1; 
-		
-	// 		Camp c1 = cmemberDB.getCampWithCampCommMember(s1, Date.today());
-	// 		if (c1.getID() == campID) {
-	// 			sugList = c1.getSuggestionDB().getApprovedSuggestionsBy(userID);
-	// 		}
-	// 		else { 
-	// 			throw new Exception("Not a camp committee");
-	// 		}
-	// 	}
-	// 	else {
-	// 		throw new Exception("Not a camp committee");
-	// 	}
-		
-	// 	return sortByNameIDList(sugList);
-	
-	// }
-
 	/**
 	 * 
 	 * @param suggestionID
@@ -353,20 +168,6 @@ public class SuggestionController {
 	public String getSuggestionCreator(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
 		return sDB.getItem(suggestionID).getSuggestedBy();
-	}
-
-	/**
-	 * 
-	 * @param campList
-	 */
-	private List<String> sortByNameIDList(Collection<Suggestion> sugList) {
-		Collections.sort((ArrayList<Suggestion>)sugList, Comparator.comparing(Suggestion::getSuggestedBy));
-		List<String> suggestionIDList = new ArrayList<String>();
-		for (Suggestion s: sugList)
-		{
-			suggestionIDList.add(s.getID());
-		}
-		return suggestionIDList;
 	}
 
 	/**

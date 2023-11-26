@@ -1,0 +1,299 @@
+package scs3grp5.controller;
+
+import java.util.Collection;
+
+import scs3grp5.Main;
+import scs3grp5.entity.*;
+
+/**
+ * Manages staff actions for camps in the system
+ * 
+ */
+public class StaffCampController {
+
+
+    /**
+	 * 
+	 * 
+	 * @param staffInChargeID
+	 */
+    public String create(String staffInChargeID) {
+		UserDatabase uDB = Main.getUserDB();
+		CampDatabase cDB = Main.getCampDB();
+		User u1 = uDB.getItem(staffInChargeID);
+		Staff s1;
+		Camp newCamp;
+		if (u1 instanceof Staff) {
+			s1 = (Staff) u1;
+			newCamp = new Camp(Main.getMemberDB(), s1);
+			cDB.add(newCamp);
+			return newCamp.getID();
+		}
+		else return null;
+			
+	}
+
+    /**
+	 * 
+	 * 
+	 * @param campID
+	 */
+	public void delete(String campID) throws EditCampException {
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+			Camp c1 = cDB.getItem(campID);
+			if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
+				throw new EditCampException("Unable to delete: There are students registered to the camp.");
+			}
+			else {
+				cDB.remove(c1);
+			}
+
+	}
+
+    /**
+	 * 
+	 * @param campID
+	 * @param newName
+	 */
+	public void changeName(String campID, String newName) throws EditCampException{
+		CampDatabase cDB = Main.getCampDB();
+
+		if (newName.length()<1) {
+			throw new EditCampException("Length of Camp Name < 1");
+		}
+
+		Camp c1 = cDB.getItem(campID);
+		
+		Collection<Camp> campList = cDB.getAll();
+		for (Camp c: campList) {
+			if(c.getName()==newName)
+			throw new EditCampException("Camp Name already existed");
+		}
+			
+		c1.setName(newName);
+
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param visibility
+	 */
+	public void toggleVisibility(String campID, boolean visibility) throws EditCampException {
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
+			throw new EditCampException("Unable to toggle: There are students registered to the camp.");
+		}
+		else {
+			if(visibility) c1.show();
+			else c1.hide();
+		}
+		
+	}
+
+
+	/**
+	 * 
+	 * @param campID
+	 * @param dates
+	 */
+	public void changeStartDate(String campID, String date) throws InvalidDateException {
+		CampDatabase cDB = Main.getCampDB();
+
+		Camp c1 = cDB.getItem(campID);
+		
+		Date start = Date.fromString(date);
+		if (start.isBefore(Date.today())) {
+			throw new InvalidDateException("Start date must be after today");
+		}
+		
+		DateRange dates = c1.getDates();
+		if(dates==null) {
+			c1.setDates(start,start);
+		}
+		else {
+			Date end = dates.getEnd();
+			Date close = c1.getClosingDate();
+			if (close==null) {
+					if (!start.isBefore(end)) {
+						throw new InvalidDateException("Start date must be before end date");
+					}
+			}
+			else if (!(start.isBefore(end) && start.isAfter(close))) {
+				throw new InvalidDateException("Start date must be after closing date, before end date");
+			}
+			
+		c1.setDates(start,end);
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param dates
+	 */
+	public void changeEndDate(String campID, String date) throws InvalidDateException {
+
+		CampDatabase cDB = Main.getCampDB();
+
+		Camp c1 = cDB.getItem(campID);
+		
+		Date end = Date.fromString(date);
+		if (end.isBefore(Date.today())) {
+			throw new InvalidDateException("End date must be after today");
+		}
+		DateRange dates = c1.getDates();
+		if(dates==null) {
+			c1.setDates(end,end);
+		}
+		else {
+			Date start = dates.getStart();
+			if (end.isBefore(start)) {
+				throw new InvalidDateException("End date must after start date");
+			}
+			c1.setDates(start,end);
+		}
+
+	}
+
+
+	/**
+	 * 
+	 * @param campID
+	 * @param String
+	 */
+	public void changeLocation(String campID, String location) throws EditCampException {
+		CampDatabase cDB = Main.getCampDB();
+		
+		if (location.length()<1) {
+			throw new EditCampException("Length of Location must be over 1");
+		}
+		Camp c1 = cDB.getItem(campID);
+		c1.setLocation(location);
+
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param String
+	 */
+	public void changeDescription(String campID, String description) throws EditCampException{
+		CampDatabase cDB = Main.getCampDB();
+		
+		if (description.length()<1) {
+			throw new EditCampException("Length of Description must be over 1");
+		}
+		Camp c1 = cDB.getItem(campID);
+		c1.setDescription(description);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param String
+	 */
+	public void changeFaculty(String staffID, String campID, boolean OpenToFacultyOnly) throws EditCampException {
+		CampDatabase cDB = Main.getCampDB();
+		CampMembershipDatabase cMemberDB = Main.getMemberDB();
+		UserDatabase uDB = Main.getUserDB();
+		Faculty sFaculty = uDB.getItem(staffID).getFaculty();
+
+		Camp c1 = cDB.getItem(campID);
+
+		//check participants == faculty
+		if (OpenToFacultyOnly) {
+			//get participants
+			for (Student s: cMemberDB.getCampCommMembers(campID)) {
+				if (s.getFaculty()!= sFaculty) {
+					throw new EditCampException("Particpants are from other faculties");
+				}
+			}
+			for (Student s: cMemberDB.getParticipants(campID)) {
+				if (s.getFaculty()!= sFaculty) {
+					throw new EditCampException("Particpants are from other faculties");
+				}
+			}
+			c1.openToFaculty(sFaculty);
+		}
+		else {
+			c1.openToNTU();
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param slots
+	 */
+	public void changeCampCommSlots(String campID, int slots) throws EditCampException {
+		CampMembershipDatabase cMemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		if	(cMemberDB.getCampCommSize(c1) > slots) {
+			throw new EditCampException("slots must be greater than camp comm size.");
+		}
+		if	(slots<1) {
+			throw new EditCampException("slots must be at least 1.");
+		}
+		if	(slots>10) {
+			throw new EditCampException("maximum camp comm slots is 10.");
+		}
+
+		c1.setCampCommSlots(slots);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param slots
+	 */
+	public void changeCampParticipantSlots(String campID, int slots) throws EditCampException {
+		CampMembershipDatabase cMemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		if	(cMemberDB.getCampCommSize(c1) > slots) {
+			throw new EditCampException("slots must be greater than participant size.");
+		}
+		if	(slots<1) {
+			throw new EditCampException("slots must be at least 1.");
+		}
+		c1.setParticipantSlots(slots);
+		
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 * @param dates
+	 */
+	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+
+		Date close = Date.fromString(date);
+		if (close.isBefore(Date.today())) {
+			throw new InvalidDateException("Closing date must be after today");
+		}
+		DateRange dates = c1.getDates();
+		if(dates==null) {
+			c1.setClosingDate(close);
+		}
+		else {
+			Date start = dates.getStart();
+			if (close.isAfter(start)) {
+				throw new InvalidDateException("Closing date must be before start date");
+			}
+			c1.setClosingDate(close);
+		}
+	}
+}

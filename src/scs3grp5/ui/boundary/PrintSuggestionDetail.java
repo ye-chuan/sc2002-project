@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import scs3grp5.controller.SuggestionController;
 import scs3grp5.ui.ulti.PrintHelper;
 
+/**
+ * This class prints the suggestion details for user to see
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintSuggestionDetail implements IPrintDetail {
 
     /**
@@ -12,6 +19,9 @@ public class PrintSuggestionDetail implements IPrintDetail {
      */
     private SuggestionController suggestionCont; 
 
+    /**
+     * suggestionID is the identifer 
+     */
     private String suggestionID; 
 
     public PrintSuggestionDetail(String campID, String suggestionID){

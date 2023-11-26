@@ -3,6 +3,13 @@ package scs3grp5.ui.boundary;
 import scs3grp5.controller.UserController;
 import scs3grp5.ui.ulti.PrintHelper;
 
+/**
+ * This class prints the user detail for a staff  
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintStaffDetail implements IPrintDetail{
 
     /**

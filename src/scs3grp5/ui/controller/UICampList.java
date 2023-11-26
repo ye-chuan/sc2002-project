@@ -1,6 +1,6 @@
 package scs3grp5.ui.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 import scs3grp5.controller.CampListController;
 import scs3grp5.ui.input.SelectionFromList;
 import scs3grp5.ui.input.SelectionMenu;
@@ -28,7 +28,7 @@ public class UICampList extends UserInterface{
     /**
      * contains the listOfCamps to be shown on the UI
      */
-    protected ArrayList<String> listOfCamps; 
+    protected List<String> listOfCamps; 
 
 
     /** 

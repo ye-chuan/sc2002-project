@@ -11,7 +11,6 @@ import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintStaffCampDetail;
 import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuEditCamp;
-import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
