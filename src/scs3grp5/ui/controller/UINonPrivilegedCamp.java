@@ -59,6 +59,7 @@ public class UINonPrivilegedCamp extends UserInterface{
 
             if (isParticipant) option -= 1; 
             else option -= 2; 
+
             errorRegistration = false; 
             if (option == -1) {
                 try{
@@ -85,9 +86,6 @@ public class UINonPrivilegedCamp extends UserInterface{
                 errorRegistration = true;
             }
         }while (wrongInput || errorRegistration);
-
-        if (isParticipant) option -= 1; 
-        else option -= 2; 
 
         if (option == 1) return new UIEnquiryList(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
