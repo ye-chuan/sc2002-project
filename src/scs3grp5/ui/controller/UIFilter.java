@@ -94,6 +94,8 @@ public class UIFilter implements IPrintMenu, IUserInterface {
         do{ 
 
             ChangePage.changePage();
+            System.out.println(PrintHelper.LOGO_STRING);
+            System.out.println();
             int option = -1; 
 
             boolean wrongInput = false;

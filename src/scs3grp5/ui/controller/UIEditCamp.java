@@ -348,14 +348,20 @@ public class UIEditCamp extends UserInterface{
             return false; 
         }
         try{
-            if (intInput == 1) campCont.changeFaculty(uiInfo.getUserID(), campID, false); 
-            else campCont.changeFaculty(uiInfo.getUserID(), campID, true);
+            if (intInput == 1){
+                campCont.changeFaculty(uiInfo.getUserID(), campID, false); 
+                return true; 
+            } 
+            else if (intInput ==2){
+                campCont.changeFaculty(uiInfo.getUserID(), campID, true);
+                return true; 
+            }
+
         }catch(EditCampException e){
             System.out.println(e.getMessage());
             return false;
         }
-        
-        return true; 
+        return false; 
     }
 
     /**

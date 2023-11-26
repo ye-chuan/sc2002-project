@@ -89,6 +89,7 @@ public class UICampList extends UserInterface{
 
 
         if (option == 1) campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
+        else if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
         else if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
@@ -107,8 +108,7 @@ public class UICampList extends UserInterface{
         int listOption = -1; 
         do{
             
-            if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
-            else listOfCamps = campListCont.viewCamps();
+            listOfCamps = campListCont.viewCamps();
 
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);

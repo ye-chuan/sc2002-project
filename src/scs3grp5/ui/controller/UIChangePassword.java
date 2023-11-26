@@ -43,7 +43,7 @@ public class UIChangePassword implements IUserInterface {
     @Override
     public IUserInterface showUI(){
 
-        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
+        System.out.println("───────────────────────────────────────────────────────────────");// # ─ = 55  
         System.out.println("Change of Password Menu"); 
 
         String newPassword; 

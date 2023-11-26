@@ -33,7 +33,7 @@ public class UILogInLogOut {
      * Log Out UI
      */
     public void logOutUI(){
-        System.out.println("Exitting Program"); 
+        System.out.println(PrintHelper.END_PROGRAM); 
     }
 
     /** 
@@ -49,7 +49,7 @@ public class UILogInLogOut {
 
         System.out.println(PrintHelper.LOGO_STRING);
         System.out.println();
-        System.out.println("----------------------------------------------"); 
+        System.out.println("───────────────────────────────────────────────────────────────"); 
         System.out.println("Welcome to Camp Application and Management System (CAMs)"); 
             
         do{
@@ -62,13 +62,13 @@ public class UILogInLogOut {
             if (!userCont.login(userID, password)){
                 System.out.println("Login credentials not found!"); 
                 System.out.println("Please try again..."); 
-                System.out.println("----------------------------------------------");
+                System.out.println("───────────────────────────────────────────────────────────────");
             }
             else break; 
         }while (true); 
 
         System.out.println("Login successful..."); 
-        System.out.println("----------------------------------------------");
+        System.out.println("───────────────────────────────────────────────────────────────");
 
         uiInfo.setUserID(userID); 
         uiInfo.setIsStaff(userCont.isStaffUserType(uiInfo.getUserID()));

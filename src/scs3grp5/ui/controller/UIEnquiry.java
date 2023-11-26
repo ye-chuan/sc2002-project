@@ -81,6 +81,7 @@ public class UIEnquiry extends UserInterface {
         } 
         else if (option == 2){
             enquiryCont.delete(uiInfo.getEnquiryID());
+            return new UIEnquiryList(uiInfo);
         }
         return new UIEnquiry(uiInfo);
     }

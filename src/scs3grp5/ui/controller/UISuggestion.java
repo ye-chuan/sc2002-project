@@ -74,7 +74,10 @@ public class UISuggestion extends UserInterface {
         } 
         else if (option == 2){
             if (uiInfo.getIsStaff()) suggestionCont.reject(uiInfo.getSuggestionID());
-            else suggestionCont.delete(uiInfo.getUserID(), uiInfo.getSuggestionID());
+            else {
+                suggestionCont.delete(uiInfo.getUserID(), uiInfo.getSuggestionID());
+                return new UISuggestion(uiInfo);
+            }
         }
         return new UISuggestion(uiInfo);
     }
