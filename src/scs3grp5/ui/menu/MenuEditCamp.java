@@ -18,7 +18,7 @@ public class MenuEditCamp implements IPrintMenu {
         System.out.println("\t(10) Camp Description");
         System.out.println("\t(0) Confirm");
         System.out.println("-------------------------------------------------------"); 
-        return 9; 
+        return 10; 
     }
     
 }

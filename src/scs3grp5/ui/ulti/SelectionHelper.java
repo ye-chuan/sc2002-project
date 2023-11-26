@@ -2,6 +2,7 @@ package scs3grp5.ui.ulti;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.io.*;
 
 import scs3grp5.entity.Date;
 
@@ -59,7 +60,6 @@ public class SelectionHelper {
 
             if (!Date.isValidDate(year, month, day)) loop = true;
         }while (loop);
-
         String returnDate = Integer.toString(day) +  "/" + Integer.toString(month) + "/" + Integer.toString(year);
         return returnDate; 
     }

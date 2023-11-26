@@ -13,6 +13,7 @@ import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuEditCamp;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
 
 public class UIEditCamp extends UserInterface{
@@ -25,10 +26,6 @@ public class UIEditCamp extends UserInterface{
 
     private String campID; 
 
-    private String errorMessage; 
-
-    private boolean error; 
-
     /** 
      * Constructor for CreateEditCampUI class 
      * 
@@ -38,9 +35,6 @@ public class UIEditCamp extends UserInterface{
         super(uiInfo);
         campCont = new CampController();
         campID = uiInfo.getCampID();
-        errorMessage = ""; 
-        error = true; 
-
     }
 
     @Override
@@ -55,9 +49,10 @@ public class UIEditCamp extends UserInterface{
         do{
             do{
                 try{
-                    ChangePage.changePage();
+                    //ChangePage.changePage();
+                    System.out.println(PrintHelper.LOGO_STRING);
+                    System.out.println();
                     printDetail.printDetail();
-                    if (error) System.out.println(errorMessage.toUpperCase());
                     option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                     wrongInput = false;
                 }
@@ -119,8 +114,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeName(campID, name); 
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false; 
         }
         return true; 
@@ -128,13 +122,12 @@ public class UIEditCamp extends UserInterface{
     
     private boolean changeStartDateUI(){
         System.out.println("-------------------------------------------------------");
-        System.out.print("Camp Start Date: "); 
+        System.out.println("Camp Start Date: "); 
         String date = SelectionHelper.dateSelectUI();
         try{
             campCont.changeStartDate(campID, date); 
         }catch (InvalidDateException e){
-            errorMessage = e.getMessage();
-            error = true; 
+            System.out.println(e.getMessage());
             return false; 
         }
         return true; 
@@ -148,8 +141,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeEndDate(campID, date); 
         }catch (InvalidDateException e){
-           errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false; 
         }
         return true; 
@@ -163,8 +155,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeClosingDate(campID, date);
         }catch (InvalidDateException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false;
         }
         return true;
@@ -183,8 +174,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeLocation(campID, location);
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false;
         }
         return true; 
@@ -204,8 +194,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeCampParticipantSlots(campID, intInput); 
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false;
         }
 
@@ -227,8 +216,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeCampCommSlots(campID, intInput);
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false; 
         }
 
@@ -254,8 +242,7 @@ public class UIEditCamp extends UserInterface{
             if (intInput == 1) campCont.changeFaculty(uiInfo.getUserID(), campID, false); 
             else campCont.changeFaculty(uiInfo.getUserID(), campID, true);
         }catch(EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false;
         }
         
@@ -277,8 +264,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.changeDescription(campID, description);
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
             return false; 
         }
         return true; 
@@ -288,8 +274,7 @@ public class UIEditCamp extends UserInterface{
         try{
             campCont.toggleVisibility(campID, !campCont.getVisibility(campID));
         }catch (EditCampException e){
-            errorMessage = e.getMessage();
-            error = true;
+            System.out.println(e.getMessage());
         }
     }
 }

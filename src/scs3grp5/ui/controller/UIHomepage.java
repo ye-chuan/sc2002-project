@@ -4,6 +4,7 @@ import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuHomepage;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 /**
  * Provide a UI for the view account
@@ -31,6 +32,8 @@ public class UIHomepage extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
+                System.out.println(PrintHelper.ANSI_YELLOW + PrintHelper.LOGO_STRING + PrintHelper.ANSI_RESET);
+                System.out.println();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
                 System.out.println(option);

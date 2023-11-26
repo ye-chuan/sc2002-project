@@ -42,17 +42,20 @@ public class PrintStaffCampDetail implements IPrintDetail {
         String participant = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalParticipantSlots(campID));
         actualCount = campCont.getTotalCampCommSlots(campID) - campCont.getRemainingCampCommSlots(campID); 
         String campComm = Integer.toString(actualCount) + "/" + Integer.toString(campCont.getTotalCampCommSlots(campID));
-
         String campName =  campCont.getName(campID);
         String date = campCont.getDate(campID); 
+        if (date == null) date = "UNSET";
         String closingDate = campCont.getClosingDate(campID);
+        if (closingDate == null) closingDate = "UNSET";
         String location = campCont.getLocation(campID);
         String staffIC = campCont.getCampInCharge(campID); 
         String faculty = campCont.getFaculty(campID);
+        if (faculty == null) faculty = "UNSET";
         String visibility;
         if (campCont.getVisibility(campID)) visibility = "ON";
         else visibility = "OFF";
         String description = campCont.getDescription(campID);
+        if (description == null) description = "UNSET";
 
         System.out.println("CAMP INFORMATION");
         System.out.println("┌──────────────────────────────────────────────────────────────────────────────────────────┐");// 90 WHITE SPACE
@@ -68,10 +71,10 @@ public class PrintStaffCampDetail implements IPrintDetail {
         System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
         System.out.println("│  PARTICIPATION SLOT:" + PrintHelper.fillUpSpace(participant,69 , 1, false) + "│");
         System.out.println("│  COMMITTEE SLOT    :" + PrintHelper.fillUpSpace(campComm,69 , 1, false) + "│");
-        System.out.println("│  STAFF-IN CHARGE   :" + PrintHelper.fillUpSpace(staffIC,69 , 1, false) + "│");
+        System.out.println("│  STAFF-IN-CHARGE   :" + PrintHelper.fillUpSpace(staffIC,69 , 1, false) + "│");
         System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
-        System.out.println("│  FACULTY   :" + PrintHelper.fillUpSpace( faculty,80 , 1, false) + "│");
-        System.out.println("│  VISBILITY :" + PrintHelper.fillUpSpace(visibility,80 , 1, false) + "│");
+        System.out.println("│  FACULTY  :" + PrintHelper.fillUpSpace( faculty,78 , 1, false) + "│");
+        System.out.println("│  VISBILITY:" + PrintHelper.fillUpSpace(visibility,78 , 1, false) + "│");
         System.out.println("│" + PrintHelper.fillUpSpace(" ",90 , 1, false) + "│");
         System.out.println("│" + "   ────────────────────────────────────────────────────────────────────────────────────   " + "│");
         System.out.println("│  CAMP DESCRIPTION:" + PrintHelper.fillUpSpace(" ",71 , 1, false) + "│");

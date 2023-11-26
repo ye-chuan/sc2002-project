@@ -10,6 +10,7 @@ import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
 import scs3grp5.ui.menu.MenuSuggestionCommitteeList;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class UISuggestionList extends UserInterface{
 
@@ -38,6 +39,8 @@ public class UISuggestionList extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
+                System.out.println(PrintHelper.LOGO_STRING);
+                System.out.println();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }

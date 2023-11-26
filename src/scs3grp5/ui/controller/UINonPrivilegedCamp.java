@@ -8,6 +8,7 @@ import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuCampStudent;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class UINonPrivilegedCamp extends UserInterface{
 
@@ -45,6 +46,8 @@ public class UINonPrivilegedCamp extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
+                System.out.println(PrintHelper.LOGO_STRING);
+                System.out.println();
                 printDetail.printDetail();
                 if (errorRegistration) System.out.println(errorMessage.toUpperCase());
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);

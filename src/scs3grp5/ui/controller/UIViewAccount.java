@@ -9,6 +9,7 @@ import scs3grp5.ui.menu.MenuNoOption;
 import scs3grp5.ui.menu.MenuViewAccount;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 /**
  * Provides a UI for the View Account
@@ -36,6 +37,8 @@ public class UIViewAccount extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
+                System.out.println(PrintHelper.LOGO_STRING);
+                System.out.println();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }
@@ -48,10 +51,11 @@ public class UIViewAccount extends UserInterface{
             IPrintDetail printDetail; 
             if (uiInfo.getIsStaff()) printDetail = new PrintStaffDetail(uiInfo.getUserID());
             else printDetail = new PrintStudentDetail(uiInfo.getUserID());
-            printDetail.printDetail();
+            
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
+                printDetail.printDetail();
                 optionSelector.getUserChoiceUI(menu.printMenu(), true);
             }
             catch (OptionException e){

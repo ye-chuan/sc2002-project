@@ -3,6 +3,20 @@ package scs3grp5.ui.ulti;
 import java.util.ArrayList;
 
 public class PrintHelper {
+
+    public static String LOGO_STRING = " \r\n" + //
+        "  _______ _______ ___ ___ _______ \r\n" + //
+        " |   _   |   _   |   V   |   _   |\r\n" + //
+        " |.  |___|.  |   |.      |   |___|\r\n" + //
+        " |.  |___|.  _   |. \\_/  |____   |\r\n" + //
+        " |:  |   |:  |   |:  |   |:  |   |\r\n" + //
+        " |::.. . |::.|:. |::.|:. |::.. . |\r\n" + //
+        " `_______`___ ___`___ ___`______'\r\n" + //
+        "                                  \r\n" + //
+        "";
+   
+
+  
     // ANSI escape codes for text colors
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";

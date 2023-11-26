@@ -12,6 +12,7 @@ import scs3grp5.ui.menu.MenuSuggestionEdit;
 import scs3grp5.ui.menu.MenuSuggestionStaff;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class UISuggestion extends UserInterface {
 
@@ -33,6 +34,9 @@ public class UISuggestion extends UserInterface {
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
+
+                System.out.println(PrintHelper.LOGO_STRING);
+                System.out.println();
                 optionSelector.getUserChoiceUI(menu.printMenu(), true);
             }
             catch (OptionException e){

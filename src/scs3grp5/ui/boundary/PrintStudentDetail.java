@@ -2,6 +2,15 @@ package scs3grp5.ui.boundary;
 
 import scs3grp5.ui.ulti.PrintHelper;
 
+/**
+ * This class prints the user detail for a student
+ * It inherit from the PrintStaffDetail class as the class prints more 
+ * detail such as the name of the camp they are a camp committee and the number of points they have obtained 
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintStudentDetail extends PrintStaffDetail {
 
     /** 

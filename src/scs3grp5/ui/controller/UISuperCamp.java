@@ -6,6 +6,7 @@ import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuCampStaff;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
+import scs3grp5.ui.ulti.PrintHelper;
 
 public class UISuperCamp extends UIPrivilegedCamp{
 
@@ -26,6 +27,8 @@ public class UISuperCamp extends UIPrivilegedCamp{
         do{
             try{
                 ChangePage.changePage();
+                System.out.println(PrintHelper.LOGO_STRING);
+                System.out.println();
                 printDetail.printDetail();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;

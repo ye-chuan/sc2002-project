@@ -126,6 +126,24 @@ public class UserController {
 		if (newPassword.length() < 8) {
 			throw new PasswordException("Password needs be more than 8 characters");
 		}
+		boolean lower = false;
+		boolean upper = false; 
+		boolean special = false; 
+		boolean number = false; 
+
+		char[] ch = newPassword.toCharArray(); 
+		
+		for (int i=0; i<newPassword.length();i++){
+			if (Character.isLowerCase(ch[i])) lower = true; 
+			else if (Character.isUpperCase(ch[i])) upper = true; 
+			else if (Character.isDigit(ch[i])) number = true; 
+			else special = true; 
+		}
+
+		if (!lower) throw new PasswordException("Password must contain a lower character!");
+		if (!upper) throw new PasswordException("Password must contain an upper character!");
+		if (!special) throw new PasswordException("Password must contain a special character");
+		if (!number) throw new PasswordException("Password must contain a digit");
 	}
 
 	/**

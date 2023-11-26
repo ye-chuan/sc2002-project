@@ -3,6 +3,7 @@ package scs3grp5.ui.controller;
 import java.util.Scanner;
 import scs3grp5.controller.UserController;
 import scs3grp5.ui.ulti.ChangePage;
+import scs3grp5.ui.ulti.PrintHelper;
 
 /**
  * Handles the LogIn and LogOut UI
@@ -41,7 +42,9 @@ public class UILogInLogOut {
         Scanner sc = new Scanner(System.in); 
 
         ChangePage.changePage();
-        
+
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
         System.out.println("----------------------------------------------"); 
         System.out.println("Welcome to Camp Application and Management System (CAMs)"); 
             

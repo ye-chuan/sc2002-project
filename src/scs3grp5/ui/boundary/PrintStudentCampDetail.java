@@ -5,12 +5,36 @@ import java.util.ArrayList;
 import scs3grp5.controller.CampController;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class prints the camp detail for a student 
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintStudentCampDetail implements IPrintDetail {
 
+    /** 
+     * userID of the user using the UI
+     */
     private String campID; 
+
+    /**
+     * This boolean value is true if the student is the participant of the camp else false
+     */
     private boolean isParticipant; 
+
+    /**
+     * To communicate with the CampController
+     */
     private CampController campCont; 
 
+    /**
+     * Constructor for the PrintStudentCampDetail
+     * @param campID
+     * @param isParticipant
+     */
     public PrintStudentCampDetail(String campID, boolean isParticipant){
         this.campID = campID; 
         this.isParticipant = isParticipant;
