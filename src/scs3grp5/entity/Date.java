@@ -10,7 +10,7 @@ public class Date implements Comparable<Date>, Serializable {
     public static final Date MIN = new Date(LocalDate.MIN.getYear(), LocalDate.MIN.getMonthValue(), LocalDate.MIN.getDayOfMonth());
 
     private static DateTimeFormatter outFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-    private static DateTimeFormatter inFormatter = DateTimeFormatter.ofPattern("dd/MM/[uuuu][uu]");
+    private static DateTimeFormatter inFormatter = DateTimeFormatter.ofPattern("d/M/[uuuu][uu]");
     private LocalDate localDate;
 
 	/**
@@ -115,10 +115,10 @@ public class Date implements Comparable<Date>, Serializable {
         Date b = new Date(2023,11,21);
 
         Date test = Date.fromString("26/11/2023");
-        System.out.println(test);
+        System.out.println(Date.isValidDate("34/12/2023"));
 
-        System.out.println(a.isAfter(b));
-        System.out.println(a.isBefore(b));
+        //System.out.println(a.isAfter(b));
+        //System.out.println(a.isBefore(b));
         System.out.println(a);
     }
 }
