@@ -40,6 +40,17 @@ public class Date implements Comparable<Date>, Serializable {
         return true;
     }
 
+    public static boolean isValidDate(String datestring) {
+        try {
+            Date.fromString(datestring);    
+        }   
+        catch(DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+
     /** 
      * Parse Date from format D/M/YY or YYYY
      * @return Parsed date
