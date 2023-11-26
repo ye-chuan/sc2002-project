@@ -28,6 +28,7 @@ public class StaffCampController {
 			s1 = (Staff) u1;
 			newCamp = new Camp(Main.getMemberDB(), s1);
 			cDB.add(newCamp);
+			System.out.println(newCamp.getID());
 			return newCamp.getID();
 		}
 		else return null;
