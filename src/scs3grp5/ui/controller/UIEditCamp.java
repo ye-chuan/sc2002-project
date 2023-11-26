@@ -37,15 +37,22 @@ public class UIEditCamp extends UserInterface{
      */
     private String campID; 
 
+    /**
+     * justCreate is a boolean variable, where if its a newly create camp it will be true 
+     * else it will be false
+     */
+    private boolean justCreate; 
+
     /** 
      * Constructor for CreateEditCampUI class 
      * 
      * @param uiInfo contains the information of the user  
      */
-    public UIEditCamp(UIInformation uiInfo) {
+    public UIEditCamp(UIInformation uiInfo, boolean justCreate) {
         super(uiInfo);
         campCont = new CampController();
         campID = uiInfo.getCampID();
+        this.justCreate = justCreate;
     }
     
     /**
@@ -64,6 +71,7 @@ public class UIEditCamp extends UserInterface{
         boolean part = false;
         boolean comm = false; 
         boolean faculty = false; 
+        boolean description = false; 
         
         IPrintDetail printDetail = new PrintStaffCampDetail(campID);
         menu = new MenuEditCamp(); 
@@ -87,37 +95,59 @@ public class UIEditCamp extends UserInterface{
             }while (wrongInput);  
 
             switch (option){
-                case 0: 
-                    return new UISuperCamp(uiInfo); 
+                case 0:
+                    if (justCreate){
+                        if (name && start && end && close && location && part && comm && faculty && description){
+                            return new UISuperCamp(uiInfo);  
+                        }
+                        else{
+                            System.out.println("Please initialise all the camp information");
+                            option = -1; 
+                            break; 
+                        }
+                    }
+                    else{
+                        return new UISuperCamp(uiInfo); 
+                    }
+                    
                 case 1: 
-                    while (!changeNameUI()); 
+                    while (!changeNameUI());
+                    name = true; 
                     break;
                 case 2: 
                     while (!changeStartDateUI()); 
+                    start = true; 
                     break; 
                 case 3: 
                     while (!changeEndDateUI());
+                    end = true; 
                     break; 
                 case 4: 
                     while (!changeRegistrationClosingDateUI());
+                    close = true; 
                     break;
                 case 5: 
                     while (!changeLocationUI());
+                    location = true; 
                     break; 
                 case 6: 
-                    while (!changeNumOfParticipantsUI()); 
+                    while (!changeNumOfParticipantsUI());
+                    part = true; 
                     break; 
                 case 7:
-                    while (!changeNumOfCampCommUI()); 
+                    while (!changeNumOfCampCommUI());
+                    comm = true;
                     break; 
                 case 8:
-                    while (!changeFacultyUI()); 
+                    while (!changeFacultyUI());
+                    faculty = true;  
                     break; 
                 case 9:
                     changeVisibilityUI();
                     break; 
                 case 10: 
                     while (!changeDescriptionUI()); 
+                    description = true; 
                     break; 
                 default: 
                     option = -1; 
