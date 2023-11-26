@@ -8,7 +8,8 @@ public class Date implements Comparable<Date>, Serializable {
     public static final Date MAX = new Date(LocalDate.MAX.getYear(), LocalDate.MAX.getMonthValue(), LocalDate.MAX.getDayOfMonth());
     public static final Date MIN = new Date(LocalDate.MIN.getYear(), LocalDate.MIN.getMonthValue(), LocalDate.MIN.getDayOfMonth());
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter outFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter inFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private LocalDate localDate;
 
 	/**
@@ -43,7 +44,7 @@ public class Date implements Comparable<Date>, Serializable {
      * @return Parsed date
      */
     public static Date fromString(String datestring) {
-        LocalDate parsedLocalDate = LocalDate.parse(datestring, formatter);
+        LocalDate parsedLocalDate = LocalDate.parse(datestring, inFormatter);
         return new Date(parsedLocalDate.getYear(), parsedLocalDate.getMonthValue(), parsedLocalDate.getDayOfMonth());
     }
 
@@ -63,7 +64,7 @@ public class Date implements Comparable<Date>, Serializable {
 	 * Gives in the Local DD/MM/YYYY format
 	 */
 	public String toString() {
-        return localDate.format(formatter);
+        return localDate.format(outFormatter);
 	}
 
 	/**
