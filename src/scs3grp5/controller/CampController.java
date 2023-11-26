@@ -19,7 +19,7 @@ public class CampController {
 	 * 
 	 * Registers student as Participant
 	 * @param campID
-	 * @param userID
+	 * @param userID studentID
 	 * @see StudentCampController#registerAsParticipant(String, String)
 	 */
 	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
@@ -175,7 +175,7 @@ public class CampController {
 	}
 
 	/**
-	 * Change camp committee slots for camp <p>
+	 * Change camp partcipant slots for camp <p>
 	 * Checks for error when downsizing the camp participant slots
 	 * @param campID
 	 * @param slots
@@ -421,6 +421,7 @@ public class CampController {
 	/**
 	 * checks whether student is a camp participant or camp committee in camp
 	 * @param campID
+	 * @param studentID
 	 * @return Camp Role of the student in the camp specified
 	 */
 	public CampRole getUserStatus(String campID, String studentID) {

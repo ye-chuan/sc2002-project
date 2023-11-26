@@ -120,6 +120,7 @@ public class SuggestionController {
 	 * Camp committee gets their pending enquiries in camp
 	 * @param userID
 	 * @return List of sorted pending suggestions ID by name of suggester
+	 * @see SuggestionListController#getPendingSuggestions(String)
 	 */
 	public List<String> getPendingSuggestions(String userID) {
 		return suggestionListCont.getPendingSuggestions(userID);
@@ -131,29 +132,38 @@ public class SuggestionController {
 	 * Camp committee gets their rejected enquiries in camp
 	 * @param userID
 	 * @return List of sorted rejected suggestions ID by name of suggester
+	 * @see SuggestionListController#getRejectedSuggestions(String)
 	 */
 	public List<String> getRejectedSuggestions(String userID) {
 		return suggestionListCont.getRejectedSuggestions(userID);
 	}
 
 	/**
-	 * 
-	 * @param campID
+	 * get approved suggestions based on user Camp Role in camp. <p>
+	 * Staff gets a list of approved enquiries in camp <p>
+	 * Camp committee gets their approved enquiries in camp
+	 * @param userID
+	 * @return List of sorted approved suggestions ID by name of suggester
+	 * @see SuggestionListController#getApprovedSuggestion(String)
 	 */
 	public List<String> getApprovedSuggestion(String userID) {
 		return suggestionListCont.getApprovedSuggestion(userID);
 	}
 
 	/**
-	 * 
-	 * @param campID
+	 * get all suggestions based on user Camp Role in camp. <p>
+	 * Staff gets a list of all enquiries in camp <p>
+	 * Camp committee gets all their enquiries in camp
+	 * @param userID
+	 * @return List of sorted suggestions ID by name of suggester
+	 * @see SuggestionListController#getAllSuggestion(String)
 	 */
 	public List<String> getAllSuggestion(String userID) {
 		return suggestionListCont.getAllSuggestion(userID);
 	}
 	
 	/**
-	 * 
+	 * get the suggestion text through suggestionID
 	 * @param suggestionID
 	 */
 	public String getSuggestionText(String suggestionID) {
@@ -162,7 +172,7 @@ public class SuggestionController {
 	}
 
 	/**
-	 * 
+	 * get the suggestion creator through suggestionID
 	 * @param suggestionID
 	 */
 	public String getSuggestionCreator(String suggestionID) {
@@ -171,8 +181,9 @@ public class SuggestionController {
 	}
 
 	/**
-	 * 
-	 * @param campID
+	 * checks whether student is a camp participant or camp committee in camp
+	 * @param studentID
+	 * @return Camp Role of the student in the camp specified
 	 */
 	public CampRole getUserStatus(String studentID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();

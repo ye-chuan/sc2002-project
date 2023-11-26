@@ -13,10 +13,10 @@ public class StudentCampController {
 
     
     /**
-	 * 
+	 * Registers student as Participant
 	 * @param campID
-	 * @param userID
-	 * registers student as Participant
+	 * @param userID studentID
+	 * 
 	 */
 	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -48,10 +48,10 @@ public class StudentCampController {
 	}
 
 	/**
-	 * 
+	 * Registers student as Camp Committee Member
 	 * @param campID
 	 * @param userID
-	 * registers student as camp committee
+	 * 
 	 */
 	public void registerAsCommittee(String campID, String userID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -84,7 +84,7 @@ public class StudentCampController {
 	}
 
 	/**
-	 * 
+	 * Withdraws student from Camp, blacklists student from rejoining
 	 * @param userID
 	 * @param campID
 	 */
@@ -104,8 +104,8 @@ public class StudentCampController {
 	}
 
 	/**
-	 * 
-	 * @param camp
+	 * checks whether there is any conflicts in schedule for joining camp
+	 * @param camp camp to register
 	 * @param student
 	 */
 	private boolean overlapDates(Camp camp, Student student) {
@@ -124,8 +124,8 @@ public class StudentCampController {
 	}
 
     /**
-	 * 
-	 * @param camp
+	 * checks whether student is holding onto a camp committee position for another camp
+	 * @param camp camp to register
 	 * @param student
 	 */
 	private boolean isExistingCampComm(Camp camp, Student student) {

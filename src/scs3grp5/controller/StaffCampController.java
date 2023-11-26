@@ -208,9 +208,13 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Allows staff to change faculty of camp between own faculty and NTU <p>
+	 * Checks whether camp contains students from other faculties when open to staff faculty instead of whole NTU
 	 * @param campID
 	 * @param String
+	 * @param openToFacultyOnly
+	 * @throws EditCampException if camp currently contains students not from staff faculty
+	 * 
 	 */
 	public void changeFaculty(String staffID, String campID, boolean OpenToFacultyOnly) throws EditCampException {
 		CampDatabase cDB = Main.getCampDB();
@@ -242,9 +246,13 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Change camp committee slots for camp <p>
+	 * checks for error when downsizing the camp committee slots
 	 * @param campID
 	 * @param slots
+	 * @throws EditCampException if camp committee slots not within range 1-10, <p>
+	 * and slots smaller than number of camp committee members registered
+	 * 
 	 */
 	public void changeCampCommSlots(String campID, int slots) throws EditCampException {
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
@@ -265,9 +273,13 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Change camp partcipant slots for camp <p>
+	 * Checks for error when downsizing the camp participant slots
 	 * @param campID
 	 * @param slots
+	 * @throws EditCampException if camp participant slots is not at least 1 <p>
+	 * and slots smaller than number of camp participant members registered
+	 * 
 	 */
 	public void changeCampParticipantSlots(String campID, int slots) throws EditCampException {
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
@@ -285,9 +297,12 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Change registration closing date of camp
 	 * @param campID
-	 * @param dates
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if closing date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 * 
 	 */
 	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
 		CampDatabase cDB = Main.getCampDB();
