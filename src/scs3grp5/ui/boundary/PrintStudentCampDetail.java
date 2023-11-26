@@ -63,6 +63,7 @@ public class PrintStudentCampDetail implements IPrintDetail {
         if (isParticipant) status = "PARTICIPANT";
         else status = "NOT JOINED";
         String description = campCont.getDescription(campID);
+        if (description == null) description = "NO DESCRIPTION";
 
 
         ChangePage.changePage();

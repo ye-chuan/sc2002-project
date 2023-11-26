@@ -55,6 +55,7 @@ public class PrintCampCommCampDetail implements IPrintDetail {
         String faculty = campCont.getFaculty(campID);
         String status = "CAMP COMMITTEE";
         String description = campCont.getDescription(campID);
+        if (description == null) description = "NO DESCRIPTION";
 
 
         ChangePage.changePage();

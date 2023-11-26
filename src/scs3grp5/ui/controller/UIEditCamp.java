@@ -67,8 +67,6 @@ public class UIEditCamp extends UserInterface{
 
         boolean date = false;
         boolean close = false;
-        boolean part = false;
-        boolean comm = false; 
         boolean faculty = false; 
 
         String errorMessage = ""; 
@@ -132,11 +130,9 @@ public class UIEditCamp extends UserInterface{
                     break; 
                 case 6: 
                     while (!changeNumOfParticipantsUI());
-                    part = true; 
                     break; 
                 case 7:
                     while (!changeNumOfCampCommUI());
-                    comm = true;
                     break; 
                 case 8:
                     while (!changeFacultyUI());

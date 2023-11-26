@@ -159,9 +159,15 @@ public class UIFilter implements IPrintMenu, IUserInterface {
     private void filterCampToPrint(){
         // byDate is DD/MM/YYYY-DD/MM/YYYY
         String startDate, endDate; 
-        startDate = byDate.substring(0,10); 
-        endDate = byDate.substring(11, 21);
-
+        if (!byDate.equals("")){
+            startDate = byDate.substring(0,10); 
+            endDate = byDate.substring(11, 21);
+        }
+        else{
+            startDate = "";
+            endDate = "";
+        }
+    
         campListCont.FilterBy(userID, byLocation, availableParticipant, availableCommittee, startDate, endDate, byFaculty, byVisibility); 
     }
 

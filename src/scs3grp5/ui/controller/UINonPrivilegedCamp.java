@@ -34,17 +34,17 @@ public class UINonPrivilegedCamp extends UserInterface{
         boolean wrongInput = false; 
         int option = -1; 
         
-        if (campCont.getUserStatus(uiInfo.getCampID(), uiInfo.getUserID()) == null) isParticipant = false;
-        else isParticipant = true; 
-        
-        menu = new MenuCampStudent(isParticipant); 
-        optionSelector = new SelectionMenu();
-        IPrintDetail printDetail = new PrintStudentCampDetail(uiInfo.getCampID(), isParticipant);
-
         String errorMessage = ""; 
         boolean errorRegistration = false; 
         do{
-            try{
+            if (campCont.getUserStatus(uiInfo.getCampID(), uiInfo.getUserID()) == null) isParticipant = false;
+            else isParticipant = true; 
+    
+            menu = new MenuCampStudent(isParticipant); 
+            optionSelector = new SelectionMenu();
+            IPrintDetail printDetail = new PrintStudentCampDetail(uiInfo.getCampID(), isParticipant);
+            
+            try{ 
                 ChangePage.changePage();
                 System.out.println(PrintHelper.LOGO_STRING);
                 System.out.println();
@@ -63,53 +63,35 @@ public class UINonPrivilegedCamp extends UserInterface{
             if (option == -1) {
                 try{
                     campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID());
-                    errorMessage = "Registrated as Camp Committee successfully!";
+                    return new UIPrivilegedCamp(uiInfo);
                 }catch(RegistrationException e){
                     errorMessage = e.getMessage(); 
                 }
                 errorRegistration = true; 
             }
             else if (option == 0){
-                if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
+                if (isParticipant){
+                    campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
+                    errorMessage = "Withdraw as Participant successfully!";
+                }
                 else {
                     try{
                         campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID());
                         errorMessage = "Registrated as Participant successfully!";
                     }catch(RegistrationException e){
                         errorMessage = e.getMessage(); 
-                    }
-                    errorRegistration = true; 
+                    } 
                 }
+                errorRegistration = true;
             }
         }while (wrongInput || errorRegistration);
 
         if (isParticipant) option -= 1; 
         else option -= 2; 
 
-        if (option == -1) {
-            try{
-                campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID()); 
-            }catch(RegistrationException e){
-                errorRegistration = true; 
-                errorMessage = e.getMessage(); 
-            }
-        }
-        else if (option == 0){
-            if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
-            else {
-                try{
-                    campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID());
-                }catch(RegistrationException e){
-                    errorRegistration = true; 
-                    errorMessage = e.getMessage(); 
-                }
-            }
-        }
-        else if (option == 1) return new UIEnquiryList(uiInfo);
+        if (option == 1) return new UIEnquiryList(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
         else if (option == 3) return new UIHomepage(uiInfo); 
         else return null;
-
-        return new UINonPrivilegedCamp(uiInfo);
     }
 }
