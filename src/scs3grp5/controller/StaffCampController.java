@@ -13,9 +13,10 @@ public class StaffCampController {
 
 
     /**
+	 * Creates new Camp using StaffID
+	 * @param staffInCharge ID
+	 * @return campID of created camp 
 	 * 
-	 * 
-	 * @param staffInChargeID
 	 */
     public String create(String staffInChargeID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -34,9 +35,9 @@ public class StaffCampController {
 	}
 
     /**
-	 * 
-	 * 
+	 * Deletes Camp from Database
 	 * @param campID
+	 * @throws EditCampException when students are registered to the camp
 	 */
 	public void delete(String campID) throws EditCampException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -52,9 +53,11 @@ public class StaffCampController {
 	}
 
     /**
-	 * 
+	 * Changes Name of Camp
 	 * @param campID
 	 * @param newName
+	 * @throws EditCampException if camp name is not unique or length of camp name is too short
+	 * 
 	 */
 	public void changeName(String campID, String newName) throws EditCampException{
 		CampDatabase cDB = Main.getCampDB();
@@ -76,9 +79,11 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * toggles the visibility of the camp
 	 * @param campID
 	 * @param visibility
+	 * @throws EditCampException if camp already has students registered
+	 * 
 	 */
 	public void toggleVisibility(String campID, boolean visibility) throws EditCampException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -97,9 +102,12 @@ public class StaffCampController {
 
 
 	/**
-	 * 
+	 * Change start Date of Camp
 	 * @param campID
-	 * @param dates
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if start date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 * 
 	 */
 	public void changeStartDate(String campID, String date) throws InvalidDateException {
 		CampDatabase cDB = Main.getCampDB();
@@ -133,9 +141,11 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Change end date of camp
 	 * @param campID
-	 * @param dates
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if end date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 */
 	public void changeEndDate(String campID, String date) throws InvalidDateException {
 
@@ -163,9 +173,11 @@ public class StaffCampController {
 
 
 	/**
-	 * 
+	 * Changes location of camp
 	 * @param campID
-	 * @param String
+	 * @param location
+	 * @throws EditCampException if camp location is blank
+	 * 
 	 */
 	public void changeLocation(String campID, String location) throws EditCampException {
 		CampDatabase cDB = Main.getCampDB();
@@ -179,9 +191,11 @@ public class StaffCampController {
 	}
 
 	/**
-	 * 
+	 * Change description of camp
 	 * @param campID
-	 * @param String
+	 * @param description
+	 * @throws EditCampException if camp description is blank
+	 * 
 	 */
 	public void changeDescription(String campID, String description) throws EditCampException{
 		CampDatabase cDB = Main.getCampDB();

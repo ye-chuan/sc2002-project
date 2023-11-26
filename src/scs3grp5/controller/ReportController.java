@@ -12,8 +12,9 @@ public class ReportController {
 
 	private static String filepath;
 	/**
-	 * 
+	 * generates a report with all the camp information and list of members in camp and their roles
 	 * @param campID
+	 * @param filter
 	 */
 	public void generateCampReport(String campID, REPORTFILTER filter) {
 		CsvWriter writer = new CsvWriter(filepath);
@@ -49,7 +50,7 @@ public class ReportController {
 	}
 
 	/**
-	 * 
+	 * generates a performance report with all the points of camp committee in the camp
 	 * @param campID
 	 */
 	public void generatePerformanceReport(String campID) {
@@ -67,7 +68,7 @@ public class ReportController {
 	}
 
 	/**
-	 * 
+	 * generates a list of all enquiries in the camp
 	 * @param campID
 	 */
 	public void generateEnquiryReport(String campID) {

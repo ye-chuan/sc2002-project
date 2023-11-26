@@ -10,9 +10,10 @@ import scs3grp5.entity.*;
 public class PasswordController {
     
     /**
-	 * 
+	 * check if old password matches new password and changes the password for user
 	 * @param userID
 	 * @param newPassword
+	 * 
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
 		UserDatabase uDB = Main.getUserDB();
@@ -28,8 +29,9 @@ public class PasswordController {
 	}
 
     /**
-	 * 
+	 * checks if new password fits system requirements
 	 * @param newPassword
+	 * 
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {
 		if (newPassword.length() < 8) {

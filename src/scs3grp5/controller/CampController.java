@@ -83,6 +83,7 @@ public class CampController {
 	 * @param campID
 	 * @param visibility
 	 * @throws EditCampException if camp already has students registered
+	 * @see StaffCampController#toggleVisibility(String, boolean)
 	 */
 	public void toggleVisibility(String campID, boolean visibility) throws EditCampException {
 		staffCampCont.toggleVisibility(campID, visibility);
@@ -95,6 +96,7 @@ public class CampController {
 	 * @param date
 	 * @throws InvalidDateException 
 	 * if start date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 * @see StaffCampController#changeStartDate(String, String)
 	 */
 	public void changeStartDate(String campID, String date) throws InvalidDateException {
 		staffCampCont.changeStartDate(campID, date);
@@ -106,6 +108,7 @@ public class CampController {
 	 * @param date
 	 * @throws InvalidDateException 
 	 * if end date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 * @see StaffCampController#changeEndDate(String, String)
 	 */
 	public void changeEndDate(String campID, String date) throws InvalidDateException {
 		staffCampCont.changeEndDate(campID, date);
@@ -117,7 +120,7 @@ public class CampController {
 	 * @param date
 	 * @throws InvalidDateException 
 	 * if closing date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
-	 * 
+	 * @see StaffCampController#changeClosingDate(String, String)
 	 */
 	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
 		staffCampCont.changeClosingDate(campID, date);		
@@ -128,6 +131,7 @@ public class CampController {
 	 * @param campID
 	 * @param location
 	 * @throws EditCampException if camp location is blank
+	 * @see StaffCampController#changeLocation(String, String)
 	 */
 	public void changeLocation(String campID, String location) throws EditCampException {
 		staffCampCont.changeLocation(campID, location);
@@ -138,6 +142,7 @@ public class CampController {
 	 * @param campID
 	 * @param description
 	 * @throws EditCampException if camp description is blank
+	 * @see StaffCampController#changeDescription(String, String)
 	 */
 	public void changeDescription(String campID, String description) throws EditCampException{
 		staffCampCont.changeDescription(campID, description);
@@ -150,6 +155,7 @@ public class CampController {
 	 * @param String
 	 * @param openToFacultyOnly
 	 * @throws EditCampException if camp currently contains students not from staff faculty
+	 * @see StaffCampController#changeFaculty(String, String, boolean)
 	 */
 	public void changeFaculty(String staffID, String campID, boolean openToFacultyOnly) throws EditCampException {
 		staffCampCont.changeFaculty(staffID, campID, openToFacultyOnly);
@@ -162,6 +168,7 @@ public class CampController {
 	 * @param slots
 	 * @throws EditCampException if camp committee slots not within range 1-10, <p>
 	 * and slots smaller than number of camp committee members registered
+	 * @see StaffCampController#changeCampCommSlots(String, int)
 	 */
 	public void changeCampCommSlots(String campID, int slots) throws EditCampException {
 		staffCampCont.changeCampCommSlots(campID, slots);
@@ -174,6 +181,7 @@ public class CampController {
 	 * @param slots
 	 * @throws EditCampException if camp participant slots is not at least 1 <p>
 	 * and slots smaller than number of camp participant members registered
+	 * @see StaffCampController#changeCampParticipantSlots(String, int)
 	 */
 	public void changeCampParticipantSlots(String campID, int slots) throws EditCampException {
 		staffCampCont.changeCampParticipantSlots(campID, slots);

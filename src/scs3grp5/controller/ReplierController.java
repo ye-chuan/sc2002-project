@@ -13,7 +13,7 @@ public class ReplierController {
     private String campID;
 
     /**
-	 * 
+	 * Constructor for ReplierController
 	 * @param campID
 	 * 
 	 */
@@ -23,7 +23,7 @@ public class ReplierController {
 
 
     /**
-	 * 
+	 * reply to enquiry and mark as resolved
 	 * @param userID
 	 * @param enquiryID
 	 * @param reply

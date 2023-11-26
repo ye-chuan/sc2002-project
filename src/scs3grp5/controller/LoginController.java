@@ -10,8 +10,9 @@ import scs3grp5.entity.*;
 public class LoginController {
     
     /**
-	 * 
-	 * @param userID
+	 * checks whether it is the first time user log in to the system
+	 * @param password
+	 * @return true if first login
 	 */
 	public boolean isFirstLogin(String password) {
 		if (password.equals("password")) return true;
@@ -21,9 +22,10 @@ public class LoginController {
 	
 
 	/**
-	 * 
+	 * check successful login by user
 	 * @param userID
 	 * @param password
+	 * @return true if login success
 	 */
 	public boolean login (String userID, String password) {
 		UserDatabase uDB = Main.getUserDB();

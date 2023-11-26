@@ -9,7 +9,7 @@ import scs3grp5.entity.*;
  */
 public class PointController {
 	/**
-	 * 
+	 * add 2 points to suggester/camp committee student
 	 * @param studentID
 	 */
 	public void approveSuggestion(String studentID) {
@@ -17,7 +17,7 @@ public class PointController {
 	}
 
 	/**
-	 * 
+	 * add 1 points to suggester/camp committee student
 	 * @param studentID
 	 */
 	public void rejectSuggestion(String studentID) {
@@ -25,7 +25,7 @@ public class PointController {
 	}
 
 	/**
-	 * 
+	 * add 1 points to camp committee student for replying
 	 * @param studentID
 	 */
 	public void replyEnquiry(String studentID) {
@@ -33,7 +33,7 @@ public class PointController {
 	}
 
 	/**
-	 * 
+	 * add points to student
 	 * @param studentID
 	 * @param points
 	 */
@@ -46,7 +46,7 @@ public class PointController {
 	}
 
 	/**
-	 * 
+	 * update points of student
 	 * @param studentID
 	 */
 	public void updatePoints(String studentID) {

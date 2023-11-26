@@ -28,7 +28,7 @@ public class EnquiryListController {
 
 
     /**
-	 * 
+	 * get unresolved enquiries by camp or user depending on camp role
 	 * @param userID
 	 * @see EnquiryController#getPendingEnquiries(String)
 	 */
@@ -50,7 +50,7 @@ public class EnquiryListController {
 	}
 
 	/**
-	 * 
+	 * get resolved enquiries by camp or user depending on camp role
 	 * @param userID
 	 * @see EnquiryController#getResolvedEnquiries(String)
 	 */
@@ -72,7 +72,7 @@ public class EnquiryListController {
 	}
 
 	/**
-	 * 
+	 * get all enquiries by camp or user depending on camp role
 	 * @param userID
 	 * @see EnquiryController#getAllEnquiries(String)
 	 */

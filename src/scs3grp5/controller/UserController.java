@@ -19,6 +19,7 @@ public class UserController {
 	 * checks whether it is the first time user log in to the system
 	 * @param password
 	 * @return true if first login
+	 * @see LoginController#isFirstLogin(String)
 	 */
 	public boolean isFirstLogin(String password) {
 		return loginCont.isFirstLogin(password);
@@ -30,6 +31,7 @@ public class UserController {
 	 * @param userID
 	 * @param password
 	 * @return true if login success
+	 * @see LoginController#login(String, String)
 	 */
 	public boolean login (String userID, String password) {
 		return loginCont.login(userID, password);
@@ -39,7 +41,7 @@ public class UserController {
 	 * check if old password matches new password and changes the password for user
 	 * @param userID
 	 * @param newPassword
-	 * 
+	 * @see PasswordController#changePassword(String, String)
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
 		passwordCont.changePassword(userID, newPassword);
@@ -48,6 +50,7 @@ public class UserController {
 	/**
 	 * checks if new password fits system requirements
 	 * @param newPassword
+	 * @see PasswordController#isPasswordStrong(String)
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {
 		passwordCont.isPasswordStrong(newPassword);
