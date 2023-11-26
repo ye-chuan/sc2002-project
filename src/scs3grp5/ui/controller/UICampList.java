@@ -66,7 +66,7 @@ public class UICampList extends UserInterface{
     @Override
     public IUserInterface showUI() {
 
-        IUserInterface filterUI = new UIFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
+        IUserInterface filterUI = new UIFilter(uiInfo.getUserID(), uiInfo.getIsStaff(), campListCont);
 
         int option = -1;
         menu = new MenuStudentCampList(); 
