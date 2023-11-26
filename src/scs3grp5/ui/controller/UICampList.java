@@ -51,7 +51,9 @@ public class UICampList extends UserInterface{
     }
 
     /**
-     * This methods run the UI for the the camp list UI
+     * This method controls the logic for the UI for the the camp list UI
+     * 
+     * @return the new UI page to run 
      */
     @Override
     public IUserInterface showUI() {
@@ -101,8 +103,10 @@ public class UICampList extends UserInterface{
                 listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
             }
 
-            menu = new ListStudentCamp(listOfCamps);
+            
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
+            else menu = new ListStudentCamp(listOfCamps);
+
             optionSelector = new SelectionFromList(); 
 
             try{
@@ -119,7 +123,7 @@ public class UICampList extends UserInterface{
             }
             else{
                 uiInfo.setCampID(listOfCamps.get(listOption-1));
-                uiInfo.setIsCommittee(campCont.isCommittee(uiInfo.getUserID(), uiInfo.getCampID())); // this method should work for both student and staff if they are the planner
+                uiInfo.setIsCommittee(campCont.isCommittee(uiInfo.getUserID(), uiInfo.getCampID())); // this method should work for both student and staff if they are the planne
                 if (uiInfo.getIsStaff()){
                     if (uiInfo.getIsCommittee()) return new UISuperCamp(uiInfo); 
                 }

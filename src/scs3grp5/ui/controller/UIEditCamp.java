@@ -44,7 +44,12 @@ public class UIEditCamp extends UserInterface{
         campCont = new CampController();
         campID = uiInfo.getCampID();
     }
-
+    
+    /**
+     * This method controls the logic for the UI to edit camp UI
+     * 
+     * @return the new UI page to run
+     */
     @Override
     public IUserInterface showUI() {
         

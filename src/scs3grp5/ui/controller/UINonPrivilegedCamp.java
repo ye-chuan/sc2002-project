@@ -34,7 +34,7 @@ public class UINonPrivilegedCamp extends UserInterface{
         boolean wrongInput = false; 
         int option = -1; 
         
-        if (campCont.getUserStatus(uiInfo.getUserID(), uiInfo.getCampID()) == null) isParticipant = false;
+        if (campCont.getUserStatus(uiInfo.getCampID(), uiInfo.getUserID()) == null) isParticipant = false;
         else isParticipant = true; 
         
         menu = new MenuCampStudent(isParticipant); 

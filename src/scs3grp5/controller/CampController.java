@@ -399,9 +399,12 @@ public class CampController {
 		
 		if (u1 instanceof Staff) {
 			Staff s1 = (Staff) uDB.getItem(userID);
-
-			if (c1.getStaffInCharge() == s1) 
+			System.out.println(c1.getStaffInCharge() + " " +  s1);
+			System.out.println(c1.getStaffInCharge().hashCode() + " " +  s1.hashCode());
+			if (c1.getStaffInCharge().equals(s1)){
+				System.out.println("i come here");
 				return true;
+			}
 			else 
 				return false;
 		}
