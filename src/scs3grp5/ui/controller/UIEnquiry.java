@@ -45,6 +45,7 @@ public class UIEnquiry extends UserInterface {
             menu = new MenuNoOption();  
             optionSelector = new SelectionNull();
             try{
+                printDetail.printDetail();
                 optionSelector.getUserChoiceUI(menu.printMenu(), true);
             }
             catch (OptionException e){
