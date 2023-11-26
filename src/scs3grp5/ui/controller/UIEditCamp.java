@@ -74,7 +74,7 @@ public class UIEditCamp extends UserInterface{
         boolean faculty = false; 
         boolean description = false; 
 
-        String errorMessage; 
+        String errorMessage = ""; 
         boolean error = false; 
         
         IPrintDetail printDetail = new PrintStaffCampDetail(campID);
