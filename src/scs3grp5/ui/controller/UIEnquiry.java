@@ -69,7 +69,11 @@ public class UIEnquiry extends UserInterface {
             catch(OptionException e){
                 return new UIEnquiryList(uiInfo);
             }
+            if (option == -1) wrongInput = true; 
+            else if (option == 0) wrongInput = true; 
+
         }while (wrongInput); 
+        
         
         if (option == 1){
             if (uiInfo.getIsCommittee()) enquiryCont.reply(uiInfo.getUserID(), uiInfo.getEnquiryID(), replyEnquiryUI());
@@ -78,7 +82,7 @@ public class UIEnquiry extends UserInterface {
         else if (option == 2){
             enquiryCont.delete(uiInfo.getEnquiryID());
         }
-        return new UIEnquiryList(uiInfo);
+        return new UIEnquiry(uiInfo);
     }
 
     private String replyEnquiryUI() {
