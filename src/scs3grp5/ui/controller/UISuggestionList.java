@@ -93,7 +93,7 @@ public class UISuggestionList extends UserInterface{
             if (listOption == -1) wrongInput = true; 
             else if (listOption == 0) wrongInput = true; 
             else{
-                uiInfo.setCampID(listOfSuggestions.get(listOption-1));  
+                uiInfo.setSuggestionID(listOfSuggestions.get(listOption-1));  
                 return new UISuggestion(uiInfo);
             }
         }while (wrongInput);
