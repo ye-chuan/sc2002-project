@@ -156,7 +156,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * This method tells the CampList Controller the filters the user Set and Update the listOfCamps to be printed
      */
     private void filterCampToPrint(){
-        // byDate is DD/MM/YYYY-DD/MM/YYYSY
+        // byDate is DD/MM/YYYY-DD/MM/YYYY
         String startDate, endDate; 
         startDate = byDate.substring(0,10); 
         endDate = byDate.substring(11, 21);

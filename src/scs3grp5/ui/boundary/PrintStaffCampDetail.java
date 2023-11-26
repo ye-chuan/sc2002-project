@@ -36,6 +36,9 @@ public class PrintStaffCampDetail implements IPrintDetail {
         campCont = new CampController();
     }
     
+    /**
+     * Details for the staff camp view 
+     */
     @Override
     public void printDetail() {
 

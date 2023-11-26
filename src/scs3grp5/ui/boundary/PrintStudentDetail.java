@@ -23,6 +23,9 @@ public class PrintStudentDetail extends PrintStaffDetail {
         super(userID); 
     }
     
+    /**
+     * Details for a student user
+     */
     @Override
     public void printDetail(){
 

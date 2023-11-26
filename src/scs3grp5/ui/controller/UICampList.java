@@ -15,7 +15,7 @@ import scs3grp5.controller.CampController;
 
 
 /**
- * This class controller for a UI
+ * This class is a UI controller for the CampList UI
  * 
  * @author Belvedere Song Zheng Yi 
  * @version 1.0
@@ -50,6 +50,9 @@ public class UICampList extends UserInterface{
         campCont = new CampController(); 
     }
 
+    /**
+     * This methods run the UI for the the camp list UI
+     */
     @Override
     public IUserInterface showUI() {
 
@@ -129,9 +132,10 @@ public class UICampList extends UserInterface{
         return null; 
     }
 
-    // use the same filter object each time till we end this function 
     /** 
-     * This method provides the UI for user to create a camp
+     * This method provides allows the UI for user to create a camp
+     * 
+     * @return new campID for the newly created camp
      */
     private String createCampUI(){
       return campCont.create(uiInfo.getUserID());
