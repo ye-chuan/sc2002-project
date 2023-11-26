@@ -1,7 +1,6 @@
 package scs3grp5;
 
 import scs3grp5.entity.*;
-import scs3grp5.entity.filtering.*;
 import scs3grp5.io.*;
 import scs3grp5.ui.UIMain;
 
@@ -13,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Main {
     /** Base path for all data files */
@@ -114,21 +112,5 @@ public class Main {
         writer.storeCampMembershipDatabase(savedMembershipDBPath.toString(), membershipDB);
         writer.storeUserDatabase(savedUserDBPath.toString(), userDB);
         writer.storeuniqueIDGeneratorObj(savedIdGeneratorPath.toString(), idGenerator);
-    }
-    
-    public static void test(String[] args) throws FileNotFoundException, IOException, Exception {
-        if (savedUserDBPath.toFile().exists()) {    // Retrieve from saved Database
-            ReaderController reader = new ReaderController();
-            userDB = reader.getUserDatabase(savedUserDBPath.toString());
-            campDB = reader.getCampDatabase(savedCampDBPath.toString());
-            membershipDB = reader.getCampMembershipDatabase(savedMembershipDBPath.toString());
-            idGenerator = reader.getUniqueIDGenerator(savedIdGeneratorPath.toString());
-        }
-
-        System.out.println(userDB.getAll());
-        System.out.println(campDB.getAll());
-        System.out.println(idGenerator.generate());
-        System.out.println(idGenerator.generate());
-        
     }
 }
