@@ -6,169 +6,384 @@ import scs3grp5.Main;
 import scs3grp5.entity.*;
 import scs3grp5.entity.Date;
 
-
+/**
+ * Manages camps in the system
+ * 
+ */
 public class CampController {
 
+	private StaffCampController staffCampCont = new StaffCampController();
+	private StudentCampController studentCampCont = new StudentCampController();
+
 	/**
 	 * 
+	 * Registers student as Participant
 	 * @param campID
 	 * @param userID
-	 * registers student as Participant
+	 * @see StudentCampController#registerAsParticipant(String, String)
 	 */
 	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		UserDatabase uDB = Main.getUserDB();
-		Camp c1 = cDB.getItem(campID);
-		User u1 = uDB.getItem(userID);
-		if (u1 instanceof Staff){
-			throw new RegistrationException("Not a student.");
-		} 
-		else {
-			Student s1 = (Student) u1;
-		
-			// Faculty s1Faculty = u1.getFaculty();
-			
-			// 1 Check Sign Up Date
-			// 2 Check Faculty
-			// 3 Check Blacklist
-			// 4 Check Remaining Slots
-			// 5 Check Overlap Dates
-			if (Date.today().isAfter(c1.getClosingDate())) {
-				throw new RegistrationException("Registration is closed");
-			}
-			// if (!c1.getOpenTo().contains(s1Faculty)) {
-			// 	throw new Exception("Camp not open to {s1Faculty}");
-			// }
-			if (cmemberDB.getBlacklistedID(campID).contains(userID)) {
-				throw new RegistrationException("Blacklisted: unable to rejoin camp");
-			}
-			if (getRemainingParticipantSlots(campID) <= 0) {
-				throw new RegistrationException("There are no remaining slots");
-			}
-			if (overlapDates(c1, s1))
-			{
-				throw new RegistrationException("Camp dates clashed with camps registered");
-			}
-			cmemberDB.addParticipant(s1,c1);
-		}
+		studentCampCont.registerAsParticipant(campID, userID);
 	}
 
 	/**
 	 * 
+	 * Registers student as Camp Committee Member
 	 * @param campID
 	 * @param userID
-	 * registers student as camp committee
+	 * @see StudentCampController#registerAsCommittee(String, String)
 	 */
 	public void registerAsCommittee(String campID, String userID) throws RegistrationException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		UserDatabase uDB = Main.getUserDB();
-		Camp c1 = cDB.getItem(campID);
-		User u1 = uDB.getItem(userID);
-
-		if (u1 instanceof Staff) {
-			throw new RegistrationException("Not a student");
-		}
-		else {
-			Student s1 = (Student) u1;
-			// Faculty s1Faculty = s1.getFaculty();
-			boolean existingCampComm = false;
-
-			Collection<Camp> campJoinList = cmemberDB.getCampsJoinedBy(s1);
-
-			for (Camp c: campJoinList) {
-				if (cmemberDB.getCampCommMembers(c).contains(s1)) {
-					existingCampComm = true;
-				}
-			}
-			
-			// 1 Check Sign Up Date
-			// 2 Check Faculty
-			// 3 Check Remaining Slots
-			// 4 Check Existing Camp Comm
-			// 4 Check Overlap Dates
-
-			if (Date.today().isAfter(c1.getClosingDate())) {
-				throw new RegistrationException("Registration is closed");
-			}
-			// if (!c1.getOpenTo().contains(s1Faculty)) {
-			// 	throw new Exception("Camp not open to {s1Faculty}");
-			// }
-			if (getRemainingCampCommSlots(campID) <= 0) {
-				throw new RegistrationException("There are no remaining slots");
-			}
-			if (existingCampComm == true) {
-				throw new RegistrationException("Already registered as a camp comm for another camp");
-			}
-			if (overlapDates(c1, s1)) {
-				throw new RegistrationException("Camp dates clashed with camps registered");
-			}
-			cmemberDB.addParticipant(s1,c1);
-		}
+		studentCampCont.registerAsCommittee(campID, userID);
 	}
 
 	/**
-	 * 
+	 * Withdraws student from Camp, blacklists student from rejoining
 	 * @param userID
 	 * @param campID
+	 * @see StudentCampController#withdraw(String, String)
 	 */
 	public void withdraw(String userID, String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		UserDatabase uDB = Main.getUserDB();
-		Camp c1 = cDB.getItem(campID);
-		User u1 = uDB.getItem(userID);
-		Student s1;
-
-
-		if (u1 instanceof Student) {
-			s1 = (Student) u1;
-			cmemberDB.removeParticipant(s1,c1);
-		}
-		// if (u1 instanceof Staff) {
-		// 	throw new Exception("Not a student");
-		// }
-		// else {
-
-		// 	if (cmemberDB.getCampCommMembers(c1).contains(s1)) {
-		// 		throw new Exception("Unable to withdraw camp as a camp committee");
-		// 	}
-
-		// 	if (!cmemberDB.getParticipants(c1).contains(s1) && !cmemberDB.getCampCommMembers(c1).contains(s1)) {
-		// 		throw new Exception("Unable to find participant");
-		// 	}
-		// 	else {
-				
-		// 	}	
-		// }
-	}
-
-	public String create(String staffInChargeID) {
-		UserDatabase uDB = Main.getUserDB();
-		CampDatabase cDB = Main.getCampDB();
-		User u1 = uDB.getItem(staffInChargeID);
-		Staff s1;
-		Camp newCamp;
-		if (u1 instanceof Staff) {
-			s1 = (Staff) u1;
-			newCamp = new Camp(Main.getMemberDB(), s1);
-			cDB.add(newCamp);
-			return newCamp.getID();
-		}
-		else return null;
-			
+		studentCampCont.withdraw(userID, campID);
 	}
 
 	/**
+	 * Creates new Camp using StaffID
+	 * @param staffInCharge ID
+	 * @return campID of created camp 
+	 * @see StudentCampController#withdraw(String, String)
+	 */
+	public String create(String staffInChargeID) {
+		return staffCampCont.create(staffInChargeID);
+	}
+
+	/**
+	 * Deletes Camp from Database
+	 * @param campID
+	 * @see StaffCampController#delete(String)
+	 */
+	public void delete(String campID) throws EditCampException {
+		staffCampCont.delete(campID);
+	}
+
+
+	/**
+	 * Changes Name of Camp
+	 * @param campID
+	 * @param newName
+	 * @throws EditCampException if camp name is not unique or length of camp name is too short
+	 * @see StaffCampController#changeName(String, String)
+	 */
+	public void changeName(String campID, String newName) throws EditCampException{
+		staffCampCont.changeName(campID, newName);
+	}
+
+	/**
+	 * toggles the visibility of the camp
+	 * @param campID
+	 * @param visibility
+	 * @throws EditCampException if camp already has students registered
+	 */
+	public void toggleVisibility(String campID, boolean visibility) throws EditCampException {
+		staffCampCont.toggleVisibility(campID, visibility);
+	}
+
+
+	/**
+	 * Change start Date of Camp
+	 * @param campID
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if start date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 */
+	public void changeStartDate(String campID, String date) throws InvalidDateException {
+		staffCampCont.changeStartDate(campID, date);
+	}
+
+	/**
+	 * Change end date of camp
+	 * @param campID
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if end date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
+	 */
+	public void changeEndDate(String campID, String date) throws InvalidDateException {
+		staffCampCont.changeEndDate(campID, date);
+	}
+
+	/**
+	 * Change registration closing date of camp
+	 * @param campID
+	 * @param date
+	 * @throws InvalidDateException 
+	 * if closing date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * 
+	 */
+	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
+		staffCampCont.changeClosingDate(campID, date);		
+	}
+
+	/**
+	 * Changes location of camp
+	 * @param campID
+	 * @param location
+	 * @throws EditCampException if camp location is blank
+	 */
+	public void changeLocation(String campID, String location) throws EditCampException {
+		staffCampCont.changeLocation(campID, location);
+	}
+
+	/**
+	 * Change description of camp
+	 * @param campID
+	 * @param description
+	 * @throws EditCampException if camp description is blank
+	 */
+	public void changeDescription(String campID, String description) throws EditCampException{
+		staffCampCont.changeDescription(campID, description);
+	}
+
+	/**
+	 * Allows staff to change faculty of camp between own faculty and NTU <p>
+	 * Checks whether camp contains students from other faculties when open to staff faculty instead of whole NTU
+	 * @param campID
+	 * @param String
+	 * @param openToFacultyOnly
+	 * @throws EditCampException if camp currently contains students not from staff faculty
+	 */
+	public void changeFaculty(String staffID, String campID, boolean openToFacultyOnly) throws EditCampException {
+		staffCampCont.changeFaculty(staffID, campID, openToFacultyOnly);
+	}
+
+	/**
+	 * Change camp committee slots for camp <p>
+	 * checks for error when downsizing the camp committee slots
+	 * @param campID
+	 * @param slots
+	 * @throws EditCampException if camp committee slots not within range 1-10, <p>
+	 * and slots smaller than number of camp committee members registered
+	 */
+	public void changeCampCommSlots(String campID, int slots) throws EditCampException {
+		staffCampCont.changeCampCommSlots(campID, slots);
+	}
+
+	/**
+	 * Change camp committee slots for camp <p>
+	 * Checks for error when downsizing the camp participant slots
+	 * @param campID
+	 * @param slots
+	 * @throws EditCampException if camp participant slots is not at least 1 <p>
+	 * and slots smaller than number of camp participant members registered
+	 */
+	public void changeCampParticipantSlots(String campID, int slots) throws EditCampException {
+		staffCampCont.changeCampParticipantSlots(campID, slots);
+	}
+
+	/**
+	 * Get name of camp using CampID
+	 * @param campID
+	 */
+	public String getName(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		return c1.getName();
+	}
+
+	/**
+	 * Get visibility of camp
+	 * @param campID
+	 * @return true if visible, false if not visible
+	 */
+	public boolean getVisibility(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		return c1.isVisible();
+	}
+
+	/**
+	 * get start date and end date in formatted string
+	 * @param campID
+	 * @return formatted string of "dd/mm/yy-dd/mm/yy"
+	 */
+	public String getDate(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		if(c1.getDates()==null){
+			return null;
+		}
+		Date start = c1.getDates().getStart();
+		Date end = c1.getDates().getEnd();
+	
+		return String.format("%s-%s", start.toString(), end.toString());
+	}
+
+	/**
+	 * Get location of camp
+	 * @param campID
+	 * @return location of camp
+	 */
+	public String getLocation(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		Camp c1 = cDB.getItem(campID);
+		return c1.getLocation();
+	}
+
+	/**
+	 * Get faculty of camp
+	 * @param campID
+	 * @return faculty of camp: open to faculty or NTU
+	 */
+	public String getFaculty(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		StringJoiner facList = new StringJoiner(", ");
+
+		
+		Camp c1 = cDB.getItem(campID);
+		if(c1.getOpenTo().size()==0) {
+			return null;
+		}
+
+		if (c1.getOpenTo().size() == Faculty.values().length) {
+			return "NTU";
+		}
+		else {
+			for(Faculty faculty : c1.getOpenTo()) {
+				facList = facList.add(faculty.toString());
+			}
+
+			return facList.toString();
+		}
+	}
+
+	/**
+	 * get description of camp
+	 * @param campID
+	 * @return description of camp
+	 */
+	public String getDescription(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+
+		return c1.getDescription();
+	}
+
+	/**
+	 * get total camp committee slots in camp
+	 * @param campID
+	 * @return int of total camp committee slots
+	 */
+	public int getTotalCampCommSlots(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+
+		Camp c1 = cDB.getItem(campID);
+
+		return c1.getCampCommSlots();
+
+	}
+
+	/**
+	 * get remaining camp committee slots in camp
+	 * @param campID
+	 * @return int of remaining camp committee slots
+	 */
+	public int getRemainingCampCommSlots(String campID) {
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+
+		return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
+
+	}
+
+	/**
+	 * get total participant slots in camp
+	 * @param campID
+	 * @return int of total participant slots
+	 */
+	public int getTotalParticipantSlots(String campID) {
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+
+		return c1.getParticipantSlots();
+
+		
+	}
+
+	/**
+	 * get remaining participant slots in camp
+	 * @param campID
+	 * @return int of reamining participant slots
+	 */
+	public int getRemainingParticipantSlots(String campID) {
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		
+	
+		return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
+		
+	}
+
+	/**
+	 * get registration closing date in camp
+	 * @param campID
+	 * @return formatted string of close date
+	 */
+	public String getClosingDate(String campID) {
+	
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		if (c1.getClosingDate()==null) {
+			return null;
+		}
+		else 
+			return c1.getClosingDate().toString();
+	}
+
+	/**
+	 * get staff user who created the camp
+	 * @param campID
+	 * @return Camp-In-Charge name
+	 */
+	public String getCampInCharge(String campID) {
+	
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+		return c1.getStaffInCharge().getName();
+	}
+
+	/**
+	 * Checks whether Registration Closing Date is past today
+	 * @param campID
+	 * @return true if camp is over
+	 */
+	public boolean isCampOver(String campID) {
+		Date close = Main.getCampDB().getItem(campID).getClosingDate();
+		
+		if (close.isBefore(Date.today())) 
+			return true;
+		else
+			return false;
+		
+	}
+
+	/**
+	 * checks whether user is a camp committee or staff in charge of camp
 	 * @param userID
 	 * @param campID
-	 * checks whether user is a camp comm or staff in charge
-	 * change all setter functions to remove logic checking
+	 * @return true if user is a camp committee member or staff in charge of camp
 	 */
 	public boolean isCommittee(String userID, String campID) {
-		// CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
@@ -196,563 +411,9 @@ public class CampController {
 	}
 
 	/**
-	 * 
-	 * @param userID
+	 * checks whether student is a camp participant or camp committee in camp
 	 * @param campID
-	 */
-	public void delete(String campID) throws EditCampException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		// if (!IsEditable(userID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			Camp c1 = cDB.getItem(campID);
-			if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
-				throw new EditCampException("Unable to delete: There are students registered to the camp.");
-			}
-			else {
-				cDB.remove(c1);
-			}
-		// }
-
-	}
-
-
-	/**
-	 * 
-	 * @param campID
-	 * @param newName
-	 */
-	public void changeName(String campID, String newName) throws EditCampException{
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			// check minimum character
-			if (newName.length()<1) {
-				throw new EditCampException("Length of Camp Name < 1");
-			}
-
-			Camp c1 = cDB.getItem(campID);
-			
-			Collection<Camp> campList = cDB.getAll();
-			for (Camp c: campList) {
-				if(c.getName()==newName)
-				throw new EditCampException("Camp Name already existed");
-			}
-			
-			c1.setName(newName);
-		// }
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param visibility
-	 */
-	public void toggleVisibility(String campID, boolean visibility) throws EditCampException {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			Camp c1 = cDB.getItem(campID);
-			if(cmemberDB.getParticipantSize(c1)>0||cmemberDB.getCampCommSize(c1)>0) {
-				throw new EditCampException("Unable to toggle: There are students registered to the camp.");
-			}
-			else {
-				if(visibility) c1.show();
-				else c1.hide();
-			}
-		
-	}
-
-
-	/**
-	 * 
-	 * @param campID
-	 * @param dates
-	 */
-	public void changeStartDate(String campID, String date) throws InvalidDateException {
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			Camp c1 = cDB.getItem(campID);
-			
-			Date start = Date.fromString(date);
-			if (start.isBefore(Date.today())) {
-				throw new InvalidDateException("Start date must be after today");
-			}
-			
-			DateRange dates = c1.getDates();
-			if(dates==null) {
-				c1.setDates(start,start);
-			}
-			else {
-				Date end = dates.getEnd();
-				Date close = c1.getClosingDate();
-				if (close==null) {
-						if (!start.isBefore(end)) {
-							throw new InvalidDateException("Start date must be before end date");
-						}
-				}
-				else if (!(start.isBefore(end) && start.isAfter(close))) {
-					throw new InvalidDateException("Start date must be after closing date, before end date");
-				}
-				
-			c1.setDates(start,end);
-			}
-
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param dates
-	 */
-	public void changeEndDate(String campID, String date) throws InvalidDateException {
-
-		CampDatabase cDB = Main.getCampDB();
-
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			Camp c1 = cDB.getItem(campID);
-			
-			Date end = Date.fromString(date);
-			if (end.isBefore(Date.today())) {
-				throw new InvalidDateException("End date must be after today");
-			}
-			DateRange dates = c1.getDates();
-			if(dates==null) {
-				c1.setDates(end,end);
-			}
-			else {
-				Date start = dates.getStart();
-				if (end.isBefore(start)) {
-					throw new InvalidDateException("End date must after start date");
-				}
-				c1.setDates(start,end);
-			}
-
-	}
-
-
-	/**
-	 * 
-	 * @param campID
-	 * @param String
-	 */
-	public void changeLocation(String campID, String location) throws EditCampException {
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new EditCampException("No permission to edit");
-		// }
-		// else {
-			if (location.length()<1) {
-				throw new EditCampException("Length of Location must be over 1");
-			}
-			Camp c1 = cDB.getItem(campID);
-			c1.setLocation(location);
-		// }
-		//check string >=1 letter, not blank
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param String
-	 */
-	public void changeDescription(String campID, String description) throws EditCampException{
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			if (description.length()<1) {
-				throw new EditCampException("Length of Description must be over 1");
-			}
-			Camp c1 = cDB.getItem(campID);
-			c1.setDescription(description);
-		// }
-		//check minimum character 
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param String
-	 */
-	public void changeFaculty(String staffID, String campID, boolean OpenToFacultyOnly) throws EditCampException {
-		CampDatabase cDB = Main.getCampDB();
-		CampMembershipDatabase cMemberDB = Main.getMemberDB();
-		UserDatabase uDB = Main.getUserDB();
-		Faculty sFaculty = uDB.getItem(staffID).getFaculty();
-
-		Camp c1 = cDB.getItem(campID);
-
-		//check participants == faculty
-			if (OpenToFacultyOnly) {
-				//get participants
-				for (Student s: cMemberDB.getCampCommMembers(campID)) {
-					if (s.getFaculty()!= sFaculty) {
-						throw new EditCampException("Particpants are from other faculties");
-					}
-				}
-				for (Student s: cMemberDB.getParticipants(campID)) {
-					if (s.getFaculty()!= sFaculty) {
-						throw new EditCampException("Particpants are from other faculties");
-					}
-				}
-				c1.openToFaculty(sFaculty);
-			}
-			else {
-				c1.openToNTU();
-			}
-
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param slots
-	 */
-	public void changeCampCommSlots(String campID, int slots) throws EditCampException {
-		CampMembershipDatabase cMemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-		
-			Camp c1 = cDB.getItem(campID);
-			if	(cMemberDB.getCampCommSize(c1) > slots) {
-				throw new EditCampException("slots must be greater than camp comm size.");
-			}
-			if	(slots<1) {
-				throw new EditCampException("slots must be at least 1.");
-			}
-			if	(slots>10) {
-				throw new EditCampException("maximum camp comm slots is 10.");
-			}
-
-			c1.setCampCommSlots(slots);
-		// }
-		//check positive number, not more than 10
-		//check number of slots >= number of registered
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param slots
-	 */
-	public void changeCampParticipantSlots(String campID, int slots) throws EditCampException {
-		CampMembershipDatabase cMemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		// if (!IsEditable(staffID, campID)) {
-		// 	throw new Exception("No permission to edit");
-		// }
-		// else {
-			Camp c1 = cDB.getItem(campID);
-			if	(cMemberDB.getCampCommSize(c1) > slots) {
-				throw new EditCampException("slots must be greater than participant size.");
-			}
-			if	(slots<1) {
-				throw new EditCampException("slots must be at least 1.");
-			}
-			c1.setParticipantSlots(slots);
-		// }
-		
-		//check number of slots >= number of registered
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * @param dates
-	 */
-	public void changeClosingDate(String campID, String date ) throws InvalidDateException {
-		CampDatabase cDB = Main.getCampDB();
-		
-			Camp c1 = cDB.getItem(campID);
-
-			Date close = Date.fromString(date);
-			if (close.isBefore(Date.today())) {
-				throw new InvalidDateException("Closing date must be after today");
-			}
-			DateRange dates = c1.getDates();
-			if(dates==null) {
-				c1.setClosingDate(close);
-			}
-			else {
-				Date start = dates.getStart();
-				if (close.isAfter(start)) {
-					throw new InvalidDateException("Closing date must be before start date");
-				}
-				c1.setClosingDate(close);
-			}
-				
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getName(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		return c1.getName();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public boolean getVisibility(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		return c1.isVisible();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getDate(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		if(c1.getDates()==null){
-			return null;
-		}
-		Date start = c1.getDates().getStart();
-		Date end = c1.getDates().getEnd();
-	
-		return String.format("%s-%s", start.toString(), end.toString());
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getLocation(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		Camp c1 = cDB.getItem(campID);
-		return c1.getLocation();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getFaculty(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		StringJoiner facList = new StringJoiner(", ");
-
-		
-		Camp c1 = cDB.getItem(campID);
-		if(c1.getOpenTo().size()==0) {
-			return null;
-		}
-
-		if (c1.getOpenTo().size() == Faculty.values().length) {
-			return "NTU";
-		}
-		else {
-			for(Faculty faculty : c1.getOpenTo()) {
-				facList = facList.add(faculty.toString());
-			}
-
-			return facList.toString();
-		}
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getDescription(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-
-		return c1.getDescription();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public int getTotalCampCommSlots(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-
-		Camp c1 = cDB.getItem(campID);
-
-		return c1.getCampCommSlots();
-
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public int getRemainingCampCommSlots(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-
-		return c1.getCampCommSlots() - cmemberDB.getCampCommSize(c1);
-
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public int getTotalParticipantSlots(String campID) {
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-
-		return c1.getParticipantSlots();
-
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public int getRemainingParticipantSlots(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		
-	
-		return c1.getParticipantSlots() - cmemberDB.getParticipantSize(c1);
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getClosingDate(String campID) {
-	
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		if (c1.getClosingDate()==null) {
-			return null;
-		}
-		else 
-			return c1.getClosingDate().toString();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public String getCampInCharge(String campID) {
-	
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-		return c1.getStaffInCharge().getID();
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public List<String> getCampParticipantsList(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-
-		Collection<Student> studentList = cmemberDB.getParticipants(c1);
-		
-
-		return sortByNameIDList(studentList);
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 */
-	public List<String> getCampCommitteeList(String campID) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		CampDatabase cDB = Main.getCampDB();
-		
-		Camp c1 = cDB.getItem(campID);
-
-		Collection<Student> studentList = cmemberDB.getCampCommMembers(c1);
-		
-
-		return sortByNameIDList(studentList);
-	}
-
-	
-	/**
-	 * 
-	 * @param camp
-	 * @param student
-	 */
-	public boolean overlapDates(Camp camp, Student student) {
-		CampMembershipDatabase cmemberDB = Main.getMemberDB();
-		
-		Collection<Camp> campList = cmemberDB.getCampsJoinedBy(student);
-		DateRange registerDateRange = camp.getDates();
-
-		for (Camp c: campList) {
-			if (c.getDates().overlaps(registerDateRange)) {
-				return false;
-			}
-		}
-		return true;
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
-	 * Checks whether Registration Closing Date is past today
-	 */
-	public boolean isCampOver(String campID) {
-		Date close = Main.getCampDB().getItem(campID).getClosingDate();
-		
-		if (close.isBefore(Date.today())) 
-			return true;
-		else
-			return false;
-		
-	}
-
-	/**
-	 * 
-	 * @param campID
+	 * @return Camp Role of the student in the camp specified
 	 */
 	public CampRole getUserStatus(String campID, String studentID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -771,19 +432,7 @@ public class CampController {
 
 	}
 
-	/**
-	 * 
-	 * @param campList
-	 */
-	private List<String> sortByNameIDList(Collection<Student> studentList) {
-		Collections.sort((ArrayList<Student>)studentList, Comparator.comparing(Student::getName));
-		ArrayList<String> userIDList = new ArrayList<String>();
-		for (User u: studentList)
-		{
-			userIDList.add(u.getID());
-		}
-		return userIDList;
-	}
+	
 }
 
 

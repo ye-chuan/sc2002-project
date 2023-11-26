@@ -4,59 +4,59 @@ import java.util.Collection;
 import scs3grp5.Main;
 import scs3grp5.entity.*;
 
+
+/**
+ * Manages user account and login in the system
+ * 
+ */
 public class UserController {
 
 	private PointController pointCont = new PointController();
+	private LoginController loginCont = new LoginController();
+	private PasswordController passwordCont = new PasswordController();
 
 	/**
-	 * 
-	 * @param userID
+	 * checks whether it is the first time user log in to the system
+	 * @param password
+	 * @return true if first login
 	 */
 	public boolean isFirstLogin(String password) {
-		if (password.equals("password")) return true;
-		else return false;
-		
+		return loginCont.isFirstLogin(password);
 	}
 	
 
 	/**
-	 * 
+	 * check successful login by user
 	 * @param userID
 	 * @param password
+	 * @return true if login success
 	 */
 	public boolean login (String userID, String password) {
-		UserDatabase uDB = Main.getUserDB();
-		
-		User u1 = uDB.login(userID,password);
-		if (u1==null) {
-			return false;
-		} 
-		else
-			return true;
-		
+		return loginCont.login(userID, password);
 	}
 
 	/**
-	 * 
+	 * check if old password matches new password and changes the password for user
 	 * @param userID
 	 * @param newPassword
+	 * 
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
-		UserDatabase uDB = Main.getUserDB();
-		User u1 = uDB.getItem(userID);
-	
-		if (!u1.checkPassword(newPassword)) {
-			u1.changePassword(newPassword);
-		}
-		else {
-			throw new PasswordException("new password cannot be same as old password");
-		}
-		
+		passwordCont.changePassword(userID, newPassword);
 	}
 
 	/**
-	 * 
+	 * checks if new password fits system requirements
+	 * @param newPassword
+	 */
+	public void isPasswordStrong(String newPassword) throws PasswordException {
+		passwordCont.isPasswordStrong(newPassword);
+	}
+
+	/**
+	 * get domain/ user type of user currently in the system
 	 * @param userID
+	 * @return STAFF or STUDENT
 	 */
 	public UserType getDomain(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -70,8 +70,9 @@ public class UserController {
 	}
 
 	/**
-	 * 
+	 * check whether user in the system is STAFF
 	 * @param userID
+	 * @return true if user is staff
 	 */
 	public boolean isStaffUserType(String userID) {
 		if (getDomain(userID)==UserType.STAFF) 
@@ -81,8 +82,9 @@ public class UserController {
 	}
 
 	/**
-	 * 
+	 * get points of the student
 	 * @param userID
+	 * @return points
 	 */
 	public int getPoints(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -98,8 +100,9 @@ public class UserController {
 	}
 
 	/**
-	 * 
+	 * check for whether student is currently a camp committee
 	 * @param userID
+	 * @return campID of Camp which student is a camp committee
 	 */
 	public String getStudentCommitteeCampID(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -118,19 +121,12 @@ public class UserController {
 		return "N.A";
 	}
 
-	/**
-	 * 
-	 * @param newPassword
-	 */
-	public void isPasswordStrong(String newPassword) throws PasswordException {
-		if (newPassword.length() < 8) {
-			throw new PasswordException("Password needs be more than 8 characters");
-		}
-	}
+	
 
 	/**
-	 * 
+	 * get username of user
 	 * @param userID
+	 * @return userName
 	 */
 	public String getUserName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -141,8 +137,9 @@ public class UserController {
 	}
 
 	/**
-	 * 
+	 * get name of user
 	 * @param userID
+	 * @return name
 	 */
 	public String getName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -152,8 +149,9 @@ public class UserController {
 	}
 
 	/**
-	 * 
+	 * get faculty of user
 	 * @param userID
+	 * @return faculty
 	 */
 	public String getFaculty(String userID) {
 		UserDatabase uDB = Main.getUserDB();

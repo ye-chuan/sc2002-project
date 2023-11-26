@@ -4,6 +4,10 @@ import scs3grp5.Main;
 import scs3grp5.entity.*;
 import scs3grp5.io.CsvWriter;
 
+/**
+ * Manages output of formatted report to csv
+ * 
+ */
 public class ReportController {
 
 	private static String filepath;

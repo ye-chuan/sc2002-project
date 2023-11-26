@@ -1,9 +1,12 @@
 package scs3grp5.controller;
 
-
 import scs3grp5.Main;
 import scs3grp5.entity.*;
 
+/**
+ * Manages student points in the system
+ * 
+ */
 public class PointController {
 	/**
 	 * 

@@ -1,0 +1,113 @@
+package scs3grp5.controller;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import scs3grp5.Main;
+import scs3grp5.entity.*;
+
+/**
+ * Manages enquiry list viewing in the system
+ * 
+ */
+public class EnquiryListController {
+
+    private String campID;
+    
+    /**
+	 * Constructor for EnquiryListController
+	 * @param campID
+	 * 
+	 */
+	public EnquiryListController(String campID) {
+		this.campID = campID;
+	}
+
+
+    /**
+	 * 
+	 * @param userID
+	 * @see EnquiryController#getPendingEnquiries(String)
+	 */
+	public List<String> getPendingEnquiries(String userID) {
+		CampDatabase cDB = Main.getCampDB();
+		CampController campCont = new CampController();
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+
+		
+		Camp c1 = cDB.getItem(campID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList = c1.getEnquiryDB().getUnresolvedEnquiries();
+		}
+		else {
+			enqList = c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID);
+		}
+
+		return sortByNameIDList(enqList);
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @see EnquiryController#getResolvedEnquiries(String)
+	 */
+	public List<String> getResolvedEnquiries(String userID) {
+		CampDatabase cDB = Main.getCampDB();
+		CampController campCont = new CampController();
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+
+		
+		Camp c1 = cDB.getItem(campID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList = c1.getEnquiryDB().getResolvedEnquiries();
+		}
+		else {
+			enqList = c1.getEnquiryDB().getResolvedEnquiriesBy(userID);
+		}
+
+		return sortByNameIDList(enqList);
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @see EnquiryController#getAllEnquiries(String)
+	 */
+	public List<String> getAllEnquiries(String userID) {
+		CampDatabase cDB = Main.getCampDB();
+		CampController campCont = new CampController();
+		Collection<Enquiry> enqList = new ArrayList<Enquiry>();
+	
+		Camp c1 = cDB.getItem(campID);
+		if (campCont.isCommittee(userID, campID)) {
+			enqList.addAll(c1.getEnquiryDB().getResolvedEnquiries());
+			enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiries());
+		}
+		else {
+			enqList.addAll(c1.getEnquiryDB().getResolvedEnquiriesBy(userID));
+			enqList.addAll(c1.getEnquiryDB().getUnresolvedEnquiriesBy(userID));
+		}
+
+		return sortByNameIDList(enqList);
+	}
+
+    /**
+	 * sorts list of enquiries alphabetically by the creator name of enquiry
+	 * @param enquiryList
+	 * @return sorted list of enquiryID
+	 */
+	private List<String> sortByNameIDList(Collection<Enquiry> enquiryList) {
+		Collections.sort((ArrayList<Enquiry>)enquiryList, Comparator.comparing(Enquiry::getAskedBy));
+		ArrayList<String> enquiryIDList = new ArrayList<String>();
+		for (Enquiry e: enquiryList)
+		{
+			enquiryIDList.add(e.getID());
+		}
+		return enquiryIDList;
+	}
+
+
+}
