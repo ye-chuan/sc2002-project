@@ -231,10 +231,10 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      * This method set the filter to their default state for this user 
      */
     private void setDefaultFilter(){
-        availableParticipant = true;
-        availableCommittee = true; 
+        availableParticipant = !isStaff;
+        availableCommittee = !isStaff; 
         byFaculty = false; 
-        byVisibility = true;
+        byVisibility = !isStaff;
         byDate = "";
         byLocation = ""; 
     }
