@@ -55,6 +55,7 @@ public class UIPrivilegedCamp extends UserInterface{
             option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
             errorMessage = "";
             wrongInput = false;
+            errorRegistration = false; 
         }
         catch(OptionException e){
             wrongInput = true; 

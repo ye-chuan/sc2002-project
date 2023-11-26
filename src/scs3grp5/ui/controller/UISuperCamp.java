@@ -41,7 +41,7 @@ public class UISuperCamp extends UIPrivilegedCamp{
             catch(OptionException e){
                 wrongInput = true; 
             }
-
+            errorRegistration = false; 
             if (option == 2){
                 generateStudentListUI(); 
                 errorRegistration = true; 
@@ -58,7 +58,7 @@ public class UISuperCamp extends UIPrivilegedCamp{
         else if (option == 5) return new UISuggestionList(uiInfo);
         else if (option == 6) return new UICampList(uiInfo); 
         else if (option == 7) return new UIHomepage(uiInfo);
-        return null; 
+        else return null; 
     }
 
     private void generatePerformanceReportUI(){

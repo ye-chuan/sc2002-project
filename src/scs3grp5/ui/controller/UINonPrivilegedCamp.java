@@ -59,7 +59,7 @@ public class UINonPrivilegedCamp extends UserInterface{
 
             if (isParticipant) option -= 1; 
             else option -= 2; 
-
+            errorRegistration = false; 
             if (option == -1) {
                 try{
                     campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID());

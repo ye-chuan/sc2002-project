@@ -71,7 +71,8 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
         ISelectOption optionSelector = new SelectionMenu();
         
-        do{
+        do{ 
+
             ChangePage.changePage();
             int option = -1; 
 
