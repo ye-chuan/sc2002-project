@@ -3,6 +3,7 @@ package scs3grp5.ui.boundary;
 import java.util.ArrayList;
 
 import scs3grp5.controller.SuggestionController;
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
@@ -35,7 +36,9 @@ public class PrintSuggestionDetail implements IPrintDetail {
         String text = suggestionCont.getSuggestionCreator(suggestionID); 
         String status = suggestionCont.getStatus(suggestionID);
 
-
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
         System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90
         System.out.println(PrintHelper.fillUpSpace("SUGGESTION INFORMATION", 90, 1, true));
         System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90

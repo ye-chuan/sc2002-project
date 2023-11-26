@@ -1,6 +1,7 @@
 package scs3grp5.ui.boundary;
 
 import scs3grp5.controller.UserController;
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
@@ -34,6 +35,10 @@ public class PrintStaffDetail implements IPrintDetail{
     
     @Override
     public void printDetail(){
+
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
 
         String name = (userCont.getName(userID)).toUpperCase(); 
         String faculty = (userCont.getFaculty(userID)).toUpperCase(); 

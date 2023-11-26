@@ -2,7 +2,6 @@ package scs3grp5.ui.ulti;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.io.*;
 
 import scs3grp5.entity.Date;
 
@@ -50,6 +49,7 @@ public class SelectionHelper {
                 day = Integer.parseInt(date.substring(0,2));
                 month = Integer.parseInt(date.substring(3,5));
                 year = Integer.parseInt(date.substring(6));
+                loop = false; 
             }catch( NumberFormatException e){
                 loop = true; 
                 continue; 
