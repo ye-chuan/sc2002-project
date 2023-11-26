@@ -45,7 +45,7 @@ public class PrintStaffDetail implements IPrintDetail{
 
         String name = (userCont.getName(userID)).toUpperCase(); 
         String faculty = (userCont.getFaculty(userID)).toUpperCase(); 
-        String email = userCont.getUserName(userID)+ "@ntu.edu.sg";
+        String email = userCont.getUserName(userID);
 
         System.out.println("ACCOUNT DETAIL"); 
         System.out.println("┌───────────────────┬───────────────────────────────────────────┐"); // 65 

@@ -11,7 +11,6 @@ import scs3grp5.ui.menu.MenuEquiryReply;
 import scs3grp5.ui.menu.MenuNoOption;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
-import scs3grp5.ui.ulti.PrintHelper;
 
 
 /**
@@ -41,7 +40,7 @@ public class UIEnquiry extends UserInterface {
 
         printDetail.printDetail();
 
-        if (enquiryCont.getStatus(uiInfo.getEnquiryID()) || !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.getEnquiryID()) || uiInfo.getIsCommittee())){
+        if (enquiryCont.getStatus(uiInfo.getEnquiryID()) && !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.getEnquiryID()) || uiInfo.getIsCommittee())){
             menu = new MenuNoOption();  
             optionSelector = new SelectionNull();
             try{
@@ -62,6 +61,7 @@ public class UIEnquiry extends UserInterface {
         do{
             try{
                 ChangePage.changePage();
+                printDetail.printDetail();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }
@@ -77,7 +77,7 @@ public class UIEnquiry extends UserInterface {
         else if (option == 2){
             enquiryCont.delete(uiInfo.getEnquiryID());
         }
-        return new UIEnquiry(uiInfo);
+        return new UIEnquiryList(uiInfo);
     }
 
     private String replyEnquiryUI() {

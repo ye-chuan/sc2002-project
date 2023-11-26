@@ -6,7 +6,6 @@ import scs3grp5.controller.SuggestionController;
 import scs3grp5.ui.input.SelectionFromList;
 import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.ListSuggestion;
-import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
 import scs3grp5.ui.menu.MenuSuggestionCommitteeList;
 import scs3grp5.ui.menu.MenuSuggestionStaffList;
 import scs3grp5.ui.ulti.ChangePage;

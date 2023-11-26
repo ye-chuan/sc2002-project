@@ -29,7 +29,7 @@ public class UISuggestion extends UserInterface {
 
         printDetail.printDetail();
 
-        if (suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING") || !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
+        if (!(suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING")) && !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
@@ -50,6 +50,7 @@ public class UISuggestion extends UserInterface {
         do{
             try{
                 ChangePage.changePage();
+                printDetail.printDetail();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }

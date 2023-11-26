@@ -2,6 +2,8 @@ package scs3grp5.ui.controller;
 
 import java.io.IOException;
 
+import scs3grp5.controller.CampController;
+import scs3grp5.controller.EditCampException;
 import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintStaffCampDetail;
 import scs3grp5.ui.input.SelectionMenu;
@@ -11,9 +13,12 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
 public class UISuperCamp extends UIPrivilegedCamp{
- 
+    
+    private CampController campCont; 
+
     public UISuperCamp(UIInformation uiInfo) {
         super(uiInfo);
+        this.campCont = new CampController(); 
     }
 
     @Override
@@ -51,14 +56,24 @@ public class UISuperCamp extends UIPrivilegedCamp{
                 errorRegistration = true; 
             }
             System.out.println(errorMessage);
+
+            if (option == 6){
+                try{
+                    campCont.delete(uiInfo.getCampID());
+                    return new UICampList(uiInfo); 
+                }catch (EditCampException e){
+                    errorMessage = e.getMessage();
+                    errorRegistration = true; 
+                }
+            }
         }while (wrongInput || errorRegistration);
 
         if (option == 1) return new UIEditCamp(uiInfo, false);  
         else if (option == 4) return new UIEnquiryList(uiInfo);
         else if (option == 5) return new UISuggestionList(uiInfo);
-        else if (option == 6) return new UICampList(uiInfo); 
-        else if (option == 7) return new UIHomepage(uiInfo);
-        else return null; 
+        else if (option == 7) return new UICampList(uiInfo); 
+        else if (option == 8) return new UIHomepage(uiInfo);
+        else return null;
     }
 
     private void generatePerformanceReportUI(){

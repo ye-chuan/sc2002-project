@@ -32,7 +32,7 @@ public class UIHomepage extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
-                System.out.println(PrintHelper.ANSI_YELLOW + PrintHelper.LOGO_STRING + PrintHelper.ANSI_RESET);
+                System.out.println(PrintHelper.ANSI_GREEN + PrintHelper.LOGO_STRING + PrintHelper.ANSI_RESET);
                 System.out.println();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
