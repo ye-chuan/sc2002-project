@@ -6,6 +6,8 @@ package scs3grp5.entity;
  * @since 2023-11-26
  */
 public enum CampRole {
+    /** A participant (not camp committee member) of a camp */
     PARTICIPANT,
+    /** A camp committee member of a camp */
     CAMPCOMM
 }

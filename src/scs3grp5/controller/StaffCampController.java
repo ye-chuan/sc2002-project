@@ -26,7 +26,7 @@ public class StaffCampController {
 		Camp newCamp;
 		if (u1 instanceof Staff) {
 			s1 = (Staff) u1;
-			newCamp = new Camp(Main.getMemberDB(), s1);
+			newCamp = new Camp(s1);
 			cDB.add(newCamp);
 			return newCamp.getID();
 		}

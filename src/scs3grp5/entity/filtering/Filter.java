@@ -9,6 +9,7 @@ package scs3grp5.entity.filtering;
 public abstract class Filter<T> {
 
     /**
+     * @param obj The object to check if passes through this filter
      * @return Whether or not the object passes through filter
      */
 	public abstract boolean pass(T obj);

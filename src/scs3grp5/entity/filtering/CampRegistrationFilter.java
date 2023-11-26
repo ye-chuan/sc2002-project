@@ -18,6 +18,7 @@ public class CampRegistrationFilter extends CampFilter {
     /**
      * Include only Camps with registration closing on a specific {@code Date}
      * @param date The date that registration closes
+     * @return The {@code CampRegistrationFilter} with this filter option
      */
     public static CampRegistrationFilter on(Date date) {
         CampRegistrationFilter filter = new CampRegistrationFilter();
@@ -29,6 +30,7 @@ public class CampRegistrationFilter extends CampFilter {
     /**
      * Include only Camps with registration closing before (and including) a specific {@code Date}
      * @param date The date that registration has to close before (or on)
+     * @return The {@code CampRegistrationFilter} with this filter option
      */
     public static CampRegistrationFilter beforeIncl(Date date) {
         CampRegistrationFilter filter = new CampRegistrationFilter();
@@ -39,6 +41,7 @@ public class CampRegistrationFilter extends CampFilter {
     /**
      * Include only Camps with registration closing after (and including) a specific {@code Date}
      * @param date The date that registration has to close after (or on)
+     * @return The {@code CampRegistrationFilter} with this filter option
      */
     public static CampRegistrationFilter afterIncl(Date date) {
         CampRegistrationFilter filter = new CampRegistrationFilter();

@@ -8,7 +8,9 @@ package scs3grp5.entity;
  */
 public interface Identifiable {
 
-    /** The unique ID of this item */
+    /**
+     * @return The unique ID of this item
+     */
 	String getID();
 
 }

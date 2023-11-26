@@ -88,14 +88,18 @@ public class CampMembershipDatabase implements Serializable{
 
     /**
      * Get the camp committee members of a camp
-     * @param campID ID of the camp
-     * @return The participants of a camp
-     * Get the participants of a camp
+     * @param camp The camp to search for
+     * @return The camp committee members of a camp
      */
 	public Collection<Student> getCampCommMembers(Camp camp) {
         return getCampCommMembers(camp.getID());
 	}
 
+	/**
+     * Get the camp committee members of a camp
+     * @param campID ID of the camp to search for
+     * @return The camp committee members of a camp
+	 */
 	public Collection<Student> getCampCommMembers(String campID) {
         return getStudentInCampByRole(campID, CampRole.CAMPCOMM);
 	}
@@ -175,6 +179,11 @@ public class CampMembershipDatabase implements Serializable{
         return true;
 	}
 
+    /**
+     * Get the IDs of the blacklisted student of a camp
+     * @param campID The campID of the camp to check
+     * @return The IDs of the blacklisted student of a camp
+     */
     public Collection<String> getBlacklistedID(String campID) {
         return blacklist.containsKey(campID) ? blacklist.get(campID) : new HashSet<String>();
     }
@@ -182,6 +191,8 @@ public class CampMembershipDatabase implements Serializable{
     /**
      * Get role of a {@code Student} in a {@code Camp}
      * 
+     * @param camp The camp to search the student in
+     * @param student The student to search for
      * @return Role of student in a camp. If camp doesn't exists or student not a member of the camp, then null
      */
     public CampRole getRoleInCamp(Camp camp, Student student) {
@@ -191,6 +202,8 @@ public class CampMembershipDatabase implements Serializable{
     /**
      * Get role of a {@code Student} in a {@code Camp}
      * 
+     * @param campID The ID of the camp to search the student in
+     * @param studentID The ID of the student to search for
      * @return Role of student in a camp. If camp doesn't exists or student not a member of the camp, then null
      */
     public CampRole getRoleInCamp(String campID, String studentID) {

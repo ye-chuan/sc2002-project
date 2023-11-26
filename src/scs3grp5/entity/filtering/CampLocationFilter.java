@@ -12,7 +12,11 @@ public class CampLocationFilter extends CampFilter {
     /** The only camp location to include */
     private String onlyLocation;
 
-    /** Include only Camp with at a specific location */
+    /**
+     * Include only Camp with at a specific location
+     * @param location The location that the camp has to be held at
+     * @return The {@code CampCampCommSlotsFilter} with this filter option
+     */
     public static CampLocationFilter onlyAt(String location) {
         CampLocationFilter filter = new CampLocationFilter();
         filter.onlyLocation = location;

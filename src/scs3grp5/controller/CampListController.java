@@ -76,8 +76,8 @@ public class CampListController {
 			// filterer.addFilter(CampFacultyFilter.onlyOpenedTo(s1Faculty));
 			filterer.addFilter(CampFacultyFilter.openedTo(s1Faculty));
 			// now only show Faculty of student, does not show "NTU"
-			filterer.addFilter(CampParticipantSlotsFilter.excludeFull());
-			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
+			filterer.addFilter(CampParticipantSlotsFilter.excludeFull(Main.getMemberDB()));
+			filterer.addFilter(CampCampCommSlotsFilter.excludeFull(Main.getMemberDB()));
 		}
 
 		campList = filterer.filter();
@@ -118,9 +118,9 @@ public class CampListController {
 		if(!fromDate.equals("")&&!toDate.equals(""))
 			filterer.addFilter(CampDatesFilter.allWithin(Date.fromString(fromDate), Date.fromString(toDate)));
 		if (openCommSlots) 
-			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
+			filterer.addFilter(CampCampCommSlotsFilter.excludeFull(Main.getMemberDB()));
 		if (openParticipantSlots) 
-			filterer.addFilter(CampParticipantSlotsFilter.excludeFull());
+			filterer.addFilter(CampParticipantSlotsFilter.excludeFull(Main.getMemberDB()));
 		if (visibility) 
 			filterer.addFilter(CampVisiblityFilter.onlyVisible());
 		else {

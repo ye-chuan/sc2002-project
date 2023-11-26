@@ -13,12 +13,20 @@ public class CampStaffFilter extends CampFilter {
     /** The only staff to include */
     private String onlyStaffID;
 
-    /** Include only Camp with a specific Staff-in-Charge */
+    /**
+     * Include only Camp with a specific Staff-in-Charge
+     * @param staffInCharge The staff-in-charge
+     * @return The {@code CampStaffFilter} with this filter option
+     */
     public static CampStaffFilter onlyBy(Staff staffInCharge) {
         return onlyBy(staffInCharge.getID());
     }
 
-    /** Include only Camp with a specific Staff-in-Charge */
+    /**
+     * Include only Camp with a specific Staff-in-Charge
+     * @param staffInChargeID The ID of the staff-in-charge
+     * @return The {@code CampStaffFilter} with this filter option
+     */
     public static CampStaffFilter onlyBy(String staffInChargeID) {
         CampStaffFilter filter = new CampStaffFilter();
         filter.onlyStaffID = staffInChargeID;

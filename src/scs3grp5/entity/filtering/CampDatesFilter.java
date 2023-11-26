@@ -19,6 +19,7 @@ public class CampDatesFilter extends CampFilter {
      * Only include Camps with that occurs entirely within a range (inclusive)
      *  @param startDate The start of the date range (inclusive)
      *  @param endDate The end of the date range (inclusive)
+     *  @return The {@code CampDatesFilter} with this filter option
      */
     public static CampDatesFilter allWithin(Date startDate, Date endDate) {
         CampDatesFilter filter = new CampDatesFilter();
@@ -30,6 +31,7 @@ public class CampDatesFilter extends CampFilter {
     /**
      * Only include Camps with that occurs entirely before (and including) this {@code Date}
      *  @param date The camp dates must all lie before (and including) this date
+     *  @return The {@code CampDatesFilter} with this filter option
      */
     public static CampDatesFilter allBeforeIncl(Date date) {
         CampDatesFilter filter = new CampDatesFilter();
@@ -40,6 +42,7 @@ public class CampDatesFilter extends CampFilter {
     /**
      * Only include Camps with that occurs entirely after (and including) this {@code Date}
      *  @param date The camp dates must all lie after (and including) this date
+     *  @return The {@code CampDatesFilter} with this filter option
      */
     public static CampDatesFilter allAfterIncl(Date date) {
         CampDatesFilter filter = new CampDatesFilter();

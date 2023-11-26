@@ -62,6 +62,7 @@ public class Database<T extends Identifiable> implements Serializable {
     /** 
      * Remove an item by it's ID
      * @param id The id of the item to remove
+     * @return The item that was removed
      */
 	public T remove(String id) {
         return items.remove(id);
@@ -70,6 +71,7 @@ public class Database<T extends Identifiable> implements Serializable {
     /** 
      * Remove an item
      * @param item The item to remove
+     * @return The item that was removed (should be the same item)
      */
     public T remove(T item) {
         return remove(item.getID());

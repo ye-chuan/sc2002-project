@@ -21,7 +21,7 @@ public class CampFilterer extends Filterer<Camp> {
 	/**
 	 * Construct Filterer with the given inital items.
      *
-	 * @param initialItems
+	 * @param initialItems The initial items to filter (will not change throughout the lifetime of the Filterer)
 	 */
 	public CampFilterer(Collection<Camp> initialItems) {
         this.initialItems = initialItems;

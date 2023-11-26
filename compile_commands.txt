@@ -9,3 +9,7 @@ javac -encoding utf8 -classpath "lib/commons-collections4-4.1.jar;lib/poi-3.17.j
 java -classpath "bin;lib/commons-collections4-4.1.jar;lib/poi-3.17.jar;lib/poi-ooxml-3.17.jar;lib/poi-ooxml-schemas-3.17.jar;lib/xmlbeans-2.6.0.jar" scs3grp5/Main
 
 
+
+
+# Javadocs
+javadoc -encoding utf8 -classpath "lib/commons-collections4-4.1.jar;lib/poi-3.17.jar;lib/poi-ooxml-3.17.jar;lib/poi-ooxml-schemas-3.17.jar;lib/xmlbeans-2.6.0.jar" -d doc -sourcepath src -subpackages scs3grp5

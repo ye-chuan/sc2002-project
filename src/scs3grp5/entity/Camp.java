@@ -20,13 +20,10 @@ public class Camp implements Identifiable, Serializable{
 	private SuggestionDatabase suggestionDB;
     /** This camp's {@code EnquiryDatabase} where enquiries are stored */
 	private EnquiryDatabase enquiriesDB;
-    /** The {@code CampMembershipDatabase} in charge of keeping track of the members in this camp */
-    private CampMembershipDatabase membershipDB;
 
 	/**
      * Construct Camp object exhausively
      *
-     * @param membershipDB The {@CampMembershipDatabase} that is going to store the Membership information for this Camp
 	 * @param name Name of the camp
 	 * @param location Location where the camp is held
 	 * @param startDate The camp's first day
@@ -37,28 +34,25 @@ public class Camp implements Identifiable, Serializable{
 	 * @param staffInCharge The staff in charge of the camp (cannot be changed)
 	 * @param openTo The faculty that the camp is opened to
 	 */
-	public Camp(CampMembershipDatabase membershipDB, String name, String location, Date startDate, Date endDate, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
+	public Camp(String name, String location, Date startDate, Date endDate, Date closingDate, int participantSlots, int campCommSlots, Staff staffInCharge, Collection<Faculty> openTo) {
         this.information = new CampInformation(name, location, startDate, endDate, closingDate, participantSlots, campCommSlots, staffInCharge, openTo);
         this.information.setCampID(Main.getIdGenerator().generate());
 
         this.suggestionDB = new SuggestionDatabase();
         this.enquiriesDB = new EnquiryDatabase();
-        this.membershipDB = membershipDB;
 	}
 
     /**
      * Constructs Camp object minimally.
      *
-     * @param membershipDB The {@CampMembershipDatabase} that is going to store the Membership information for this Camp
      * @param staffInCharge The staff-in-charge is the only required attribute of a Camp (and unmodifiable after creation)
      */
-    public Camp(CampMembershipDatabase membershipDB, Staff staffInCharge) {
+    public Camp(Staff staffInCharge) {
         this.information = new CampInformation(staffInCharge);
         this.information.setCampID(Main.getIdGenerator().generate());
 
         this.suggestionDB = new SuggestionDatabase();
         this.enquiriesDB = new EnquiryDatabase();
-        this.membershipDB = membershipDB;
     }
 
     /**
@@ -83,7 +77,10 @@ public class Camp implements Identifiable, Serializable{
         information.setOpenTo(Arrays.asList(Faculty.values()));
 	}
 
-	/** Make camp available for just 1 faculty (not whole school) */
+	/**
+     * Make camp available for just 1 faculty (not whole school)
+     * @param faculty The only faculty to open this camp to
+     */
 	public void openToFaculty(Faculty faculty) {
         Collection<Faculty> openToFaculties = new ArrayList<Faculty>();
         openToFaculties.add(faculty);
@@ -97,7 +94,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getName();
 	}
 
-    /** Set the name of this camp */
+    /**
+     * Set the name of this camp
+     * @param name The new camp name
+     */
 	public void setName(String name) {
         this.information.setName(name);
 	}
@@ -109,7 +109,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getLocation();
 	}
 
-    /** Set the location of this camp */
+    /**
+     * Set the location of this camp
+     * @param location The new location of this camp
+     */
 	public void setLocation(String location) {
         this.information.setLocation(location);
 	}
@@ -126,7 +129,8 @@ public class Camp implements Identifiable, Serializable{
 	/**
 	 * Set the Camp's event dates (not registration date).
      *
-	 * @param dates Can be given in a Collection (abitrary/no order)
+	 * @param start Start date of the camp
+     * @param end End date of the camp
 	 */
 	public void setDates(Date start, Date end) {
         this.information.setDates(start, end);
@@ -146,7 +150,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getClosingDate();
 	}
 
-    /** Set the last Date of registration */
+    /**
+     * Set the last Date of registration
+     * @param closingDate The new registration closing date for this camp
+     */
 	public void setClosingDate(Date closingDate) {
         this.information.setClosingDate(closingDate);
 	}
@@ -158,7 +165,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getParticipantSlots();
 	}
 
-    /** Set total number of participant slots */
+    /** 
+     * Set total number of participant slots
+     * @param participantSlots The new total participant slots
+     */
 	public void setParticipantSlots(int participantSlots) {
         this.information.setParticipantSlots(participantSlots);
 	}
@@ -170,7 +180,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getCampCommSlots();
 	}
 
-    /** Set total number of camp committee slots */
+    /**
+     * Set total number of camp committee slots
+     * @param campCommSlots The new total camp committee slots
+     */
 	public void setCampCommSlots(int campCommSlots) {
         this.information.setCampCommSlots(campCommSlots);
 	}
@@ -182,7 +195,10 @@ public class Camp implements Identifiable, Serializable{
         return this.information.getDescription();
 	}
 
-    /** Set this camp's text description */
+    /**
+     * Set this camp's text description
+     * @param description The new camp description
+     */
 	public void setDescription(String description) {
         this.information.setDescription(description);
 	}
@@ -203,6 +219,7 @@ public class Camp implements Identifiable, Serializable{
 
     /**
      * Set the Collection of Faculties that this camp is open to
+     * @param openTo The new set of faculties to open this camp to
      */
 	public void setOpenTo(Collection<Faculty> openTo) {
         this.information.setOpenTo(openTo);
@@ -211,7 +228,7 @@ public class Camp implements Identifiable, Serializable{
     /**
      * Checks whether this camp is open to a Faculty
      *
-     * @param The faculty to check
+     * @param faculty The faculty to check
      * @return Whether this camp is open to a Faculty
      */
     public boolean isOpenTo(Faculty faculty) {
@@ -219,31 +236,17 @@ public class Camp implements Identifiable, Serializable{
     }
 
     /**
-     * @return The {@SuggestionDatabase} of this Camp where Suggestions are stored
+     * @return The {@code SuggestionDatabase} of this Camp where Suggestions are stored
      */
     public SuggestionDatabase getSuggestionDB() {
         return this.suggestionDB;
     }
 
     /**
-     * @return The {@EnquiryDatabase} of this Camp where Enquiries are stored
+     * @return The {@code EnquiryDatabase} of this Camp where Enquiries are stored
      */
     public EnquiryDatabase getEnquiryDB() {
         return this.enquiriesDB;
-    }
-
-    /**
-     * @return The cuurent number of participants in this camp
-     */
-    public int getNumParticipants() {
-        return membershipDB.getParticipantSize(this);
-    }
-
-    /**
-     * @return The cuurent number of camp committee members in this camp
-     */
-    public int getNumCampComm() {
-        return membershipDB.getCampCommSize(this);
     }
 
     /** {@inheritDoc} */

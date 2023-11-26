@@ -13,7 +13,7 @@ public abstract class Filterer<T> {
 	/**
 	 * Add a filter to to used later when {@code .filter()} is called.
      *
-	 * @param filter
+	 * @param filter The filter to add
 	 */
 	public abstract void addFilter(Filter<T> filter);
 
@@ -24,8 +24,7 @@ public abstract class Filterer<T> {
      * Returned the items filtered by the added filters so far.
      *
      * Note that this doesn't change the state of the Filterer.
-	 * 
-	 * @param filter
+     * @return The resulting collection of items after the filtering
 	 */
 	public abstract Collection<T> filter();
 
