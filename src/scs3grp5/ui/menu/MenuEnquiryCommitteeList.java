@@ -18,7 +18,8 @@ public class MenuEnquiryCommitteeList implements IPrintMenu {
     @Override
     public int printMenu() {
         int option = 0; 
-        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55   
+        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55
+        System.out.println("ENQUIRY LIST MENU");
         System.out.printf("\t(%d) View pending enquiries\n", ++option); 
         System.out.printf("\t(%d) View replied enquiries\n", ++option);
         System.out.printf("\t(%d) View all enquiry\n", ++option); 

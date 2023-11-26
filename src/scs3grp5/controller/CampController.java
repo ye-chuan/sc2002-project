@@ -22,8 +22,8 @@ public class CampController {
 	 * @param userID studentID
 	 * @see StudentCampController#registerAsParticipant(String, String)
 	 */
-	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
-		studentCampCont.registerAsParticipant(campID, userID);
+	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
+		studentCampCont.registerAsParticipant(userID,campID);
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class CampController {
 	 * @param userID
 	 * @see StudentCampController#registerAsCommittee(String, String)
 	 */
-	public void registerAsCommittee(String campID, String userID) throws RegistrationException {
-		studentCampCont.registerAsCommittee(campID, userID);
+	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
+		studentCampCont.registerAsCommittee(userID,campID);
 	}
 
 	/**
@@ -392,32 +392,49 @@ public class CampController {
 	 * @return true if user is a camp committee member or staff in charge of camp
 	 */
 	public boolean isCommittee(String userID, String campID) {
+		System.out.println("campID"+campID);
 		CampDatabase cDB = Main.getCampDB();
+		System.out.println(cDB.getItem(campID).getName());
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		User u1 = uDB.getItem(userID);
-		
+			System.out.println("AAAAA");
 		if (u1 instanceof Staff) {
+			System.out.println("BBBBB111");
 			Staff s1 = (Staff) uDB.getItem(userID);
+			System.out.println("BBBBB222");
 			System.out.println(c1.getStaffInCharge() + " " +  s1);
 			System.out.println(c1.getStaffInCharge().hashCode() + " " +  s1.hashCode());
 			if (c1.getStaffInCharge().equals(s1)){
+				System.out.println("BBBBB");
 				System.out.println("i come here");
 				return true;
 			}
-			else 
+			else {
+				System.out.println("CCCCC");
 				return false;
+			}
+			
 		}
 		
 		else if (u1 instanceof Student) {
+			System.out.println("DDDDD");
 			CampRole userRole = getUserStatus(campID, userID);
-			if (userRole == CampRole.CAMPCOMM)
+			if (userRole == CampRole.CAMPCOMM) {
+				System.out.println("EEEEE");
 				return true;
-			else 
+			}
+			else {
+				System.out.println("GGGGG");
 				return false;
+			}
+				
 		}
 
-		else return false;
+		else {
+			System.out.println("HHHHH"); 
+			return false;
+		}
 		
 	}
 

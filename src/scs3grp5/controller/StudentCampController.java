@@ -18,9 +18,10 @@ public class StudentCampController {
 	 * @param userID studentID
 	 * 
 	 */
-	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
+	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
+		System.out.println("RegisterAsParticipant campID is "+campID);
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		User u1 = uDB.getItem(userID);
@@ -53,7 +54,7 @@ public class StudentCampController {
 	 * @param userID
 	 * 
 	 */
-	public void registerAsCommittee(String campID, String userID) throws RegistrationException {
+	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();

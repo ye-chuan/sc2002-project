@@ -4,6 +4,10 @@ import scs3grp5.ui.ulti.OptionException;
 
 /**
  * this interface gives classes the ability to select option
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public interface ISelectOption  {
 

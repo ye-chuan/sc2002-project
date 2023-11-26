@@ -1,0 +1,3 @@
+# For output generation, do not need to be pushed
+*
+!.gitignore

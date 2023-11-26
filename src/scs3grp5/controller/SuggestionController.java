@@ -12,9 +12,9 @@ import scs3grp5.entity.*;
 public class SuggestionController {
 	
 	private String campID;
-	private ApproverController approverCont = new ApproverController(campID);
-	private SuggesterController suggesterCont = new SuggesterController(campID);
-	private SuggestionListController suggestionListCont = new SuggestionListController(campID);
+	private ApproverController approverCont;
+	private SuggesterController suggesterCont;
+	private SuggestionListController suggestionListCont;
 
 	/**
 	 * Constructor for {@link SuggestionController} object
@@ -23,6 +23,9 @@ public class SuggestionController {
 	 */
 	public SuggestionController(String campID) {
 		this.campID = campID;
+		approverCont = new ApproverController(campID);
+		suggesterCont = new SuggesterController(campID);
+		suggestionListCont = new SuggestionListController(campID);
 	}
 
 	/**

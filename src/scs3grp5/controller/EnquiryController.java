@@ -12,9 +12,10 @@ import scs3grp5.entity.*;
 public class EnquiryController {
 
 	private String campID;
-	private EnquirerController enquirerCont = new EnquirerController(campID);
-	private ReplierController replierCont = new ReplierController(campID);
-	private EnquiryListController enqListCont = new EnquiryListController(campID);
+	private EnquirerController enquirerCont;
+	private ReplierController replierCont;
+	private EnquiryListController enqListCont;
+	
 
 	/**
 	 * Constructor for EnquiryController object
@@ -23,6 +24,9 @@ public class EnquiryController {
 	 */
 	public EnquiryController(String campID) {
 		this.campID = campID;
+		enquirerCont = new EnquirerController(campID);
+		replierCont = new ReplierController(campID);
+		enqListCont = new EnquiryListController(campID);
 	}
 
 	/**
@@ -104,6 +108,7 @@ public class EnquiryController {
 	 * @see EnquiryListController#getPendingEnquiries(String)
 	 */
 	public List<String> getPendingEnquiries(String userID) {
+		System.out.println("campID in enq contAAAAA"+campID);
 		return enqListCont.getPendingEnquiries(userID);
 	}
 
