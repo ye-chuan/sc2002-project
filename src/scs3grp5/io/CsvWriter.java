@@ -1,6 +1,9 @@
 package scs3grp5.io;
 
 import java.util.*;
+
+// import scs3grp5.Main;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,7 +70,8 @@ public class CsvWriter {
     }
 
     public static void main(String[] args) {
-        CsvWriter writer = new CsvWriter("test.csv");
+        String filepath = Paths.get("output").resolve("report.csv").toString();
+        CsvWriter writer = new CsvWriter(filepath);
         writer.addRow("oneone", "onetwo", "onethree");
         writer.addRow("twoone", "twotwo", "twothree");
         try {

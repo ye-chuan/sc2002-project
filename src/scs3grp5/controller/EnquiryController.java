@@ -165,7 +165,7 @@ public class EnquiryController {
 	 */
 	public boolean isOwner(String userID, String enquiryID) {
 		EnquiryDatabase eDB = new EnquiryDatabase();
-		return eDB.getItem(enquiryID).getAskedBy()==userID;
+		return eDB.getItem(enquiryID).getAskedBy().equals(userID);
 
 	}
 

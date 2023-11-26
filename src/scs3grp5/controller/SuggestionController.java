@@ -96,7 +96,7 @@ public class SuggestionController {
 	 * @return true if user created the suggestion
 	 */
 	public boolean isOwner(String userID, String suggestionID) {
-		return getSuggestionCreator(suggestionID)==userID;
+		return getSuggestionCreator(suggestionID).equals(userID);
 
 	}
 
