@@ -9,7 +9,6 @@ import java.io.IOException;
 
 /**
  * Manages output of formatted report to csv
- * 
  */
 public class ReportController {
 	private static String campReportPath = Main.getOutputDir().resolve("camp_report.csv").toString();
@@ -22,20 +21,19 @@ public class ReportController {
 	 */
 	public void generateCampReport(String campID, REPORTFILTER filter) throws IOException {
 		CsvWriter writer = new CsvWriter(campReportPath);
-		System.out.println(campReportPath);
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
 
 		
 		//campInfo
-		writer.addRow("Name:",c.getName());
-		writer.addRow("Description:",c.getDescription());
+		writer.addRow("Name",c.getName());
+		writer.addRow("Description",c.getDescription());
 
         // Faculty
         List<String> facultyRow = new ArrayList<String>();
         Collection<Faculty> openTo = c.getOpenTo();
-        facultyRow.add("Faculty:");
+        facultyRow.add("Faculty");
         if (openTo.size() == Faculty.values().length) {
             facultyRow.add("All Faculties");
         }
@@ -46,23 +44,24 @@ public class ReportController {
         }
         writer.addRow(facultyRow.toArray(new String[facultyRow.size()]));
 
-		writer.addRow("Location:",c.getLocation());
-		writer.addRow("Staff-In-Charge:",c.getStaffInCharge().getName());
-		writer.addRow("Start Date:",c.getDates().getStart().toString());
-		writer.addRow("End Date:",c.getDates().getEnd().toString());
-		writer.addRow("Closing Date:",c.getClosingDate().toString());
-		writer.addRow("Total Participant Slots:",String.format("&d",c.getParticipantSlots()));
-		writer.addRow("Total Committee Slots:",String.format("&d",c.getCampCommSlots()));
+		writer.addRow("Location", c.getLocation());
+		writer.addRow("Staff-In-Charge", c.getStaffInCharge().getName());
+		writer.addRow("Start Date", c.getDates().getStart().toString());
+		writer.addRow("End Date", c.getDates().getEnd().toString());
+		writer.addRow("Closing Date", c.getClosingDate().toString());
+		writer.addRow("Total Participant Slots", String.valueOf(c.getParticipantSlots()));
+		writer.addRow("Total Committee Slots", String.valueOf(c.getCampCommSlots()));
 
-		writer.addRow("STUDENT NAME","CAMP ROLE");
+        writer.addRow("");
+		writer.addRow("STUDENT NAME", "CAMP ROLE");
 		if(filter == REPORTFILTER.CAMPCOMM || filter == REPORTFILTER.ALL) {
 			for (Student s : cMemberDB.getCampCommMembers(campID)) {
-				writer.addRow(s.getName(),"CAMPCOMM");
+				writer.addRow(s.getName(), "CAMPCOMM");
 			}
 		}
 		if(filter == REPORTFILTER.PARTICIPANTS || filter == REPORTFILTER.ALL) {
 			for (Student s : cMemberDB.getParticipants(campID)) {
-				writer.addRow(s.getName(),"PARTICIPANT");
+				writer.addRow(s.getName(), "PARTICIPANT");
 			}
 		}
 
@@ -84,10 +83,11 @@ public class ReportController {
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
 
-		writer.addRow("Camp Name:",c.getName());
+		writer.addRow("Camp Name",c.getName());
+        writer.addRow("");
 		writer.addRow("STUDENT NAME","POINTS");
 		for (Student s : cMemberDB.getCampCommMembers(campID)) {
-			writer.addRow(s.getName(),String.format("&d",s.getPoints()));
+			writer.addRow(s.getName(), String.valueOf(s.getPoints()));
 		}
         
         try {
@@ -107,7 +107,8 @@ public class ReportController {
 		CampDatabase cDB = Main.getCampDB();
 		Camp c = cDB.getItem(campID);
 
-		writer.addRow("Camp Name:",c.getName(),"ID:",c.getID());
+		writer.addRow("Camp Name",c.getName(),"ID",c.getID());
+        writer.addRow("");
 		writer.addRow("Asked By","Enquiry","Reply", "Status");
 		for (Enquiry e : c.getEnquiryDB().getUnresolvedEnquiries()) {
 			writer.addRow(e.getAskedBy(),e.getEnquiry(),"NIL","Unresolved");
