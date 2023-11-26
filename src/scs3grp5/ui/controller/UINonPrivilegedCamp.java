@@ -65,10 +65,9 @@ public class UINonPrivilegedCamp extends UserInterface{
                     campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID());
                     errorMessage = "Registrated as Camp Committee successfully!";
                 }catch(RegistrationException e){
-                    errorRegistration = true; 
                     errorMessage = e.getMessage(); 
                 }
-                wrongInput = true; 
+                errorRegistration = true; 
             }
             else if (option == 0){
                 if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
@@ -77,13 +76,12 @@ public class UINonPrivilegedCamp extends UserInterface{
                         campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID());
                         errorMessage = "Registrated as Participant successfully!";
                     }catch(RegistrationException e){
-                        errorRegistration = true; 
                         errorMessage = e.getMessage(); 
                     }
+                    errorRegistration = true; 
                 }
-                wrongInput = true; 
             }
-        }while (wrongInput);
+        }while (wrongInput || errorRegistration);
 
         if (isParticipant) option -= 1; 
         else option -= 2; 

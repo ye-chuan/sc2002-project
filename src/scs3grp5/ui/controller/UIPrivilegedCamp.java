@@ -37,7 +37,8 @@ public class UIPrivilegedCamp extends UserInterface{
     @Override
     public IUserInterface showUI() {
         
-      boolean wrongInput = false; 
+      boolean wrongInput = false;
+      boolean errorRegistration = false;  
       int option = -1; 
 
       menu = new MenuCampCampComm(); 
@@ -61,9 +62,9 @@ public class UIPrivilegedCamp extends UserInterface{
 
         if (option == 1){
           generateStudentListUI();
-          wrongInput = true; 
+          errorRegistration = true; 
         }
-      }while (wrongInput);
+      }while (wrongInput || errorRegistration);
 
       if (option == 2) return new UIEnquiryList(uiInfo);
       else if (option == 3) return new UISuggestionList(uiInfo);

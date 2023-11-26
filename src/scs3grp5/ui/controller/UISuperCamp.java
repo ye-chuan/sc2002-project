@@ -21,6 +21,7 @@ public class UISuperCamp extends UIPrivilegedCamp{
 
         boolean wrongInput = false; 
         int option = -1; 
+        boolean errorRegistration = false; 
 
         menu = new MenuCampStaff(); 
         optionSelector = new SelectionMenu();
@@ -43,14 +44,14 @@ public class UISuperCamp extends UIPrivilegedCamp{
 
             if (option == 2){
                 generateStudentListUI(); 
-                wrongInput = true; 
+                errorRegistration = true; 
             }
             else if (option == 3){
                 generatePerformanceReportUI();
-                wrongInput = true; 
+                errorRegistration = true; 
             }
             System.out.println(errorMessage);
-        }while (wrongInput);
+        }while (wrongInput || errorRegistration);
 
         if (option == 1) return new UIEditCamp(uiInfo, false);  
         else if (option == 4) return new UIEnquiryList(uiInfo);
