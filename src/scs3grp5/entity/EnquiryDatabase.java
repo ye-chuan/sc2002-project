@@ -27,7 +27,7 @@ public class EnquiryDatabase extends Database<Enquiry> {
 	public Collection<Enquiry> getEnquiriesBy(String userID) {
         Collection<Enquiry> ret = new ArrayList<Enquiry>();
         for (Enquiry enquiry : items.values()) {
-            if (enquiry.getAskedBy() == userID) {
+            if (enquiry.getAskedBy().equals(userID)) {
                 ret.add(enquiry);
             }
         }

@@ -59,7 +59,7 @@ public class SuggestionDatabase extends Database<Suggestion> {
     private static Collection<Suggestion> filterByUserID(Collection<Suggestion> suggestions, String userID) {
         Collection<Suggestion> ret = new ArrayList<Suggestion>();
         for (Suggestion suggestion : suggestions) {
-            if (suggestion.getSuggestedBy() == userID) {
+            if (suggestion.getSuggestedBy().equals(userID)) {
                 ret.add(suggestion);
             }
         }
