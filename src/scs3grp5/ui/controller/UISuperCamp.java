@@ -38,7 +38,7 @@ public class UISuperCamp extends UIPrivilegedCamp{
             }
         }while (wrongInput);
 
-        if (option == 1) return new UIEditCamp(uiInfo); 
+        if (option == 1) return new UIEditCamp(uiInfo, true); 
         else if (option == 2){
             generateStudentListUI();
             return new UISuperCamp(uiInfo); 
