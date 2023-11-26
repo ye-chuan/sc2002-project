@@ -41,6 +41,7 @@ public class CampInformation implements Serializable {
         this.location = "Unspecified Location";
         this.participantSlots = 0;
         this.campCommSlots = 0;
+        this.description = "No Description";
     }
 
     /**
