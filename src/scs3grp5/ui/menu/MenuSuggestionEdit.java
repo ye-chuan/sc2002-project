@@ -24,7 +24,7 @@ public class MenuSuggestionEdit implements IPrintMenu {
         System.out.printf("\t(%d) Edit suggestion\n", ++option); 
         System.out.printf("\t(%d) Delete suggestion\n", ++option);
         System.out.println("-------------------------------------------------------"); 
-        System.out.println("(press any non-numeric key to go to Enquiry List Menu)");
+        System.out.println("(press any non-numeric key to go to Suggestion List Menu)");
         return option; 
     }
     

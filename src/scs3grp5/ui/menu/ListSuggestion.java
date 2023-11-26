@@ -55,8 +55,8 @@ public class ListSuggestion implements IPrintMenu{
             
             String optionString = "("+ Integer.toString(++option) + ")"; 
             System.out.println("│"+ PrintHelper.fillUpSpace(optionString, 6, 1, true) + "│" + PrintHelper.fillUpSpace(text, 85, 1, false) + "│"); 
-            if (status.equals("APPROVED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_GREEN + status  + PrintHelper.ANSI_RESET + "│");
-            else if (status.equals("REJECTED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
+            if (status.equals("APPROVED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 77, 1, false)  + PrintHelper.ANSI_GREEN + status  + PrintHelper.ANSI_RESET + "│");
+            else if (status.equals("REJECTED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 77, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
             else System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_YELLOW + status  + PrintHelper.ANSI_RESET + "│");
 
             if (option != listOfSuggestion.size())
@@ -64,7 +64,7 @@ public class ListSuggestion implements IPrintMenu{
             else 
                 System.out.println("└──────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
-        System.out.println("(press any non-numeric key to go to Enquiry List Menu)");
+        System.out.println("(press any non-numeric key to go to Suggestion List Menu)");
         return listOfSuggestion.size();
         
     }

@@ -2,32 +2,62 @@ package scs3grp5.entity;
 
 import java.util.*;
 
+/**
+ * A database for storing Suggestions
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class SuggestionDatabase extends Database<Suggestion> {
 
+    /**
+     * @return All pending suggestions in this database
+     */
 	public Collection<Suggestion> getPendingSuggestions() {
         return filterByStatus(items.values(), SuggestionStatus.PENDING);
     }
 
+    /**
+     * @return All approved suggestions in this database
+     */
 	public Collection<Suggestion> getApprovedSuggestions() {
         return filterByStatus(items.values(), SuggestionStatus.APPROVED);
 	}
 
+    /**
+     * @return All rejected suggestions in this database
+     */
 	public Collection<Suggestion> getRejectedSuggestions() {
         return filterByStatus(items.values(), SuggestionStatus.REJECTED);
 	}
 
+    /**
+     * Get all pending suggestions by a specific user
+     * @param The user that suggested
+     * @return All pending suggestions by this user
+     */
 	public Collection<Suggestion> getPendingSuggestionsBy(String userID) {
         Collection<Suggestion> filtered = filterByUserID(items.values(), userID);
         filtered = filterByStatus(filtered, SuggestionStatus.PENDING);
         return filtered;
 	}
 
+    /**
+     * Get all approved suggestions by a specific user
+     * @param The user that suggested
+     * @return All approved suggestions by this user
+     */
 	public Collection<Suggestion> getApprovedSuggestionsBy(String userID) {
         Collection<Suggestion> filtered = filterByUserID(items.values(), userID);
         filtered = filterByStatus(filtered, SuggestionStatus.APPROVED);
         return filtered;
 	}
 
+    /**
+     * Get all rejected suggestions by a specific user
+     * @param The user that suggested
+     * @return All rejected suggestions by this user
+     */
 	public Collection<Suggestion> getRejectedSuggestionsBy(String userID) {
         Collection<Suggestion> filtered = filterByUserID(items.values(), userID);
         filtered = filterByStatus(filtered, SuggestionStatus.REJECTED);

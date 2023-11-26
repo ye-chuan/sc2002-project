@@ -42,6 +42,7 @@ public class UIPrivilegedCamp extends UserInterface{
         reportCont = new ReportController(); 
     }
 
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
         
@@ -82,7 +83,9 @@ public class UIPrivilegedCamp extends UserInterface{
       return null;
     }
 
-    
+    /**
+     * This method provides the UI to choose the student list they can generate
+     */
     protected void generateStudentListUI(){
         
         Scanner sc = new Scanner(System.in); 

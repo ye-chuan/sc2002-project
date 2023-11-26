@@ -29,7 +29,8 @@ public class UISuggestion extends UserInterface {
         super(uiInfo);
         suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
-
+    
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 
@@ -37,7 +38,7 @@ public class UISuggestion extends UserInterface {
 
         printDetail.printDetail();
 
-        if ((suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING")) && !(suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff())){
+        if (!(suggestionCont.getStatus(uiInfo.getSuggestionID()).equals("PENDING") && (suggestionCont.isOwner(uiInfo.getUserID(), uiInfo.getSuggestionID()) || uiInfo.getIsStaff()))){
             menu = new MenuNoOption(); 
             optionSelector = new SelectionNull();
             try{
@@ -75,9 +76,14 @@ public class UISuggestion extends UserInterface {
             if (uiInfo.getIsStaff()) suggestionCont.reject(uiInfo.getSuggestionID());
             else suggestionCont.delete(uiInfo.getUserID(), uiInfo.getSuggestionID());
         }
-        return new UISuggestionList(uiInfo);
+        return new UISuggestion(uiInfo);
     }
 
+    /**
+     * This method provides the UI for the user to edit their suggestion
+     * 
+     * @return The edited suggestion
+     */
     private String editSuggestionUI() {
         System.out.print("Enter Suggestion:"); 
         Scanner sc = new Scanner(System.in); 

@@ -86,6 +86,7 @@ public class UIEditCamp extends UserInterface{
                     System.out.println();
                     printDetail.printDetail();
                     if (error) System.out.println(errorMessage);
+                    error = false; 
                     option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                     wrongInput = false;
                 }
@@ -102,6 +103,7 @@ public class UIEditCamp extends UserInterface{
                         }
                         else{
                             errorMessage = "Please initialise all UNSET camp information";
+                            error = true; 
                             option = -1; 
                             break; 
                         }

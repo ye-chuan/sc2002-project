@@ -41,6 +41,7 @@ public class UIEnquiryList extends UserInterface{
         enquiryCont = new EnquiryController(uiInfo.getCampID());
     }
 
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
         int option = -1;

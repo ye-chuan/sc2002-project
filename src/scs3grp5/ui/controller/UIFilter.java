@@ -39,6 +39,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
     /** 
      * Filter setting for user to toggle
      * This filter is to show the camps that is available in their faculty 
+     * true if it is for their faculty else false
      */
     private boolean byFaculty; 
 
@@ -135,7 +136,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
     }
 
-
+    /** {@inheritDoc} */
     @Override
     public int printMenu() {
         int option = 0; 
@@ -178,8 +179,12 @@ public class UIFilter implements IPrintMenu, IUserInterface {
         // byDate is DD/MM/YYYY-DD/MM/YYYY
         String startDate, endDate; 
         if (!byDate.equals("")){
-            startDate = byDate.substring(0,10); 
-            endDate = byDate.substring(11, 21);
+            int i = 0; 
+            for (i=0; i<byDate.length();i++){
+                if (byDate.charAt(i) == '-' ) break; 
+            }
+            startDate = byDate.substring(0,i); 
+            endDate = byDate.substring(i+1);
         }
         else{
             startDate = "";
