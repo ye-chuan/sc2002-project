@@ -252,9 +252,21 @@ public class Camp implements Identifiable, Serializable{
         return information.getCampID();
     }
 
+    @Override
     public String toString() {
         return "Camp #" + getID() + ": " + getName();
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        if (!(obj instanceof Camp))
+            return false;
+        return this.getID().equals(((Camp)obj).getID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getID().hashCode();
+    }
 
 }

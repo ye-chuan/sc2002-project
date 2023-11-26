@@ -55,4 +55,16 @@ public class Enquiry implements Identifiable, Serializable {
         return enquiryID;
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        if (!(obj instanceof Enquiry))
+            return false;
+        return this.getID().equals(((Enquiry)obj).getID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getID().hashCode();
+    }
+
 }

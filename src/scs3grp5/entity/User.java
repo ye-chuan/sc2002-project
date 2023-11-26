@@ -48,7 +48,20 @@ public class User implements Identifiable, Serializable {
         return this.userID;
     }
 
+    @Override
     public String toString() {
         return "User #" + getID() + ": " + getName() + " from " + getFaculty();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (!(obj instanceof User))
+            return false;
+        return this.getID().equals(((User)obj).getID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getID().hashCode();
     }
 }

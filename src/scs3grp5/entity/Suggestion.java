@@ -53,4 +53,17 @@ public class Suggestion implements Identifiable, Serializable {
         return suggestionID;
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        if (!(obj instanceof Suggestion))
+            return false;
+        return this.getID().equals(((Suggestion)obj).getID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getID().hashCode();
+    }
+
+
 }

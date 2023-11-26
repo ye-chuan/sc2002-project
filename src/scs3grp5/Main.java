@@ -18,6 +18,8 @@ import java.util.Collection;
 public class Main {
     /** Base path for all data files */
     private static Path dataPath = Paths.get("data");
+    /** Path for output files (e.g. reports) */
+    private static Path outputDir = Paths.get("output");
 
     /** Path for initial staff_list.xlsx data file */
     private static Path initialStaffXlsx = dataPath.resolve("initial/staff_list.xlsx");
@@ -76,6 +78,13 @@ public class Main {
      */
     public static UniqueIDGenerator getIdGenerator() {
         return idGenerator;
+    }
+
+    /**
+     * @return The base path for output (e.g. report)
+     */
+    public static Path getOutputDir() {
+        return outputDir;
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, InvalidFormatException {
