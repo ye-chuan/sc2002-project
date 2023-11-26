@@ -59,7 +59,7 @@ public class PrintStaffCampDetail implements IPrintDetail {
         if (campCont.getVisibility(campID)) visibility = "ON";
         else visibility = "OFF";
         String description = campCont.getDescription(campID);
-        if (description == null) description = "UNSET";
+        if (description == null) description = "NO DESCRIPTION";
 
 
         ChangePage.changePage();

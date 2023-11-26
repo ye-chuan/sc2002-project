@@ -65,14 +65,11 @@ public class UIEditCamp extends UserInterface{
     @Override
     public IUserInterface showUI() {
 
-        boolean name = false; 
         boolean date = false;
-        boolean close = false; 
-        boolean location = false; 
+        boolean close = false;
         boolean part = false;
         boolean comm = false; 
         boolean faculty = false; 
-        boolean description = false; 
 
         String errorMessage = ""; 
         boolean error = false; 
@@ -102,11 +99,11 @@ public class UIEditCamp extends UserInterface{
             switch (option){
                 case 0:
                     if (justCreate){
-                        if (name && date && close && location && part && comm && faculty && description){
+                        if (date && close && faculty){
                             return new UISuperCamp(uiInfo);  
                         }
                         else{
-                            errorMessage = "Please initialise all the camp information";
+                            errorMessage = "Please initialise all UNSET camp information";
                             option = -1; 
                             break; 
                         }
@@ -117,7 +114,6 @@ public class UIEditCamp extends UserInterface{
                     
                 case 1: 
                     while (!changeNameUI());
-                    name = true; 
                     break;
                 case 2: 
                     while (!changeStartDateUI()); 
@@ -133,7 +129,6 @@ public class UIEditCamp extends UserInterface{
                     break;
                 case 5: 
                     while (!changeLocationUI());
-                    location = true; 
                     break; 
                 case 6: 
                     while (!changeNumOfParticipantsUI());
@@ -152,7 +147,6 @@ public class UIEditCamp extends UserInterface{
                     break; 
                 case 10: 
                     while (!changeDescriptionUI()); 
-                    description = true; 
                     break; 
                 default: 
                     option = -1; 

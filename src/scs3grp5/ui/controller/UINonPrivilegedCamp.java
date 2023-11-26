@@ -56,6 +56,31 @@ public class UINonPrivilegedCamp extends UserInterface{
             catch(OptionException e){
                 wrongInput = true; 
             }
+
+            if (isParticipant) option -= 1; 
+            else option -= 2; 
+
+            if (option == -1) {
+                try{
+                    campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID());
+                    errorMessage = "Registrated as Camp Committee successfully!";
+                }catch(RegistrationException e){
+                    errorRegistration = true; 
+                    errorMessage = e.getMessage(); 
+                }
+            }
+            else if (option == 0){
+                if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
+                else {
+                    try{
+                        campCont.registerAsParticipant(uiInfo.getUserID(), uiInfo.getCampID());
+                        errorMessage = "Registrated as Participant successfully!";
+                    }catch(RegistrationException e){
+                        errorRegistration = true; 
+                        errorMessage = e.getMessage(); 
+                    }
+                }
+            }
         }while (wrongInput);
 
         if (isParticipant) option -= 1; 
@@ -84,8 +109,6 @@ public class UINonPrivilegedCamp extends UserInterface{
         else if (option == 2) return new UICampList(uiInfo);
         else if (option == 3) return new UIHomepage(uiInfo); 
         else return null;
-
-        return new UINonPrivilegedCamp(uiInfo);
     }
     
 }
