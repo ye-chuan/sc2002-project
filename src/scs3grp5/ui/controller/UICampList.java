@@ -125,8 +125,7 @@ public class UICampList extends UserInterface{
             }
             
             if (listOption == -1) wrongInput = true; 
-            else if (listOption == 0) {
-                if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
+            else if (listOption == 0){
                 filterUI.showUI();
                 finishFilter = true; 
                 wrongInput = false; 
