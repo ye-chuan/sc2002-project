@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Handles the relationships between Student and Camps.
+ * Handles the all relationships ({@code CampMembership}) between all Students and all Camps.
  * For querying Camp memberships details (i.e. role in camp, blacklists)
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class CampMembershipDatabase implements Serializable{
     /**

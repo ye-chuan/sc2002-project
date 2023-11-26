@@ -2,6 +2,13 @@ package scs3grp5.entity;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * A generic Database that contains items that has a unique key, this will be
+ * it's primary key for accessing the database by ID.
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class Database<T extends Identifiable> implements Serializable {
 
 	protected String filePath;
