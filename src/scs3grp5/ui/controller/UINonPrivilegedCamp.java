@@ -56,6 +56,8 @@ public class UINonPrivilegedCamp extends UserInterface{
             catch(OptionException e){
                 wrongInput = true; 
             }
+            
+            if(option == 0) return null; 
 
             if (isParticipant) option -= 1; 
             else option -= 2; 
@@ -64,6 +66,7 @@ public class UINonPrivilegedCamp extends UserInterface{
             if (option == -1) {
                 try{
                     campCont.registerAsCommittee(uiInfo.getUserID(), uiInfo.getCampID());
+                    uiInfo.setIsCommittee(true);
                     return new UIPrivilegedCamp(uiInfo);
                 }catch(RegistrationException e){
                     errorMessage = e.getMessage(); 
@@ -89,7 +92,8 @@ public class UINonPrivilegedCamp extends UserInterface{
 
         if (option == 1) return new UIEnquiryList(uiInfo);
         else if (option == 2) return new UICampList(uiInfo);
-        else if (option == 3) return new UIHomepage(uiInfo); 
-        else return null;
+        else if (option == 3) return new UIHomepage(uiInfo);
+
+        return null; 
     }
 }
