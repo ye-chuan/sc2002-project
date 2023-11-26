@@ -27,22 +27,23 @@ public class CampListController {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		UserDatabase uDB = Main.getUserDB();
-
+		
 		User u1 = uDB.getItem(userID);
-		Collection<Camp> campList = new ArrayList<Camp>();
+		// Collection<Camp> campList = new ArrayList<Camp>();
 
 		if(u1 instanceof Staff) {
 
 			CampFilterer filterer = new CampFilterer(cDB.getAll());
 			filterer.addFilter(CampStaffFilter.onlyBy(userID));
 			campList = filterer.filter();
+			
 
 		}
 		else if (u1 instanceof Student) {
 			Student student1 = (Student) u1;
 			
 			campList = cmemberDB.getCampsJoinedBy(student1);
-				
+			
 			
 		}
 		
@@ -72,12 +73,15 @@ public class CampListController {
 			filterer.addFilter(CampVisiblityFilter.onlyVisible());
 			Student s1 = (Student) uDB.getItem(userID);
 			Faculty s1Faculty = s1.getFaculty();
-			filterer.addFilter(CampFacultyFilter.onlyOpenedTo(s1Faculty));	
+			// filterer.addFilter(CampFacultyFilter.onlyOpenedTo(s1Faculty));
+			filterer.addFilter(CampFacultyFilter.openedTo(s1Faculty));
+			// now only show Faculty of student, does not show "NTU"
 			filterer.addFilter(CampParticipantSlotsFilter.excludeFull());
 			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
 		}
 
 		campList = filterer.filter();
+		
 		
 	}
 
@@ -86,7 +90,7 @@ public class CampListController {
 	 * @return list of campID sorted alphabetical by camp name
 	 */
 	public List<String> viewCamps() {
-		
+	
 		return sortByCampNameIDList(campList);
 	}
 
@@ -102,7 +106,7 @@ public class CampListController {
 	 * @param visibility filter by visible camps if true
 	 */
 	public void FilterBy(String userID, String location, boolean openParticipantSlots, boolean openCommSlots, String fromDate, String toDate, boolean onlyFaculty, boolean visibility) {
-
+		
 		CampFilterer filterer = new CampFilterer(campList);
 		UserDatabase uDB = Main.getUserDB();
 		if(!location.equals(""))
@@ -128,6 +132,7 @@ public class CampListController {
 		} 
 
 		campList = filterer.filter();
+	
 	}
 
 	/**

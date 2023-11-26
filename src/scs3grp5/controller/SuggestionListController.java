@@ -125,7 +125,7 @@ public class SuggestionListController {
 	 * @return List of sorted suggestion IDs
 	 */
 	private List<String> sortByNameIDList(Collection<Suggestion> sugList) {
-		Collections.sort((ArrayList<Suggestion>)sugList, Comparator.comparing(Suggestion::getSuggestedBy));
+		Collections.sort((ArrayList<Suggestion>)sugList, Comparator.comparing(Suggestion::getSuggestion));
 		List<String> suggestionIDList = new ArrayList<String>();
 		for (Suggestion s: sugList)
 		{

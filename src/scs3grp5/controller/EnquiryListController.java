@@ -97,7 +97,7 @@ public class EnquiryListController {
 	 * @return sorted list of enquiryID
 	 */
 	private List<String> sortByNameIDList(Collection<Enquiry> enquiryList) {
-		Collections.sort((ArrayList<Enquiry>)enquiryList, Comparator.comparing(Enquiry::getAskedBy));
+		Collections.sort((ArrayList<Enquiry>)enquiryList, Comparator.comparing(Enquiry::getEnquiry));
 		ArrayList<String> enquiryIDList = new ArrayList<String>();
 		for (Enquiry e: enquiryList)
 		{
