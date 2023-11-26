@@ -114,6 +114,8 @@ public class UICampList extends UserInterface{
             
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);
+            optionSelector = new SelectionFromList(); 
+
             try{
                 ChangePage.changePage();
                 listOption = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
@@ -122,7 +124,8 @@ public class UICampList extends UserInterface{
                 wrongInput = true; 
             }
             
-            if (listOption == 0) {
+            if (listOption == -1) wrongInput = true; 
+            else if (listOption == 0) {
                 filterUI.showUI();
             }
             else{

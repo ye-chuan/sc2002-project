@@ -38,7 +38,7 @@ public class SelectionFromList implements ISelectOption{
             throw new OptionException();
         }
 
-        if (!SelectionHelper.validOption(option, 1, maxOption)) return -1; 
+        if (!SelectionHelper.validOption(option, 0, maxOption)) return -1; 
         return option;
     }
 
