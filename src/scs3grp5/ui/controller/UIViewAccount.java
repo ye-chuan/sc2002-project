@@ -30,6 +30,7 @@ public class UIViewAccount extends UserInterface{
         super(uiInfo);
     }
 
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 

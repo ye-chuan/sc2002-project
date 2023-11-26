@@ -65,15 +65,15 @@ public class ListStudentCamp implements IPrintMenu {
             if (date.equals("REGISTRATION CLOSED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(date,25, 0, false) + PrintHelper.ANSI_RESET + "│"); 
             else System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.fillUpSpace(date, 25, 0, false) + "│"); 
 
-            if (participant.equals("AVAILABLE")) System.out.println("│     │ PARTICIPANT SLOT:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(participant, 67, 1, false) + PrintHelper.ANSI_RESET + "│");
+            if (participant.equals("AVAILABLE")) System.out.println("│      │ PARTICIPANT SLOT:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(participant, 67, 1, false) + PrintHelper.ANSI_RESET + "│");
             else System.out.println("│      │ PARTICIPANT SLOT:" + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(participant, 67, 1, false) + PrintHelper.ANSI_RESET + "│");
             
-            if (campComm.equals("AVAILABLE")) System.out.println("│     │ CAMP COMMITTEE SLOT:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(campComm, 64, 1, false) + PrintHelper.ANSI_RESET + "│");
+            if (campComm.equals("AVAILABLE")) System.out.println("│      │ CAMP COMMITTEE SLOT:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(campComm, 64, 1, false) + PrintHelper.ANSI_RESET + "│");
             else System.out.println("│      │ CAMP COMMITTEE SLOT:" + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(campComm, 64, 1, false) + PrintHelper.ANSI_RESET + "│");
             if (option != listOfCamps.size())
-                System.out.println("├───────┼─────────────────────────────────────────────────────────────────────────────────────┤");
+                System.out.println("├──────┼─────────────────────────────────────────────────────────────────────────────────────┤");
             else 
-                System.out.println("└───────┴─────────────────────────────────────────────────────────────────────────────────────┘");
+                System.out.println("└──────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
         System.out.println("----------------------------------------------"); 
         System.out.println("(press any non-numeric key to go to Camp List Menu)");

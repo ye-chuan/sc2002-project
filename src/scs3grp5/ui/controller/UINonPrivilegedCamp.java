@@ -35,6 +35,7 @@ public class UINonPrivilegedCamp extends UserInterface{
         campCont = new CampController(); 
     }
 
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 

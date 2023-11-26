@@ -35,6 +35,7 @@ public class UISuggestionList extends UserInterface{
         suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
 
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 
@@ -108,6 +109,11 @@ public class UISuggestionList extends UserInterface{
         return null; 
     }
 
+    /**
+     * This method provides the UI for user to submit their suggestion
+     * 
+     * @return the suggestion to submit
+     */
     private String createSuggestionUI(){
         System.out.print("Enter Suggestion:"); 
         Scanner sc = new Scanner(System.in); 

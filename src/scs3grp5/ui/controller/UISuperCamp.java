@@ -28,7 +28,8 @@ public class UISuperCamp extends UIPrivilegedCamp{
         super(uiInfo);
         this.campCont = new CampController(); 
     }
-
+    
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 
@@ -84,6 +85,10 @@ public class UISuperCamp extends UIPrivilegedCamp{
         else return null;
     }
 
+    /**
+     * This method call on the report controller to generate performance report for student
+     * it will catch an error if an exception occur else it will print successful
+     */
     private void generatePerformanceReportUI(){
         try{
             reportCont.generatePerformanceReport(uiInfo.getCampID()); 

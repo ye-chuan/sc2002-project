@@ -1,6 +1,12 @@
 package scs3grp5.ui.controller;
-/** 
- * Contains the details of the current UI  
+
+
+/**
+ * This class is a UI controller for the enquiry UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class UIInformation{
 

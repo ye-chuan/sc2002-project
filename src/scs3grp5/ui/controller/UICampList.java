@@ -89,10 +89,6 @@ public class UICampList extends UserInterface{
 
 
         if (option == 1) campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
-        else if (option == 2) { 
-            campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
-            listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
-        }
         else if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
@@ -106,12 +102,13 @@ public class UICampList extends UserInterface{
         }
         else if (option == 0)return null;
 
-        
         wrongInput = false;
         boolean finishFilter = false; 
         int listOption = -1; 
         do{
-            listOfCamps = campListCont.viewCamps();
+            
+            if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
+            else listOfCamps = campListCont.viewCamps();
 
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);
@@ -121,6 +118,7 @@ public class UICampList extends UserInterface{
                 ChangePage.changePage();
                 listOption = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false; 
+                finishFilter = false; 
             }
             catch(OptionException e){
                 return new UICampList(uiInfo); 
@@ -128,6 +126,7 @@ public class UICampList extends UserInterface{
             
             if (listOption == -1) wrongInput = true; 
             else if (listOption == 0) {
+                if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
                 filterUI.showUI();
                 finishFilter = true; 
                 wrongInput = false; 

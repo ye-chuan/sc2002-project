@@ -32,7 +32,8 @@ public class UIEnquiry extends UserInterface {
         super(uiInfo);
         enquiryCont = new EnquiryController(uiInfo.getCampID()); 
     }
-
+    
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 

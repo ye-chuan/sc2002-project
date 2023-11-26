@@ -67,7 +67,7 @@ public class ListStaffCamp extends ListStudentCamp {
             
             System.out.println("│      │ CAMP COMMITTEE SLOT:" + PrintHelper.fillUpSpace(campComm, 64, 1,false) + "│");
 
-            if (visibility.equals("ON")) System.out.println("│     │ VISIBILITY:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(visibility, 73, 1,false) + PrintHelper.ANSI_RESET + "│");
+            if (visibility.equals("ON")) System.out.println("│      │ VISIBILITY:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(visibility, 73, 1,false) + PrintHelper.ANSI_RESET + "│");
             else System.out.println("│      │ VISIBILITY:" + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(visibility, 73, 1, false) + PrintHelper.ANSI_RESET + "│");
             
             if (option != listOfCamps.size())
