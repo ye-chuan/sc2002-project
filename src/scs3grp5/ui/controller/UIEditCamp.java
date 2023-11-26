@@ -66,14 +66,16 @@ public class UIEditCamp extends UserInterface{
     public IUserInterface showUI() {
 
         boolean name = false; 
-        boolean start = false; 
-        boolean end = false; 
+        boolean date = false;
         boolean close = false; 
         boolean location = false; 
         boolean part = false;
         boolean comm = false; 
         boolean faculty = false; 
         boolean description = false; 
+
+        String errorMessage; 
+        boolean error = false; 
         
         IPrintDetail printDetail = new PrintStaffCampDetail(campID);
         menu = new MenuEditCamp(); 
@@ -88,6 +90,7 @@ public class UIEditCamp extends UserInterface{
                     System.out.println(PrintHelper.LOGO_STRING);
                     System.out.println();
                     printDetail.printDetail();
+                    if (error) System.out.println(errorMessage);
                     option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                     wrongInput = false;
                 }
@@ -99,11 +102,11 @@ public class UIEditCamp extends UserInterface{
             switch (option){
                 case 0:
                     if (justCreate){
-                        if (name && start && end && close && location && part && comm && faculty && description){
+                        if (name && date && close && location && part && comm && faculty && description){
                             return new UISuperCamp(uiInfo);  
                         }
                         else{
-                            System.out.println("Please initialise all the camp information");
+                            errorMessage = "Please initialise all the camp information";
                             option = -1; 
                             break; 
                         }
@@ -118,11 +121,11 @@ public class UIEditCamp extends UserInterface{
                     break;
                 case 2: 
                     while (!changeStartDateUI()); 
-                    start = true; 
+                    date = true; 
                     break; 
                 case 3: 
                     while (!changeEndDateUI());
-                    end = true; 
+                    date = true; 
                     break; 
                 case 4: 
                     while (!changeRegistrationClosingDateUI());
