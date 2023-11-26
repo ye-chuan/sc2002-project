@@ -25,11 +25,20 @@ public class Date implements Comparable<Date>, Serializable {
         this.localDate = LocalDate.of(year, month, dayOfMonth);
 	}
 
+    /**
+     * @return Today's date based on system's time
+     */
     public static Date today() {
         LocalDate tdyLocalDate = LocalDate.now();
         return new Date(tdyLocalDate.getYear(), tdyLocalDate.getMonthValue(), tdyLocalDate.getDayOfMonth());
     }
 
+    /**
+     * @param year The year
+     * @param month The month
+     * @param dayOfMonth The day
+     * @return If the given data is valid
+     */
     public static boolean isValidDate(int year, int month, int dayOfMonth) {
         try {
             new Date(year, month, dayOfMonth);    
@@ -40,6 +49,10 @@ public class Date implements Comparable<Date>, Serializable {
         return true;
     }
 
+    /**
+     * @param dateString The formatted string dd/mm/yyyy
+     * @return If the given data is valid
+     */
     public static boolean isValidDate(String datestring) {
         try {
             Date.fromString(datestring);    

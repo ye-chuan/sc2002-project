@@ -10,6 +10,14 @@ import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class is a UI controller for the Non Privileged Camp UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UINonPrivilegedCamp extends UserInterface{
 
     /**

@@ -13,6 +13,14 @@ import scs3grp5.ui.menu.MenuSuggestionStaff;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 
+
+/**
+ * This class is a UI controller for the suggestion UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UISuggestion extends UserInterface {
 
     private SuggestionController suggestionCont; 

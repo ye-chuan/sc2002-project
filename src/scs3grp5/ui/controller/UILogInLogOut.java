@@ -6,7 +6,11 @@ import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
- * Handles the LogIn and LogOut UI
+ * This class is a UI controller for the LogOutLogIn UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class UILogInLogOut {
 

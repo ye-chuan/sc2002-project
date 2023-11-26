@@ -7,7 +7,11 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
- * Provide a UI for the view account
+ * This class is a UI controller for the Homepage UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class UIHomepage extends UserInterface{
 

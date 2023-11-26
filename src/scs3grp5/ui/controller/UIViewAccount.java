@@ -12,7 +12,11 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
- * Provides a UI for the View Account
+ * This class is a UI controller for the view Account UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class UIViewAccount extends UserInterface{
 

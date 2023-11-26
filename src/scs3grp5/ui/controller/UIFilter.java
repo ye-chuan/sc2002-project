@@ -10,7 +10,13 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
 
-
+/**
+ * This class is a UI class for the UI Filter
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UIFilter implements IPrintMenu, IUserInterface {
 
     /**
@@ -54,11 +60,24 @@ public class UIFilter implements IPrintMenu, IUserInterface {
      */
     private String byLocation; 
 
-
+    /**
+     * If user is currently aStaff 
+     * true if isStaff
+     */
     private boolean isStaff; 
 
+    /**
+     * The userID of the string
+     */
     private String userID; 
 
+    /**
+     * Constructor class for the UIFilter 
+     * 
+     * @param userID is the userID using this UI
+     * @param isStaff if the user is a staff 
+     * @param campListCont the same camp controller that the campListUI is using 
+     */
     public UIFilter(String userID, boolean isStaff, CampListController campListCont){
         this.isStaff = isStaff; 
         this.userID = userID; 
