@@ -10,7 +10,7 @@ import scs3grp5.io.CsvWriter;
  */
 public class ReportController {
 
-	private static String filepath = "report/report.csv" ;
+	private static String filepath = Main.getOutputDir().resolve("report.csv").toString();
 	/**
 	 * generates a report with all the camp information and list of members in camp and their roles
 	 * @param campID
@@ -18,6 +18,7 @@ public class ReportController {
 	 */
 	public void generateCampReport(String campID, REPORTFILTER filter) {
 		CsvWriter writer = new CsvWriter(filepath);
+		System.out.println(filepath);
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
