@@ -109,6 +109,7 @@ public class UINonPrivilegedCamp extends UserInterface{
         else if (option == 2) return new UICampList(uiInfo);
         else if (option == 3) return new UIHomepage(uiInfo); 
         else return null;
+
+        return new UINonPrivilegedCamp(uiInfo);
     }
-    
 }
