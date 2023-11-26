@@ -32,11 +32,12 @@ public class ReplierController {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		UserDatabase uDB = Main.getUserDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
-		User u1 = uDB.getItem(userID);
+		String enquirerID = enq1.getAskedBy();
+		User enquirer = uDB.getItem(enquirerID);
 
 		enq1.reply(reply, userID);
-		if (u1 instanceof Student) {
-			pointCont.replyEnquiry(userID);
+		if (enquirer instanceof Student) {
+			pointCont.replyEnquiry(enquirerID);
 		}
 	}
 

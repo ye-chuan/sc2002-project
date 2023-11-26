@@ -102,10 +102,11 @@ public class CampListController {
 	 * @param visibility filter by visible camps if true
 	 */
 	public void FilterBy(String userID, String location, boolean openParticipantSlots, boolean openCommSlots, String fromDate, String toDate, boolean onlyFaculty, boolean visibility) {
+
 		CampFilterer filterer = new CampFilterer(campList);
 		UserDatabase uDB = Main.getUserDB();
-		
-		filterer.addFilter(CampLocationFilter.onlyAt(location));
+		if(!location.equals(""))
+			filterer.addFilter(CampLocationFilter.onlyAt(location));
 		if(fromDate.equals("")&&!toDate.equals(""))
 			filterer.addFilter(CampDatesFilter.allBeforeIncl(Date.fromString(toDate)));
 		if(!fromDate.equals("")&&toDate.equals(""))
