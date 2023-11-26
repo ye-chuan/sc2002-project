@@ -16,12 +16,12 @@ public class CampListController {
 	private Collection<Camp> campList;
 
 	/**
-	 * View Camp List<p>
-	 * and stores filtered list in class
+	 * 
+	 * stores filtered list in class
 	 * For User student: returns camps joined by student <p>
 	 * For User staff: returns camps created by staff
 	 * @param userID
-	 * @return campID List of camps joined or created depending on user type, <p> sorted alphabetically by name of camp
+	 * 
 	 */
 	public List<String> viewMyCamp(String userID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -29,26 +29,20 @@ public class CampListController {
 		UserDatabase uDB = Main.getUserDB();
 		
 		User u1 = uDB.getItem(userID);
-		// Collection<Camp> campList = new ArrayList<Camp>();
 
 		if(u1 instanceof Staff) {
-
+			// get camps created by staff
 			CampFilterer filterer = new CampFilterer(cDB.getAll());
 			filterer.addFilter(CampStaffFilter.onlyBy(userID));
 			campList = filterer.filter();
 			
-
 		}
 		else if (u1 instanceof Student) {
 			Student student1 = (Student) u1;
-			
+			// get camps registered by student
 			campList = cmemberDB.getCampsJoinedBy(student1);
-			
-			
 		}
-		
 		return sortByCampNameIDList(campList);
-
 
 	}
 
@@ -58,38 +52,36 @@ public class CampListController {
 	 * For User student: set filter visible, open to their faculty, and has remaining slots in camp
 	 * 
 	 * @param userID
-	 * @return set filter of available camps depending on user type
+	 * 
 	 */
-	public void setDefaultFilter(String userID, boolean isStaff) {
+	public void viewCamps(String userID) {
+
 		CampDatabase cDB = Main.getCampDB();
 		CampFilterer filterer = new CampFilterer(cDB.getAll());
 		UserDatabase uDB = Main.getUserDB();
-		
+
+		User u1 = uDB.getItem(userID);
+
+		if (u1 instanceof Student) {
+			Student student1 = (Student) u1;
+			Faculty s1Faculty = student1.getFaculty();
+			//open to NTU and Faculty
+			filterer.addFilter(CampFacultyFilter.openedTo(s1Faculty));
+			//visible
+			filterer.addFilter(CampVisiblityFilter.onlyVisible());
+		}
+		//registration date and camp dates after today
 		filterer.addFilter(CampRegistrationFilter.afterIncl(Date.today()));
 		filterer.addFilter(CampDatesFilter.allAfterIncl(Date.today()));
-		
-
-		if (!isStaff) {
-			filterer.addFilter(CampVisiblityFilter.onlyVisible());
-			Student s1 = (Student) uDB.getItem(userID);
-			Faculty s1Faculty = s1.getFaculty();
-			// filterer.addFilter(CampFacultyFilter.onlyOpenedTo(s1Faculty));
-			filterer.addFilter(CampFacultyFilter.openedTo(s1Faculty));
-			// now only show Faculty of student, does not show "NTU"
-			filterer.addFilter(CampParticipantSlotsFilter.excludeFull(Main.getMemberDB()));
-			filterer.addFilter(CampCampCommSlotsFilter.excludeFull(Main.getMemberDB()));
-		}
-
+	
 		campList = filterer.filter();
-		
-		
 	}
 
 	/**
 	 * provides a filtered list of camps based on filter set.
 	 * @return list of campID sorted alphabetical by camp name
 	 */
-	public List<String> viewCamps() {
+	public List<String> listOfCampRequest() {
 	
 		return sortByCampNameIDList(campList);
 	}
@@ -109,24 +101,29 @@ public class CampListController {
 		
 		CampFilterer filterer = new CampFilterer(campList);
 		UserDatabase uDB = Main.getUserDB();
+		//filter by location if not empty
 		if(!location.equals(""))
 			filterer.addFilter(CampLocationFilter.onlyAt(location));
+		//filter by date before toDate
 		if(fromDate.equals("")&&!toDate.equals(""))
 			filterer.addFilter(CampDatesFilter.allBeforeIncl(Date.fromString(toDate)));
+		//filter by date to fromDate
 		if(!fromDate.equals("")&&toDate.equals(""))
 			filterer.addFilter(CampDatesFilter.allBeforeIncl(Date.fromString(toDate)));
+		//filter by date between From Date to To Date
 		if(!fromDate.equals("")&&!toDate.equals(""))
 			filterer.addFilter(CampDatesFilter.allWithin(Date.fromString(fromDate), Date.fromString(toDate)));
+
+		//filter by only open camp committee slots if true	
 		if (openCommSlots) 
 			filterer.addFilter(CampCampCommSlotsFilter.excludeFull(Main.getMemberDB()));
+		//filter by only open camp participant slots if true
 		if (openParticipantSlots) 
 			filterer.addFilter(CampParticipantSlotsFilter.excludeFull(Main.getMemberDB()));
+		//filter by is visible if true
 		if (visibility) 
 			filterer.addFilter(CampVisiblityFilter.onlyVisible());
-		else {
-			filterer.addFilter(CampVisiblityFilter.onlyInvisible());
-			filterer.addFilter(CampVisiblityFilter.onlyVisible());
-		}
+		//filter by only camp faculty (excl. NTU) if true
 		if(onlyFaculty) {
 			filterer.addFilter(CampFacultyFilter.onlyOpenedTo(uDB.getItem(userID).getFaculty()));
 		} 
