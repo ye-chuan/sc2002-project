@@ -45,6 +45,7 @@ public class PrintEnquiryDetail implements IPrintDetail{
 
         String text =  enquiryCont.getEnquiryText(enquiryID);
         String reply = enquiryCont.getEnquiryReply(enquiryID);
+        if (reply == null) reply = "N.A";
         ArrayList<String> string;
 
 
