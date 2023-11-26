@@ -105,12 +105,10 @@ public class UIFilter implements IPrintMenu, IUserInterface {
                     break;
                 case 6:
                     if (isStaff) byVisibility = toggleChoice(byVisibility); 
-                    else campListCont.setDefaultFilter(userID, isStaff); 
+                    else setDefaultFilter(); 
                     break; 
                 case 7: 
                     setDefaultFilter();
-                    campListCont.setDefaultFilter(userID, isStaff);
-                    return null;
                 default: 
                     wrongInput = true;
             }

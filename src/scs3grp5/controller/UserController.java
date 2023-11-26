@@ -94,11 +94,10 @@ public class UserController {
 		User u1 =  uDB.getItem(userID);
 		if (getDomain(userID)==UserType.STUDENT) {
 			Student s1 = (Student) u1;
-			pointCont.updatePoints(userID);
+			
 			return s1.getPoints();
 		}
-		else
-			return 0;
+		else return 0;
 		
 	}
 
@@ -117,7 +116,7 @@ public class UserController {
 
 			for(Camp c : campList) {
 				if (cMemberDB.getRoleInCamp(c,s1)  == CampRole.CAMPCOMM) {
-					return c.getID();
+					return c.getName();
 				}
 			}
 		}

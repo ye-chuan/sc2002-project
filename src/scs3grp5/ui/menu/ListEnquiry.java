@@ -43,7 +43,7 @@ public class ListEnquiry implements IPrintMenu{
         
         System.out.println("LIST OF ENQUIRIES"); 
         if(listOfEnquiries.size() == 0) System.out.println("(no enquiry for the moment)");
-        else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
+        else System.out.println("┌──────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE
         for (String enquiryID : listOfEnquiries){
             String text = enquiryCont.getEnquiryText(enquiryID);
             boolean replied = enquiryCont.getStatus(enquiryID);
@@ -51,13 +51,14 @@ public class ListEnquiry implements IPrintMenu{
             if (replied) status = "REPLIED"; 
             else status = "PENDING";
 
-            System.out.println("│ ("+ (++option) + ") │" + PrintHelper.fillUpSpace(text, 85, 1, false) + "│"); 
-            if (replied) System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_GREEN + status  + PrintHelper.ANSI_RESET + "│");
-            else System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
+            String optionString = "("+ Integer.toString(++option) + ")"; 
+            System.out.println("│"+ PrintHelper.fillUpSpace(optionString, 6, 1, true) + "│" + PrintHelper.fillUpSpace(text, 85, 1, false) + "│"); 
+            if (replied) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_GREEN + status  + PrintHelper.ANSI_RESET + "│");
+            else System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 78, 1, false)  + PrintHelper.ANSI_RED + status  + PrintHelper.ANSI_RESET + "│");
             if (option != listOfEnquiries.size())
-                System.out.println("├─────┼─────────────────────────────────────────────────────────────────────────────────────┤");
+                System.out.println("├──────┼─────────────────────────────────────────────────────────────────────────────────────┤");
             else 
-                System.out.println("└─────┴─────────────────────────────────────────────────────────────────────────────────────┘");
+                System.out.println("└──────┴─────────────────────────────────────────────────────────────────────────────────────┘");
         }
         System.out.println("(press any non-numeric key to go to Enquiry List Menu)");
         return listOfEnquiries.size();

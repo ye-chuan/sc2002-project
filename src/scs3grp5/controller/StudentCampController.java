@@ -81,7 +81,7 @@ public class StudentCampController {
 			if (overlapDates(c1, s1)) {
 				throw new RegistrationException("Camp dates clashed with camps registered");
 			}
-			cmemberDB.addParticipant(s1,c1);
+			cmemberDB.addCampCommMember(s1, c1);
 		}
 	}
 
