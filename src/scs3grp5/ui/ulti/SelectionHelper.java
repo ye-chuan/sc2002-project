@@ -5,6 +5,14 @@ import java.util.Scanner;
 
 import scs3grp5.entity.Date;
 
+/** 
+ * A class that contains static methods that will be used in the program to 
+ * check if a selection or input is made legally.It is use throughout the UI program
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class SelectionHelper {
     
     /**
@@ -20,14 +28,11 @@ public class SelectionHelper {
         return false;   
     }
 
-    // public static boolean comfirmChanges(){
-    //     System.out.println("\t(Press 0 to "); 
-    //     System.out.println("\t(2) No"); 
-
-    //     // Scanner sc = new Scanner(System.in); 
-        
-    // }
-
+    /**
+     * This method provides the UI for users to key in a date
+     * 
+     * @return a valid <String> date
+     */
     public static String dateSelectUI(){
 
         Scanner sc = new Scanner(System.in); 

@@ -2,6 +2,15 @@ package scs3grp5.ui.ulti;
 
 import java.util.ArrayList;
 
+
+/** 
+ * A class that contains static strings constants and static prints functions 
+ * to be used throughout the UI program
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class PrintHelper {
 
     public static String LOGO_STRING = " \r\n" + //
@@ -73,31 +82,39 @@ public class PrintHelper {
     
       }
 
-      public static ArrayList<String> breakDownString(String string, int maxlength){
-        ArrayList<String> returnString = new ArrayList<String>(); 
-        
-        int i=0;
-        int lastWhiteSpace = 0; 
-        int startOfSubString = 0; 
-        int currentStringLength =1;
-  
-        while (i<string.length()){
-          if (string.charAt(i) == ' ') lastWhiteSpace = i; 
-  
-          if (currentStringLength==maxlength){
-            returnString.add(string.substring(startOfSubString, lastWhiteSpace));
-            currentStringLength = 1; 
-            startOfSubString = lastWhiteSpace + 1;
-            i = startOfSubString;
-          }
-          else{
-            currentStringLength++;
-            i++;
-          }
+    /**
+     * This method is static and it breaks down the string to the bits of strings in the appropriate size, 
+     * the bits of strings then is added to the return ArrayList in order 
+     * 
+     * @param string the initial string to be broken down 
+     * @param maxlength the max length the bits of strings can take 
+     * @return the ArrayList containing the bits of strings in order
+     */
+    public static ArrayList<String> breakDownString(String string, int maxlength){
+      ArrayList<String> returnString = new ArrayList<String>(); 
+      
+      int i=0;
+      int lastWhiteSpace = 0; 
+      int startOfSubString = 0; 
+      int currentStringLength =1;
+
+      while (i<string.length()){
+        if (string.charAt(i) == ' ') lastWhiteSpace = i; 
+
+        if (currentStringLength==maxlength){
+          returnString.add(string.substring(startOfSubString, lastWhiteSpace));
+          currentStringLength = 1; 
+          startOfSubString = lastWhiteSpace + 1;
+          i = startOfSubString;
         }
-  
-        returnString.add(string.substring(startOfSubString, string.length()));
-  
-        return returnString;
+        else{
+          currentStringLength++;
+          i++;
+        }
       }
+
+      returnString.add(string.substring(startOfSubString, string.length()));
+
+      return returnString;
+    }
 }

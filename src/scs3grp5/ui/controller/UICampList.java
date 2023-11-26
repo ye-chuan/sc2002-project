@@ -51,6 +51,14 @@ public class UICampList extends UserInterface{
     }
 
     /**
+     * This method helps to get a valid option from the user.
+     * At each try, printListOfOption will be called and user will be prompt
+     * to key in their input. 
+     * 
+     * @return the option chosen by the user
+    */
+
+    /**
      * This method controls the logic for the UI for the the camp list UI
      * 
      * @return the new UI page to run 
@@ -106,19 +114,15 @@ public class UICampList extends UserInterface{
             
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);
-
-            optionSelector = new SelectionFromList(); 
-
             try{
                 ChangePage.changePage();
                 listOption = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
             }
             catch(OptionException e){
-                return new UICampList(uiInfo);  
+                wrongInput = true; 
             }
             
-            if (listOption == -1) wrongInput = true; 
-            else if (listOption == 0) {
+            if (listOption == 0) {
                 filterUI.showUI();
             }
             else{

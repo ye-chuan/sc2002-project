@@ -1,8 +1,20 @@
 package scs3grp5.ui.menu;
 
-
+/**
+ * This class is provides the menu to be printed in the list enquiry UI.
+ * This class is called when the user is a non commitee member of a camp. (not staff IC and camp commitee)
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class MenuEnquiryStudentList implements IPrintMenu {
 
+    /** 
+     * This method is to print the list of option of a student enquiry list
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
         int option = 0; 

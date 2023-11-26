@@ -1,7 +1,21 @@
 package scs3grp5.ui.menu;
 
+
+/**
+ * This class is provides the menu to be printed for list suggestion UI. 
+ * This class is called when the user is a staff and they are in the List suggestion UI.
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class MenuSuggestionStaffList implements IPrintMenu {
 
+    /** 
+     * This method is to print the list of option for the suggestion list menu 
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
         int option = 0; 

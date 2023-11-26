@@ -6,12 +6,22 @@ import scs3grp5.controller.CampController;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
+/**
+ * This class is provides the list of camps to be printed in the List Suggestion UI
+ * This class is called when the user is a student
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class ListStudentCamp implements IPrintMenu {
 
     protected List<String> listOfCamps; 
 
     /**
-     * to communicate with CampController
+     * to communicate with Camp Controller
+     * 
+     * @param listOfCamps the list of camps to be printed
      */
     protected CampController campCont;  
 
@@ -20,6 +30,11 @@ public class ListStudentCamp implements IPrintMenu {
         campCont = new CampController();
     }
     
+    /** 
+     * This method is to print the list of camps in student view. 
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
         int option = 0; 

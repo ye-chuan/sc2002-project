@@ -1,6 +1,13 @@
 package scs3grp5.ui.menu;
 
-
+/**
+ * This class is provides the menu to be printed in the student camp UI.
+ * This class is called when the user is a non commitee member of a camp. (not staff IC and camp commitee)
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class MenuCampStudent implements IPrintMenu {
 
     /**
@@ -8,9 +15,20 @@ public class MenuCampStudent implements IPrintMenu {
      */
     private boolean isParticipant; 
 
+    /**
+     * Constructor for the MenuCampStudent class 
+     * 
+     * @param isParticipant is they are already a participants 
+     */
     public MenuCampStudent(boolean isParticipant){
         this.isParticipant = isParticipant;
     }
+
+    /** 
+     * This method is to print the list of option for the student camp menu
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
         int option = 0; 

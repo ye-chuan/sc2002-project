@@ -5,12 +5,32 @@ import java.util.List;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class is provides the list of camps to be printed in the List Suggestion UI
+ * This class is called when the user is a staff. 
+ * This class extends ListStudentCamp class as is it does the same thing but prints more detailed information
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class ListStaffCamp extends ListStudentCamp {
 
+    /**
+     * Constructor class for ListStaffCamp 
+     * 
+     * @param listOfCamps the list of camps to be printed
+     */
     public ListStaffCamp(List<String> listOfCamps) {
         super(listOfCamps);
     }
 
+    /** 
+     * This method is to print the list of camps in staff view
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu(){
         int option = 0; 

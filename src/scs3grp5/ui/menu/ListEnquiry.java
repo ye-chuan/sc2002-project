@@ -5,12 +5,21 @@ import scs3grp5.controller.EnquiryController;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class is provides the list of enquiries to be printed in the List Enquiries UI
+ * This class is called for all user
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class ListEnquiry implements IPrintMenu{
 
     private List<String> listOfEnquiries; 
 
     /**
-     * to communicate with CampController
+     * to communicate with Enquiry Controller
      */
     private EnquiryController enquiryCont;  
 
@@ -19,6 +28,11 @@ public class ListEnquiry implements IPrintMenu{
         enquiryCont = new EnquiryController(campID);
     }
 
+    /** 
+     * This method is to print the list of enquiries 
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
         int option = 0; 

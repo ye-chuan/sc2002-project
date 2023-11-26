@@ -57,6 +57,8 @@ public class UIEditCamp extends UserInterface{
     
     /**
      * This method controls the logic for the UI to edit camp UI
+     * During the creation of camp, we force staff IC to finish creating a camp first before 
+     * they can exit the page. 
      * 
      * @return the new UI page to run
      */

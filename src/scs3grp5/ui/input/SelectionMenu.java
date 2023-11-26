@@ -5,8 +5,21 @@ import java.util.Scanner;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.SelectionHelper;
 
+/**
+ * This classes provides UIs to select option from a menu
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class SelectionMenu implements ISelectOption {
 
+    /**
+     * This method helps users to select an option from a menu. This method throws an exception when
+     * the user input is out of range and when they key in a non-numeric input.
+     * 
+     * @return the option chosen
+     */
     @Override
     public int getUserChoiceUI(int maxOption, boolean wrongInput) throws OptionException{
     

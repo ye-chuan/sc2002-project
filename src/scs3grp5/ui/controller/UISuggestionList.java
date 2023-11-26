@@ -8,6 +8,7 @@ import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.ListSuggestion;
 import scs3grp5.ui.menu.MenuEnquiryCommitteeList;
 import scs3grp5.ui.menu.MenuSuggestionCommitteeList;
+import scs3grp5.ui.menu.MenuSuggestionStaffList;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
@@ -32,7 +33,7 @@ public class UISuggestionList extends UserInterface{
 
         int option = -1;
         menu = new MenuSuggestionCommitteeList(); 
-        if (uiInfo.getIsStaff()) menu = new MenuEnquiryCommitteeList();
+        if (uiInfo.getIsStaff()) menu = new MenuSuggestionStaffList();
         optionSelector = new SelectionMenu();
 
         boolean wrongInput = false;

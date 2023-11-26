@@ -9,8 +9,9 @@ public interface ISelectOption  {
 
     /**
      * This method helps to get a valid option from the user.
-     * At each try, printListOfOption will be called and user will be prompt
-     * to key in their input. 
+     * At each try, they will access if the option is an invalid input
+     * if it is invalid, this method will throw an exception signalling that there
+     * is a option exception.  
      * 
      * @return the option chosen by the user
     */

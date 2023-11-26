@@ -6,6 +6,15 @@ import scs3grp5.controller.SuggestionController;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
+
+/**
+ * This class is provides the list of suggestions to be printed in the List Suggestion UI
+ * This class is called when the user is both a camp commitee and the staff IC
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class ListSuggestion implements IPrintMenu{
 
     /**
@@ -23,6 +32,11 @@ public class ListSuggestion implements IPrintMenu{
         suggestionCont = new SuggestionController(campID); 
     }
 
+    /** 
+     * This method is to print the list of suggestions 
+     * 
+     * @return the max number of option 
+    */
     @Override
     public int printMenu() {
 
