@@ -1,5 +1,7 @@
 package scs3grp5.ui.controller;
 
+import java.io.IOException;
+
 import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintStaffCampDetail;
 import scs3grp5.ui.input.SelectionMenu;
@@ -9,7 +11,7 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
 public class UISuperCamp extends UIPrivilegedCamp{
-
+ 
     public UISuperCamp(UIInformation uiInfo) {
         super(uiInfo);
     }
@@ -30,23 +32,25 @@ public class UISuperCamp extends UIPrivilegedCamp{
                 System.out.println(PrintHelper.LOGO_STRING);
                 System.out.println();
                 printDetail.printDetail();
+                System.out.println(errorMessage);
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
+                errorMessage = "";
                 wrongInput = false;
             }
             catch(OptionException e){
                 wrongInput = true; 
             }
+
+            if (option == 2){
+                generateStudentListUI(); 
+            }
+            else if (option == 3){
+                generatePerformanceReportUI();
+            }
+            System.out.println(errorMessage);
         }while (wrongInput);
 
-        if (option == 1) return new UIEditCamp(uiInfo, false); 
-        else if (option == 2){
-            generateStudentListUI();
-            return new UISuperCamp(uiInfo); 
-        }
-        else if (option == 3){
-            generatePerformanceReportUI(); 
-            return new UISuperCamp(uiInfo);
-        }
+        if (option == 1) return new UIEditCamp(uiInfo, false);  
         else if (option == 4) return new UIEnquiryList(uiInfo);
         else if (option == 5) return new UISuggestionList(uiInfo);
         else if (option == 6) return new UICampList(uiInfo); 
@@ -55,8 +59,12 @@ public class UISuperCamp extends UIPrivilegedCamp{
     }
 
     private void generatePerformanceReportUI(){
-        reportCont.generatePerformanceReport(uiInfo.getCampID()); 
-        System.out.println("Performance Report Generated Successfully!!");
+        try{
+            reportCont.generatePerformanceReport(uiInfo.getCampID()); 
+            errorMessage = "Performance Report Generated Successfully!!";
+        }catch (IOException e){
+            errorMessage = e.getMessage();
+        }
     }
     
 }

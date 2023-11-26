@@ -102,6 +102,7 @@ public class UICampList extends UserInterface{
 
         campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
         wrongInput = false;
+        boolean finishFilter = false; 
         int listOption = -1; 
         do{
             if (option == 1){
@@ -119,14 +120,17 @@ public class UICampList extends UserInterface{
             try{
                 ChangePage.changePage();
                 listOption = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
+                wrongInput = false; 
             }
             catch(OptionException e){
-                break; 
+                return new UICampList(uiInfo); 
             }
             
             if (listOption == -1) wrongInput = true; 
             else if (listOption == 0) {
                 filterUI.showUI();
+                finishFilter = true; 
+                wrongInput = false; 
             }
             else{
                 uiInfo.setCampID(listOfCamps.get(listOption-1));
@@ -139,7 +143,7 @@ public class UICampList extends UserInterface{
                 }
                 return new UINonPrivilegedCamp(uiInfo);
             }
-        }while (wrongInput);
+        }while (wrongInput || finishFilter);
         return new UICampList(uiInfo);
     }
 

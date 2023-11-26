@@ -107,6 +107,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
                     else campListCont.setDefaultFilter(userID, isStaff); 
                     break; 
                 case 7: 
+                    setDefaultFilter();
                     campListCont.setDefaultFilter(userID, isStaff);
                     return null;
                 default: 
@@ -144,8 +145,8 @@ public class UIFilter implements IPrintMenu, IUserInterface {
             else System.out.println(PrintHelper.ANSI_RED + byVisibility + PrintHelper.ANSI_RESET); 
         }
 
-        System.out.printf("\t(%d) Reset Filter: ", ++option); 
-        System.out.println("(0) Confirm filter selection"); 
+        System.out.printf("\t(%d) Reset Filter\n", ++option); 
+        System.out.println("\t(0) Confirm filter selection"); 
         System.out.println("----------------------------------------------");
         System.out.println("(press any non-numeric key to go back to Camp List)"); 
 

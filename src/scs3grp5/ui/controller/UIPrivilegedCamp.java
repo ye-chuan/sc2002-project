@@ -1,5 +1,6 @@
 package scs3grp5.ui.controller;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +21,8 @@ public class UIPrivilegedCamp extends UserInterface{
      * To communicate with the ReportController
      */
     protected ReportController reportCont; 
+
+    protected String errorMessage ="";
 
     /**
      * Constructor for PrivilegedCampView class 
@@ -47,19 +50,21 @@ public class UIPrivilegedCamp extends UserInterface{
             System.out.println(PrintHelper.LOGO_STRING);
             System.out.println();
             printDetail.printDetail();
+            System.out.println(errorMessage);
             option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
+            errorMessage = "";
             wrongInput = false;
         }
         catch(OptionException e){
             wrongInput = true; 
         }
+
+        if (option == 1){
+          generateStudentListUI();
+        }
       }while (wrongInput);
 
-      if (option == 1){
-        generateStudentListUI();
-        return new UIPrivilegedCamp(uiInfo);
-      }
-      else if (option == 2) return new UIEnquiryList(uiInfo);
+      if (option == 2) return new UIEnquiryList(uiInfo);
       else if (option == 3) return new UISuggestionList(uiInfo);
       else if (option == 4) return new UICampList(uiInfo);
       else if (option == 5) return new UIHomepage(uiInfo);
@@ -103,9 +108,12 @@ public class UIPrivilegedCamp extends UserInterface{
           default:
             filter = REPORTFILTER.ALL;
         }
-        reportCont.generateCampReport(uiInfo.getCampID(), filter); 
-        System.out.println("Student Report Generated Successfully!!");
+        try{
+           reportCont.generateCampReport(uiInfo.getCampID(), filter);
+           errorMessage = "Student Report Generated Successfully!!";
+        }catch(IOException e){
+          errorMessage = e.getMessage();
+        }
     }
-
 
 }
