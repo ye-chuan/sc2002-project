@@ -87,7 +87,10 @@ public class UICampList extends UserInterface{
             }
         }while (wrongInput);
 
-        if (option == 3){
+
+        if (option == 1) campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
+        else if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
+        else if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
                 return new UIEditCamp(uiInfo, true);
@@ -100,19 +103,13 @@ public class UICampList extends UserInterface{
         }
         else if (option == 0)return null;
 
-        campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
+        
         wrongInput = false;
         boolean finishFilter = false; 
         int listOption = -1; 
         do{
-            if (option == 1){
-                listOfCamps = campListCont.viewCamps();
-            }
-            else { //option == 2
-                listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
-            }
+            listOfCamps = campListCont.viewCamps();
 
-            
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);
             optionSelector = new SelectionFromList(); 
