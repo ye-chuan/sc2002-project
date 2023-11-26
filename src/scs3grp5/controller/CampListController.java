@@ -106,7 +106,12 @@ public class CampListController {
 		UserDatabase uDB = Main.getUserDB();
 		
 		filterer.addFilter(CampLocationFilter.onlyAt(location));
-		filterer.addFilter(CampDatesFilter.allWithin(Date.fromString(fromDate), Date.fromString(toDate)));
+		if(fromDate.equals("")&&!toDate.equals(""))
+			filterer.addFilter(CampDatesFilter.allBeforeIncl(Date.fromString(toDate)));
+		if(!fromDate.equals("")&&toDate.equals(""))
+			filterer.addFilter(CampDatesFilter.allBeforeIncl(Date.fromString(toDate)));
+		if(!fromDate.equals("")&&!toDate.equals(""))
+			filterer.addFilter(CampDatesFilter.allWithin(Date.fromString(fromDate), Date.fromString(toDate)));
 		if (openCommSlots) 
 			filterer.addFilter(CampCampCommSlotsFilter.excludeFull());
 		if (openParticipantSlots) 
