@@ -43,9 +43,11 @@ public class UISuperCamp extends UIPrivilegedCamp{
 
             if (option == 2){
                 generateStudentListUI(); 
+                wrongInput = true; 
             }
             else if (option == 3){
                 generatePerformanceReportUI();
+                wrongInput = true; 
             }
             System.out.println(errorMessage);
         }while (wrongInput);

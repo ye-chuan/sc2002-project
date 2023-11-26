@@ -61,6 +61,7 @@ public class UIPrivilegedCamp extends UserInterface{
 
         if (option == 1){
           generateStudentListUI();
+          wrongInput = true; 
         }
       }while (wrongInput);
 

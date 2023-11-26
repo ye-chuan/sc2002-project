@@ -68,6 +68,7 @@ public class UINonPrivilegedCamp extends UserInterface{
                     errorRegistration = true; 
                     errorMessage = e.getMessage(); 
                 }
+                wrongInput = true; 
             }
             else if (option == 0){
                 if (isParticipant) campCont.withdraw(uiInfo.getUserID(), uiInfo.getCampID());
@@ -80,6 +81,7 @@ public class UINonPrivilegedCamp extends UserInterface{
                         errorMessage = e.getMessage(); 
                     }
                 }
+                wrongInput = true; 
             }
         }while (wrongInput);
 
