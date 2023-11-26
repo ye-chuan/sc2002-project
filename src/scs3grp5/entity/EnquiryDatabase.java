@@ -7,7 +7,7 @@ public class EnquiryDatabase extends Database<Enquiry> {
 	public Collection<Enquiry> getUnresolvedEnquiries() {
         Collection<Enquiry> ret = new ArrayList<Enquiry>();
         for (Enquiry enquiry : items.values()) {
-            if (enquiry.getEnquiry() == null) {
+            if (!enquiry.isResolved()) {
                 ret.add(enquiry);
             }
         }
@@ -17,7 +17,7 @@ public class EnquiryDatabase extends Database<Enquiry> {
 	public Collection<Enquiry> getResolvedEnquiries() {
         Collection<Enquiry> ret = new ArrayList<Enquiry>();
         for (Enquiry enquiry : items.values()) {
-            if (enquiry.getEnquiry() != null) {
+            if (enquiry.isResolved()) {
                 ret.add(enquiry);
             }
         }
