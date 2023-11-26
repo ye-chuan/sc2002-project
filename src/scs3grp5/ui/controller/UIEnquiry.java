@@ -40,7 +40,7 @@ public class UIEnquiry extends UserInterface {
 
         printDetail.printDetail();
 
-        if (enquiryCont.getStatus(uiInfo.getEnquiryID()) || !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.getEnquiryID()) || uiInfo.getIsCommittee())){
+        if (enquiryCont.getStatus(uiInfo.getEnquiryID()) && !(enquiryCont.isOwner(uiInfo.getUserID(), uiInfo.getEnquiryID()) || uiInfo.getIsCommittee())){
             menu = new MenuNoOption();  
             optionSelector = new SelectionNull();
             try{
