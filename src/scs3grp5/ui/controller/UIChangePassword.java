@@ -36,7 +36,7 @@ public class UIChangePassword implements IUserInterface {
     }
 
     /**
-     * UI for User to change password 
+     * This method controls the logic for User to change password 
      */
     @Override
     public IUserInterface showUI(){

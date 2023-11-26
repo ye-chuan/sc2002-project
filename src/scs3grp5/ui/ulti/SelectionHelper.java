@@ -38,11 +38,11 @@ public class SelectionHelper {
             System.out.print("Enter date in this form DD/MM/YYYY:");
             try{
                 date = sc.nextLine();
+                loop = false; 
             }catch(NoSuchElementException e){
                 loop = true; 
                 continue; 
             }
-
             if (!Date.isValidDate(date)) loop = true;
         }while (loop);
 
