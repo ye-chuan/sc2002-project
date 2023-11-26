@@ -32,6 +32,9 @@ public class UIEditCamp extends UserInterface{
      */
     private CampController campCont;
 
+    /** 
+     * campID of the camp the user using the UI
+     */
     private String campID; 
 
     /** 
@@ -52,6 +55,15 @@ public class UIEditCamp extends UserInterface{
      */
     @Override
     public IUserInterface showUI() {
+
+        boolean name = false; 
+        boolean start = false; 
+        boolean end = false; 
+        boolean close = false; 
+        boolean location = false; 
+        boolean part = false;
+        boolean comm = false; 
+        boolean faculty = false; 
         
         IPrintDetail printDetail = new PrintStaffCampDetail(campID);
         menu = new MenuEditCamp(); 
@@ -115,6 +127,13 @@ public class UIEditCamp extends UserInterface{
         return new UISuperCamp(uiInfo); 
     }
   
+    /**
+     * This method provides the UI to change name
+     * We call the CampController to change the name of the camp immediately 
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeNameUI(){
         System.out.print("Camp Name: "); 
         Scanner sc = new Scanner(System.in); 
@@ -133,6 +152,14 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
     
+    /**
+     * /**
+     * This method provides the UI to change start date
+     * We call the CampController to change the date of the camp immediately 
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeStartDateUI(){
         System.out.println("-------------------------------------------------------");
         System.out.println("Camp Start Date: "); 
@@ -146,6 +173,13 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
 
+    /**
+     * This method provides the UI to change end date
+     * We call the CampController to change the date end of the camp immediately 
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeEndDateUI(){
         System.out.println("-------------------------------------------------------");
         System.out.println("Camp End Date:"); 
@@ -160,6 +194,13 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
 
+    /**
+     * This method provides the UI to change closing date
+     * We call the CampController to change the closing date of the camp immediately
+     * This method catch EditCampException when false with exception message  
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeRegistrationClosingDateUI(){
         System.out.println("-------------------------------------------------------");
         System.out.println("Camp Registration Closing Date:"); 
@@ -174,6 +215,13 @@ public class UIEditCamp extends UserInterface{
         return true;
     }
 
+    /**
+     * This method provides the UI to change location
+     * We call the CampController to change the location of the camp immediately 
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeLocationUI(){
         System.out.println("-------------------------------------------------------");
         System.out.print("Camp Location: "); 
@@ -193,6 +241,13 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
 
+    /**
+     * This method provides the UI to change number of participants slot 
+     * We call the CampController to change the number of participants slots of the camp immediately
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeNumOfParticipantsUI(){
         System.out.println("-------------------------------------------------------");
         System.out.print("Number of Participants: "); 
@@ -216,6 +271,13 @@ public class UIEditCamp extends UserInterface{
         
     }
 
+    /**
+     * This method provides the UI to change number of camp committee slot 
+     * We call the CampController to change the number of camp committee slots of the camp immediately
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeNumOfCampCommUI(){
         System.out.println("-------------------------------------------------------");
         System.out.print("Number of Committee: "); 
@@ -237,6 +299,13 @@ public class UIEditCamp extends UserInterface{
         
     }
 
+    /**
+     * This method provides the UI to change faculty
+     * We call the CampController to change the faculty of the camp immediately
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeFacultyUI(){
         System.out.println("-------------------------------------------------------");
         System.out.println("Camp Target Audience");
@@ -262,6 +331,13 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
 
+    /**
+     * This method provides the UI to change the description  
+     * We call the CampController to change the description of the camp immediately
+     * This method catch EditCampException when false with exception message 
+     * 
+     * @return true if the camp is successful, else false 
+     */
     private boolean changeDescriptionUI(){
         System.out.println("-------------------------------------------------------");
         System.out.print("Camp Description: "); 
@@ -283,6 +359,12 @@ public class UIEditCamp extends UserInterface{
         return true; 
     }
 
+    /**
+     * This method provides the UI to change the visibility  
+     * We call the CampController to change the visibility of the camp immediately
+     * This method catch EditCampException when false with exception message 
+     * 
+     */
     private void changeVisibilityUI(){
         try{
             campCont.toggleVisibility(campID, !campCont.getVisibility(campID));

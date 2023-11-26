@@ -62,6 +62,7 @@ public class ListStudentCamp implements IPrintMenu {
         }
         System.out.println("----------------------------------------------"); 
         System.out.println("(press any non-numeric key to go to Camp List Menu)");
+        System.out.println("(press 0 to go to filter)");
 
         return listOfCamps.size();
     }

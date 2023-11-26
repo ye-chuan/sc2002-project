@@ -72,12 +72,7 @@ public class UIEnquiryList extends UserInterface{
         }
         else if (option == 5){
             if (uiInfo.getIsCommittee()) return new UIHomepage(uiInfo);
-            else {
-                if (uiInfo.getIsCommittee()){
-                    if (uiInfo.getIsStaff()) return new UISuperCamp(uiInfo); 
-                    return new UIPrivilegedCamp(uiInfo);
-                }
-            } 
+            else return new UINonPrivilegedCamp(uiInfo);
         }
         else if (option == 6) return new UIHomepage(uiInfo);
         else return null;
