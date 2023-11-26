@@ -41,6 +41,10 @@ public class PrintStudentCampDetail implements IPrintDetail {
         this.isParticipant = isParticipant;
         campCont = new CampController();
     }
+
+    /**
+     * Details for a student camp view 
+     */
     @Override
     public void printDetail() {
 

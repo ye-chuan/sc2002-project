@@ -33,6 +33,9 @@ public class PrintStaffDetail implements IPrintDetail{
         userCont = new UserController(); 
     }
     
+    /**
+     * Details for a staff user 
+     */
     @Override
     public void printDetail(){
 

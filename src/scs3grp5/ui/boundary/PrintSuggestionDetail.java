@@ -30,6 +30,9 @@ public class PrintSuggestionDetail implements IPrintDetail {
         suggestionCont = new SuggestionController(campID); 
     }
 
+    /**
+     * Details for a suggestion 
+     */
     @Override
     public void printDetail() {
 

@@ -4,22 +4,41 @@ import java.util.Scanner;
 
 import scs3grp5.controller.PasswordException;
 import scs3grp5.controller.UserController;
-import scs3grp5.ui.ulti.ChangePage;
 
+/**
+ * This class is a UI controller for the change password UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UIChangePassword implements IUserInterface {
     
+    /**
+     * uiInfo contains the information of the user using the UI and the next
+     * IDs (camp, enquiry, suggestion) they would like to explore during the program
+     */
     private UIInformation uiInfo;
 
+    /**
+     * To communicate with the User Controller; 
+     */
     private UserController userCont; 
 
+    /**
+     * Constructor for the UIChangePasswod 
+     * 
+     * @param uiInfo contains the information of the user
+     */
     public UIChangePassword(UIInformation uiInfo){
         this.uiInfo = uiInfo; 
         userCont = new UserController(); 
     }
 
     /**
-     * UI for User to change password 
+     * This method controls the logic for User to change password 
      */
+    @Override
     public IUserInterface showUI(){
 
         System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
@@ -61,7 +80,14 @@ public class UIChangePassword implements IUserInterface {
         }while (true); 
     }
 
-    protected boolean isPasswordSame(String password, String reTypePassword){
+    /**
+     * This method check if the new passwor and the retype password is the same 
+     * 
+     * @param password User's new password 
+     * @param reTypePassword User's retype password 
+     * @return true if both is equal else false
+     */
+    private boolean isPasswordSame(String password, String reTypePassword){
         return password.equals(reTypePassword);  
     }
 }

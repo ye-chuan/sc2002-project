@@ -37,6 +37,9 @@ public class PrintEnquiryDetail implements IPrintDetail{
         enquiryCont = new EnquiryController(campID);
     }
     
+    /**
+     * Details for the enquiry
+     */
     @Override
     public void printDetail() {
 
