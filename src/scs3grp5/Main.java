@@ -50,7 +50,7 @@ public class Main {
     /**
      * The main {@code UniqueIDGenerator} used by the application
      */
-    private static UniqueIDGenerator idGenerator;
+    private static LongIncrementalIDGenerator idGenerator;
     
     /**
      * @return The Camp Database for this application
@@ -76,7 +76,7 @@ public class Main {
     /**
      * @return The Unique ID Generator for this application
      */
-    public static UniqueIDGenerator getIdGenerator() {
+    public static LongIncrementalIDGenerator getIdGenerator() {
         return idGenerator;
     }
 
@@ -104,7 +104,7 @@ public class Main {
 
             membershipDB = new CampMembershipDatabase();
             campDB = new CampDatabase();
-            idGenerator = new UniqueIDGenerator();
+            idGenerator = new LongIncrementalIDGenerator();
         }
 
         new UIMain().runUI();

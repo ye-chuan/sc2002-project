@@ -78,7 +78,7 @@ public class ReaderController {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
-	public UniqueIDGenerator getUniqueIDGenerator(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
+	public LongIncrementalIDGenerator getUniqueIDGenerator(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		return uniqueIDGeneratorFileReaderObj.readUniqueIDGeneratorFile(filePath);
 	}
 

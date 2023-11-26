@@ -25,7 +25,7 @@ public class UniqueIDGeneratorFileWrite {
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
 	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
-	public void writeUniqueIDGeneratorFile(String filePath, UniqueIDGenerator uniqueIDGeneratorObj) throws FileNotFoundException, IOException {
+	public void writeUniqueIDGeneratorFile(String filePath, LongIncrementalIDGenerator uniqueIDGeneratorObj) throws FileNotFoundException, IOException {
 		FileOutputStream fosWriteIDGenerator = new FileOutputStream(filePath);
 		ObjectOutputStream oosWriteIDGenerator = new ObjectOutputStream(fosWriteIDGenerator);
 		oosWriteIDGenerator.writeObject(uniqueIDGeneratorObj);

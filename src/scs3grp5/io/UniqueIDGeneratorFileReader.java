@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
 
 public class UniqueIDGeneratorFileReader {
 
-	private UniqueIDGenerator UniqueIDGeneratorObj;
+	private LongIncrementalIDGenerator UniqueIDGeneratorObj;
 
 	/**
 	 * This method deserialises the byte stream in the file given into
@@ -27,10 +27,10 @@ public class UniqueIDGeneratorFileReader {
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
 	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
-	public UniqueIDGenerator readUniqueIDGeneratorFile(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
+	public LongIncrementalIDGenerator readUniqueIDGeneratorFile(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		FileInputStream fisIDGenerator = new FileInputStream(filePath);
 		ObjectInputStream oisIDGenerator = new ObjectInputStream(fisIDGenerator);
-		UniqueIDGeneratorObj = (UniqueIDGenerator) oisIDGenerator.readObject();
+		UniqueIDGeneratorObj = (LongIncrementalIDGenerator) oisIDGenerator.readObject();
 		oisIDGenerator.close();
 		fisIDGenerator.close();
 		return UniqueIDGeneratorObj;
