@@ -15,7 +15,7 @@ import java.io.Serializable;
  * which would require 20,040,000,000 IDs
  * 2^64 = 18,446,744,073,709,551,616
  */
-public class UniqueIDGenerator implements Serializable {
+public class LongIncrementalIDGenerator implements IUniqueIDGenerator, Serializable {
 
     /** Current internal implementation of unqiue id is a simple long incrementation */
 	private long lastID = 0;
@@ -30,7 +30,7 @@ public class UniqueIDGenerator implements Serializable {
 	}
 
     public static void main(String[] args) {
-        UniqueIDGenerator idGenerator = new UniqueIDGenerator();
+        LongIncrementalIDGenerator idGenerator = new LongIncrementalIDGenerator();
         for (int i=0; i<10; i++)
             System.out.println(idGenerator.generate());
     }
