@@ -64,7 +64,6 @@ public class UIFilter implements IPrintMenu, IUserInterface {
         this.userID = userID; 
         this.campListCont = campListCont; 
         setDefaultFilter();
-        campListCont = new CampListController(); 
     }
 
     @Override
