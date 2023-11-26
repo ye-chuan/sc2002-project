@@ -121,7 +121,7 @@ public class UICampList extends UserInterface{
                 listOption = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
             }
             catch(OptionException e){
-                wrongInput = true; 
+                return new UICampList(uiInfo);
             }
             
             if (listOption == -1) wrongInput = true; 
