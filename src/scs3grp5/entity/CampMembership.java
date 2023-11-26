@@ -14,6 +14,7 @@ public class CampMembership implements Serializable {
 	Camp camp;
 	CampRole role;
 
+    /** Constructs a CampMembership object to represent one association between Student and Camp */
     public CampMembership(Student student, Camp camp, CampRole role) {
         this.student = student;
         this.camp = camp;

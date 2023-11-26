@@ -25,18 +25,38 @@ public class CampMembershipDatabase implements Serializable{
      */
     private Map<String, Set<String>> blacklist = new HashMap<String, Set<String>>();
 
+    /**
+     * Get number of participants currently in a camp
+     * @param camp The camp in question
+     * @return Number of participants currently in this camp
+     */
     public int getParticipantSize(Camp camp) {
         return getParticipants(camp).size();
     }
 
+    /**
+     * Get number of camp committee memebers currently in a camp
+     * @param camp The camp in question
+     * @return Number of camp committee members currently in this camp
+     */
     public int getCampCommSize(Camp camp) {
         return getCampCommMembers(camp).size();
     }
 
+    /**
+     * Get the Camps joined by a certain student
+     * @param student The student in question
+     * @return The Camps joined by a certain student
+     */
 	public Collection<Camp> getCampsJoinedBy(Student student) {
         return getCampsJoinedBy(student.getID());
 	}
 
+    /**
+     * Get the Camps joined by a certain student
+     * @param studentID The ID of the student in question
+     * @return The Camps joined by a certain student
+     */
 	public Collection<Camp> getCampsJoinedBy(String studentID) {
         Collection<Camp> ret = new ArrayList<Camp>();
         for (Map<String, CampMembership> studentMemberships : campStudentMemberships.values()) {
@@ -46,14 +66,32 @@ public class CampMembershipDatabase implements Serializable{
         return ret;
 	}
 
+    /**
+     * Get the participants of a camp
+     * @param camp The camp in question
+     * @return The participants of a camp
+     */
 	public Collection<Student> getParticipants(Camp camp) {
         return getParticipants(camp.getID());
 	}
 
+    
+    /**
+     * Get the participants of a camp
+     * @param campID ID of the camp
+     * @return The participants of a camp
+     * Get the participants of a camp
+     */
 	public Collection<Student> getParticipants(String campID) {
         return getStudentInCampByRole(campID, CampRole.PARTICIPANT);
 	}
 
+    /**
+     * Get the camp committee members of a camp
+     * @param campID ID of the camp
+     * @return The participants of a camp
+     * Get the participants of a camp
+     */
 	public Collection<Student> getCampCommMembers(Camp camp) {
         return getCampCommMembers(camp.getID());
 	}
@@ -105,6 +143,11 @@ public class CampMembershipDatabase implements Serializable{
         return ret;
     }
 
+    /**
+     * Add a participant to this camp
+     * @param student The student participant to register
+     * @param camp The camp to register the student to
+     */
 	public void addParticipant(Student student, Camp camp) {
         assert camp.getCampCommSlots() > getCampCommSize(camp);
         add(new CampMembership(student, camp, CampRole.PARTICIPANT));
@@ -162,6 +205,9 @@ public class CampMembershipDatabase implements Serializable{
     
     // Might extend from Database with these methods
 
+    /**
+     * Adds a CampMembership (an association between a student and a camp) to this Database
+     */
     private void add(CampMembership membership) {
         String campID = membership.camp.getID();
         String studentID = membership.student.getID();
@@ -171,6 +217,9 @@ public class CampMembershipDatabase implements Serializable{
         getStudentMembershipsInCamp(campID).put(studentID, membership);
     }
 
+    /**
+     * Removes a CampMembership (an association between a student and a camp) to this Database
+     */
     private void remove(CampMembership membership) {
         String campID = membership.camp.getID();
         String studentID = membership.student.getID();
@@ -178,6 +227,10 @@ public class CampMembershipDatabase implements Serializable{
             getStudentMembershipsInCamp(campID).remove(studentID);
     }
 
+    /**
+     * @param campID The ID of the camp
+     * @return Get an internal mapping of Student-Membership
+     */
     private Map<String, CampMembership> getStudentMembershipsInCamp(String campID) {
         if (campStudentMemberships.containsKey(campID)) {
             return campStudentMemberships.get(campID);
@@ -185,6 +238,12 @@ public class CampMembershipDatabase implements Serializable{
         return new HashMap<String, CampMembership>();
     }
 
+    /**
+     * Students that is of a certain role (participant/camp committee) in a camp
+     * @param campID ID of the camp in question
+     * @param role The student's which this role
+     * @return Students that is of a certain role (participant/camp committee) in a camp
+     */
 	private Collection<Student> getStudentInCampByRole(String campID, CampRole role) {
         Collection<Student> ret = new ArrayList<Student>();
         Map<String, CampMembership> studentMemberships = getStudentMembershipsInCamp(campID);
