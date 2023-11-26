@@ -22,8 +22,8 @@ public class CampController {
 	 * @param userID studentID
 	 * @see StudentCampController#registerAsParticipant(String, String)
 	 */
-	public void registerAsParticipant(String campID, String userID) throws RegistrationException {
-		studentCampCont.registerAsParticipant(campID, userID);
+	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
+		studentCampCont.registerAsParticipant(userID,campID);
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class CampController {
 	 * @param userID
 	 * @see StudentCampController#registerAsCommittee(String, String)
 	 */
-	public void registerAsCommittee(String campID, String userID) throws RegistrationException {
-		studentCampCont.registerAsCommittee(campID, userID);
+	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
+		studentCampCont.registerAsCommittee(userID,campID);
 	}
 
 	/**

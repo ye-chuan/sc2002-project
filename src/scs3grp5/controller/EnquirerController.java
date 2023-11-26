@@ -29,7 +29,6 @@ public class EnquirerController {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = new Enquiry(text, userID);
 		eDB.add(enq1);
-
 		return enq1.getID();
 	}
 
