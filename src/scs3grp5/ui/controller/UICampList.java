@@ -13,6 +13,14 @@ import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.controller.CampController;
 
+
+/**
+ * This class controller for a UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UICampList extends UserInterface{
 
     /**

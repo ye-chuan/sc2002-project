@@ -10,8 +10,7 @@ import scs3grp5.entity.*;
  * 
  */
 public class StudentCampController {
-	
-	CampController campCont = new CampController();
+
     
     /**
 	 * 
@@ -36,6 +35,7 @@ public class StudentCampController {
 			if (cmemberDB.getBlacklistedID(campID).contains(userID)) {
 				throw new RegistrationException("Blacklisted: unable to rejoin camp");
 			}
+			CampController campCont = new CampController();
 			if (campCont.getRemainingParticipantSlots(campID) <= 0) {
 				throw new RegistrationException("There are no remaining slots");
 			}
@@ -69,6 +69,7 @@ public class StudentCampController {
 			if (Date.today().isAfter(c1.getClosingDate())) {
 				throw new RegistrationException("Registration is closed");
 			}
+			CampController campCont = new CampController();
 			if (campCont.getRemainingCampCommSlots(campID) <= 0) {
 				throw new RegistrationException("There are no remaining slots");
 			}

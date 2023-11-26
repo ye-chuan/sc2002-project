@@ -1,6 +1,8 @@
 package scs3grp5.ui.menu;
 
 import java.util.List;
+
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 public class ListStaffCamp extends ListStudentCamp {
@@ -13,6 +15,10 @@ public class ListStaffCamp extends ListStudentCamp {
     public int printMenu(){
         int option = 0; 
 
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
+        
         System.out.println("LIST OF CAMPS"); 
         if(listOfCamps.size() == 0) System.out.println("(no camp for the moment)");
         else System.out.println("┌─────┬─────────────────────────────────────────────────────────────────────────────────────┐");// 85 WHITE SPACE

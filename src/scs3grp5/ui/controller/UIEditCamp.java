@@ -11,6 +11,7 @@ import scs3grp5.ui.boundary.IPrintDetail;
 import scs3grp5.ui.boundary.PrintStaffCampDetail;
 import scs3grp5.ui.input.SelectionMenu;
 import scs3grp5.ui.menu.MenuEditCamp;
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 import scs3grp5.ui.ulti.SelectionHelper;
@@ -48,7 +49,7 @@ public class UIEditCamp extends UserInterface{
         do{
             do{
                 try{
-                    //ChangePage.changePage();
+                    ChangePage.changePage();
                     System.out.println(PrintHelper.LOGO_STRING);
                     System.out.println();
                     printDetail.printDetail();
@@ -134,7 +135,7 @@ public class UIEditCamp extends UserInterface{
 
     private boolean changeEndDateUI(){
         System.out.println("-------------------------------------------------------");
-        System.out.print("Camp End Date: "); 
+        System.out.println("Camp End Date:"); 
         String date = SelectionHelper.dateSelectUI();
         
         try{
@@ -148,7 +149,7 @@ public class UIEditCamp extends UserInterface{
 
     private boolean changeRegistrationClosingDateUI(){
         System.out.println("-------------------------------------------------------");
-        System.out.print("Camp Registration Closing Date: "); 
+        System.out.println("Camp Registration Closing Date:"); 
         String date = SelectionHelper.dateSelectUI();
         
         try{

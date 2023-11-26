@@ -3,6 +3,7 @@ package scs3grp5.ui.boundary;
 import java.util.ArrayList;
 
 import scs3grp5.controller.CampController;
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 
@@ -52,6 +53,11 @@ public class PrintCampCommCampDetail implements IPrintDetail {
         String status = "CAMP COMMITTEE";
         String description = campCont.getDescription(campID);
 
+
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
+        
         System.out.println("CAMP INFORMATION");
         System.out.println("┌──────────────────────────────────────────────────────────────────────────────────────────┐");// 90 WHITE SPACE
 

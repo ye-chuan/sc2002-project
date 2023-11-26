@@ -3,6 +3,7 @@ package scs3grp5.ui.boundary;
 import java.util.ArrayList;
 
 import scs3grp5.controller.EnquiryController;
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 
@@ -43,6 +44,11 @@ public class PrintEnquiryDetail implements IPrintDetail{
         String reply = enquiryCont.getEnquiryReply(enquiryID);
         ArrayList<String> string;
 
+
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
+        
         System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90
         System.out.println(PrintHelper.fillUpSpace("ENQUIRY INFORMATION", 90, 1, true));
         System.out.println("──────────────────────────────────────────────────────────────────────────────────────────"); //  # ─  = 90

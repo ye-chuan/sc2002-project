@@ -1,5 +1,6 @@
 package scs3grp5.ui.boundary;
 
+import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.PrintHelper;
 
 /**
@@ -24,6 +25,10 @@ public class PrintStudentDetail extends PrintStaffDetail {
     
     @Override
     public void printDetail(){
+
+        ChangePage.changePage();
+        System.out.println(PrintHelper.LOGO_STRING);
+        System.out.println();
 
         String name = userCont.getName(userID).toUpperCase(); 
         String faculty = userCont.getFaculty(userID).toUpperCase(); 
