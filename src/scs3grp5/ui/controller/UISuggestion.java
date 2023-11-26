@@ -50,6 +50,7 @@ public class UISuggestion extends UserInterface {
         do{
             try{
                 ChangePage.changePage();
+                printDetail.printDetail();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
             }
