@@ -11,7 +11,6 @@ import scs3grp5.ui.menu.MenuEquiryReply;
 import scs3grp5.ui.menu.MenuNoOption;
 import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
-import scs3grp5.ui.ulti.PrintHelper;
 
 
 /**
@@ -77,7 +76,7 @@ public class UIEnquiry extends UserInterface {
         else if (option == 2){
             enquiryCont.delete(uiInfo.getEnquiryID());
         }
-        return new UIEnquiry(uiInfo);
+        return new UIEnquiryList(uiInfo);
     }
 
     private String replyEnquiryUI() {

@@ -26,6 +26,7 @@ public class MenuCampStaff implements IPrintMenu {
         System.out.printf("\t(%d) Generate Performance Report\n", ++option); 
         System.out.printf("\t(%d) View Enquiries\n", ++option); 
         System.out.printf("\t(%d) View Suggestions\n", ++option);
+        System.out.printf("\t(%d) Delete Camp\n", ++option);
         System.out.printf("\t(%d) Go to Camp List Menu\n", ++option); 
         System.out.printf("\t(%d) Go to HomePage\n", ++option); 
         System.out.printf("\t(0) Exit Program\n"); 
