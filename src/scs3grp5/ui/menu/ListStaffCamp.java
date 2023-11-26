@@ -60,15 +60,15 @@ public class ListStaffCamp extends ListStudentCamp {
 
             System.out.println("│"+ PrintHelper.fillUpSpace(optionString, 6, 1, true) + "│" + PrintHelper.fillUpSpace(name, 85, 3, false) + "│"); 
 
-            if (date.equals("REGISTRATION CLOSED")) System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(date,25,0, false) + PrintHelper.ANSI_RESET + "│"); 
-            else System.out.println("│     │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.fillUpSpace(date,25, 0, false) + "│"); 
+            if (date.equals("REGISTRATION CLOSED")) System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(date,25,0, false) + PrintHelper.ANSI_RESET + "│"); 
+            else System.out.println("│      │" + PrintHelper.fillUpSpace(" ", 60, 0, false) + PrintHelper.fillUpSpace(date,25, 0, false) + "│"); 
 
-            System.out.println("│     │ PARTICIPANT SLOT:" + PrintHelper.fillUpSpace(participant, 67, 1,false)  + "│");
+            System.out.println("│      │ PARTICIPANT SLOT:" + PrintHelper.fillUpSpace(participant, 67, 1,false)  + "│");
             
-            System.out.println("│     │ CAMP COMMITTEE SLOT:" + PrintHelper.fillUpSpace(campComm, 64, 1,false) + "│");
+            System.out.println("│      │ CAMP COMMITTEE SLOT:" + PrintHelper.fillUpSpace(campComm, 64, 1,false) + "│");
 
             if (visibility.equals("ON")) System.out.println("│     │ VISIBILITY:" + PrintHelper.ANSI_GREEN + PrintHelper.fillUpSpace(visibility, 73, 1,false) + PrintHelper.ANSI_RESET + "│");
-            else System.out.println("│     │ VISIBILITY:" + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(visibility, 73, 1, false) + PrintHelper.ANSI_RESET + "│");
+            else System.out.println("│      │ VISIBILITY:" + PrintHelper.ANSI_RED + PrintHelper.fillUpSpace(visibility, 73, 1, false) + PrintHelper.ANSI_RESET + "│");
             
             if (option != listOfCamps.size())
                 System.out.println("├──────┼─────────────────────────────────────────────────────────────────────────────────────┤");
