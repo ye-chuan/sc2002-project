@@ -2,6 +2,10 @@ package scs3grp5.ui.menu;
 
 /**
  * This interface gives the ability for the class to print a Menu list 
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
  */
 public interface IPrintMenu{
     

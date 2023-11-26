@@ -12,6 +12,13 @@ import scs3grp5.ui.ulti.ChangePage;
 import scs3grp5.ui.ulti.OptionException;
 import scs3grp5.ui.ulti.PrintHelper;
 
+/**
+ * This class is a UI controller for the enquiryList UI
+ * 
+ * @author Belvedere Song Zheng Yi 
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class UIEnquiryList extends UserInterface{
 
     /**
@@ -24,7 +31,11 @@ public class UIEnquiryList extends UserInterface{
      */
     private List<String> listOfEnquiries; 
 
-
+    /**
+     * Constructor class for UIEnquiryList 
+     * 
+     * @param uiInfo
+     */
     public UIEnquiryList(UIInformation uiInfo) {
         super(uiInfo);
         enquiryCont = new EnquiryController(uiInfo.getCampID());
@@ -101,6 +112,11 @@ public class UIEnquiryList extends UserInterface{
         return null; 
     }
 
+    /**
+     * This method provides the UI to create Enquiry
+     * 
+     * @return the camp ID
+     */
     private String createEnquiryUI(){
         System.out.print("Enter Enquiry: "); 
         Scanner sc = new Scanner(System.in); 
