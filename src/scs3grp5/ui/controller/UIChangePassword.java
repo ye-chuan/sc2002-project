@@ -22,7 +22,7 @@ public class UIChangePassword implements IUserInterface {
      */
     public IUserInterface showUI(){
 
-        ChangePage.changePage();
+        System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
         System.out.println("Change of Password Menu"); 
 
         String newPassword; 
