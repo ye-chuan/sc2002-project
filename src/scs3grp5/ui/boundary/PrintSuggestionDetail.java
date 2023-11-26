@@ -36,7 +36,7 @@ public class PrintSuggestionDetail implements IPrintDetail {
     @Override
     public void printDetail() {
 
-        String text = suggestionCont.getSuggestionCreator(suggestionID); 
+        String text = suggestionCont.getSuggestionText(suggestionID); 
         String status = suggestionCont.getStatus(suggestionID);
 
         ChangePage.changePage();

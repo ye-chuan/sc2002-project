@@ -40,7 +40,7 @@ public class ListSuggestion implements IPrintMenu{
     @Override
     public int printMenu() {
 
-        int option = 1; 
+        int option = 0; 
         
         ChangePage.changePage();
         System.out.println(PrintHelper.LOGO_STRING);
