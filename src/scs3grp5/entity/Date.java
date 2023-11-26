@@ -3,13 +3,14 @@ package scs3grp5.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Date implements Comparable<Date>, Serializable {
     public static final Date MAX = new Date(LocalDate.MAX.getYear(), LocalDate.MAX.getMonthValue(), LocalDate.MAX.getDayOfMonth());
     public static final Date MIN = new Date(LocalDate.MIN.getYear(), LocalDate.MIN.getMonthValue(), LocalDate.MIN.getDayOfMonth());
 
-    private static DateTimeFormatter outFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static DateTimeFormatter inFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter outFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+    private static DateTimeFormatter inFormatter = DateTimeFormatter.ofPattern("dd/MM/[uuuu][uu]");
     private LocalDate localDate;
 
 	/**
@@ -40,10 +41,11 @@ public class Date implements Comparable<Date>, Serializable {
     }
 
     /** 
-     * Parse Date from format DD/MM/YYYY
+     * Parse Date from format D/M/YY or YYYY
      * @return Parsed date
+     * @throws java.time.format.DateTimeParseException When the given string is invalid for parsing
      */
-    public static Date fromString(String datestring) {
+    public static Date fromString(String datestring) throws DateTimeParseException {
         LocalDate parsedLocalDate = LocalDate.parse(datestring, inFormatter);
         return new Date(parsedLocalDate.getYear(), parsedLocalDate.getMonthValue(), parsedLocalDate.getDayOfMonth());
     }
