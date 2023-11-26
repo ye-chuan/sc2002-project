@@ -24,7 +24,7 @@ public class UIHomepage extends UserInterface{
         super(uiInfo); 
     }
 
-    
+    /** {@inheritDoc} */
     @Override
     public IUserInterface showUI() {
 
@@ -36,7 +36,7 @@ public class UIHomepage extends UserInterface{
         do{
             try{
                 ChangePage.changePage();
-                System.out.println(PrintHelper.ANSI_GREEN + PrintHelper.LOGO_STRING + PrintHelper.ANSI_RESET);
+                System.out.println(PrintHelper.LOGO_STRING);
                 System.out.println();
                 option = optionSelector.getUserChoiceUI(menu.printMenu(), wrongInput);
                 wrongInput = false;
