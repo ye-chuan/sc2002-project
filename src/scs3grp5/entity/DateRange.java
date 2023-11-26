@@ -2,8 +2,16 @@ package scs3grp5.entity;
 
 import java.io.Serializable;
 
+/**
+ * A representation for a range of dates
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
+ */
 public class DateRange implements Serializable {
+    /** The start date of this range */
     private Date start;
+    /** The end date of this range */
     private Date end;
 
     /**

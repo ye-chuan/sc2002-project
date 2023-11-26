@@ -14,6 +14,10 @@ import java.io.Serializable;
  *   - 10000 enquiries
  * which would require 20,040,000,000 IDs
  * 2^64 = 18,446,744,073,709,551,616
+ *
+ * @author Lee Ye Chuan
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class LongIncrementalIDGenerator implements IUniqueIDGenerator, Serializable {
 
@@ -28,10 +32,4 @@ public class LongIncrementalIDGenerator implements IUniqueIDGenerator, Serializa
 	public String generate() {
         return String.valueOf(lastID++);
 	}
-
-    public static void main(String[] args) {
-        LongIncrementalIDGenerator idGenerator = new LongIncrementalIDGenerator();
-        for (int i=0; i<10; i++)
-            System.out.println(idGenerator.generate());
-    }
 }
