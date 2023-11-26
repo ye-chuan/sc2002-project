@@ -79,7 +79,7 @@ public class UIPrivilegedCamp extends UserInterface{
         
         Scanner sc = new Scanner(System.in); 
         int option;
-        int maxOption = 2; 
+        int maxOption = 3; 
     
         do{ 
           System.out.println("───────────────────────────────────────────────────────");// # ─ = 55  
@@ -96,9 +96,9 @@ public class UIPrivilegedCamp extends UserInterface{
           catch(InputMismatchException e){
             return; 
           }
-          if (!SelectionHelper.validOption(--option,1, maxOption)) System.out.println("Invalid Option!");
+          if (!SelectionHelper.validOption(option,1, maxOption)) System.out.println("Invalid Option!");
     
-        } while (!SelectionHelper.validOption(--option,1, maxOption)); 
+        } while (!SelectionHelper.validOption(option,1, maxOption)); 
 
         REPORTFILTER filter; 
 
