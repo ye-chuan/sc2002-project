@@ -75,11 +75,10 @@ public class CampController {
 			// Faculty s1Faculty = s1.getFaculty();
 			boolean existingCampComm = false;
 
-			Iterator<Camp> cIterator = cmemberDB.getCampsJoinedBy(s1).iterator();
+			Collection<Camp> campJoinList = cmemberDB.getCampsJoinedBy(s1);
 
-			while (cIterator.hasNext()) {
-				Camp c2Camp = cIterator.next();
-				if (cmemberDB.getCampCommMembers(c2Camp).contains(s1)) {
+			for (Camp c: campJoinList) {
+				if (cmemberDB.getCampCommMembers(c).contains(s1)) {
 					existingCampComm = true;
 				}
 			}
@@ -184,7 +183,6 @@ public class CampController {
 				return false;
 		}
 		
-		// change to use getStatus function
 		else if (u1 instanceof Student) {
 			CampRole userRole = getUserStatus(campID, userID);
 			if (userRole == CampRole.CAMPCOMM)
@@ -551,19 +549,6 @@ public class CampController {
 		return String.format("%s-%s", start.toString(), end.toString());
 	}
 
-	// /**
-	//  * 
-	//  * @param campID
-	//  */
-	// public String getEndDate(String campID) {
-	// 	CampMembershipDatabase cmemberDB = Main.getMemberDB();
-	// 	CampDatabase cDB = Main.getCampDB();
-		
-	// 	Camp c1 = cDB.getItem(campID);
-	// 	Date end = c1.getDates().getEnd();
-	// 	return String.format("%d/%d/%d",end.getDayOfMonth(),end.getMonth(),end.getYear());
-	// }
-
 	/**
 	 * 
 	 * @param campID
@@ -598,7 +583,6 @@ public class CampController {
 
 			return facList.toString();
 		}
-		// .append(),, return arraylist<string>
 	}
 
 	/**
@@ -702,13 +686,29 @@ public class CampController {
 	 * 
 	 * @param campID
 	 */
-	public List<String> getCampParticipants(String campID) {
+	public List<String> getCampParticipantsList(String campID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
 		
 		Camp c1 = cDB.getItem(campID);
 
 		Collection<Student> studentList = cmemberDB.getParticipants(c1);
+		
+
+		return sortByNameIDList(studentList);
+	}
+
+	/**
+	 * 
+	 * @param campID
+	 */
+	public List<String> getCampCommitteeList(String campID) {
+		CampMembershipDatabase cmemberDB = Main.getMemberDB();
+		CampDatabase cDB = Main.getCampDB();
+		
+		Camp c1 = cDB.getItem(campID);
+
+		Collection<Student> studentList = cmemberDB.getCampCommMembers(c1);
 		
 
 		return sortByNameIDList(studentList);

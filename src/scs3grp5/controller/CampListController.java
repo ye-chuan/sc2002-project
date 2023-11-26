@@ -89,7 +89,7 @@ public class CampListController {
 	 */
 	public void FilterBy(String userID, String location, boolean openParticipantSlots, boolean openCommSlots, String fromDate, String toDate, boolean onlyFaculty, boolean visibility) {
 		CampDatabase cDB = Main.getCampDB();
-		CampFilterer filterer = new CampFilterer(cDB.getAll());
+		CampFilterer filterer = new CampFilterer(campList);
 		UserDatabase uDB = Main.getUserDB();
 		
 		filterer.addFilter(CampLocationFilter.onlyAt(location));
