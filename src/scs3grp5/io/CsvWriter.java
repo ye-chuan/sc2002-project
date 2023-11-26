@@ -2,8 +2,6 @@ package scs3grp5.io;
 
 import java.util.*;
 
-// import scs3grp5.Main;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,47 +15,37 @@ import java.io.IOException;
  * @since 2023-11-26
  */
 public class CsvWriter {
-    private List<String> rows;
-    private int numCols;
+    private List<List<String>> rows;
+    private int numCols = 0;
     private Path path;
 
     /**
      * Creates a CSV Writer which will aid in the writing of CSV files.
      *
-     * @param filepath Where the CSV file will be save (will override existing)
-     * @param numCols Number of columns in the CSV file
-     */
-    public CsvWriter(String filepath, int numCols) {
-        this.path = Paths.get(filepath);
-        this.numCols = numCols;
-
-        this.rows = new ArrayList<String>();
-    }
-
-    /**
-     * Creates a CSV Writer which will aid in the writing of CSV files.
-     *
-     * Number of columns will be infered from the first addition of row.
+     * Number of columns will be dynamically infered as rows are added
      *
      * @param filepath Where the CSV file will be save (will override existing)
      */
     public CsvWriter(String filepath) {
-        this(filepath, -1);
+        this.path = Paths.get(filepath);
+        this.rows = new ArrayList<List<String>>();
     }
 
     /**
      * Add a row to the buffer of this CsvWriter.
      *
-     * @param strings A vararg, give as many strings as needed in a row
+     * Null values will be rendered as an empty string
      *
-     * @throws IllegalArgumentException When wrong number of strings are given (i.e. wrong number of columns)
+     * @param strings A vararg, give as many strings as needed in a row
      */
     public void addRow(String... strings) {
-        if (numCols == -1)
+        if (strings.length > numCols)
             numCols = strings.length;
-        else if (numCols != strings.length)
-            throw new IllegalArgumentException("Number of Columns mismatch in CsvWriter");
-        rows.add(String.join(",", strings));
+        List<String> row = new ArrayList<String>();
+        for (String s : strings) {
+            row.add(s == null ? "" : s);
+        }
+        rows.add(row);
     }
 
     /**
@@ -66,13 +54,28 @@ public class CsvWriter {
      * @throws IOException If an I/O error occurs writing to or creating the file, or the text cannot be encoded using the specified charset
      */
     public void write() throws IOException {
-        Files.write(path, rows, StandardCharsets.UTF_8);
+        System.out.println(rows);
+        List<String> commaSepLines = new ArrayList<String>();
+        // Pad the rows such that they all have the max columns
+        for (List<String> row : rows) {
+            List<String> strInCurLine = new ArrayList<String>();
+            for (int i=0; i<numCols; i++) {
+                if (i < row.size()) {
+                    strInCurLine.add(row.get(i));
+                }
+                else {
+                    strInCurLine.add("");
+                }
+            }
+            commaSepLines.add(String.join(",", strInCurLine));
+        }
+        Files.write(path, commaSepLines, StandardCharsets.UTF_8);
     }
 
     public static void main(String[] args) {
         String filepath = Paths.get("output").resolve("report.csv").toString();
         CsvWriter writer = new CsvWriter(filepath);
-        writer.addRow("oneone", "onetwo", "onethree");
+        writer.addRow("oneone", null, "onethree");
         writer.addRow("twoone", "twotwo", "twothree");
         try {
             writer.write();

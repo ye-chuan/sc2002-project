@@ -4,21 +4,25 @@ import scs3grp5.Main;
 import scs3grp5.entity.*;
 import scs3grp5.io.CsvWriter;
 
+import java.util.*;
+import java.io.IOException;
+
 /**
  * Manages output of formatted report to csv
  * 
  */
 public class ReportController {
-
-	private static String filepath = Main.getOutputDir().resolve("report.csv").toString();
+	private static String campReportPath = Main.getOutputDir().resolve("camp_report.csv").toString();
+	private static String performanceReportPath = Main.getOutputDir().resolve("performance_report.csv").toString();
+	private static String enquiryReportPath = Main.getOutputDir().resolve("enquiry_report.csv").toString();
 	/**
 	 * generates a report with all the camp information and list of members in camp and their roles
 	 * @param campID
 	 * @param filter
 	 */
-	public void generateCampReport(String campID, REPORTFILTER filter) {
-		CsvWriter writer = new CsvWriter(filepath);
-		System.out.println(filepath);
+	public void generateCampReport(String campID, REPORTFILTER filter) throws IOException {
+		CsvWriter writer = new CsvWriter(campReportPath);
+		System.out.println(campReportPath);
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
@@ -27,7 +31,21 @@ public class ReportController {
 		//campInfo
 		writer.addRow("Name:",c.getName());
 		writer.addRow("Description:",c.getDescription());
-		writer.addRow("Faculty:",c.getOpenTo().iterator().next().toString());
+
+        // Faculty
+        List<String> facultyRow = new ArrayList<String>();
+        Collection<Faculty> openTo = c.getOpenTo();
+        facultyRow.add("Faculty:");
+        if (openTo.size() == Faculty.values().length) {
+            facultyRow.add("All Faculties");
+        }
+        else {
+            for (Faculty faculty : openTo) {
+                facultyRow.add(faculty.toString());
+            }
+        }
+        writer.addRow(facultyRow.toArray(new String[facultyRow.size()]));
+
 		writer.addRow("Location:",c.getLocation());
 		writer.addRow("Staff-In-Charge:",c.getStaffInCharge().getName());
 		writer.addRow("Start Date:",c.getDates().getStart().toString());
@@ -48,14 +66,20 @@ public class ReportController {
 			}
 		}
 
+        try {
+            writer.write();
+        }
+        catch (IOException e) {
+            throw new IOException("Problem writing to " + campReportPath + " ! Make sure directory exists & File not opened");
+        }
 	}
 
 	/**
 	 * generates a performance report with all the points of camp committee in the camp
 	 * @param campID
 	 */
-	public void generatePerformanceReport(String campID) {
-		CsvWriter writer = new CsvWriter(filepath);
+	public void generatePerformanceReport(String campID) throws IOException {
+		CsvWriter writer = new CsvWriter(performanceReportPath);
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
@@ -65,15 +89,21 @@ public class ReportController {
 		for (Student s : cMemberDB.getCampCommMembers(campID)) {
 			writer.addRow(s.getName(),String.format("&d",s.getPoints()));
 		}
-
+        
+        try {
+            writer.write();
+        }
+        catch (IOException e) {
+            throw new IOException("Problem writing to " + campReportPath + " ! Make sure directory exists & File not opened");
+        }
 	}
 
 	/**
 	 * generates a list of all enquiries in the camp
 	 * @param campID
 	 */
-	public void generateEnquiryReport(String campID) {
-		CsvWriter writer = new CsvWriter(filepath);
+	public void generateEnquiryReport(String campID) throws IOException {
+		CsvWriter writer = new CsvWriter(enquiryReportPath);
 		CampDatabase cDB = Main.getCampDB();
 		Camp c = cDB.getItem(campID);
 
@@ -85,10 +115,13 @@ public class ReportController {
 		for (Enquiry e : c.getEnquiryDB().getResolvedEnquiries()) {
 			writer.addRow(e.getAskedBy(),e.getEnquiry(),e.getReply(),"Resolved");
 		}
-	}
-
-	public void setReportFilePath(String filepath) {
-		ReportController.filepath = filepath;
+        
+        try {
+            writer.write();
+        }
+        catch (IOException e) {
+            throw new IOException("Problem writing to " + campReportPath + " ! Make sure directory exists & File not opened");
+        }
 	}
 
 }
