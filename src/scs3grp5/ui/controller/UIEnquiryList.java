@@ -92,6 +92,7 @@ public class UIEnquiryList extends UserInterface{
             }
             
             if (listOption == -1) wrongInput = true; 
+            else if (listOption == 0) wrongInput = true; 
             else{
                 uiInfo.setCampID(listOfEnquiries.get(listOption-1));  
                 return new UIEnquiry(uiInfo);
