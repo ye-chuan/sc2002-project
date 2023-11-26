@@ -76,7 +76,9 @@ public class EnquiryController {
 	 * @return true if enquiry is resolved
 	 * 
 	 */
-	public boolean getStatus(String enquiryID) {
+	public boolean 
+	
+	getStatus(String enquiryID) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
 		Enquiry enq1 = eDB.getItem(enquiryID);
 		

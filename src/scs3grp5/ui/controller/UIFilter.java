@@ -59,11 +59,11 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
     private String userID; 
 
-    public UIFilter(String userID, boolean isStaff){
+    public UIFilter(String userID, boolean isStaff, CampListController campListCont){
         this.isStaff = isStaff; 
         this.userID = userID; 
+        this.campListCont = campListCont; 
         setDefaultFilter();
-        campListCont = new CampListController(); 
     }
 
     @Override
