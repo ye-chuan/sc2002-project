@@ -392,47 +392,44 @@ public class CampController {
 	 * @return true if user is a camp committee member or staff in charge of camp
 	 */
 	public boolean isCommittee(String userID, String campID) {
-		System.out.println("campID"+campID);
+		
 		CampDatabase cDB = Main.getCampDB();
-		System.out.println(cDB.getItem(campID).getName());
+		
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		User u1 = uDB.getItem(userID);
-			System.out.println("AAAAA");
+			
 		if (u1 instanceof Staff) {
-			System.out.println("BBBBB111");
+			
 			Staff s1 = (Staff) uDB.getItem(userID);
-			System.out.println("BBBBB222");
-			System.out.println(c1.getStaffInCharge() + " " +  s1);
-			System.out.println(c1.getStaffInCharge().hashCode() + " " +  s1.hashCode());
+			
 			if (c1.getStaffInCharge().equals(s1)){
-				System.out.println("BBBBB");
-				System.out.println("i come here");
+				
 				return true;
 			}
 			else {
-				System.out.println("CCCCC");
+				
 				return false;
 			}
 			
 		}
 		
 		else if (u1 instanceof Student) {
-			System.out.println("DDDDD");
+			
 			CampRole userRole = getUserStatus(campID, userID);
 			if (userRole == CampRole.CAMPCOMM) {
-				System.out.println("EEEEE");
+				
 				return true;
 			}
 			else {
-				System.out.println("GGGGG");
+				
 				return false;
 			}
 				
 		}
 
 		else {
-			System.out.println("HHHHH"); 
+			
 			return false;
 		}
 		

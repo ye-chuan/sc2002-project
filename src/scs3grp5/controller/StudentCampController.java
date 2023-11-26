@@ -23,7 +23,6 @@ public class StudentCampController {
 	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
 		CampDatabase cDB = Main.getCampDB();
-		System.out.println("RegisterAsParticipant campID is "+campID);
 		UserDatabase uDB = Main.getUserDB();
 		Camp c1 = cDB.getItem(campID);
 		User u1 = uDB.getItem(userID);
