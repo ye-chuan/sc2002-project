@@ -71,17 +71,4 @@ public class CsvWriter {
         }
         Files.write(path, commaSepLines, StandardCharsets.UTF_8);
     }
-
-    public static void main(String[] args) {
-        String filepath = Paths.get("output").resolve("report.csv").toString();
-        CsvWriter writer = new CsvWriter(filepath);
-        writer.addRow("oneone", null, "onethree");
-        writer.addRow("twoone", "twotwo", "twothree");
-        try {
-            writer.write();
-        }
-        catch(IOException e) {
-            System.out.println("IO Error");
-        }
-    }
 }

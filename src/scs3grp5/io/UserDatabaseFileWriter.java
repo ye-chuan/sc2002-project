@@ -21,7 +21,6 @@ public class UserDatabaseFileWriter {
 	 * @param filePath refers to the filepath where the file to be written is located.
 	 * @param UserDatabaseObj is a userDatabase object that is going to be 
 	 * written into path corresonding to the file path given.
-	 * @return does not return anything (void)
 	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
 	 * In other words, the file path given is invalid
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 

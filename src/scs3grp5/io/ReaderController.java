@@ -44,9 +44,11 @@ public class ReaderController {
 	 * but would throw it back to the method or class who calls it.
 	 * @param filePath refers to the filepath where the file to be read is located
 	 * @return CampDatabase object
-	 * @throws FileNotFoundException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws ClassNotFoundException When class of a serialized object cannot be found.
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
 	public CampDatabase getCampDatabase(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		return CampDatabaseFileReaderObj.readCampDatabaseFile(filePath);
@@ -60,9 +62,11 @@ public class ReaderController {
 	 * but would throw it back to the method or class who calls it.
 	 * @param filePath refers to the filepath where the file to be read is located
 	 * @return CampMembershipDatabase object
-	 * @throws FileNotFoundException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws ClassNotFoundException When class of a serialized object cannot be found.
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
 	public CampMembershipDatabase getCampMembershipDatabase(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		return CampMembershipDatabaseFileReaderObj.readCampMembershipDatabaseFile(filePath);
@@ -74,11 +78,13 @@ public class ReaderController {
 	 * its readUniqueIDGeneratorFile method.
 	 * This method might catch a FileNotFoundException from the readUniqueIDGeneratorFile method
 	 * but would throw it back to the method or class who calls it.
-	 * @param filePath refers to the filepath where the file to be read is located
+	 * @param filePath refers to the filepath where the file to be read is located.
 	 * @return UniqueIDGenerator object
-	 * @throws FileNotFoundException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
+	 * In other words, the file path given is invalid
+	 * @throws ClassNotFoundException When class of a serialized object cannot be found.
+	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
+	 * This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
 	public LongIncrementalIDGenerator getUniqueIDGenerator(String filePath) throws FileNotFoundException, ClassNotFoundException, IOException {
 		return uniqueIDGeneratorFileReaderObj.readUniqueIDGeneratorFile(filePath);
