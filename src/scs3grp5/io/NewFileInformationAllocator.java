@@ -33,8 +33,8 @@ public class NewFileInformationAllocator {
 
 	/**
 	 * 
-	 * @param filePath
-	 * @return ArrayList<Student>
+	 * @param filePath refers to the filepath where the file to be read is located.
+	 * @return ArrayList/<Student/>
 	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
 	 * In other words, the file path given is invalid
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
@@ -85,8 +85,8 @@ public class NewFileInformationAllocator {
 
 	/**
 	 * 
-	 * @param filePath
-	 * @return ArrayList<Staff>
+	 * @param filePath refers to the filepath where the file to be read is located.
+	 * @return ArrayList/<Staff/>
 	 * @throws FileNotFoundException file corresponding to the file path cannot be found. 
 	 * In other words, the file path given is invalid
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. 
