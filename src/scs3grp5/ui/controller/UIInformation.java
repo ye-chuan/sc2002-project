@@ -65,6 +65,8 @@ public class UIInformation{
 
     /** 
      * setter method for userID 
+     * 
+     * @param userID the userID of the user to set
      */
     public void setUserID(String userID){
         this.userID = userID;
@@ -81,6 +83,8 @@ public class UIInformation{
 
     /** 
      * setter method for campID 
+     * 
+     * @param campID the campID of the camp to set
      */
     public void setCampID(String campID){
         this.campID = campID;
@@ -96,7 +100,9 @@ public class UIInformation{
     }
 
     /** 
-     * setter method for enquryID 
+     * setter method for enquryID
+     * 
+     * @param enquiryID the enquiryID of the camp to set
      */
     public void setEnquiryID(String enquiryID){
         this.enquiryID = enquiryID;
@@ -113,6 +119,8 @@ public class UIInformation{
 
     /** 
      * setter method for suggestionID 
+     * 
+     * @param suggestionID the suggestionID of the camp to set
      */
     public void setSuggestionID(String suggestionID){
         this.suggestionID = suggestionID;
@@ -129,6 +137,8 @@ public class UIInformation{
 
     /** 
      * setter method for isStaff 
+     * 
+     * @param isStaff if the user is a staff, true if is staff 
      */
     public void setIsStaff(boolean isStaff){
         this.isStaff = isStaff;
@@ -145,6 +155,8 @@ public class UIInformation{
 
     /** 
      * setter method for isStaff 
+     * 
+     * @param isCommittee if the user is a commitee of a camp, committee means camp committee and staff IC
      */
     public void setIsCommittee(boolean isCommittee){
         this.isCommittee = isCommittee;

@@ -26,6 +26,12 @@ public class ListEnquiry implements IPrintMenu{
      */
     private EnquiryController enquiryCont;  
 
+    /**
+     * Constructor class for listOfEnquiries
+     * 
+     * @param listOfEnquiries list of enquiries to be view
+     * @param campID campID of the camp
+     */
     public ListEnquiry(List<String> listOfEnquiries, String campID){
         this.listOfEnquiries = listOfEnquiries;
         enquiryCont = new EnquiryController(campID);

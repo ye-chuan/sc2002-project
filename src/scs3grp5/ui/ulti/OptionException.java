@@ -8,6 +8,10 @@ package scs3grp5.ui.ulti;
  * @since 2023-11-26
  */
 public class OptionException extends Exception{
+
+    /**
+     * Constructor Class for OptionException 
+     */
     public OptionException(){
         super();
     }

@@ -23,8 +23,6 @@ public class ListStudentCamp implements IPrintMenu {
 
     /**
      * To communicate with Camp Controller
-     * 
-     * @param listOfCamps the list of camps to be printed
      */
     protected CampController campCont;  
 

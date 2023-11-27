@@ -7,6 +7,9 @@ package scs3grp5.entity;
  * @since 2023-11-26
  */
 public interface IUniqueIDGenerator {
-    /** Generates a unique ID, unique to this instance of the generator */
+    /**
+     * Generates a unique ID, unique to this instance of the generator
+     * @return The unique ID generated
+     */
     public abstract String generate();
 }

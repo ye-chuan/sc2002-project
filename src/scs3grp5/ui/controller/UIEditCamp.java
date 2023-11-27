@@ -48,7 +48,7 @@ public class UIEditCamp extends UserInterface{
      * Constructor for CreateEditCampUI class 
      * 
      * @param uiInfo contains the information of the UI  
-     * @param justCreated true if user is creating a camp, else is edit
+     * @param justCreate true if user is creating a camp, else is edit
      */
     public UIEditCamp(UIInformation uiInfo, boolean justCreate) {
         super(uiInfo);

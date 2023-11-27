@@ -39,6 +39,7 @@ public class User implements Identifiable, Serializable {
 
     /**
      * Change the password of this User
+     * @param password The password to test
      * @return If the password change was successful
      */
 	public boolean changePassword(String password) {
@@ -77,7 +78,7 @@ public class User implements Identifiable, Serializable {
     }
 
     /**
-     * @return The email of this User
+     * @param newEmail The email to change to
      */
 	public void setEmail(String newEmail) {
         this.email = newEmail;
