@@ -85,6 +85,7 @@ public class UICampList extends UserInterface{
         else if (option == 3){
             if (uiInfo.getIsStaff()){
                 uiInfo.setCampID(createCampUI()); // create a camp
+                uiInfo.setIsCommittee(true);
                 return new UIEditCamp(uiInfo, true);
             }
             else return new UIHomepage(uiInfo);
