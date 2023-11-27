@@ -80,7 +80,7 @@ public class UICampList extends UserInterface{
         }while (wrongInput);
 
 
-        if (option == 1) campListCont.setDefaultFilter(uiInfo.getUserID(), uiInfo.getIsStaff());
+        if (option == 1) campListCont.viewCamps(uiInfo.getUserID());
         else if (option == 2) listOfCamps = campListCont.viewMyCamp(uiInfo.getUserID());
         else if (option == 3){
             if (uiInfo.getIsStaff()){
@@ -100,7 +100,7 @@ public class UICampList extends UserInterface{
         int listOption = -1; 
         do{
             
-            listOfCamps = campListCont.viewCamps();
+            listOfCamps = campListCont.listOfCampRequest();
 
             if (uiInfo.getIsStaff()) menu = new ListStaffCamp(listOfCamps);
             else menu = new ListStudentCamp(listOfCamps);
