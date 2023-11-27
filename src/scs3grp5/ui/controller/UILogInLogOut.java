@@ -24,8 +24,10 @@ public class UILogInLogOut {
      */
     private UIInformation uiInfo; 
 
-    /** 
-     * Constructor for LogInLogOut class 
+    /**
+     * Constructor class for UILogInLogOut
+     * 
+     * @param uiInfo contains the information needed for UIs 
      */
     public UILogInLogOut(UIInformation uiInfo){
         this.uiInfo = uiInfo;
