@@ -11,7 +11,9 @@ package scs3grp5.io;
 import scs3grp5.entity.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+/**
+ * Reader controller is in charge of reading speficied object from serlised file.
+ */
 public class ReaderController {
 
 	private UserDatabaseFileReader UserDatabaseFileReadObj = new UserDatabaseFileReader();
