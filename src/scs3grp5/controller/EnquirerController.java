@@ -26,6 +26,7 @@ public class EnquirerController {
 	 * Creates student enquiry for camp
 	 * @param userID The unique ID of the User
 	 * @param text Enquiry text by the Enquirer
+	 * @return unique ID of enquiry created
 	 */
 	public String create(String userID, String text) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();

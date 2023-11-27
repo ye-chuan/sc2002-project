@@ -24,6 +24,7 @@ public class CampController {
 	 * @param userID The unique ID of the User
 	 * @param campID The unique ID of the Camp
 	 * @see StudentCampController#registerAsParticipant(String, String)
+	 * @throws RegistrationException if fail to register
 	 */
 	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
 		studentCampCont.registerAsParticipant(userID,campID);
@@ -35,6 +36,7 @@ public class CampController {
 	 * @param userID The unique ID of the User
 	 * @param campID The unique ID of the Camp
 	 * @see StudentCampController#registerAsCommittee(String, String)
+	 * @throws RegistrationException if fail to register
 	 */
 	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
 		studentCampCont.registerAsCommittee(userID,campID);
@@ -52,7 +54,7 @@ public class CampController {
 
 	/**
 	 * Creates new Camp using StaffID
-	 * @param staffInCharge The unique ID of the staff in charge of camp
+	 * @param staffInChargeID The unique ID of the staff in charge of camp
 	 * @return campID of created camp 
 	 * @see StudentCampController#withdraw(String, String)
 	 */
@@ -64,6 +66,7 @@ public class CampController {
 	 * Deletes Camp from Database
 	 * @param campID The unique ID of the Camp
 	 * @see StaffCampController#delete(String)
+	 * @throw EditCampException when students are registered to the camp
 	 */
 	public void delete(String campID) throws EditCampException {
 		staffCampCont.delete(campID);

@@ -9,6 +9,10 @@ package scs3grp5.controller;
  * @since 2023-11-26
  */
 public class EditCampException extends Exception {
+    /**
+     * Exception for editing or deleting camp details
+     * @param message Exception Message
+     */
     public EditCampException(String message) {
         super(message);
     }

@@ -20,6 +20,7 @@ public class StudentCampController {
 	 * Registers student as Participant
 	 * @param userID The unique ID of the User
 	 * @param campID The unique ID of the Camp
+	 * @throws RegistrationException if fail to register due to status of camp and student
 	 */
 	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -54,7 +55,7 @@ public class StudentCampController {
 	 * Registers student as Camp Committee Member
 	 * @param userID The unique ID of the User
 	 * @param campID The unique ID of the Camp
-	 * 
+	 * @throws RegistrationException if fail to register due to status of camp and student
 	 */
 	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();

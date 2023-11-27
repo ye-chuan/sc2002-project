@@ -23,6 +23,7 @@ public class CampListController {
 	 * For User student: returns camps joined by student <p>
 	 * For User staff: returns camps created by staff
 	 * @param userID The unique ID of the User
+	 * @return a list of sorted camps of user
 	 * 
 	 */
 	public List<String> viewMyCamp(String userID) {

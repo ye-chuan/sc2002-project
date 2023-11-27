@@ -15,6 +15,7 @@ public class PasswordController {
 	 * check if old password matches new password and changes the password for user
 	 * @param userID The unique ID of the User
 	 * @param newPassword new Password of the User Account
+	 * @throws PasswordException if new password is the same as current
 	 * 
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
@@ -33,7 +34,7 @@ public class PasswordController {
     /**
 	 * checks if new password fits system requirements
 	 * @param newPassword new Password of the User Account
-	 * 
+	 * @throws PasswordException if new password is not strong
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {
 		if (newPassword.length() < 8) {

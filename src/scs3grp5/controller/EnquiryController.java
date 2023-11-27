@@ -37,7 +37,7 @@ public class EnquiryController {
 	 * 
 	 * @param userID    The unique ID of the User
 	 * @param enquiryID The unique ID of the Enquiry
-	 * @param reply
+	 * @param reply The reply text to the Enquiry
 	 * @see ReplierController#reply(String, String, String)
 	 */
 	public void reply(String userID, String enquiryID, String reply) {
@@ -49,6 +49,7 @@ public class EnquiryController {
 	 * 
 	 * @param userID The unique ID of the User
 	 * @param text   the enquiry text by the Enquirer
+	 * @return unique ID of enquiry created
 	 * @see EnquirerController#create(String, String)
 	 */
 	public String create(String userID, String text) {
@@ -69,7 +70,6 @@ public class EnquiryController {
 	/**
 	 * delete enquiry before it is resolved
 	 * 
-	 * @param userID    The unique ID of the User
 	 * @param enquiryID The unique ID of the Enquiry
 	 * @see EnquirerController#delete(String)
 	 */
@@ -190,6 +190,7 @@ public class EnquiryController {
 	/**
 	 * check whether a enquiry is created by user
 	 * 
+	 * @param userID The unique ID of the Enquiry
 	 * @param enquiryID The unique ID of the Enquiry
 	 * @return true is enquired is created by user
 	 */
@@ -225,6 +226,7 @@ public class EnquiryController {
 	 * get student status in camp
 	 * 
 	 * @param campID The unique ID of the Camp
+	 * @param studentID The unique ID of the Student
 	 * @return camp role of student, participant or camp comm
 	 *         <p>
 	 *         null if not a member of camp

@@ -7,7 +7,9 @@ package scs3grp5.controller;
  * @since 2023-11-26
  */
 public enum UserType {
+	/** App User Type for Staff */
 	STAFF,
+	/** App User type for Student */
 	STUDENT
 
 }

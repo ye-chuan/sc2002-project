@@ -42,6 +42,7 @@ public class UserController {
 	 * check if old password matches new password and changes the password for user
 	 * @param userID The unique ID of the User
 	 * @param newPassword new password of the User
+	 * @throws PasswordException if new password is the same as current
 	 * @see PasswordController#changePassword(String, String)
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
@@ -51,6 +52,7 @@ public class UserController {
 	/**
 	 * checks if new password fits system requirements
 	 * @param newPassword new password of the User
+	 * @throws PasswordException if new password is not strong
 	 * @see PasswordController#isPasswordStrong(String)
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {
@@ -105,7 +107,7 @@ public class UserController {
 	/**
 	 * check for whether student is currently a camp committee
 	 * @param userID The unique ID of the User
-	 * @return campID of Camp which student is a camp committee
+	 * @return name of Camp which student is a camp committee
 	 */
 	public String getStudentCommitteeCampID(String userID) {
 		UserDatabase uDB = Main.getUserDB();

@@ -20,7 +20,7 @@ public class SuggestionController {
 
 	/**
 	 * Constructor for {@link SuggestionController} object
-	 * @param campID
+	 * @param campID The unique ID for the Camp
 	 * 
 	 */
 	public SuggestionController(String campID) {
@@ -169,6 +169,7 @@ public class SuggestionController {
 	/**
 	 * get the suggestion text through suggestionID
 	 * @param suggestionID The unique ID of the Suggestion
+	 * @return text for the Suggestion
 	 */
 	public String getSuggestionText(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
@@ -178,6 +179,7 @@ public class SuggestionController {
 	/**
 	 * get the suggestion creator through suggestionID
 	 * @param suggestionID The unique ID of the Suggestion
+	 * @return name of the suggester
 	 */
 	public String getSuggestionCreator(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();

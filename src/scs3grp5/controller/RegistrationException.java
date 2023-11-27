@@ -9,6 +9,10 @@ package scs3grp5.controller;
  * @since 2023-11-26
  */
 public class RegistrationException extends Exception {
+    /**
+     * Throws exception when user fails to register to camp
+     * @param message Exception message for not meeting registration conditions
+     */
     public RegistrationException(String message) {
         super(message);
     }

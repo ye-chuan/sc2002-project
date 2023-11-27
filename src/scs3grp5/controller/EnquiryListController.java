@@ -33,6 +33,7 @@ public class EnquiryListController {
 	 * get unresolved enquiries by camp or user depending on camp role
 	 * @param userID The unique ID of the User
 	 * @see EnquiryController#getPendingEnquiries(String)
+	 * @return list of unresolved enquiries sorted alphabetically by enquiry creator name
 	 */
 	public List<String> getPendingEnquiries(String userID) {
 		CampDatabase cDB = Main.getCampDB();
@@ -53,6 +54,7 @@ public class EnquiryListController {
 	/**
 	 * get resolved enquiries by camp or user depending on camp role
 	 * @param userID The unique ID of the User
+	 * @return list of resolved enquiries sorted alphabetically by enquiry creator name
 	 * @see EnquiryController#getResolvedEnquiries(String)
 	 */
 	public List<String> getResolvedEnquiries(String userID) {
@@ -74,6 +76,7 @@ public class EnquiryListController {
 	/**
 	 * get all enquiries by camp or user depending on camp role
 	 * @param userID The unique ID of the User
+	 * @return list of resolved enquiries sorted alphabetically by enquiry creator name
 	 * @see EnquiryController#getAllEnquiries(String)
 	 */
 	public List<String> getAllEnquiries(String userID) {

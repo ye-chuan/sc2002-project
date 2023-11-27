@@ -9,6 +9,10 @@ package scs3grp5.controller;
  * @since 2023-11-26
  */
 public class InvalidDateException extends Exception {
+    /**
+     * Custom Exception that throw error message when Date is invalid for Camp
+     * @param message Exception message for Invalid Date
+     */
     public InvalidDateException(String message) {
         super(message);
     }
