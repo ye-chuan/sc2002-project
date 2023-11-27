@@ -7,7 +7,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages user account and login in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class UserController {
 
@@ -16,7 +18,7 @@ public class UserController {
 
 	/**
 	 * checks whether it is the first time user log in to the system
-	 * @param password
+	 * @param password current password of the User
 	 * @return true if first login
 	 * @see LoginController#isFirstLogin(String)
 	 */
@@ -27,8 +29,8 @@ public class UserController {
 
 	/**
 	 * check successful login by user
-	 * @param userID
-	 * @param password
+	 * @param userID The unique ID of the User
+	 * @param password current password of the User
 	 * @return true if login success
 	 * @see LoginController#login(String, String)
 	 */
@@ -38,8 +40,8 @@ public class UserController {
 
 	/**
 	 * check if old password matches new password and changes the password for user
-	 * @param userID
-	 * @param newPassword
+	 * @param userID The unique ID of the User
+	 * @param newPassword new password of the User
 	 * @see PasswordController#changePassword(String, String)
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
@@ -48,7 +50,7 @@ public class UserController {
 
 	/**
 	 * checks if new password fits system requirements
-	 * @param newPassword
+	 * @param newPassword new password of the User
 	 * @see PasswordController#isPasswordStrong(String)
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {
@@ -57,7 +59,7 @@ public class UserController {
 
 	/**
 	 * get domain/ user type of user currently in the system
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return STAFF or STUDENT
 	 */
 	public UserType getDomain(String userID) {
@@ -73,7 +75,7 @@ public class UserController {
 
 	/**
 	 * check whether user in the system is STAFF
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return true if user is staff
 	 */
 	public boolean isStaffUserType(String userID) {
@@ -85,7 +87,7 @@ public class UserController {
 
 	/**
 	 * get points of the student
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return points
 	 */
 	public int getPoints(String userID) {
@@ -102,7 +104,7 @@ public class UserController {
 
 	/**
 	 * check for whether student is currently a camp committee
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return campID of Camp which student is a camp committee
 	 */
 	public String getStudentCommitteeCampID(String userID) {
@@ -126,8 +128,8 @@ public class UserController {
 
 	/**
 	 * get username of user
-	 * @param userID
-	 * @return userName
+	 * @param userID The unique ID of the User
+	 * @return userName or email of the User
 	 */
 	public String getUserName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -139,8 +141,8 @@ public class UserController {
 
 	/**
 	 * get name of user
-	 * @param userID
-	 * @return name
+	 * @param userID The unique ID of the User
+	 * @return name of the User
 	 */
 	public String getName(String userID) {
 		UserDatabase uDB = Main.getUserDB();
@@ -151,8 +153,8 @@ public class UserController {
 
 	/**
 	 * get faculty of user
-	 * @param userID
-	 * @return faculty
+	 * @param userID The unique ID of the User
+	 * @return faculty of the User
 	 */
 	public String getFaculty(String userID) {
 		UserDatabase uDB = Main.getUserDB();

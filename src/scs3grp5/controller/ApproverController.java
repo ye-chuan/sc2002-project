@@ -6,7 +6,9 @@ import scs3grp5.entity.*;
 
 /**
  * Handles the approval and rejection of suggestions by Staff-In-Charge of Camp
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class ApproverController {
 
@@ -16,7 +18,7 @@ public class ApproverController {
     /**
 	 * 
 	 * constructs ApproverController Object with campID
-	 * @param campID
+	 * @param campID The unique ID of the student
 	 * 
 	 */
 	public ApproverController(String campID) {
@@ -26,7 +28,7 @@ public class ApproverController {
     /**
 	 * 
 	 * approves suggestion and add points to the Camp Committee Suggester
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the suggestion
 	 * @see PointController#approveSuggestion(String)
 	 * 
 	 */
@@ -41,7 +43,7 @@ public class ApproverController {
 	/**
 	 * 
 	 * rejects suggestion and add points to the Camp Committee Suggester
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the suggestion
 	 * @see PointController#rejectSuggestion(String)
 	 */
 	public void reject(String suggestionID) {

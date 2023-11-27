@@ -7,7 +7,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages suggestions in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class SuggestionController {
 	
@@ -29,11 +31,9 @@ public class SuggestionController {
 	}
 
 	/**
-	 * 
 	 * approves suggestion 
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the Suggestion
 	 * @see ApproverController#approve(String)
-	 * 
 	 */
 	public void approve(String suggestionID) {
 		approverCont.approve(suggestionID);
@@ -42,7 +42,7 @@ public class SuggestionController {
 	/**
 	 * 
 	 * rejects suggestion
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the Suggestion
 	 * @see ApproverController#reject(String)
 	 */
 	public void reject(String suggestionID) {
@@ -51,8 +51,8 @@ public class SuggestionController {
 
 	/**
 	 * creates suggestion
-	 * @param userID
-	 * @param text
+	 * @param userID The unique ID of the User
+	 * @param text The text for the Suggestion
 	 * @return created suggestion ID
 	 * @see SuggesterController#create(String, String)
 	 */
@@ -62,9 +62,9 @@ public class SuggestionController {
 
 	/**
 	 * edit suggestion
-	 * @param userID
-	 * @param suggestionID
-	 * @param newText
+	 * @param userID The unique ID of the User
+	 * @param suggestionID The unique ID of the Suggestion
+	 * @param newText The new text for the Suggestion
 	 * @see SuggesterController#edit(String, String, String)
 	 */
 	public void edit(String userID, String suggestionID, String newText) {
@@ -73,8 +73,8 @@ public class SuggestionController {
 
 	/**
 	 * delete suggestion from database
-	 * @param userID
-	 * @param suggestionID
+	 * @param userID The unique ID of the User
+	 * @param suggestionID The unique ID of the Suggestion
 	 * @see SuggesterController#delete(String, String)
 	 */
 	public void delete(String userID, String suggestionID) {
@@ -83,7 +83,7 @@ public class SuggestionController {
 
 	/**
 	 * get suggestion status whether it is REJECTED, PENDING or APPROVED
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the Suggestion
 	 * @return suggestion status
 	 */
 	public String getStatus(String suggestionID) {
@@ -95,7 +95,8 @@ public class SuggestionController {
 
 	/**
 	 * checks if user is owner of suggestion ID
-	 * @param enquiryID
+	 * @param userID The unique ID of the User
+	 * @param suggestionID The unique ID of the Suggestion
 	 * @return true if user created the suggestion
 	 */
 	public boolean isOwner(String userID, String suggestionID) {
@@ -121,7 +122,7 @@ public class SuggestionController {
 	 * get pending suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of pending enquiries in camp <p>
 	 * Camp committee gets their pending enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted pending suggestions ID by name of suggester
 	 * @see SuggestionListController#getPendingSuggestions(String)
 	 */
@@ -133,7 +134,7 @@ public class SuggestionController {
 	 * get rejected suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of rejected enquiries in camp <p>
 	 * Camp committee gets their rejected enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted rejected suggestions ID by name of suggester
 	 * @see SuggestionListController#getRejectedSuggestions(String)
 	 */
@@ -145,7 +146,7 @@ public class SuggestionController {
 	 * get approved suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of approved enquiries in camp <p>
 	 * Camp committee gets their approved enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted approved suggestions ID by name of suggester
 	 * @see SuggestionListController#getApprovedSuggestion(String)
 	 */
@@ -157,7 +158,7 @@ public class SuggestionController {
 	 * get all suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of all enquiries in camp <p>
 	 * Camp committee gets all their enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted suggestions ID by name of suggester
 	 * @see SuggestionListController#getAllSuggestion(String)
 	 */
@@ -167,7 +168,7 @@ public class SuggestionController {
 	
 	/**
 	 * get the suggestion text through suggestionID
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the Suggestion
 	 */
 	public String getSuggestionText(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
@@ -176,7 +177,7 @@ public class SuggestionController {
 
 	/**
 	 * get the suggestion creator through suggestionID
-	 * @param suggestionID
+	 * @param suggestionID The unique ID of the Suggestion
 	 */
 	public String getSuggestionCreator(String suggestionID) {
 		SuggestionDatabase sDB = Main.getCampDB().getItem(campID).getSuggestionDB();
@@ -185,7 +186,7 @@ public class SuggestionController {
 
 	/**
 	 * checks whether student is a camp participant or camp committee in camp
-	 * @param studentID
+	 * @param studentID The unique ID of the Student
 	 * @return Camp Role of the student in the camp specified
 	 */
 	public CampRole getUserStatus(String studentID) {

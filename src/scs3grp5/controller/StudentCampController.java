@@ -7,7 +7,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages student actions for camps in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class StudentCampController {
 	
@@ -16,9 +18,8 @@ public class StudentCampController {
     
     /**
 	 * Registers student as Participant
-	 * @param campID
-	 * @param userID studentID
-	 * 
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 */
 	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -51,8 +52,8 @@ public class StudentCampController {
 
 	/**
 	 * Registers student as Camp Committee Member
-	 * @param campID
-	 * @param userID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 * 
 	 */
 	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
@@ -87,8 +88,8 @@ public class StudentCampController {
 
 	/**
 	 * Withdraws student from Camp, blacklists student from rejoining
-	 * @param userID
-	 * @param campID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 */
 	public void withdraw(String userID, String campID) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -107,8 +108,8 @@ public class StudentCampController {
 
 	/**
 	 * checks whether there is any conflicts in schedule for joining camp
-	 * @param camp camp to register
-	 * @param student
+	 * @param camp The Camp object to register for 
+	 * @param student The Student object registering for camp
 	 */
 	private boolean overlapDates(Camp camp, Student student) {
 		CampMembershipDatabase cmemberDB = Main.getMemberDB();
@@ -127,8 +128,8 @@ public class StudentCampController {
 
     /**
 	 * checks whether student is holding onto a camp committee position for another camp
-	 * @param camp camp to register
-	 * @param student
+	 * @param camp The Camp object to register for 
+	 * @param student The Student object registering for camp
 	 */
 	private boolean isExistingCampComm(Camp camp, Student student) {
 		

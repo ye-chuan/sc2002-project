@@ -7,14 +7,16 @@ import scs3grp5.entity.*;
 
 /**
  * Manages staff actions for camps in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class StaffCampController {
 
 
     /**
 	 * Creates new Camp using StaffID
-	 * @param staffInCharge ID
+	 * @param staffInChargeID The unique ID of the Staff in Charge of Camp
 	 * @return campID of created camp 
 	 * 
 	 */
@@ -36,7 +38,7 @@ public class StaffCampController {
 
     /**
 	 * Deletes Camp from Database
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @throws EditCampException when students are registered to the camp
 	 */
 	public void delete(String campID) throws EditCampException {
@@ -54,8 +56,8 @@ public class StaffCampController {
 
     /**
 	 * Changes Name of Camp
-	 * @param campID
-	 * @param newName
+	 * @param campID The unique ID of the Camp
+	 * @param newName The new name of the Camp
 	 * @throws EditCampException if camp name is not unique or length of camp name is too short
 	 * 
 	 */
@@ -80,8 +82,8 @@ public class StaffCampController {
 
 	/**
 	 * toggles the visibility of the camp
-	 * @param campID
-	 * @param visibility
+	 * @param campID The unique ID of the Camp
+	 * @param visibility The visibility of the camp
 	 * @throws EditCampException if camp already has students registered
 	 * 
 	 */
@@ -103,8 +105,8 @@ public class StaffCampController {
 
 	/**
 	 * Change start Date of Camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The start date of the Camp
 	 * @throws InvalidDateException 
 	 * if start date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * 
@@ -142,8 +144,8 @@ public class StaffCampController {
 
 	/**
 	 * Change end date of camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The end date of the Camp
 	 * @throws InvalidDateException 
 	 * if end date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 */
@@ -174,8 +176,8 @@ public class StaffCampController {
 
 	/**
 	 * Changes location of camp
-	 * @param campID
-	 * @param location
+	 * @param campID The unique ID of the Camp
+	 * @param location The new location of the Camp
 	 * @throws EditCampException if camp location is blank
 	 * 
 	 */
@@ -192,8 +194,8 @@ public class StaffCampController {
 
 	/**
 	 * Change description of camp
-	 * @param campID
-	 * @param description
+	 * @param campID The unique ID of the Camp
+	 * @param description The new description for the Camp
 	 * @throws EditCampException if camp description is blank
 	 * 
 	 */
@@ -210,13 +212,13 @@ public class StaffCampController {
 	/**
 	 * Allows staff to change faculty of camp between own faculty and NTU <p>
 	 * Checks whether camp contains students from other faculties when open to staff faculty instead of whole NTU
-	 * @param campID
-	 * @param String
-	 * @param openToFacultyOnly
+	 * @param campID The unique ID for the Camp
+	 * @param staffID The unique ID for the Staff
+	 * @param openToFacultyOnly boolean value of whether camp is open to faculty only or open to NTU
 	 * @throws EditCampException if camp currently contains students not from staff faculty
 	 * 
 	 */
-	public void changeFaculty(String staffID, String campID, boolean OpenToFacultyOnly) throws EditCampException {
+	public void changeFaculty(String staffID, String campID, boolean openToFacultyOnly) throws EditCampException {
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		UserDatabase uDB = Main.getUserDB();
@@ -225,7 +227,7 @@ public class StaffCampController {
 		Camp c1 = cDB.getItem(campID);
 
 		//check participants == faculty
-		if (OpenToFacultyOnly) {
+		if (openToFacultyOnly) {
 			//get participants
 			for (Student s: cMemberDB.getCampCommMembers(campID)) {
 				if (s.getFaculty()!= sFaculty) {
@@ -248,8 +250,8 @@ public class StaffCampController {
 	/**
 	 * Change camp committee slots for camp <p>
 	 * checks for error when downsizing the camp committee slots
-	 * @param campID
-	 * @param slots
+	 * @param campID The unique ID of the Camp
+	 * @param slots The total number of Camp Committee slots
 	 * @throws EditCampException if camp committee slots not within range 1-10, <p>
 	 * and slots smaller than number of camp committee members registered
 	 * 
@@ -275,8 +277,8 @@ public class StaffCampController {
 	/**
 	 * Change camp partcipant slots for camp <p>
 	 * Checks for error when downsizing the camp participant slots
-	 * @param campID
-	 * @param slots
+	 * @param campID The unique ID of the Camp
+	 * @param slots The total number of Camp Participant slots
 	 * @throws EditCampException if camp participant slots is not at least 1 <p>
 	 * and slots smaller than number of camp participant members registered
 	 * 
@@ -298,8 +300,8 @@ public class StaffCampController {
 
 	/**
 	 * Change registration closing date of camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The closing registration date
 	 * @throws InvalidDateException 
 	 * if closing date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * 

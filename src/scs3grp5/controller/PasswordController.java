@@ -5,14 +5,16 @@ import scs3grp5.entity.*;
 
 /**
  * Manages user password handling in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class PasswordController {
     
     /**
 	 * check if old password matches new password and changes the password for user
-	 * @param userID
-	 * @param newPassword
+	 * @param userID The unique ID of the User
+	 * @param newPassword new Password of the User Account
 	 * 
 	 */
 	public void changePassword(String userID, String newPassword) throws PasswordException {
@@ -30,7 +32,7 @@ public class PasswordController {
 
     /**
 	 * checks if new password fits system requirements
-	 * @param newPassword
+	 * @param newPassword new Password of the User Account
 	 * 
 	 */
 	public void isPasswordStrong(String newPassword) throws PasswordException {

@@ -5,7 +5,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages enquirer actions for enquiries in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class EnquirerController {
     
@@ -13,7 +15,7 @@ public class EnquirerController {
 
     /**
 	 * Constructor for EnquirerController Object
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * 
 	 */
 	public EnquirerController(String campID) {
@@ -22,8 +24,8 @@ public class EnquirerController {
 
     /**
 	 * Creates student enquiry for camp
-	 * @param userID
-	 * @param text
+	 * @param userID The unique ID of the User
+	 * @param text Enquiry text by the Enquirer
 	 */
 	public String create(String userID, String text) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
@@ -34,8 +36,8 @@ public class EnquirerController {
 
 	/**
 	 * Modifies enquiry with new text if it is not resolved.
-	 * @param enquiryID
-	 * @param newText
+	 * @param enquiryID The unique ID of the Enquiry
+	 * @param newText  new Enquiry text by the Enquirer
 	 */
 	public void edit(String enquiryID, String newText) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();
@@ -46,7 +48,7 @@ public class EnquirerController {
 
 	/**
 	 * Delete enquiry before it is resolved
-	 * @param enquiryID
+	 * @param enquiryID The unique ID of the Enquiry
 	 */
 	public void delete(String enquiryID) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();

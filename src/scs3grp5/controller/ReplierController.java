@@ -5,7 +5,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages replier actions for enquiries in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class ReplierController {
 
@@ -14,7 +16,7 @@ public class ReplierController {
 
     /**
 	 * Constructor for ReplierController
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * 
 	 */
 	public ReplierController(String campID) {
@@ -24,9 +26,9 @@ public class ReplierController {
 
     /**
 	 * reply to enquiry and mark as resolved
-	 * @param userID
-	 * @param enquiryID
-	 * @param reply
+	 * @param userID The unique ID of the User Replier
+	 * @param enquiryID The unique ID of the Enquiry
+	 * @param reply The reply text to the Enquiry
 	 */
 	public void reply(String userID, String enquiryID, String reply) {
 		EnquiryDatabase eDB = Main.getCampDB().getItem(campID).getEnquiryDB();

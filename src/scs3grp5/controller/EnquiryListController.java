@@ -11,7 +11,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages enquiry list viewing in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class EnquiryListController {
 
@@ -19,7 +21,7 @@ public class EnquiryListController {
     
     /**
 	 * Constructor for EnquiryListController
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * 
 	 */
 	public EnquiryListController(String campID) {
@@ -29,7 +31,7 @@ public class EnquiryListController {
 
     /**
 	 * get unresolved enquiries by camp or user depending on camp role
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @see EnquiryController#getPendingEnquiries(String)
 	 */
 	public List<String> getPendingEnquiries(String userID) {
@@ -50,7 +52,7 @@ public class EnquiryListController {
 
 	/**
 	 * get resolved enquiries by camp or user depending on camp role
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @see EnquiryController#getResolvedEnquiries(String)
 	 */
 	public List<String> getResolvedEnquiries(String userID) {
@@ -71,7 +73,7 @@ public class EnquiryListController {
 
 	/**
 	 * get all enquiries by camp or user depending on camp role
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @see EnquiryController#getAllEnquiries(String)
 	 */
 	public List<String> getAllEnquiries(String userID) {
@@ -93,7 +95,7 @@ public class EnquiryListController {
 
     /**
 	 * sorts list of enquiries alphabetically by the creator name of enquiry
-	 * @param enquiryList
+	 * @param enquiryList An unsorted collection of Enquiry objects
 	 * @return sorted list of enquiryID
 	 */
 	private List<String> sortByNameIDList(Collection<Enquiry> enquiryList) {

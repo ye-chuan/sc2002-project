@@ -9,7 +9,9 @@ import scs3grp5.entity.filtering.*;
 
 /**
  * Manages camps list viewing in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class CampListController {
 
@@ -20,7 +22,7 @@ public class CampListController {
 	 * stores filtered list in class
 	 * For User student: returns camps joined by student <p>
 	 * For User staff: returns camps created by staff
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * 
 	 */
 	public List<String> viewMyCamp(String userID) {
@@ -51,7 +53,7 @@ public class CampListController {
 	 * and stores the filtered list in the class
 	 * For User student: set filter visible, open to their faculty, and has remaining slots in camp
 	 * 
-	 * @param userID
+	 * @param userID The unique ID of the User 
 	 * 
 	 */
 	public void viewCamps(String userID) {
@@ -88,7 +90,7 @@ public class CampListController {
 
 	/**
 	 * sets the filter by user and stores the filtered list into the class
-	 * @param userID	userID for obtaining faculty of user
+	 * @param userID	The unique ID of the User
 	 * @param location	filter by location
 	 * @param openParticipantSlots filter by camps with available participant slots
 	 * @param openCommSlots filter by camps with available camp committee slots
@@ -134,7 +136,7 @@ public class CampListController {
 
 	/**
 	 * provides a list of camp participants by campID
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return List of studentID sorted alphabetically by name
 	 */
 	public List<String> getCampParticipantsList(String campID) {
@@ -151,7 +153,7 @@ public class CampListController {
 
 	/**
 	 * provides a list of camp committee members by campID
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return List of studentID sorted alphabetically by name
 	 */
 	public List<String> getCampCommitteeList(String campID) {
@@ -168,7 +170,7 @@ public class CampListController {
 
 	/**
 	 * sorts a list of camps alphabetically by name
-	 * @param campList
+	 * @param campList An unsorted List of Camp objects
 	 * @return List of campID sorted alphabetically by camp name 
 	 */
 	private List<String> sortByCampNameIDList(Collection<Camp> campList) {
@@ -183,7 +185,7 @@ public class CampListController {
 
 	/**
 	 * sorts a list of students alphabetically by name
-	 * @param campList
+	 * @param campList An unsorted List of Camp objects
 	 * @return List of studentID sorted alphabetically by student name 
 	 */
 	private List<String> sortByStudentNameIDList(Collection<Student> studentList) {

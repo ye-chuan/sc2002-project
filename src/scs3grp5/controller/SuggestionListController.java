@@ -7,7 +7,9 @@ import scs3grp5.entity.*;
 
 /**
  * Manages suggestion list viewing for camps in the system
- * 
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class SuggestionListController {
 
@@ -15,7 +17,7 @@ public class SuggestionListController {
 
     /**
 	 * Constructor for {@link SuggestionListController} object
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * 
 	 */
 	public SuggestionListController(String campID) {
@@ -26,7 +28,7 @@ public class SuggestionListController {
 	 * get pending suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of pending enquiries in camp <p>
 	 * Camp committee gets their pending enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted pending suggestions ID by name of suggester
 	 */
 	public List<String> getPendingSuggestions(String userID) {
@@ -49,7 +51,7 @@ public class SuggestionListController {
 	 * get rejected suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of rejected enquiries in camp <p>
 	 * Camp committee gets their rejected enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted rejected suggestions ID by name of suggester
 	 */
 	public List<String> getRejectedSuggestions(String userID) {
@@ -72,7 +74,7 @@ public class SuggestionListController {
 	 * get approved suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of approved enquiries in camp <p>
 	 * Camp committee gets their approved enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted approved suggestions ID by name of suggester
 	 */
 	public List<String> getApprovedSuggestion(String userID) {
@@ -95,7 +97,7 @@ public class SuggestionListController {
 	 * get all suggestions based on user Camp Role in camp. <p>
 	 * Staff gets a list of all enquiries in camp <p>
 	 * Camp committee gets all their enquiries in camp
-	 * @param userID
+	 * @param userID The unique ID of the User
 	 * @return List of sorted suggestions ID by name of suggester
 	 */
 	public List<String> getAllSuggestion(String userID) {
@@ -121,7 +123,7 @@ public class SuggestionListController {
 
     /**
 	 * sorts suggestions alphabetically by name of suggester
-	 * @param suggestionList
+	 * @param suggestionList The unsorted collection of Suggestions
 	 * @return List of sorted suggestion IDs
 	 */
 	private List<String> sortByNameIDList(Collection<Suggestion> sugList) {

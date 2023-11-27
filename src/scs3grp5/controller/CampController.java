@@ -8,6 +8,9 @@ import scs3grp5.entity.Date;
 
 /**
  * Manages camps in the system
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  * 
  */
 public class CampController {
@@ -18,8 +21,8 @@ public class CampController {
 	/**
 	 * 
 	 * Registers student as Participant
-	 * @param campID
-	 * @param userID studentID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 * @see StudentCampController#registerAsParticipant(String, String)
 	 */
 	public void registerAsParticipant(String userID,String campID) throws RegistrationException {
@@ -29,8 +32,8 @@ public class CampController {
 	/**
 	 * 
 	 * Registers student as Camp Committee Member
-	 * @param campID
-	 * @param userID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 * @see StudentCampController#registerAsCommittee(String, String)
 	 */
 	public void registerAsCommittee(String userID,String campID) throws RegistrationException {
@@ -39,8 +42,8 @@ public class CampController {
 
 	/**
 	 * Withdraws student from Camp, blacklists student from rejoining
-	 * @param userID
-	 * @param campID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 * @see StudentCampController#withdraw(String, String)
 	 */
 	public void withdraw(String userID, String campID) {
@@ -49,7 +52,7 @@ public class CampController {
 
 	/**
 	 * Creates new Camp using StaffID
-	 * @param staffInCharge ID
+	 * @param staffInCharge The unique ID of the staff in charge of camp
 	 * @return campID of created camp 
 	 * @see StudentCampController#withdraw(String, String)
 	 */
@@ -59,7 +62,7 @@ public class CampController {
 
 	/**
 	 * Deletes Camp from Database
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @see StaffCampController#delete(String)
 	 */
 	public void delete(String campID) throws EditCampException {
@@ -69,8 +72,8 @@ public class CampController {
 
 	/**
 	 * Changes Name of Camp
-	 * @param campID
-	 * @param newName
+	 * @param campID The unique ID of the Camp
+	 * @param newName The new name of the Camp
 	 * @throws EditCampException if camp name is not unique or length of camp name is too short
 	 * @see StaffCampController#changeName(String, String)
 	 */
@@ -80,8 +83,8 @@ public class CampController {
 
 	/**
 	 * toggles the visibility of the camp
-	 * @param campID
-	 * @param visibility
+	 * @param campID The unique ID of the Camp
+	 * @param visibility The boolean visibility of the camp
 	 * @throws EditCampException if camp already has students registered
 	 * @see StaffCampController#toggleVisibility(String, boolean)
 	 */
@@ -92,8 +95,8 @@ public class CampController {
 
 	/**
 	 * Change start Date of Camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The start Date of the Camp
 	 * @throws InvalidDateException 
 	 * if start date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * @see StaffCampController#changeStartDate(String, String)
@@ -104,8 +107,8 @@ public class CampController {
 
 	/**
 	 * Change end date of camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The start Date of the Camp
 	 * @throws InvalidDateException 
 	 * if end date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * @see StaffCampController#changeEndDate(String, String)
@@ -116,8 +119,8 @@ public class CampController {
 
 	/**
 	 * Change registration closing date of camp
-	 * @param campID
-	 * @param date
+	 * @param campID The unique ID of the Camp
+	 * @param date The start Date of the Camp
 	 * @throws InvalidDateException 
 	 * if closing date does not follow order of Today -> Registration Closing Date -> Start Date -> End Date
 	 * @see StaffCampController#changeClosingDate(String, String)
@@ -128,8 +131,8 @@ public class CampController {
 
 	/**
 	 * Changes location of camp
-	 * @param campID
-	 * @param location
+	 * @param campID The unique ID of the Camp
+	 * @param location The location string of the Camp
 	 * @throws EditCampException if camp location is blank
 	 * @see StaffCampController#changeLocation(String, String)
 	 */
@@ -139,8 +142,8 @@ public class CampController {
 
 	/**
 	 * Change description of camp
-	 * @param campID
-	 * @param description
+	 * @param campID The unique ID of the Camp
+	 * @param description The description of the Camp
 	 * @throws EditCampException if camp description is blank
 	 * @see StaffCampController#changeDescription(String, String)
 	 */
@@ -151,9 +154,9 @@ public class CampController {
 	/**
 	 * Allows staff to change faculty of camp between own faculty and NTU <p>
 	 * Checks whether camp contains students from other faculties when open to staff faculty instead of whole NTU
-	 * @param campID
-	 * @param String
-	 * @param openToFacultyOnly
+	 * @param staffID The unique ID of the Staff
+	 * @param campID The unique ID of the Camp
+	 * @param openToFacultyOnly boolean value indicating whether Camp is open to Faculty only or whole of NTU
 	 * @throws EditCampException if camp currently contains students not from staff faculty
 	 * @see StaffCampController#changeFaculty(String, String, boolean)
 	 */
@@ -164,8 +167,8 @@ public class CampController {
 	/**
 	 * Change camp committee slots for camp <p>
 	 * checks for error when downsizing the camp committee slots
-	 * @param campID
-	 * @param slots
+	 * @param campID The unique ID of the Camp
+	 * @param slots The number of Camp Committee slots set
 	 * @throws EditCampException if camp committee slots not within range 1-10, <p>
 	 * and slots smaller than number of camp committee members registered
 	 * @see StaffCampController#changeCampCommSlots(String, int)
@@ -177,8 +180,8 @@ public class CampController {
 	/**
 	 * Change camp partcipant slots for camp <p>
 	 * Checks for error when downsizing the camp participant slots
-	 * @param campID
-	 * @param slots
+	 * @param campID The unique ID of the Camp
+	 * @param slots The number of Camp Participant slots set
 	 * @throws EditCampException if camp participant slots is not at least 1 <p>
 	 * and slots smaller than number of camp participant members registered
 	 * @see StaffCampController#changeCampParticipantSlots(String, int)
@@ -189,7 +192,8 @@ public class CampController {
 
 	/**
 	 * Get name of camp using CampID
-	 * @param campID
+	 * @param campID The unique ID of the Camp
+	 * @return Name of the Camp
 	 */
 	public String getName(String campID) {
 		CampDatabase cDB = Main.getCampDB();
@@ -200,7 +204,7 @@ public class CampController {
 
 	/**
 	 * Get visibility of camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return true if visible, false if not visible
 	 */
 	public boolean getVisibility(String campID) {
@@ -212,7 +216,7 @@ public class CampController {
 
 	/**
 	 * get start date and end date in formatted string
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return formatted string of "dd/mm/yy-dd/mm/yy"
 	 */
 	public String getDate(String campID) {
@@ -230,7 +234,7 @@ public class CampController {
 
 	/**
 	 * Get location of camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return location of camp
 	 */
 	public String getLocation(String campID) {
@@ -241,7 +245,7 @@ public class CampController {
 
 	/**
 	 * Get faculty of camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return faculty of camp: open to faculty or NTU
 	 */
 	public String getFaculty(String campID) {
@@ -268,7 +272,7 @@ public class CampController {
 
 	/**
 	 * get description of camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return description of camp
 	 */
 	public String getDescription(String campID) {
@@ -281,7 +285,7 @@ public class CampController {
 
 	/**
 	 * get total camp committee slots in camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return int of total camp committee slots
 	 */
 	public int getTotalCampCommSlots(String campID) {
@@ -296,7 +300,7 @@ public class CampController {
 
 	/**
 	 * get remaining camp committee slots in camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return int of remaining camp committee slots
 	 */
 	public int getRemainingCampCommSlots(String campID) {
@@ -311,7 +315,7 @@ public class CampController {
 
 	/**
 	 * get total participant slots in camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return int of total participant slots
 	 */
 	public int getTotalParticipantSlots(String campID) {
@@ -326,7 +330,7 @@ public class CampController {
 
 	/**
 	 * get remaining participant slots in camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return int of reamining participant slots
 	 */
 	public int getRemainingParticipantSlots(String campID) {
@@ -342,7 +346,7 @@ public class CampController {
 
 	/**
 	 * get registration closing date in camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return formatted string of close date
 	 */
 	public String getClosingDate(String campID) {
@@ -359,7 +363,7 @@ public class CampController {
 
 	/**
 	 * get staff user who created the camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return Camp-In-Charge name
 	 */
 	public String getCampInCharge(String campID) {
@@ -372,7 +376,7 @@ public class CampController {
 
 	/**
 	 * Checks whether Registration Closing Date is past today
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 * @return true if camp is over
 	 */
 	public boolean isCampOver(String campID) {
@@ -387,8 +391,8 @@ public class CampController {
 
 	/**
 	 * checks whether user is a camp committee or staff in charge of camp
-	 * @param userID
-	 * @param campID
+	 * @param userID The unique ID of the User
+	 * @param campID The unique ID of the Camp
 	 * @return true if user is a camp committee member or staff in charge of camp
 	 */
 	public boolean isCommittee(String userID, String campID) {
@@ -437,8 +441,8 @@ public class CampController {
 
 	/**
 	 * checks whether student is a camp participant or camp committee in camp
-	 * @param campID
-	 * @param studentID
+	 * @param campID The unique ID of the Camp
+	 * @param studentID The unique ID of the Student
 	 * @return Camp Role of the student in the camp specified
 	 */
 	public CampRole getUserStatus(String campID, String studentID) {

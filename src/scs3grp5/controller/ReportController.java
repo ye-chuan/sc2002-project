@@ -9,6 +9,9 @@ import java.io.IOException;
 
 /**
  * Manages output of formatted report to csv
+ * @author Edmund Ser
+ * @version 1.0
+ * @since 2023-11-26
  */
 public class ReportController {
 	private static String campReportPath = Main.getOutputDir().resolve("camp_report.csv").toString();
@@ -16,8 +19,8 @@ public class ReportController {
 	private static String enquiryReportPath = Main.getOutputDir().resolve("enquiry_report.csv").toString();
 	/**
 	 * generates a report with all the camp information and list of members in camp and their roles
-	 * @param campID
-	 * @param filter
+	 * @param campID The unique ID of the Camp
+	 * @param filter The CampRole Filter for the Report
 	 */
 	public void generateCampReport(String campID, REPORTFILTER filter) throws IOException {
 		CsvWriter writer = new CsvWriter(campReportPath);
@@ -75,7 +78,7 @@ public class ReportController {
 
 	/**
 	 * generates a performance report with all the points of camp committee in the camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 */
 	public void generatePerformanceReport(String campID) throws IOException {
 		CsvWriter writer = new CsvWriter(performanceReportPath);
@@ -100,7 +103,7 @@ public class ReportController {
 
 	/**
 	 * generates a list of all enquiries in the camp
-	 * @param campID
+	 * @param campID The unique ID of the Camp
 	 */
 	public void generateEnquiryReport(String campID) throws IOException {
 		CsvWriter writer = new CsvWriter(enquiryReportPath);
