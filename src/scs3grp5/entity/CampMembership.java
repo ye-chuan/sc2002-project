@@ -10,8 +10,11 @@ import java.io.Serializable;
  */
 public class CampMembership implements Serializable {
 
+     /** student The student that is registering */
 	Student student;
+     /** camp The camp that the student is registering for */
 	Camp camp;
+     /** role The role that the student registered for (e.g. Participants / Camp Committee) */
 	CampRole role;
 
     /**

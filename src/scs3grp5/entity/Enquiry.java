@@ -41,6 +41,7 @@ public class Enquiry implements Identifiable, Serializable {
     }
 
     /**
+     * @param text The enquiry text
      * Set the enquiry text / question
      */
 	public void setEnquiry(String text) {
