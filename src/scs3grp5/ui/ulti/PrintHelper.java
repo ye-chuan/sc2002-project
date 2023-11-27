@@ -34,20 +34,21 @@ public class PrintHelper {
        * End of program logo
        */
       public static String END_PROGRAM = "\r\n" + //
-          "888~~  Y88b    / 888 ~~~888~~~ 888 888b    |  e88~~\\  \r\n" + //
-          "888___  Y88b  /  888    888    888 |Y88b   | d888     \r\n" + //
-          "888      Y88b/   888    888    888 | Y88b  | 8888 __  \r\n" + //
-          "888      /Y88b   888    888    888 |  Y88b | 8888   | \r\n" + //
-          "888     /  Y88b  888    888    888 |   Y88b| Y888   | \r\n" + //
-          "888___ /    Y88b 888    888    888 |    Y888  \"88__/  \r\n" + //
-          "                                                      \r\n" + //
-          " e88~-_       e           e    e      ,d88~~\\         \r\n" + //
-          "d888   \\     d8b         d8b  d8b     8888            \r\n" + //
-          "8888        /Y88b       d888bdY88b    `Y88b           \r\n" + //
-          "8888       /  Y88b     / Y88Y Y888b    `Y88b,         \r\n" + //
-          "Y888   /  /____Y88b   /   YY   Y888b     8888         \r\n" + //
-          " \"88_-~  /      Y88b /          Y888b \\__88P'         \r\n" + //
-          "                                                      \r\n" + //
+          "`7MM\"\"\"YMM  `YMM'   `MP' `7MMF'MMP\"\"MM\"\"YMM `7MMF'`7MN.   `7MF' .g8\"\"\"bgd  \r\n" + //
+          "  MM    `7    VMb.  ,P     MM  P'   MM   `7   MM    MMN.    M .dP'     `M  \r\n" + //
+          "  MM   d       `MM.M'      MM       MM        MM    M YMb   M dM'       `  \r\n" + //
+          "  MMmmMM         MMb       MM       MM        MM    M  `MN. M MM           \r\n" + //
+          "  MM   Y  ,    ,M'`Mb.     MM       MM        MM    M   `MM.M MM.    `7MMF'\r\n" + //
+          "  MM     ,M   ,P   `MM.    MM       MM        MM    M     YMM `Mb.     MM  \r\n" + //
+          ".JMMmmmmMMM .MM:.  .:MMa..JMML.   .JMML.    .JMML..JML.    YM   `\"bmmmdPY  \r\n" + //
+          "                                                                           \r\n" + //
+          "  .g8\"\"\"bgd     db      `7MMM.     ,MMF' .M\"\"\"bgd                          \r\n" + //
+          ".dP'     `M    ;MM:       MMMb    dPMM  ,MI    \"Y                          \r\n" + //
+          "dM'       `   ,V^MM.      M YM   ,M MM  `MMb.                              \r\n" + //
+          "MM           ,M  `MM      M  Mb  M' MM    `YMMNq.                          \r\n" + //
+          "MM.          AbmmmqMA     M  YM.P'  MM  .     `MM                          \r\n" + //
+          "`Mb.     ,' A'     VML    M  `YM'   MM  Mb     dM                          \r\n" + //
+          "  `\"bmmmd'.AMA.   .AMMA..JML. `'  .JMML.P\"Ybmmd\"                           \r\n" + //
           "";
    
 
