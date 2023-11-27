@@ -31,7 +31,7 @@ public class Student extends User {
 
 	/**
 	 * Get the points that this student has
-	 * @param points
+	 * @param points The amount of points to add
      * @return points that the student has */
     public boolean addPoints(int points) {
         this.points += points;

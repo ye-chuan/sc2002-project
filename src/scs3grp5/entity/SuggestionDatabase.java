@@ -33,7 +33,7 @@ public class SuggestionDatabase extends Database<Suggestion> {
 
     /**
      * Get all pending suggestions by a specific user
-     * @param The user that suggested
+     * @param userID The id of the user that suggested
      * @return All pending suggestions by this user
      */
 	public Collection<Suggestion> getPendingSuggestionsBy(String userID) {
@@ -44,7 +44,7 @@ public class SuggestionDatabase extends Database<Suggestion> {
 
     /**
      * Get all approved suggestions by a specific user
-     * @param The user that suggested
+     * @param userID The id of the user that suggested
      * @return All approved suggestions by this user
      */
 	public Collection<Suggestion> getApprovedSuggestionsBy(String userID) {
@@ -55,7 +55,7 @@ public class SuggestionDatabase extends Database<Suggestion> {
 
     /**
      * Get all rejected suggestions by a specific user
-     * @param The user that suggested
+     * @param userID The id of the user that suggested
      * @return All rejected suggestions by this user
      */
 	public Collection<Suggestion> getRejectedSuggestionsBy(String userID) {

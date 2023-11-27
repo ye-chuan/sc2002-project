@@ -26,9 +26,9 @@ public class Date implements Comparable<Date>, Serializable {
 
 	/**
 	 * 
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth
+	 * @param year The year of the date (e.g. 2023)
+	 * @param month The month of the date in numbers (1-12)
+	 * @param dayOfMonth The day of the month (1-31)
      *
      * @throws java.time.DateTimeException When given arguments cannot form a valid date
 	 */
@@ -64,9 +64,9 @@ public class Date implements Comparable<Date>, Serializable {
      * @param dateString The formatted string dd/mm/yyyy
      * @return If the given data is valid
      */
-    public static boolean isValidDate(String datestring) {
+    public static boolean isValidDate(String dateString) {
         try {
-            Date.fromString(datestring);    
+            Date.fromString(dateString);    
         }   
         catch(DateTimeParseException e) {
             return false;
@@ -77,11 +77,12 @@ public class Date implements Comparable<Date>, Serializable {
 
     /** 
      * Parse Date from format D/M/YY or YYYY
+     * @param dateString The date as a string
      * @return Parsed date
      * @throws java.time.format.DateTimeParseException When the given string is invalid for parsing
      */
-    public static Date fromString(String datestring) throws DateTimeParseException {
-        LocalDate parsedLocalDate = LocalDate.parse(datestring, inFormatter);
+    public static Date fromString(String dateString) throws DateTimeParseException {
+        LocalDate parsedLocalDate = LocalDate.parse(dateString, inFormatter);
         return new Date(parsedLocalDate.getYear(), parsedLocalDate.getMonthValue(), parsedLocalDate.getDayOfMonth());
     }
 
@@ -117,6 +118,7 @@ public class Date implements Comparable<Date>, Serializable {
 	/**
      * Check if this date is after the other date
 	 * @param other The other date
+     * @return If this date is after the other date
 	 */
 	public boolean isAfter(Date other) {
         return localDate.isAfter(other.localDate);
@@ -125,6 +127,7 @@ public class Date implements Comparable<Date>, Serializable {
 	/**
      * Check if this date is before the other date
 	 * @param other The other date
+     * @return If this date is before the other date
 	 */
 	public boolean isBefore(Date other) {
         return localDate.isBefore(other.localDate);
@@ -133,12 +136,13 @@ public class Date implements Comparable<Date>, Serializable {
 	/**
      * Check if this date is on the same day as the other date
 	 * @param other The other date
+     * @return If this date is on the same day as the other date
 	 */
 	public boolean equals(Date other) {
         return localDate.equals(other.localDate);
 	}
     
-    /** {@inheritDocs} */
+    /** {@inheritDoc} */
     @Override
     public int compareTo(Date other) {
         return localDate.compareTo(other.localDate);

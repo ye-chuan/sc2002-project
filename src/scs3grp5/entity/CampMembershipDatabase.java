@@ -14,14 +14,14 @@ public class CampMembershipDatabase implements Serializable{
     /**
      * {@code CampMembership} stored in a Map structure for faster access.
      *
-     * Entries are <CampID: Map<StudentID: CampMembership>>
+     * Entries Map&lt;CampID: Set&lt;StudentID&gt;&gt;
      */
     private Map<String, Map<String, CampMembership>> campStudentMemberships = new HashMap<String, Map<String, CampMembership>>();
 
     /**
      * Mapping of Students blacklisted from certain camps.
      *
-     * Entries Map<CampID: Set<StudentID>>
+     * Entries Map&lt;CampID: Set&lt;StudentID&gt;&gt;
      */
     private Map<String, Set<String>> blacklist = new HashMap<String, Set<String>>();
 
@@ -104,6 +104,11 @@ public class CampMembershipDatabase implements Serializable{
         return getStudentInCampByRole(campID, CampRole.CAMPCOMM);
 	}
 
+	/**
+     * Add a student as camp committee member in the camp
+	 * @param student The student that is joining as camp committee
+	 * @param camp The camp to join
+	 */
 	public void addCampCommMember(Student student, Camp camp) {
         assert camp.getParticipantSlots() > getParticipantSize(camp);
         add(new CampMembership(student, camp, CampRole.CAMPCOMM));

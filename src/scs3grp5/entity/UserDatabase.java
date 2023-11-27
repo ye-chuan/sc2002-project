@@ -3,6 +3,9 @@ package scs3grp5.entity;
 import java.util.Collection;
 import java.util.ArrayList;
 
+/**
+ * A database for storing Users, with the cabability of login in
+ */
 public class UserDatabase extends Database<User> {
 
     /** Constructs Empty UserDatabase */

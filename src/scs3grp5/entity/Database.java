@@ -10,7 +10,7 @@ import java.util.*;
  * @since 2023-11-26
  */
 public class Database<T extends Identifiable> implements Serializable {
-	protected String filePath;
+    /** The items within this database **/
 	protected Map<String, T> items;
 
     /** Constructs a database to store Identifiables */

@@ -42,6 +42,7 @@ public class Suggestion implements Identifiable, Serializable {
 
     /**
      * Set the status of this suggestion (approved, rejected, pending)
+     * @param status The new status to set to
      */
 	public void setStatus(SuggestionStatus status) {
         this.status = status;
@@ -74,6 +75,7 @@ public class Suggestion implements Identifiable, Serializable {
 
     /**
      * Set the suggestion text of this suggestion
+     * @param suggestion The suggestion text to set
      */
 	public void setSuggestion(String suggestion) {
 	    this.suggestion = suggestion;
