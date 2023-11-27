@@ -66,7 +66,7 @@ public class CampController {
 	 * Deletes Camp from Database
 	 * @param campID The unique ID of the Camp
 	 * @see StaffCampController#delete(String)
-	 * @throw EditCampException when students are registered to the camp
+	 * @throws EditCampException when students are registered to the camp
 	 */
 	public void delete(String campID) throws EditCampException {
 		staffCampCont.delete(campID);
