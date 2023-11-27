@@ -18,6 +18,7 @@ public class SelectionMenu implements ISelectOption {
      * This method helps users to select an option from a menu. This method throws an exception when
      * the user input is out of range and when they key in a non-numeric input.
      * 
+     * @throws OptionException when User key in a out of range option or non-numeric key
      * @return the option chosen
      */
     @Override

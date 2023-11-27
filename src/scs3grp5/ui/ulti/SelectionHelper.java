@@ -31,7 +31,7 @@ public class SelectionHelper {
     /**
      * This method provides the UI for users to key in a date
      * 
-     * @return a valid <String> date
+     * @return a valid date
      */
     public static String dateSelectUI(){
 

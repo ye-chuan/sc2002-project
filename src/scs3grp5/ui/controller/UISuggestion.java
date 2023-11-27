@@ -23,14 +23,27 @@ import scs3grp5.ui.ulti.OptionException;
  */
 public class UISuggestion extends UserInterface {
 
+    /**
+     * To communicate with the Suggestion Controller
+     */
     private SuggestionController suggestionCont; 
 
+    /**
+     * Constructor class for the UISuggestion 
+     * 
+     * @param uiInfo contains the information of the UI 
+     */
     public UISuggestion(UIInformation uiInfo) {
         super(uiInfo);
         suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
     
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Suggestion UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

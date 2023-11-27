@@ -25,6 +25,12 @@ public class PrintSuggestionDetail implements IPrintDetail {
      */
     private String suggestionID; 
 
+    /**
+     * Constructor for the PrintSuggestionDetail method 
+     * 
+     * @param campID campID of the camp the user wish to view its suggestion box 
+     * @param suggestionID the suggestionID of the suggestion the user wish to view
+     */
     public PrintSuggestionDetail(String campID, String suggestionID){
         this.suggestionID = suggestionID; 
         suggestionCont = new SuggestionController(campID); 

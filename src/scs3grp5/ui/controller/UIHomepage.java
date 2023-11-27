@@ -18,13 +18,18 @@ public class UIHomepage extends UserInterface{
     /** 
      * Constructor for HomePageUI
      * 
-     * @param uiInfo contains the information of the user 
+     * @param uiInfo contains the information of the UI 
      */
     public UIHomepage(UIInformation uiInfo){
         super(uiInfo); 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Homepage UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

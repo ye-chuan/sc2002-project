@@ -28,7 +28,7 @@ public class UIChangePassword implements IUserInterface {
     /**
      * Constructor for the UIChangePasswod 
      * 
-     * @param uiInfo contains the information of the user
+     * @param uiInfo contains the information of the UI
      */
     public UIChangePassword(UIInformation uiInfo){
         this.uiInfo = uiInfo; 

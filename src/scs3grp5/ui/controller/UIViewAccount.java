@@ -24,13 +24,18 @@ public class UIViewAccount extends UserInterface{
     /** 
      * Constructor for ViewStaffAccountUI
      * 
-     * @param uiInfo contains the information of the user 
+     * @param uiInfo contains the information of the UI 
      */
     public UIViewAccount(UIInformation uiInfo){
         super(uiInfo);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the View Account UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

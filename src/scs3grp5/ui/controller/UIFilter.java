@@ -63,7 +63,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
     /**
      * If user is currently aStaff 
-     * true if isStaff
+     * true if isStaff, else student 
      */
     private boolean isStaff; 
 
@@ -86,6 +86,11 @@ public class UIFilter implements IPrintMenu, IUserInterface {
         setDefaultFilter();
     }
 
+    /**
+     * This method controls the logic when user is selecting their option to filter, 
+     * This method will end when user key in 0 to confirm their filter selection,
+     * else when a non-numeric key is key to go back to the campList view
+     */
     @Override
     public IUserInterface showUI() {
 
@@ -138,7 +143,10 @@ public class UIFilter implements IPrintMenu, IUserInterface {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method shows the menu for the filter. The setting of the filter will be shown on the UI as well
+     * User are able to see the filter setting before confirming or going back to the list of camps
+     */
     @Override
     public int printMenu() {
         int option = 0; 
@@ -192,7 +200,6 @@ public class UIFilter implements IPrintMenu, IUserInterface {
             startDate = "";
             endDate = "";
         }
-    
         campListCont.FilterBy(userID, byLocation, availableParticipant, availableCommittee, startDate, endDate, byFaculty, byVisibility); 
     }
 

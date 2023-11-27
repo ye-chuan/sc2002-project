@@ -16,6 +16,9 @@ import scs3grp5.ui.ulti.PrintHelper;
  */
 public class ListEnquiry implements IPrintMenu{
 
+    /**
+     * The list of enquiries to be printed
+     */
     private List<String> listOfEnquiries; 
 
     /**

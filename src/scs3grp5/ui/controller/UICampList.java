@@ -42,7 +42,7 @@ public class UICampList extends UserInterface{
     /** 
      * Constructor for StudentCampList class 
      * 
-     * @param uiInfo contains the information of the user 
+     * @param uiInfo contains the information of the UI 
      */
     public UICampList(UIInformation uiInfo) {
         super(uiInfo);
@@ -51,15 +51,7 @@ public class UICampList extends UserInterface{
     }
 
     /**
-     * This method helps to get a valid option from the user.
-     * At each try, printListOfOption will be called and user will be prompt
-     * to key in their input. 
-     * 
-     * @return the option chosen by the user
-    */
-
-    /**
-     * This method controls the logic for the UI for the the camp list UI
+     * This method controls the logic for the CampList UI for the the camp list UI
      * 
      * @return the new UI page to run 
      */

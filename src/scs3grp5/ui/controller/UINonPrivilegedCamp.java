@@ -35,7 +35,12 @@ public class UINonPrivilegedCamp extends UserInterface{
         campCont = new CampController(); 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the NonPrivilegedCamp UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

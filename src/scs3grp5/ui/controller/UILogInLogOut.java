@@ -13,7 +13,10 @@ import scs3grp5.ui.ulti.PrintHelper;
  * @since 2023-11-26
  */
 public class UILogInLogOut {
-
+    
+    /**
+     * To communicate with the User Controller
+     */
     private UserController userCont;
     
     /**
@@ -38,6 +41,8 @@ public class UILogInLogOut {
 
     /** 
      * Log In UI 
+     * 
+     * @return the next UI to run 
      */
     public IUserInterface loginUI(){
 

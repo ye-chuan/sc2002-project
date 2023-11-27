@@ -27,13 +27,22 @@ public class UIEnquiry extends UserInterface {
      */
     private EnquiryController enquiryCont; 
 
-    
+    /**
+     * Constructor class for UIEnquiry
+     * 
+     * @param uiInfo contains the information of the UI 
+     */
     public UIEnquiry(UIInformation uiInfo) {
         super(uiInfo);
         enquiryCont = new EnquiryController(uiInfo.getCampID()); 
     }
     
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Enquiry UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 
@@ -86,6 +95,11 @@ public class UIEnquiry extends UserInterface {
         return new UIEnquiry(uiInfo);
     }
 
+    /**
+     * This method provides the UI for user to reply to an enquiry
+     * 
+     * @return the replied enquiry
+     */
     private String replyEnquiryUI() {
         System.out.print("Enter Reply: "); 
         Scanner sc = new Scanner(System.in); 
@@ -93,6 +107,11 @@ public class UIEnquiry extends UserInterface {
         return enquiry;
     }
 
+    /**
+     * This method provides the UI for user to edit to their own enquiry
+     * 
+     * @return their edited enquiry
+     */
     private String editEnquiryUI() {
         System.out.print("Enter Enquiry: "); 
         Scanner sc = new Scanner(System.in); 

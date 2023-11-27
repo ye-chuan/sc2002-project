@@ -22,6 +22,9 @@ import scs3grp5.ui.ulti.PrintHelper;
  */
 public class UISuggestionList extends UserInterface{
 
+    /**
+     * To communicate with the Suggestion Controller
+     */
     private SuggestionController suggestionCont; 
 
     /**
@@ -29,13 +32,22 @@ public class UISuggestionList extends UserInterface{
      */
     private List<String> listOfSuggestions; 
 
-
+    /**
+     * Constructor for the UISuggestionList class
+     * 
+     * @param uiInfo contains the information of the UI 
+     */
     public UISuggestionList(UIInformation uiInfo) {
         super(uiInfo);
         suggestionCont = new SuggestionController(uiInfo.getCampID()); 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Suggestion List UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

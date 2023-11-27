@@ -64,11 +64,29 @@ public class PrintHelper {
    
 
   
-    // ANSI escape codes for text colors
+    /**
+     * This static final string helps reset the printed text to default colour 
+     */
     public static final String ANSI_RESET = "\u001B[0m";
+
+    /**
+     * This static final string helps to print text in REN 
+     */
     public static final String ANSI_RED = "\u001B[31m";
+
+    /**
+     * This static final string helps to print text in GREEN 
+     */
     public static final String ANSI_GREEN = "\u001B[32m";
+
+    /**
+     * This static final string helps to print text in YELLOW 
+     */
     public static final String ANSI_YELLOW = "\u001B[33m";
+
+    /**
+     * This static final string helps to print text in BLUE 
+     */
     public static final String ANSI_BLUE = "\u001B[34m";
 
     /**
@@ -135,15 +153,25 @@ public class PrintHelper {
       int lastWhiteSpace = 0; 
       int startOfSubString = 0; 
       int currentStringLength =1;
+      int initialStart = 0; 
 
       while (i<string.length()){
         if (string.charAt(i) == ' ') lastWhiteSpace = i; 
 
         if (currentStringLength==maxlength){
-          returnString.add(string.substring(startOfSubString, lastWhiteSpace));
-          currentStringLength = 1; 
-          startOfSubString = lastWhiteSpace + 1;
-          i = startOfSubString;
+          if (initialStart == lastWhiteSpace){
+            returnString.add(string.substring(startOfSubString, initialStart+maxlength));
+            currentStringLength = 1; 
+            startOfSubString = initialStart+maxlength + 1;
+            initialStart = maxlength + 1; 
+            i = startOfSubString;
+          }
+          else{
+            returnString.add(string.substring(startOfSubString, lastWhiteSpace));
+            currentStringLength = 1; 
+            startOfSubString = lastWhiteSpace + 1;
+            i = startOfSubString;
+          }
         }
         else{
           currentStringLength++;

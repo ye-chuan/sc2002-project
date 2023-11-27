@@ -15,7 +15,8 @@ public class SelectionNull implements ISelectOption{
     /**
      * This method polls for user input and throws an exception when polling is stop. 
      * 
-     * @return null
+     * @throws OptionException is always thrown
+     * @return does not return anything
      */
     @Override
     public int getUserChoiceUI(int maxOption, boolean wrongInput) throws OptionException {

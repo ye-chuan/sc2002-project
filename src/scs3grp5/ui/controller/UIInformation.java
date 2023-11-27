@@ -30,8 +30,16 @@ public class UIInformation{
      */
     private String suggestionID; 
 
+    /**
+     * Boolean value to indicate if user is a staff
+     * true if is staff, else student 
+     */
     private boolean isStaff; 
 
+    /**
+     * Boolean value to indicate if user is a committee of the camp of the current campID stored
+     * Both Staff IC and camp committee of this camp is set to true, else false
+     */
     private boolean isCommittee; 
 
     /**

@@ -17,6 +17,9 @@ public interface ISelectOption  {
      * if it is invalid, this method will throw an exception signalling that there
      * is a option exception.  
      * 
+     * @param maxOption this is to set the maximum option that a user can take 
+     * @param wrongInput if true, print "invalid input" and prompt user to select again, else select option
+     * @throws OptionException another signal for the UI to carry out an action (i.e go back to previous page) 
      * @return the option chosen by the user
     */
     public int getUserChoiceUI(int maxOption, boolean wrongInput) throws OptionException;

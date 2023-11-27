@@ -22,26 +22,31 @@ import scs3grp5.ui.ulti.PrintHelper;
 public class UIEnquiryList extends UserInterface{
 
     /**
-     * to communicate with EnquiryController
+     * To communicate with EnquiryController
      */
     private EnquiryController enquiryCont; 
 
     /**
-     * contains the listOfEnquiries to be shown on the UI
+     * Contains the listOfEnquiries to be shown on the UI
      */
     private List<String> listOfEnquiries; 
 
     /**
      * Constructor class for UIEnquiryList 
      * 
-     * @param uiInfo
+     * @param uiInfo contains the information of the UI 
      */
     public UIEnquiryList(UIInformation uiInfo) {
         super(uiInfo);
         enquiryCont = new EnquiryController(uiInfo.getCampID());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Enquiry list UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
         int option = -1;

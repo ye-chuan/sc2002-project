@@ -27,6 +27,12 @@ public class ListSuggestion implements IPrintMenu{
      */
     private List<String> listOfSuggestion; 
 
+    /**
+     * Constructor class for listOfSuggestion 
+     * 
+     * @param listOfSuggestion contain the list of suggestion for the user to view
+     * @param campID the campID of the suggestions we are viewing 
+     */
     public ListSuggestion(List<String> listOfSuggestion, String campID){
         this.listOfSuggestion = listOfSuggestion;
         suggestionCont = new SuggestionController(campID); 

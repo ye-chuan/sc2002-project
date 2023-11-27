@@ -28,25 +28,27 @@ public class UIEditCamp extends UserInterface{
 
 
     /**
-     * to communicate with CampController
+     * To communicate with CampController
      */
     private CampController campCont;
 
     /** 
-     * campID of the camp the user using the UI
+     * CampID of the camp the user wish to see in the UI
      */
     private String campID; 
 
     /**
      * justCreate is a boolean variable, where if its a newly create camp it will be true 
-     * else it will be false
+     * else it will be false. This is used to check if all neccessary information regarding
+     * the camp is given by the user
      */
     private boolean justCreate; 
 
     /** 
      * Constructor for CreateEditCampUI class 
      * 
-     * @param uiInfo contains the information of the user  
+     * @param uiInfo contains the information of the UI  
+     * @param justCreated true if user is creating a camp, else is edit
      */
     public UIEditCamp(UIInformation uiInfo, boolean justCreate) {
         super(uiInfo);

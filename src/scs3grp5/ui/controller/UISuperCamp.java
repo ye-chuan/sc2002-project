@@ -22,14 +22,27 @@ import scs3grp5.ui.ulti.PrintHelper;
  */
 public class UISuperCamp extends UIPrivilegedCamp{
     
+    /**
+     * To communiate with the Camp controller 
+     */
     private CampController campCont; 
 
+    /**
+     * Contructor for the UISuperCamp class 
+     * 
+     * @param uiInfo contain the information of the UI
+     */
     public UISuperCamp(UIInformation uiInfo) {
         super(uiInfo);
         this.campCont = new CampController(); 
     }
     
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Super Camp UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
 

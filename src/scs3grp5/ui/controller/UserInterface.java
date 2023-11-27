@@ -30,7 +30,7 @@ public abstract class UserInterface implements IUserInterface{
   /** 
    * Constructor for UI class 
    * 
-   * @param uiInfo contains the information of the user 
+   * @param uiInfo contains the information of the UI 
    */
   public UserInterface(UIInformation uiInfo){
       this.uiInfo = uiInfo; 

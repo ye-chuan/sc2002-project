@@ -30,6 +30,10 @@ public class UIPrivilegedCamp extends UserInterface{
      */
     protected ReportController reportCont; 
 
+    /**
+     * The error message to be shown on the UI, this message is recieved from the camp controller 
+     * on the status of their request. 
+     */
     protected String errorMessage ="";
 
     /**
@@ -42,7 +46,12 @@ public class UIPrivilegedCamp extends UserInterface{
         reportCont = new ReportController(); 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * This method controls the logic of the Privileged Camp UI, where it will show and handle the user input 
+     * to navigate them to the right UI or action 
+     * 
+     * @return the next UI page to run
+     */
     @Override
     public IUserInterface showUI() {
         

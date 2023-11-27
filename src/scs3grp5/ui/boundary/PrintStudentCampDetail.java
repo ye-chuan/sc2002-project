@@ -33,8 +33,8 @@ public class PrintStudentCampDetail implements IPrintDetail {
 
     /**
      * Constructor for the PrintStudentCampDetail
-     * @param campID
-     * @param isParticipant
+     * @param campID the campID of the camp the user wish to view 
+     * @param isParticipant to indicate if the user is a participant of the camp.
      */
     public PrintStudentCampDetail(String campID, boolean isParticipant){
         this.campID = campID; 

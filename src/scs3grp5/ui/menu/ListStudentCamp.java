@@ -16,15 +16,23 @@ import scs3grp5.ui.ulti.PrintHelper;
  */
 public class ListStudentCamp implements IPrintMenu {
 
+    /**
+     * Contains the list of camps to that the user can view 
+     */
     protected List<String> listOfCamps; 
 
     /**
-     * to communicate with Camp Controller
+     * To communicate with Camp Controller
      * 
      * @param listOfCamps the list of camps to be printed
      */
     protected CampController campCont;  
 
+    /**
+     * Constructor class for ListStudentCamp 
+     * 
+     * @param listOfCamps the list of camps to be printed
+     */
     public ListStudentCamp(List<String> listOfCamps){
         this.listOfCamps = listOfCamps;
         campCont = new CampController();

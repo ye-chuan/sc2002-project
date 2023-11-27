@@ -21,6 +21,7 @@ public class SelectionFromList implements ISelectOption{
      * will not go out of range of the valid range. This method throws an exception when
      * they key in a non-numeric key. 
      * 
+     * @throws OptionException when the user key in a non-numeric key
      * @return the option chosen (if return -1, this means that the option is out of range)
      */
     @Override
