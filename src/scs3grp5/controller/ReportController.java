@@ -87,12 +87,24 @@ public class ReportController {
 		CampDatabase cDB = Main.getCampDB();
 		CampMembershipDatabase cMemberDB = Main.getMemberDB();
 		Camp c = cDB.getItem(campID);
+		UserController uCont = new UserController();
 
 		writer.addRow("Camp Name",c.getName());
         writer.addRow("");
-		writer.addRow("STUDENT NAME","POINTS");
+		writer.addRow("STUDENT NAME","APPROVED SUGGESTION","REJECTED SUGGESTION","ENQUIRY REPLIED","POINTS");
 		for (Student s : cMemberDB.getCampCommMembers(campID)) {
-			writer.addRow(s.getName(), String.valueOf(s.getPoints()));
+			SuggestionDatabase sDB = c.getSuggestionDB();
+
+				int apSug = sDB.getApprovedSuggestionsBy(s.getID()).size();
+				int rejSug = sDB.getRejectedSuggestionsBy(s.getID()).size();
+				
+				int enqRep = 0;
+				EnquiryDatabase eDB = c.getEnquiryDB();
+
+				for(Enquiry e : eDB.getResolvedEnquiries()) {
+					if(e.getRepliedBy().equals(s.getID())) enqRep++;
+				}
+			writer.addRow(s.getName(), Integer.toString(apSug), Integer.toString(rejSug),Integer.toString(enqRep),String.valueOf(uCont.getPoints(s.getID())));
 		}
         
         try {
