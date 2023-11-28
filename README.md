@@ -23,8 +23,8 @@ CAMS is a program for students and staff to manage, view and register camps with
   - **To run the program, paste the following:** java -classpath "bin;lib/commons-collections4-4.1.jar;lib/poi-3.17.jar;lib/poi-ooxml-3.17.jar;lib/poi-ooxml-schemas-3.17.jar;lib/xmlbeans-2.6.0.jar" scs3grp5/Main
 
 ### Important Folders
-**doc** stores the Javadoc for this program.
-**data** stores the .xlsx files to be read by the program.
-**src** stores our codes and packages.
-**lib** stores external jar files used.
+**doc** stores the Javadoc for this program.\
+**data** stores the .xlsx files to be read by the program.\
+**src** stores our codes and packages.\
+**lib** stores external jar files used.\
 
