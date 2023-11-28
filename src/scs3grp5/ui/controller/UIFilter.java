@@ -230,7 +230,7 @@ public class UIFilter implements IPrintMenu, IUserInterface {
         System.out.println("----------------------------------------------");
         System.out.print("Enter location to filter: "); 
         Scanner sc = new Scanner(System.in); 
-        String location = sc.next();
+        String location = sc.nextLine();
         return location;
     }
 
