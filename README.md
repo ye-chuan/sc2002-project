@@ -2,13 +2,13 @@
 
 ![coverimage](CoverImage.png)
 
-CAMS is a program for students and staff to manage, view and register camps within NTU. The application acts as a centralized hub for all staff and students to check out previous, on-going and up-coming camps in NTU and for their faculty.
+CAMS is a program for students and staff to manage, view and register camps within NTU. The application acts as a centralized hub for all staff and students to check out previous, ongoing and upcoming camps in NTU and for their faculty.
 
 ## Instructions to compile and run our program using command prompt manually
 
 - Open command prompt
 
-- cd into the diretory where this git repo is in
+- cd into the directory where this git repo is in
 
 - **<u>For Unix devices</u>**
   
@@ -21,3 +21,10 @@ CAMS is a program for students and staff to manage, view and register camps with
   - **To compile paste the following:** javac -encoding utf8 -classpath "lib/commons-collections4-4.1.jar;lib/poi-3.17.jar;lib/poi-ooxml-3.17.jar;lib/poi-ooxml-schemas-3.17.jar;lib/xmlbeans-2.6.0.jar" -d bin -sourcepath src src/scs3grp5/Main.java
   
   - **To run the program, paste the following:** java -classpath "bin;lib/commons-collections4-4.1.jar;lib/poi-3.17.jar;lib/poi-ooxml-3.17.jar;lib/poi-ooxml-schemas-3.17.jar;lib/xmlbeans-2.6.0.jar" scs3grp5/Main
+
+### Important Folders
+**doc** stores the Javadoc for this program.
+**data** stores the .xlsx files to be read by the program.
+**src** stores our codes and packages.
+**lib** stores external jar files used.
+
