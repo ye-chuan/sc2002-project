@@ -1,6 +1,6 @@
 # Welcome to our Camp Application and Management System (CAMs)
 
-![](C:\Users\elain\AppData\Roaming\marktext\images\2023-11-28-14-56-05-image.png)
+![coverimage](C:\Users\elain\AppData\Roaming\marktext\images\2023-11-28-14-56-05-image.png)
 
 CAMS is a program for students and staff to manage, view and register camps within NTU. The application acts as a centralized hub for all staff and students to check out previous, on-going and up-coming camps in NTU and for their faculty.
 
