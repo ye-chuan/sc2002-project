@@ -29,3 +29,6 @@ CAMS is a program for students and staff to manage, view and register camps with
 - `src/` - our codes and packages.  
 - `lib/` - external jar files used.  
 
+
+
+[![Watch the video]]<video controls src="https://github.com/ye-chuan/sc2002-project/blob/main/Camp%20Application%20and%20Management%20System%20(CAMs)%202024-10-13%2021-31-37.mp4" title="(https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)"></video>
